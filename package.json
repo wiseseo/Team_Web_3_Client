@@ -1,0 +1,30 @@
+{
+  "name": "next-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@types/node": "^13.7.7",
+    "@types/react": "^16.9.23",
+    "@types/react-sizes": "^2.0.0",
+    "@zeit/next-css": "^1.0.1",
+    "babel-plugin-styled-components": "^1.10.7",
+    "next": "^9.2.2",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "typescript": "^3.8.3"
+  },
+  "devDependencies": {
+    "@types/styled-components": "^5.0.1",
+    "react-sizes": "^2.0.0",
+    "styled-components": "^5.0.1",
+    "styled-reset": "^4.1.1"
+  },
+  "scripts": {
+    "dev": "next",
+    "start": "next start",
+    "build": "next build"
+  },
+  "author": "Jinlee",
+  "license": "MIT"
+}
