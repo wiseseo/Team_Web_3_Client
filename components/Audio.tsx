@@ -5,22 +5,23 @@ interface Props {
 }
 
 const Audio: React.FC<Props> = ({ src }: Props): React.ReactElement => {
-  const [playing, setPlaying] = React.useState(false);
-  const [now, setNow] = React.useState(0);
-  const [duration, setDuration] = React.useState(0);
+  const [playing, setPlaying] = React.useState<boolean>(false);
+  const [now, setNow] = React.useState<number>(0);
+  const [duration, setDuration] = React.useState<number>(0);
   const audioRef = React.useRef(null);
-  let intervalID;
+  const [intervalId, setIntervalId] = React.useState<number>();
   const playAudio = () => {
     if (audioRef.current !== null) {
       if (playing) {
         audioRef.current.pause();
-        intervalID = clearInterval(intervalID);
+        clearInterval(intervalId);
         setPlaying(false);
       } else {
         audioRef.current.play();
-        intervalID = setInterval(() => {
+        const id = setInterval(() => {
           setNow(audioRef.current.currentTime);
         }, 10);
+        setIntervalId(id);
         setPlaying(true);
       }
     }
