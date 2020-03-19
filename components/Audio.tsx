@@ -1,4 +1,5 @@
 import * as React from "react";
+import ProgressBar from "./ProgressBar";
 
 interface Props {
   src: string;
@@ -28,10 +29,7 @@ const Audio: React.FC<Props> = ({ src }: Props): React.ReactElement => {
   };
   return (
     <div className="App">
-      <h2>
-        {Math.floor(now / 60)}:{Math.floor(now % 60)}/
-        {Math.floor(duration / 60)}:{Math.floor(duration % 60)}
-      </h2>
+      <ProgressBar current={now} duration={duration} />
       <audio
         preload="metadata"
         onLoadedMetadata={() => setDuration(audioRef.current.duration)}
