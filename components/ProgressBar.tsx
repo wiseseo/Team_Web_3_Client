@@ -24,9 +24,16 @@ const ProgressWrapper = styled.div`
     border-radius: 2px;
     background-size: 35px 20px, 100% 100%, 100% 100%;
   }
+  progress[value]::-webkit-progress-value:after {
+    content: "";
+    width: 20px;
+    height: 40px;
+    position: absolute;
+    right: 0;
+  }
 `;
 
-const ProgressBar = ({ current, duration }: Props): React.ReactElement => {
+const ProgressBar = ({ current = 0, duration }: Props): React.ReactElement => {
   return (
     <div>
       <ProgressWrapper>

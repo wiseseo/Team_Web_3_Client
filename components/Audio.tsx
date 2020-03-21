@@ -7,35 +7,46 @@ interface Props {
 
 const Audio: React.FC<Props> = ({ src }: Props): React.ReactElement => {
   const [playing, setPlaying] = React.useState<boolean>(false);
-  const [now, setNow] = React.useState<number>(0);
   const [duration, setDuration] = React.useState<number>(0);
   const audioRef = React.useRef(null);
-  const [intervalId, setIntervalId] = React.useState<number>();
+  const [requestId, setRequestId] = React.useState<number>();
+  React.useEffect(() => {
+    if (audioRef.current) {
+      setDuration(audioRef.current.duration);
+    }
+  }, [audioRef]);
+
+  const step = () => {
+    if (audioRef.current.currentTime < duration) {
+      const id = requestAnimationFrame(step);
+      setRequestId(id);
+    }
+  };
   const playAudio = () => {
     if (audioRef.current !== null) {
       if (playing) {
         audioRef.current.pause();
-        clearInterval(intervalId);
+        cancelAnimationFrame(requestId);
         setPlaying(false);
       } else {
         audioRef.current.play();
-        const id = setInterval(() => {
-          setNow(audioRef.current.currentTime);
-        }, 10);
-        setIntervalId(id);
+        const id = requestAnimationFrame(step);
+        setRequestId(id);
         setPlaying(true);
       }
     }
   };
   return (
     <div className="App">
-      <ProgressBar current={now} duration={duration} />
-      <audio
-        preload="metadata"
-        onLoadedMetadata={() => setDuration(audioRef.current.duration)}
-        ref={audioRef}
-        src={src}
+      <ProgressBar
+        current={
+          audioRef.current && audioRef.current.currentTime
+            ? audioRef.current.currentTime
+            : 0
+        }
+        duration={duration}
       />
+      <audio preload="metadata" ref={audioRef} src={src} />
       <button onClick={playAudio}>재생</button>
     </div>
   );
