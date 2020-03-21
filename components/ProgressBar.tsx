@@ -9,8 +9,12 @@ const ProgressWrapper = styled.div`
   progress[value] {
     -webkit-appearance: none;
     appearance: none;
+    background-color: red;
   }
-  progress[value]::-webkit-progress-value {
+`;
+
+const Progress = styled.progress`
+  &[value]::-webkit-progress-value {
     background-image: -webkit-linear-gradient(
         -45deg,
         transparent 33%,
@@ -24,7 +28,8 @@ const ProgressWrapper = styled.div`
     border-radius: 2px;
     background-size: 35px 20px, 100% 100%, 100% 100%;
   }
-  progress[value]::-webkit-progress-value:after {
+
+  &[value]::-webkit-progress-value::after {
     content: "";
     width: 20px;
     height: 40px;
@@ -37,7 +42,7 @@ const ProgressBar = ({ current = 0, duration }: Props): React.ReactElement => {
   return (
     <div>
       <ProgressWrapper>
-        <progress max={duration} value={current} />
+        <Progress max={duration} value={current} />
       </ProgressWrapper>
       <h2>
         {Math.floor(current / 60)}:{Math.floor(current % 60)}/
