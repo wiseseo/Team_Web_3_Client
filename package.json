@@ -8,6 +8,7 @@
     "@types/react": "^16.9.23",
     "@types/react-sizes": "^2.0.0",
     "@zeit/next-css": "^1.0.1",
+    "acorn": "^6.4.1",
     "babel-plugin-styled-components": "^1.10.7",
     "next": "^9.2.2",
     "react": "^16.13.0",
