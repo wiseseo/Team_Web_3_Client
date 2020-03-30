@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 interface Props {
   playAudio: () => void;
+  status: boolean;
 }
 
 const Button = styled.button`
@@ -16,7 +17,12 @@ const Button = styled.button`
   aligns-items: center;
 `;
 
-const Tri = styled.input.attrs(props => ({ type: "checkbox" }))`
+const Toggle = styled.input.attrs(({ checked }: { checked: boolean }) => ({
+  type: "checkbox",
+  checked,
+  readonly: true,
+  disabled: false
+}))`
   appearance: none;
   outline: none;
   width: 1em;
@@ -66,10 +72,10 @@ const Tri = styled.input.attrs(props => ({ type: "checkbox" }))`
   }
 `;
 
-const PlayButton = ({ playAudio }: Props): React.ReactElement => {
+const PlayButton = ({ playAudio, status }: Props): React.ReactElement => {
   return (
     <Button onClick={playAudio}>
-      <Tri />
+      <Toggle checked={status} />
     </Button>
   );
 };

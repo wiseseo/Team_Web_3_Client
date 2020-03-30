@@ -48,7 +48,7 @@ const Audio: React.FC<Props> = ({ src }: Props): React.ReactElement => {
   };
   return (
     <AudioContainer>
-      <PlayButton playAudio={playAudio} />
+      <PlayButton playAudio={playAudio} status={playing} />
       <ProgressBar
         current={currentTime}
         duration={duration}
