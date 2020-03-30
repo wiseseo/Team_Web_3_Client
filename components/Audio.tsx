@@ -7,45 +7,38 @@ interface Props {
 
 const Audio: React.FC<Props> = ({ src }: Props): React.ReactElement => {
   const [playing, setPlaying] = React.useState<boolean>(false);
+  const [currentTime, setCurrentTime] = React.useState<number>(0);
+  const [duration, setDuration] = React.useState<number>(0);
   const audioRef = React.useRef(null);
-  const [requestId, setRequestId] = React.useState<number>();
-
-  React.useEffect(() => {
-    if (audioRef.current) {
-      console.log(audioRef.current.volume);
-    }
-  }, [audioRef]);
-  const step = () => {
-    if (audioRef.current == null) return;
-    if (audioRef.current.currentTime < audioRef.current.duration) {
-      const id = requestAnimationFrame(step);
-      setRequestId(id);
-    }
-  };
   const playAudio = () => {
     if (audioRef.current == null) return;
-
     if (playing) {
       audioRef.current.pause();
-      cancelAnimationFrame(requestId);
       setPlaying(false);
     } else {
+      setDuration(audioRef.current.duration);
       audioRef.current.play();
-      const id = requestAnimationFrame(step);
-      setRequestId(id);
       setPlaying(true);
     }
+  };
+
+  const updateProgress = (
+    event: React.SyntheticEvent<HTMLAudioElement, Event>
+  ) => {
+    setCurrentTime(event.target.currentTime);
   };
   return (
     <div className="App">
       {audioRef.current && (
-        <ProgressBar
-          current={audioRef.current.currentTime}
-          duration={audioRef.current.duration}
-        />
+        <ProgressBar current={currentTime} duration={duration} />
       )}
 
-      <audio preload="metadata" ref={audioRef} src={src} />
+      <audio
+        preload="metadata"
+        ref={audioRef}
+        src={src}
+        onTimeUpdate={updateProgress}
+      />
       {audioRef.current && (
         <input
           type="range"
