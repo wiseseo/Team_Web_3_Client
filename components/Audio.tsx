@@ -34,10 +34,19 @@ const Audio: React.FC<Props> = ({ src }: Props): React.ReactElement => {
   ) => {
     audioRef.current.volume = Number((event.target as HTMLInputElement).value);
   };
+
+  const changeCurrent = (value: number) => {
+    if (audioRef.current === null) return;
+    audioRef.current.currentTime = value;
+  };
   return (
     <div className="App">
       {audioRef.current && (
-        <ProgressBar current={currentTime} duration={duration} />
+        <ProgressBar
+          current={currentTime}
+          duration={duration}
+          changeCurrent={changeCurrent}
+        />
       )}
 
       <audio
