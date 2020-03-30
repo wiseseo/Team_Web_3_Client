@@ -6,35 +6,19 @@ interface Props {
   duration: number;
 }
 const ProgressWrapper = styled.div`
-  progress[value] {
+  input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
-    background-color: red;
-  }
-`;
+    background-color: #b3b4be;
+    overflow: hidden;
+    height: 8px;
 
-const Progress = styled.progress`
-  &[value]::-webkit-progress-value {
-    background-image: -webkit-linear-gradient(
-        -45deg,
-        transparent 33%,
-        rgba(0, 0, 0, 0.1) 33%,
-        rgba(0, 0, 0, 0.1) 66%,
-        transparent 66%
-      ),
-      -webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.25)),
-      -webkit-linear-gradient(left, #09c, #f44);
-
-    border-radius: 2px;
-    background-size: 35px 20px, 100% 100%, 100% 100%;
-  }
-
-  &[value]::-webkit-progress-value::after {
-    content: "";
-    width: 20px;
-    height: 40px;
-    position: absolute;
-    right: 0;
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 1px;
+      box-shadow: -100vw 0 0 100vw #6865fc;
+    }
   }
 `;
 
