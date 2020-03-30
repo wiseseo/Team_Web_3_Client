@@ -8,10 +8,13 @@
     "@types/react": "^16.9.27",
     "@types/react-sizes": "^2.0.0",
     "@zeit/next-css": "^1.0.1",
+    "acorn": "^6.4.1",
     "babel-plugin-styled-components": "^1.10.7",
+    "dotenv": "^8.2.0",
     "next": "^9.2.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "react-google-login": "^5.1.2",
     "typescript": "^3.8.3"
   },
   "devDependencies": {
