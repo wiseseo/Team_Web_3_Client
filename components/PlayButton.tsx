@@ -20,7 +20,7 @@ const Button = styled.button`
 const Toggle = styled.input.attrs(({ checked }: { checked: boolean }) => ({
   type: "checkbox",
   checked,
-  readonly: true,
+  readOnly: true,
   disabled: false
 }))`
   appearance: none;
