@@ -8,8 +8,16 @@ interface Props {
 }
 const ProgressWrapper = styled.div`
   span {
+    display: inline-block;
     font-size: 1.125rem;
     color: #b3b4be;
+    width: 3em;
+    &:first-child {
+      text-align: right;
+    }
+    &:last-child {
+      text-align: left;
+    }
   }
   input[type="range"] {
     -webkit-appearance: none;
@@ -28,6 +36,13 @@ const ProgressWrapper = styled.div`
   }
 `;
 
+const TimeDisplay = ({ value }: { value: number }): React.ReactElement => (
+  <span>
+    {Math.floor(value / 60)}:{Math.floor(value % 60) < 10 && 0}
+    {Math.floor(value % 60)}
+  </span>
+);
+
 const ProgressBar = ({
   current = 0,
   duration,
@@ -39,12 +54,11 @@ const ProgressBar = ({
     },
     []
   );
+
   return (
     <div>
       <ProgressWrapper>
-        <span>
-          {Math.floor(current / 60)}:{Math.floor(current % 60)}
-        </span>
+        <TimeDisplay value={current} />
         <input
           type="range"
           max={duration}
@@ -53,9 +67,7 @@ const ProgressBar = ({
           value={current}
           onChange={changeHandler}
         />
-        <span>
-          {Math.floor(duration / 60)}:{Math.floor(duration % 60)}
-        </span>
+        <TimeDisplay value={duration} />
       </ProgressWrapper>
     </div>
   );
