@@ -42,7 +42,13 @@ const ProgressBar = ({ current = 0, duration }: Props): React.ReactElement => {
   return (
     <div>
       <ProgressWrapper>
-        <Progress max={duration} value={current} />
+        <input
+          type="range"
+          max={duration}
+          min={0}
+          step={0.01}
+          value={current}
+        />
       </ProgressWrapper>
       <h2>
         {Math.floor(current / 60)}:{Math.floor(current % 60)}/
