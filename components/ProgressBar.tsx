@@ -33,11 +33,12 @@ const ProgressBar = ({
   duration,
   changeCurrent
 }: Props): React.ReactElement => {
-  const changeHandler = (
-    event: React.SyntheticEvent<HTMLInputElement, Event>
-  ) => {
-    changeCurrent(Number((event.target as HTMLInputElement).value));
-  };
+  const changeHandler = React.useCallback(
+    (event: React.SyntheticEvent<HTMLInputElement, Event>) => {
+      changeCurrent(Number((event.target as HTMLInputElement).value));
+    },
+    []
+  );
   return (
     <div>
       <ProgressWrapper>
