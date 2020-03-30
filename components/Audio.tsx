@@ -1,9 +1,16 @@
 import * as React from "react";
+import styled from "styled-components";
 import ProgressBar from "./ProgressBar";
+import PlayButton from "./PlayButton";
 
 interface Props {
   src: string;
 }
+
+const AudioContainer = styled.div`
+  display: flex;
+  background: #110f11;
+`;
 
 const Audio: React.FC<Props> = ({ src }: Props): React.ReactElement => {
   const [playing, setPlaying] = React.useState<boolean>(false);
@@ -40,14 +47,13 @@ const Audio: React.FC<Props> = ({ src }: Props): React.ReactElement => {
     audioRef.current.currentTime = value;
   };
   return (
-    <div className="App">
-      {audioRef.current && (
-        <ProgressBar
-          current={currentTime}
-          duration={duration}
-          changeCurrent={changeCurrent}
-        />
-      )}
+    <AudioContainer>
+      <PlayButton playAudio={playAudio} />
+      <ProgressBar
+        current={currentTime}
+        duration={duration}
+        changeCurrent={changeCurrent}
+      />
 
       <audio
         preload="metadata"
@@ -65,8 +71,7 @@ const Audio: React.FC<Props> = ({ src }: Props): React.ReactElement => {
           onChange={volumeChange}
         />
       )}
-      <button onClick={playAudio}>재생</button>
-    </div>
+    </AudioContainer>
   );
 };
 
