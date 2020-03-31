@@ -28,6 +28,7 @@ const Index: React.FC = () => {
       <Head>
         <title>Tuna!!</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <style>{`body{margin:0;}`}</style>
       </Head>
       <MainContainer>
         <Header />
