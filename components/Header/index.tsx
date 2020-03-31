@@ -9,6 +9,11 @@ interface Props {}
 const HeaderContainer = styled.header`
   display: flex;
   background: #040104;
+  align-items: center;
+  padding: 2em 5em;
+  input[type="text"] {
+    margin-right: auto;
+  }
 `;
 
 const Header = (props: Props): React.ReactElement => {
