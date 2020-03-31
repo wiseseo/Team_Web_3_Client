@@ -3,12 +3,12 @@ import styled from "styled-components";
 import SearchBar from "./SearchBar";
 import MatchButton from "./MatchButton";
 import LinkButton from "./LinkButton";
-import Link from "next/link";
 
 interface Props {}
 
 const HeaderContainer = styled.header`
   display: flex;
+  background: #040104;
 `;
 
 const Header = (props: Props): React.ReactElement => {
