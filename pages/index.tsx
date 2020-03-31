@@ -4,6 +4,7 @@ import Link from "next/link";
 import Head from "next/head";
 import Header from "../components/Header";
 import Banner from "../components/Banner";
+import SituationList from "../components/SituationList";
 import AudioPlayer from "../components/AudioPlayer";
 
 const Title = styled.h1`
@@ -25,6 +26,7 @@ const Index: React.FC = () => {
 
       <Header />
       <Banner />
+      <SituationList />
       <Title>Tuna</Title>
 
       <ul>
