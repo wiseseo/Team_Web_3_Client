@@ -4,50 +4,71 @@ import styled from "styled-components";
 interface Props {
   current: number;
   duration: number;
+  changeCurrent: (value: number) => void;
 }
 const ProgressWrapper = styled.div`
-  progress[value] {
+  span {
+    display: inline-block;
+    font-size: 1.125rem;
+    color: #b3b4be;
+    width: 3em;
+    &:first-child {
+      text-align: right;
+    }
+    &:last-child {
+      text-align: left;
+    }
+  }
+  input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
-    background-color: red;
+    background-color: #b3b4be;
+    overflow: hidden;
+    height: 8px;
+    width: 800px;
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 1px;
+      box-shadow: -100vw 0 0 100vw #6865fc;
+    }
   }
 `;
 
-const Progress = styled.progress`
-  &[value]::-webkit-progress-value {
-    background-image: -webkit-linear-gradient(
-        -45deg,
-        transparent 33%,
-        rgba(0, 0, 0, 0.1) 33%,
-        rgba(0, 0, 0, 0.1) 66%,
-        transparent 66%
-      ),
-      -webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.25)),
-      -webkit-linear-gradient(left, #09c, #f44);
+const TimeDisplay = ({ value }: { value: number }): React.ReactElement => (
+  <span>
+    {Math.floor(value / 60)}:{Math.floor(value % 60) < 10 && 0}
+    {Math.floor(value % 60)}
+  </span>
+);
 
-    border-radius: 2px;
-    background-size: 35px 20px, 100% 100%, 100% 100%;
-  }
+const ProgressBar = ({
+  current = 0,
+  duration,
+  changeCurrent
+}: Props): React.ReactElement => {
+  const changeHandler = React.useCallback(
+    (event: React.SyntheticEvent<HTMLInputElement, Event>) => {
+      changeCurrent(Number((event.target as HTMLInputElement).value));
+    },
+    []
+  );
 
-  &[value]::-webkit-progress-value::after {
-    content: "";
-    width: 20px;
-    height: 40px;
-    position: absolute;
-    right: 0;
-  }
-`;
-
-const ProgressBar = ({ current = 0, duration }: Props): React.ReactElement => {
   return (
     <div>
       <ProgressWrapper>
-        <Progress max={duration} value={current} />
+        <TimeDisplay value={current} />
+        <input
+          type="range"
+          max={duration}
+          min={0}
+          step={0.01}
+          value={current}
+          onChange={changeHandler}
+        />
+        <TimeDisplay value={duration} />
       </ProgressWrapper>
-      <h2>
-        {Math.floor(current / 60)}:{Math.floor(current % 60)}/
-        {Math.floor(duration / 60)}:{Math.floor(duration % 60)}
-      </h2>
     </div>
   );
 };

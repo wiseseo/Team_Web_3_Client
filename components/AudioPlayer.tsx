@@ -1,11 +1,18 @@
 import * as React from "react";
+import styled from "styled-components";
 import ProgressBar from "./ProgressBar";
+import PlayButton from "./PlayButton";
 
 interface Props {
   src: string;
 }
 
-const Audio: React.FC<Props> = ({ src }: Props): React.ReactElement => {
+const AudioContainer = styled.div`
+  display: flex;
+  background: #110f11;
+`;
+
+const AudioPlayer: React.FC<Props> = ({ src }: Props): React.ReactElement => {
   const [playing, setPlaying] = React.useState<boolean>(false);
   const [currentTime, setCurrentTime] = React.useState<number>(0);
   const [duration, setDuration] = React.useState<number>(0);
@@ -34,11 +41,19 @@ const Audio: React.FC<Props> = ({ src }: Props): React.ReactElement => {
   ) => {
     audioRef.current.volume = Number((event.target as HTMLInputElement).value);
   };
+
+  const changeCurrent = (value: number) => {
+    if (audioRef.current === null) return;
+    audioRef.current.currentTime = value;
+  };
   return (
-    <div className="App">
-      {audioRef.current && (
-        <ProgressBar current={currentTime} duration={duration} />
-      )}
+    <AudioContainer>
+      <PlayButton playAudio={playAudio} status={playing} />
+      <ProgressBar
+        current={currentTime}
+        duration={duration}
+        changeCurrent={changeCurrent}
+      />
 
       <audio
         preload="metadata"
@@ -56,9 +71,8 @@ const Audio: React.FC<Props> = ({ src }: Props): React.ReactElement => {
           onChange={volumeChange}
         />
       )}
-      <button onClick={playAudio}>재생</button>
-    </div>
+    </AudioContainer>
   );
 };
 
-export default Audio;
+export default AudioPlayer;
