@@ -12,7 +12,7 @@ const AudioContainer = styled.div`
   background: #110f11;
 `;
 
-const Audio: React.FC<Props> = ({ src }: Props): React.ReactElement => {
+const AudioPlayer: React.FC<Props> = ({ src }: Props): React.ReactElement => {
   const [playing, setPlaying] = React.useState<boolean>(false);
   const [currentTime, setCurrentTime] = React.useState<number>(0);
   const [duration, setDuration] = React.useState<number>(0);
@@ -75,4 +75,4 @@ const Audio: React.FC<Props> = ({ src }: Props): React.ReactElement => {
   );
 };
 
-export default Audio;
+export default AudioPlayer;
