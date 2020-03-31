@@ -2,6 +2,12 @@ import * as React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import Head from "next/head";
+import Header from "../components/Header";
+import Banner from "../components/Banner";
+import SituationList from "../components/SituationList";
+import Category from "../components/Category";
+import MusicianList from "../components/MusicianList";
+import Footer from "../components/Footer";
 import AudioPlayer from "../components/AudioPlayer";
 
 const Title = styled.h1`
@@ -12,16 +18,17 @@ const NavLi = styled.li`
   margin-left: 5%;
 `;
 
+const MainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  /*background: #040104;*/
+`;
+
 const Index: React.FC = () => {
   return (
     <div>
-      <AudioPlayer src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga" />
-      <Head>
-        <title>Tuna!!</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
+      {/* <Title>Tuna</Title>
 
-      <Title>Tuna</Title>
       <ul>
         <NavLi style={{ marginLeft: 0 }}>
           <Link href="/musician/find">
@@ -83,7 +90,23 @@ const Index: React.FC = () => {
             <a>Musician portfolio</a>
           </Link>
         </li>
-      </ul>
+      </ul> */}
+
+      <Head>
+        <title>Tuna!!</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <style>{`body{margin:0;}`}</style>
+      </Head>
+      <MainContainer>
+        <Header />
+        <Banner />
+        <SituationList />
+        <Category />
+        <MusicianList />
+        <MusicianList />
+        <Footer />
+        <AudioPlayer src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga" />
+      </MainContainer>
     </div>
   );
 };
