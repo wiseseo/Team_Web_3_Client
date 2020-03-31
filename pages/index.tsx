@@ -27,22 +27,7 @@ const MainContainer = styled.div`
 const Index: React.FC = () => {
   return (
     <div>
-      <Head>
-        <title>Tuna!!</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <style>{`body{margin:0;}`}</style>
-      </Head>
-      <MainContainer>
-        <Header />
-        <Banner />
-        <SituationList />
-        <Category />
-        <MusicianList />
-        <MusicianList />
-        <Footer />
-        <AudioPlayer src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga" />
-      </MainContainer>
-      <Title>Tuna</Title>
+      {/* <Title>Tuna</Title>
 
       <ul>
         <NavLi style={{ marginLeft: 0 }}>
@@ -105,7 +90,23 @@ const Index: React.FC = () => {
             <a>Musician portfolio</a>
           </Link>
         </li>
-      </ul>
+      </ul> */}
+
+      <Head>
+        <title>Tuna!!</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <style>{`body{margin:0;}`}</style>
+      </Head>
+      <MainContainer>
+        <Header />
+        <Banner />
+        <SituationList />
+        <Category />
+        <MusicianList />
+        <MusicianList />
+        <Footer />
+        <AudioPlayer src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga" />
+      </MainContainer>
     </div>
   );
 };
