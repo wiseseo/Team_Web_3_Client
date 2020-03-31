@@ -12,6 +12,8 @@ const AudioContainer = styled.div`
   background: #110f11;
   position: fixed;
   bottom: 0;
+  left: 0;
+  right: 0;
 `;
 
 const AudioPlayer: React.FC<Props> = ({ src }: Props): React.ReactElement => {
