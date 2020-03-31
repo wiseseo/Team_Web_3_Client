@@ -7,6 +7,7 @@ import Banner from "../components/Banner";
 import SituationList from "../components/SituationList";
 import Category from "../components/Category";
 import MusicianList from "../components/MusicianList";
+import Footer from "../components/Footer";
 import AudioPlayer from "../components/AudioPlayer";
 
 const Title = styled.h1`
@@ -32,6 +33,7 @@ const Index: React.FC = () => {
       <Category />
       <MusicianList />
       <MusicianList />
+      <Footer />
 
       <Title>Tuna</Title>
 
