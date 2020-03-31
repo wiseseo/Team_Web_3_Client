@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import Head from "next/head";
+import Header from "../components/Header";
 import AudioPlayer from "../components/AudioPlayer";
 
 const Title = styled.h1`
@@ -21,7 +22,9 @@ const Index: React.FC = () => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
+      <Header />
       <Title>Tuna</Title>
+
       <ul>
         <NavLi style={{ marginLeft: 0 }}>
           <Link href="/musician/find">
