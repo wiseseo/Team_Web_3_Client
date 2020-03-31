@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import Head from "next/head";
 import Header from "../components/Header";
+import Banner from "../components/Banner";
 import AudioPlayer from "../components/AudioPlayer";
 
 const Title = styled.h1`
@@ -23,6 +24,7 @@ const Index: React.FC = () => {
       </Head>
 
       <Header />
+      <Banner />
       <Title>Tuna</Title>
 
       <ul>
