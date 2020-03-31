@@ -18,23 +18,27 @@ const NavLi = styled.li`
   margin-left: 5%;
 `;
 
+const MainContainer = styled.div`
+  /*background: #040104;*/
+`;
+
 const Index: React.FC = () => {
   return (
     <div>
-      <AudioPlayer src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga" />
       <Head>
         <title>Tuna!!</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-
-      <Header />
-      <Banner />
-      <SituationList />
-      <Category />
-      <MusicianList />
-      <MusicianList />
-      <Footer />
-
+      <MainContainer>
+        <Header />
+        <Banner />
+        <SituationList />
+        <Category />
+        <MusicianList />
+        <MusicianList />
+        <Footer />
+        <AudioPlayer src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga" />
+      </MainContainer>
       <Title>Tuna</Title>
 
       <ul>
