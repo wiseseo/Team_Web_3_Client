@@ -20,13 +20,15 @@ interface Props {
 }
 const Card = styled.div`
   width: 520px;
-  height: 480px;
+  height: 464px;
   background: #110f11;
   display: flex;
   flex-direction: column;
+  border-radius: 3px;
+  overflow: hidden;
 `;
 const MusicContainer = styled.div`
-  flex: 1;
+height: 240px;
   background-image: url("${({ src }: { src: string }) => src}");
   background-repeat: no-repeat;
   background-position: center center;
@@ -51,6 +53,7 @@ const MusicianInfo = styled.div`
   flex-direction: column;
 `;
 const ProfileContainer = styled.div`
+  flex: 3;
   display: flex;
   padding: 1rem 2rem;
   justify-content: space-between;
@@ -94,7 +97,16 @@ const Likes = styled.div`
 `;
 
 const MusicianLink = styled.div`
+  flex: 2;
   display: flex;
+  padding: 1rem 2rem;
+  border-top: 1px solid rgba(104, 101, 252, 0.4);
+  justify-content: space-between;
+  align-items: center;
+`;
+const Features = styled.div`
+  font-size: 1.125rem;
+  color: #6865fc;
 `;
 
 const Tag = styled.li`
@@ -105,6 +117,15 @@ const Tag = styled.li`
   display: block;
   text-align: center;
   margin: 0.2rem 0;
+`;
+
+const ShowButton = styled.button`
+  background: #6865fc;
+  border-radius: 10px;
+  padding: 0.2rem 0.8rem;
+  border: none;
+  color: white;
+  font-size: 1.125rem;
 `;
 
 const Tags = ({ tags }: { tags: string[] }) => {
@@ -141,10 +162,10 @@ const MusicianCard = ({ musician }: Props) => {
           </TagLikeInfo>
         </ProfileContainer>
         <MusicianLink>
-          <div>
+          <Features>
             {musician.features.reduce((res, feature) => `${res}/${feature}`)}
-          </div>
-          <button>뮤지션 보기</button>
+          </Features>
+          <ShowButton>뮤지션 보기</ShowButton>
         </MusicianLink>
       </MusicianInfo>
     </Card>
