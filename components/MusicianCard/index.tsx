@@ -48,8 +48,18 @@ const Space = styled.div`
 const MusicianInfo = styled.div`
   flex: 1;
 `;
+const Circle = styled.div`
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+`;
 const Profile = styled.div`
+    width: 100%;
+    height: 100%;
     background-image: url("${({ src }: { src: string }) => src}");
+    background-repeat: no-repeat;
+    background-size: contain;
 `;
 
 const Tags = ({ tags }: { tags: string[] }) => {
@@ -72,7 +82,9 @@ const MusicianCard = ({ musician }: Props) => {
         </MusicInfo>
       </MusicContainer>
       <MusicianInfo>
-        <Profile src={musician.profile} />
+        <Circle>
+          <Profile src={musician.profile} />
+        </Circle>
         <div>{musician.name}</div>
         <div>{musician.introduction}</div>
         <div>like{musician.likes}</div>
