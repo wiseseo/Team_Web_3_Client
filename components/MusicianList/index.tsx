@@ -28,9 +28,6 @@ const MusicianList = (props: Props) => {
         <li>
           <MusicianCard musician={musicians[0]} />
         </li>
-        <li>
-          <MusicianCard musician={musicians[0]} />
-        </li>
       </ul>
     </div>
   );
