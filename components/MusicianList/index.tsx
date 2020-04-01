@@ -8,7 +8,7 @@ const MusicianList = (props: Props) => {
     {
       name: "마약왕",
       introduction: "나라에서 허락한 유일한 마약팔이",
-      tags: ["태그", "태그", "태그그"],
+      tags: ["태그", "태그그"],
       likes: 777,
       isPlaying: false,
       profile:

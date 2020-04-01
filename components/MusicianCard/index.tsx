@@ -47,12 +47,29 @@ const Space = styled.div`
 `;
 const MusicianInfo = styled.div`
   flex: 1;
+  display: flex;
+  flex-direction: column;
+`;
+const ProfileContainer = styled.div`
+  display: flex;
+  padding: 1rem 2rem;
+  justify-content: space-between;
+`;
+const ProfileInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const TagLikeInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 `;
 const Circle = styled.div`
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
   overflow: hidden;
+  margin: 0.5rem 0;
 `;
 const Profile = styled.div`
     width: 100%;
@@ -61,12 +78,40 @@ const Profile = styled.div`
     background-repeat: no-repeat;
     background-size: contain;
 `;
+const Name = styled.div`
+  color: #ffffff;
+  font-size: 1.125rem;
+`;
+const Introduction = styled.div`
+  color: #e2e1e2;
+  font-size: 1.125rem;
+  margin: 0.2rem 0;
+`;
+const Likes = styled.div`
+  font-size: 1.125rem;
+  color: #6865fc;
+  margin: 0.5rem 0;
+`;
+
+const MusicianLink = styled.div`
+  display: flex;
+`;
+
+const Tag = styled.li`
+  border: 1px solid #e2e1e2;
+  border-radius: 2rem;
+  padding: 0.2rem 0.6rem;
+  color: #e2e1e2;
+  display: block;
+  text-align: center;
+  margin: 0.2rem 0;
+`;
 
 const Tags = ({ tags }: { tags: string[] }) => {
   return (
     <ul>
       {tags.map(tag => (
-        <li>{tag}</li>
+        <Tag>{tag}</Tag>
       ))}
     </ul>
   );
@@ -82,17 +127,25 @@ const MusicianCard = ({ musician }: Props) => {
         </MusicInfo>
       </MusicContainer>
       <MusicianInfo>
-        <Circle>
-          <Profile src={musician.profile} />
-        </Circle>
-        <div>{musician.name}</div>
-        <div>{musician.introduction}</div>
-        <div>like{musician.likes}</div>
-        <Tags tags={musician.tags} />
-        <div>
-          {musician.features.reduce((res, feature) => `${res}/${feature}`)}
-        </div>
-        <button>뮤지션 보기</button>
+        <ProfileContainer>
+          <ProfileInfo>
+            <Circle>
+              <Profile src={musician.profile} />
+            </Circle>
+            <Name>{musician.name}</Name>
+            <Introduction>{musician.introduction}</Introduction>
+          </ProfileInfo>
+          <TagLikeInfo>
+            <Likes>♡{musician.likes}</Likes>
+            <Tags tags={musician.tags} />
+          </TagLikeInfo>
+        </ProfileContainer>
+        <MusicianLink>
+          <div>
+            {musician.features.reduce((res, feature) => `${res}/${feature}`)}
+          </div>
+          <button>뮤지션 보기</button>
+        </MusicianLink>
       </MusicianInfo>
     </Card>
   );
