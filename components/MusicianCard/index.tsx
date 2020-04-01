@@ -1,4 +1,5 @@
 import * as React from "react";
+import PlayButton from "./../AudioPlayer/PlayButton";
 import styled from "styled-components";
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
     tags: string[];
     likes: number;
     profile: string;
+    isPlaying: boolean;
     song: {
       title: string;
       cover: string;
@@ -28,6 +30,20 @@ const MusicContainer = styled.div`
   background-image: url("${({ src }: { src: string }) => src}");
   background-repeat: no-repeat;
   background-position: center center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+`;
+const MusicInfo = styled.div`
+  background: rgba(255, 255, 255, 0.15);
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  color: #b3b4be;
+  align-self: stretch;
+`;
+const Space = styled.div`
+  height: ${({ height }: { height: number }) => height}px;
 `;
 const MusicianInfo = styled.div`
   flex: 1;
@@ -49,9 +65,11 @@ const MusicianCard = ({ musician }: Props) => {
   return (
     <Card>
       <MusicContainer src={musician.song.cover}>
-        <div>
+        <Space height={48} />
+        <PlayButton playAudio={() => {}} status={musician.isPlaying} />
+        <MusicInfo>
           {musician.name}-{musician.song.title}
-        </div>
+        </MusicInfo>
       </MusicContainer>
       <MusicianInfo>
         <Profile src={musician.profile} />

@@ -10,6 +10,7 @@ const MusicianList = (props: Props) => {
       introduction: "나라에서 허락한 유일한 마약팔이",
       tags: ["태그", "태그", "태그그"],
       likes: 777,
+      isPlaying: false,
       profile:
         "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
       song: {
