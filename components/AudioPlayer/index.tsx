@@ -10,6 +10,9 @@ interface Props {
 
 const AudioContainer = styled.div`
   display: flex;
+  padding: 2.5rem;
+  align-items: center;
+  justify-content: space-around;
   background: #110f11;
   position: fixed;
   bottom: 0;
@@ -79,23 +82,21 @@ const AudioPlayer: React.FC<Props> = ({ src }: Props): React.ReactElement => {
         duration={duration}
         changeCurrent={changeCurrent}
       />
-
+      <div>♡</div>
+      <input
+        type="range"
+        max={1}
+        min={0}
+        step={0.01}
+        value={audioRef.current && audioRef.current.volume}
+        onChange={volumeChange}
+      />
       <audio
         preload="metadata"
         ref={audioRef}
         src={src}
         onTimeUpdate={updateProgress}
       />
-      {audioRef.current && (
-        <input
-          type="range"
-          max={1}
-          min={0}
-          step={0.01}
-          value={audioRef.current.volume}
-          onChange={volumeChange}
-        />
-      )}
     </AudioContainer>
   );
 };
