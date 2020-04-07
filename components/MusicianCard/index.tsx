@@ -18,7 +18,7 @@ interface Props {
     features: string[];
   };
 }
-const Card = styled.div`
+const Card = styled.li`
   width: 520px;
   height: 464px;
   background: #110f11;
@@ -132,7 +132,7 @@ const Tags = ({ tags }: { tags: string[] }) => {
   return (
     <ul>
       {tags.map(tag => (
-        <Tag>{tag}</Tag>
+        <Tag key={tag.toString()}>{tag}</Tag>
       ))}
     </ul>
   );
