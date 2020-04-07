@@ -132,7 +132,7 @@ const Tags = ({ tags }: { tags: string[] }) => {
   return (
     <ul>
       {tags.map(tag => (
-        <Tag>{tag}</Tag>
+        <Tag key={tag.toString()}>{tag}</Tag>
       ))}
     </ul>
   );

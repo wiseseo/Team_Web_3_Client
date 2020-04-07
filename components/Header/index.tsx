@@ -22,11 +22,12 @@ const Header = (props: Props): React.ReactElement => {
       <img
         src="https://s.pstatic.net/static/www/img/uit/2019/sp_search.svg"
         alt="logo"
+        onClick={()=>{location.href="/"}}
       />
       <SearchBar />
       <MatchButton text="뮤지션매칭" />
-      <LinkButton text="뮤지션 등록" />
-      <LinkButton text="로그인/가입" />
+      <LinkButton text="뮤지션 등록"  type="enroll"/>
+      <LinkButton text="로그인/가입" type="sign" />
     </HeaderContainer>
   );
 };
