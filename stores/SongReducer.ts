@@ -17,15 +17,15 @@ interface Song {
 const reducer = (song: Song, { type, payload }: ActionType) => {
   switch (type) {
     case "INIT_SONG":
-      return;
+      return { ...payload };
     case "CHANGE_SONG":
-      return;
+      return { ...payload };
     case "LIKE_SONG":
-      return;
+      return { ...song, isLike: true };
     case "PLAY_SONG":
-      return;
+      return { ...song, isPlaying: true };
     case "STOP_SONG":
-      return;
+      return { ...song, isPlaying: false };
     default:
       return;
   }
