@@ -9,6 +9,7 @@ import Category from "../components/Category";
 import MusicianList from "../components/MusicianList";
 import Footer from "../components/Footer";
 import AudioPlayer from "../components/AudioPlayer";
+import SongStore from "./../stores/SongStore";
 
 const Title = styled.h1`
   color: black;
@@ -97,16 +98,18 @@ const Index: React.FC = () => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <style>{`body{margin:0;}`}</style>
       </Head>
-      <MainContainer>
-        <Header />
-        <Banner />
-        <SituationList />
-        <Category />
-        <MusicianList />
-        <MusicianList />
-        <Footer />
-        <AudioPlayer src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga" />
-      </MainContainer>
+      <SongStore>
+        <MainContainer>
+          <Header />
+          <Banner />
+          <SituationList />
+          <Category />
+          <MusicianList />
+          <MusicianList />
+          <Footer />
+          <AudioPlayer src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga" />
+        </MainContainer>
+      </SongStore>
     </div>
   );
 };

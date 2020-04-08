@@ -37,7 +37,7 @@ export const SongContext = React.createContext<SongInterface>({
   song: defaultSong,
 });
 
-export const SongStore = ({ children }: { children: React.ReactElement[] }) => {
+const SongStore = ({ children }: { children: React.ReactElement }) => {
   const [song, dispatch] = useReducer(reducer, defaultSong);
   return (
     <SongContext.Provider value={{ song, dispatch }}>
@@ -45,3 +45,5 @@ export const SongStore = ({ children }: { children: React.ReactElement[] }) => {
     </SongContext.Provider>
   );
 };
+
+export default SongStore;
