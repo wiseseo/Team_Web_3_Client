@@ -131,7 +131,7 @@ const ShowButton = styled.button`
 const Tags = ({ tags }: { tags: string[] }) => {
   return (
     <ul>
-      {tags.map(tag => (
+      {tags.map((tag) => (
         <Tag key={tag.toString()}>{tag}</Tag>
       ))}
     </ul>
@@ -142,7 +142,11 @@ const MusicianCard = ({ musician }: Props) => {
     <Card>
       <MusicContainer src={musician.song.cover}>
         <Space height={48} />
-        <PlayButton playAudio={() => {}} status={musician.isPlaying} />
+        <PlayButton
+          playAudio={() => {}}
+          size={64}
+          status={musician.isPlaying}
+        />
         <MusicInfo>
           {musician.name}-{musician.song.title}
         </MusicInfo>

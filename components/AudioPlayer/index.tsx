@@ -77,7 +77,7 @@ const AudioPlayer: React.FC = (): React.ReactElement => {
   return (
     <AudioContainer>
       <Profile cover={song.cover_url} name={song.name} title={song.title} />
-      <PlayButton playAudio={playAudio} status={song.isPlaying} />
+      <PlayButton playAudio={playAudio} size={48} status={song.isPlaying} />
       <ProgressBar
         current={currentTime}
         duration={duration}
