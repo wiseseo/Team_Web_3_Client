@@ -19,8 +19,8 @@ interface Props {
   };
 }
 const Card = styled.li`
-  width: 520px;
-  height: 464px;
+  width: 392px;
+  height: 342;
   background: #110f11;
   display: flex;
   flex-direction: column;
@@ -28,7 +28,7 @@ const Card = styled.li`
   overflow: hidden;
 `;
 const MusicContainer = styled.div`
-height: 240px;
+height: 176;
   background-image: url("${({ src }: { src: string }) => src}");
   background-repeat: no-repeat;
   background-position: center center;
@@ -39,8 +39,8 @@ height: 240px;
 `;
 const MusicInfo = styled.div`
   background: rgba(255, 255, 255, 0.15);
-  padding: 1rem 2rem;
-  font-size: 1.125rem;
+  padding: 1em 2em;
+  font-size: 0.75rem;
   color: #b3b4be;
   align-self: stretch;
 `;
@@ -141,15 +141,13 @@ const MusicianCard = ({ musician }: Props) => {
   return (
     <Card>
       <MusicContainer src={musician.song.cover}>
-        <Space height={48} />
+        <Space height={40} />
         <PlayButton
           playAudio={() => {}}
           size={64}
           status={musician.isPlaying}
         />
-        <MusicInfo>
-          {musician.name}-{musician.song.title}
-        </MusicInfo>
+        <MusicInfo>{musician.song.title}</MusicInfo>
       </MusicContainer>
       <MusicianInfo>
         <ProfileContainer>
