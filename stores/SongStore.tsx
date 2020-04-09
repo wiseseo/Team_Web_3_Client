@@ -13,7 +13,7 @@ interface Song {
 }
 
 type ActionType = {
-  type: "INIT_SONG" | "CHANGE_SONG" | "LIKE_SONG" | "PLAY_SONG" | "STOP_SONG";
+  type: "INIT_SONG" | "CHANGE_SONG" | "TOGGLE_LIKE" | "PLAY_SONG" | "STOP_SONG";
   payload?: any;
 };
 
