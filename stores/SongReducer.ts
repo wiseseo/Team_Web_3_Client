@@ -1,5 +1,5 @@
 type ActionType = {
-  type: "INIT_SONG" | "CHANGE_SONG" | "LIKE_SONG" | "PLAY_SONG" | "STOP_SONG";
+  type: "INIT_SONG" | "CHANGE_SONG" | "TOGGLE_LIKE" | "PLAY_SONG" | "STOP_SONG";
   payload?: any;
 };
 
@@ -20,8 +20,8 @@ const reducer = (song: Song, { type, payload }: ActionType) => {
       return { ...payload };
     case "CHANGE_SONG":
       return { ...payload };
-    case "LIKE_SONG":
-      return { ...song, isLike: true };
+    case "TOGGLE_LIKE":
+      return { ...song, isLike: !song.isLike };
     case "PLAY_SONG":
       return { ...song, isPlaying: true };
     case "STOP_SONG":
