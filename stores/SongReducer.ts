@@ -1,6 +1,6 @@
 type ActionType = {
   type: "INIT_SONG" | "CHANGE_SONG" | "LIKE_SONG" | "PLAY_SONG" | "STOP_SONG";
-  payload: any;
+  payload?: any;
 };
 
 interface Song {

@@ -107,7 +107,7 @@ const Index: React.FC = () => {
           <MusicianList />
           <MusicianList />
           <Footer />
-          <AudioPlayer src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga" />
+          <AudioPlayer />
         </MainContainer>
       </SongStore>
     </div>
