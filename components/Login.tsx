@@ -1,5 +1,6 @@
 import * as React from "react";
 import { GoogleLogin, GoogleLoginResponse } from "react-google-login";
+import NaverLogin from "react-naver-login";
 
 const Login: React.FC = () => {
   const successHandler = (res: GoogleLoginResponse) => {
@@ -16,6 +17,13 @@ const Login: React.FC = () => {
         buttonText="Login"
         onSuccess={successHandler}
         onFailure={failureHandler}
+      />
+      <NaverLogin
+        clientId={process.env.NAVER_CLIENT_ID}
+        callbackUrl="http://127.0.0.1:3000/login"
+        render={(props) => <div onClick={props.onClick}>Naver Login</div>}
+        onSuccess={(naverUser) => console.log(naverUser)}
+        onFailure={() => console.error("error")}
       />
     </div>
   );
