@@ -1,13 +1,19 @@
 // next.config.js
 const withCss = require("@zeit/next-css");
+const withImages = require("next-images");
 require("dotenv").config();
 module.exports = {
   env: {
-    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
   },
   withCss: withCss({
-    webpack: config => {
+    webpack: (config) => {
       return config;
-    }
-  })
+    },
+  }),
+  withImages: withImages({
+    webpack(config, options) {
+      return config;
+    },
+  }),
 };
