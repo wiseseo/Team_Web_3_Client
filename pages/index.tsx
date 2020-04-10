@@ -1,7 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import Link from "next/link";
-import Head from "next/head";
+
 import Header from "../components/Header";
 import Banner from "../components/Banner";
 import SituationList from "../components/SituationList";
@@ -10,6 +9,7 @@ import MusicianList from "../components/MusicianList";
 import Footer from "../components/Footer";
 import AudioPlayer from "../components/AudioPlayer";
 import SongStore from "./../stores/SongStore";
+
 
 const Title = styled.h1`
   color: black;
@@ -92,12 +92,8 @@ const Index: React.FC = () => {
           </Link>
         </li>
       </ul> */}
-
-      <Head>
-        <title>Tuna!!</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <style>{`body{margin:0;}`}</style>
-      </Head>
+      
+      
       <SongStore>
         <MainContainer>
           <Header />
@@ -106,6 +102,7 @@ const Index: React.FC = () => {
           <Category />
           <MusicianList />
           <MusicianList />
+
           <Footer />
           <AudioPlayer />
         </MainContainer>

@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import Login from "../Login";
+
+import {Modal} from 'react-responsive-modal';
 
 interface Props {
   text: string;
@@ -16,6 +19,17 @@ const Button = styled.div`
 `;
 
 const LinkButton = ({ text, type }: Props) => {
+
+  const [open, setOpen] = React.useState<boolean>(false);
+
+  const onOpenModal = () => {
+    setOpen(true);
+  };
+
+  const onCloseModal = () => {
+    setOpen(false);
+  };
+
   if(type=="enroll"){
     return (
     <Link href="/musician/enroll">
@@ -28,11 +42,15 @@ const LinkButton = ({ text, type }: Props) => {
   else
   {
     return (
-    <Link href="/sign/signin">
-      <Button>
-        {text}
+      <>
+      <Button onClick={onOpenModal}>
+          {text}
       </Button>
-    </Link>
+      <Modal open={open} onClose={onCloseModal} center>
+        
+        <Login/>
+      </Modal>
+      </>
     )
   }
 };
