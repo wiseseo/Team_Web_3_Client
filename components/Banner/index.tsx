@@ -7,6 +7,7 @@ const Container = styled.div`
     #1a1623 0%,
     #000000 100%
   );
+  overflow: hidden;
   position: relative;
 `;
 const Background = styled.img.attrs(({ src }: { src: string }) => ({ src }))`

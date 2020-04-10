@@ -22,7 +22,7 @@ const NavLi = styled.li`
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  /*background: #040104;*/
+  background: #040104;
 `;
 
 const Index: React.FC = () => {
