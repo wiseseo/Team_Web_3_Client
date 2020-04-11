@@ -55,13 +55,13 @@ const MusicianList = ({ title }: Props) => {
   const toggleLike = (id: string) => {
     dispatch({ type: "TOGGLE_LIKE", payload: id });
   };
-  const selectSong = (id: string, musician: Musician) => {
-    dispatch({ type: "SELECT_SONG", payload: id });
+  const selectSong = (id: string, status: boolean, musician: Musician) => {
+    dispatch({ type: "SELECT_SONG", payload: { id, status } });
 
     const selectedSong = {
       ...musician.song,
       name: musician.name,
-      isPlaying: true,
+      isPlaying: status,
     };
     song.dispatch({ type: "CHANGE_SONG", payload: selectedSong });
   };
