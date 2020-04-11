@@ -3,22 +3,42 @@ import styled from "styled-components";
 import MusicianCard from "./../MusicianCard";
 import { MusicianContext } from "./../../stores/MusicianStore";
 
-interface Props {}
+interface Props {
+  title: string;
+}
 
-const Slider = styled.ul`
+const Container = styled.div`
   display: flex;
+  flex-direction: column;
+  padding: 72px 320px;
+`;
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  color: #e2e1e2;
+`;
+
+const Title = styled.h1``;
+const Slider = styled.ul`
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 const Back = styled.div``;
 const Next = styled.div``;
-const MusicianList = (props: Props) => {
+const MusicianList = ({ title }: Props) => {
   const { musicianList, dispatch } = React.useContext(MusicianContext);
 
   const toggleLike = (id: string) => {
     dispatch({ type: "TOGGLE_LIKE", payload: id });
   };
   return (
-    <div>
-      뮤지션 리스트
+    <Container>
+      <Header>
+        <Title>{title}</Title>
+        <div>더보기</div>
+      </Header>
       <Slider>
         <Back onClick={() => dispatch({ type: "PREV_MUSICIANS" })}>
           <svg
@@ -50,7 +70,7 @@ const MusicianList = (props: Props) => {
           </svg>
         </Next>
       </Slider>
-    </div>
+    </Container>
   );
 };
 
