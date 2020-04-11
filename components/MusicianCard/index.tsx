@@ -24,7 +24,8 @@ interface Musician {
 }
 interface Props {
   musician: Musician;
-  toggleLike: (string) => void;
+  toggleLike: (id: string) => void;
+  selectSong: (id: string, musician: Musician) => void;
 }
 const Card = styled.li`
   width: 392px;
@@ -150,13 +151,13 @@ const Tags = ({ tags }: { tags: string[] }) => {
     </TagList>
   );
 };
-const MusicianCard = ({ musician, toggleLike }: Props) => {
+const MusicianCard = ({ musician, toggleLike, selectSong }: Props) => {
   return (
     <Card>
       <MusicContainer src={musician.song.cover_url}>
         <Space height={40} />
         <PlayButton
-          playAudio={() => {}}
+          playAudio={() => selectSong(musician.song.id, musician)}
           size={64}
           status={musician.song.isPlaying}
         />

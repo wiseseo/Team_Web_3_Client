@@ -2,9 +2,30 @@ import * as React from "react";
 import styled from "styled-components";
 import MusicianCard from "./../MusicianCard";
 import { MusicianContext } from "./../../stores/MusicianStore";
+import { SongContext } from "./../../stores/SongStore";
 
 interface Props {
   title: string;
+}
+interface Song {
+  id: string;
+  title: string;
+  date: string;
+  isPlaying: boolean;
+  isLike: boolean;
+  cover_url: string;
+  song_url: string;
+}
+
+interface Musician {
+  id: string;
+  name: string;
+  introduction: string;
+  tags: string[];
+  likes: number;
+  profile_url: string;
+  features: string[];
+  song: Song;
 }
 
 const Container = styled.div`
@@ -29,9 +50,20 @@ const Back = styled.div``;
 const Next = styled.div``;
 const MusicianList = ({ title }: Props) => {
   const { musicianList, dispatch } = React.useContext(MusicianContext);
+  const song = React.useContext(SongContext);
 
   const toggleLike = (id: string) => {
     dispatch({ type: "TOGGLE_LIKE", payload: id });
+  };
+  const selectSong = (id: string, musician: Musician) => {
+    dispatch({ type: "SELECT_SONG", payload: id });
+
+    const selectedSong = {
+      ...musician.song,
+      name: musician.name,
+      isPlaying: true,
+    };
+    song.dispatch({ type: "CHANGE_SONG", payload: selectedSong });
   };
   return (
     <Container>
@@ -56,6 +88,7 @@ const MusicianList = ({ title }: Props) => {
             key={musician.id}
             musician={musician}
             toggleLike={toggleLike}
+            selectSong={selectSong}
           />
         ))}
         <Next onClick={() => dispatch({ type: "NEXT_MUSICIANS" })}>

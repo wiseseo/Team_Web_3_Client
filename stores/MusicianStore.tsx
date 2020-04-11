@@ -33,7 +33,7 @@ const defaultMusicianList: Musician[] = [
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
       id: "1",
-      title: "tuna",
+      title: "Death_Becomes_Fur",
       date: "string",
       cover_url:
         "https://post-phinf.pstatic.net/MjAxOTA4MDJfMTMg/MDAxNTY0NzE4NzAwOTA5.tn4HF1zjhfl6_aHxlR7asab1KXtzqAr9cdtE1N34esUg.5Mh8Nq1dlgLPhjjClwburE2_cSS3KlbKega_nY1Jc0Ig.JPEG/%EB%94%94%EB%85%B8%EB%A7%88%EB%93%9C%ED%95%99%EA%B5%90_%EC%95%84%ED%8A%B8%EB%94%94%EB%A0%89%ED%84%B0_NSH_%EC%95%A8%EB%B2%94_%EC%BB%A4%EB%B2%84_%EB%94%94%EC%9E%90%EC%9D%B8_1.jpg?type=w1200",
@@ -52,12 +52,12 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "1",
-      title: "tuna",
+      id: "2",
+      title: "효과음",
       date: "string",
       cover_url:
         "https://post-phinf.pstatic.net/MjAxOTA4MDJfMTMg/MDAxNTY0NzE4NzAwOTA5.tn4HF1zjhfl6_aHxlR7asab1KXtzqAr9cdtE1N34esUg.5Mh8Nq1dlgLPhjjClwburE2_cSS3KlbKega_nY1Jc0Ig.JPEG/%EB%94%94%EB%85%B8%EB%A7%88%EB%93%9C%ED%95%99%EA%B5%90_%EC%95%84%ED%8A%B8%EB%94%94%EB%A0%89%ED%84%B0_NSH_%EC%95%A8%EB%B2%94_%EC%BB%A4%EB%B2%84_%EB%94%94%EC%9E%90%EC%9D%B8_1.jpg?type=w1200",
-      song_url: "http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga",
+      song_url: "https://s3.amazonaws.com/freecodecamp/simonSound1.mp3",
       isPlaying: false,
       isLike: false,
     },
@@ -72,12 +72,12 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "1",
-      title: "tuna",
+      id: "3",
+      title: "다른음악",
       date: "string",
       cover_url:
         "https://post-phinf.pstatic.net/MjAxOTA4MDJfMTMg/MDAxNTY0NzE4NzAwOTA5.tn4HF1zjhfl6_aHxlR7asab1KXtzqAr9cdtE1N34esUg.5Mh8Nq1dlgLPhjjClwburE2_cSS3KlbKega_nY1Jc0Ig.JPEG/%EB%94%94%EB%85%B8%EB%A7%88%EB%93%9C%ED%95%99%EA%B5%90_%EC%95%84%ED%8A%B8%EB%94%94%EB%A0%89%ED%84%B0_NSH_%EC%95%A8%EB%B2%94_%EC%BB%A4%EB%B2%84_%EB%94%94%EC%9E%90%EC%9D%B8_1.jpg?type=w1200",
-      song_url: "http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga",
+      song_url: "https://html5tutorial.info/media/vincent.mp3",
       isPlaying: false,
       isLike: false,
     },
@@ -92,12 +92,12 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "1",
-      title: "tuna",
+      id: "4",
+      title: "horse",
       date: "string",
       cover_url:
         "https://post-phinf.pstatic.net/MjAxOTA4MDJfMTMg/MDAxNTY0NzE4NzAwOTA5.tn4HF1zjhfl6_aHxlR7asab1KXtzqAr9cdtE1N34esUg.5Mh8Nq1dlgLPhjjClwburE2_cSS3KlbKega_nY1Jc0Ig.JPEG/%EB%94%94%EB%85%B8%EB%A7%88%EB%93%9C%ED%95%99%EA%B5%90_%EC%95%84%ED%8A%B8%EB%94%94%EB%A0%89%ED%84%B0_NSH_%EC%95%A8%EB%B2%94_%EC%BB%A4%EB%B2%84_%EB%94%94%EC%9E%90%EC%9D%B8_1.jpg?type=w1200",
-      song_url: "http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga",
+      song_url: "https://www.w3schools.com/html/horse.ogg",
       isPlaying: false,
       isLike: false,
     },
@@ -112,7 +112,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "1",
+      id: "5",
       title: "tuna",
       date: "string",
       cover_url:
@@ -132,7 +132,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "1",
+      id: "6",
       title: "tuna",
       date: "string",
       cover_url:
@@ -152,7 +152,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "1",
+      id: "7",
       title: "tuna",
       date: "string",
       cover_url:
