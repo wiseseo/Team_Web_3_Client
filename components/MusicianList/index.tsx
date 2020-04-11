@@ -12,6 +12,10 @@ const Back = styled.div``;
 const Next = styled.div``;
 const MusicianList = (props: Props) => {
   const { musicianList, dispatch } = React.useContext(MusicianContext);
+
+  const toggleLike = (id: string) => {
+    dispatch({ type: "TOGGLE_LIKE", payload: id });
+  };
   return (
     <div>
       뮤지션 리스트
@@ -28,7 +32,11 @@ const MusicianList = (props: Props) => {
           </svg>
         </Back>
         {musicianList.display.map((musician) => (
-          <MusicianCard key={musician.id} musician={musician} />
+          <MusicianCard
+            key={musician.id}
+            musician={musician}
+            toggleLike={toggleLike}
+          />
         ))}
         <Next onClick={() => dispatch({ type: "NEXT_MUSICIANS" })}>
           <svg

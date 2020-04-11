@@ -24,6 +24,7 @@ interface Musician {
 }
 interface Props {
   musician: Musician;
+  toggleLike: (string) => void;
 }
 const Card = styled.li`
   width: 392px;
@@ -149,7 +150,7 @@ const Tags = ({ tags }: { tags: string[] }) => {
     </TagList>
   );
 };
-const MusicianCard = ({ musician }: Props) => {
+const MusicianCard = ({ musician, toggleLike }: Props) => {
   return (
     <Card>
       <MusicContainer src={musician.song.cover_url}>
@@ -170,7 +171,7 @@ const MusicianCard = ({ musician }: Props) => {
             <Name>{musician.name}</Name>
             <Introduction>{musician.introduction}</Introduction>
           </Info>
-          <Likes>
+          <Likes onClick={() => toggleLike(musician.id)}>
             <svg
               width="24"
               height="22"

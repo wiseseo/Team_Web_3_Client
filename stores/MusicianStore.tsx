@@ -177,7 +177,9 @@ type ActionType = {
     | "PREV_MUSICIANS"
     | "NEXT_MUSICIANS"
     | "TOGGLE_LIKE"
-    | "SELECT_SONG";
+    | "SELECT_SONG"
+    | "PLAY_SONG"
+    | "STOP_SONG";
   payload?: any;
 };
 interface MusicianInterface {

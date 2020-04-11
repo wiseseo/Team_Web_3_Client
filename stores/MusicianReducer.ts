@@ -4,7 +4,9 @@ type ActionType = {
     | "PREV_MUSICIANS"
     | "NEXT_MUSICIANS"
     | "TOGGLE_LIKE"
-    | "SELECT_SONG";
+    | "SELECT_SONG"
+    | "PLAY_SONG"
+    | "STOP_SONG";
   payload?: any;
 };
 
@@ -22,10 +24,12 @@ interface Musician {
   id: string;
   name: string;
   introduction: string;
+  tags: string[];
+  likes: number;
   profile_url: string;
+  features: string[];
   song: Song;
 }
-
 interface MusicianList {
   list: Musician[];
   display: Musician[];
@@ -61,8 +65,23 @@ const reducer = (musicianList: MusicianList, { type, payload }: ActionType) => {
         end: musicianList.end,
       };
     case "TOGGLE_LIKE":
-      return;
+      // 고민
+      const index = musicianList.list.findIndex(
+        (musician) => payload === musician.id
+      );
+      const likedMusician = {
+        ...musicianList.list[index],
+        song: {
+          ...musicianList.list[index].song,
+          isLike: !musicianList.list[index].song.isLike,
+        },
+      };
+      return musicianList;
     case "SELECT_SONG":
+      return;
+    case "PLAY_SONG":
+      return;
+    case "STOP_SONG":
       return;
     default:
       return;
