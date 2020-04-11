@@ -1,10 +1,10 @@
 type ActionType = {
   type:
-    | "INIT_MUSICIANS"
-    | "PREV_MUSICIANS"
-    | "NEXT_MUSICIANS"
-    | "TOGGLE_LIKE"
-    | "SELECT_SONG";
+  | "INIT_MUSICIANS"
+  | "PREV_MUSICIANS"
+  | "NEXT_MUSICIANS"
+  | "TOGGLE_LIKE"
+  | "SELECT_SONG";
   payload?: any;
 };
 
@@ -25,10 +25,16 @@ interface Musician {
   profile_url: string;
   song: Song;
 }
-const reducer = (musicianList: Musician[], { type, payload }: ActionType) => {
+
+interface MusicianList {
+  list: Musician[];
+  display: Musician[];
+  page: number;
+}
+const reducer = (musicianList: MusicianList, { type, payload }: ActionType) => {
   switch (type) {
     case "INIT_MUSICIANS":
-      return;
+      return { list: [...payload], display: payload.slice(0, 3), page: 0 };
     case "PREV_MUSICIANS":
       return;
     case "NEXT_MUSICIANS":

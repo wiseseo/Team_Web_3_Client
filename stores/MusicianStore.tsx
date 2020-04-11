@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import MusicianReducer from "./MusicianReducer";
+import reducer from "./MusicianReducer";
 
 interface Song {
   id: string;
@@ -36,38 +36,44 @@ const defaultMusician: Musician = {
   },
 };
 
+interface MusicianList {
+  list: Musician[];
+  display: Musician[];
+  page: number;
+}
+
 type ActionType = {
   type:
-    | "INIT_MUSICIANS"
-    | "PREV_MUSICIANS"
-    | "NEXT_MUSICIANS"
-    | "TOGGLE_LIKE"
-    | "SELECT_SONG";
+  | "INIT_MUSICIANS"
+  | "PREV_MUSICIANS"
+  | "NEXT_MUSICIANS"
+  | "TOGGLE_LIKE"
+  | "SELECT_SONG";
   payload?: any;
 };
 interface MusicianInterface {
-  musicianListByRank: Musician[];
-  musicianListByRegist: Musician[];
+  musicianListByRank: MusicianList;
+  musicianListByRegist: MusicianList;
 
   dispatchRank?: React.Dispatch<ActionType>;
   dispatchRegist?: React.Dispatch<ActionType>;
 }
 export const MusicianContext = React.createContext<MusicianInterface>({
-  musicianListByRank: [defaultMusician],
-  musicianListByRegist: [defaultMusician],
+  musicianListByRank: { list: [defaultMusician], display: [], page: 0 },
+  musicianListByRegist: { list: [defaultMusician], display: [], page: 0 },
 });
 
-export const MusiciansStore = ({
-  children,
-}: {
-  children: React.ReactElement;
-}) => {
-  const [musicianListByRank, dispatchRank] = useReducer(MusicianReducer, [
-    defaultMusician,
-  ]);
-  const [musicianListByRegist, dispatchRegist] = useReducer(MusicianReducer, [
-    defaultMusician,
-  ]);
+const MusicianStore = ({ children }: { children: React.ReactElement }) => {
+  const [musicianListByRank, dispatchRank] = useReducer(reducer, {
+    list: [defaultMusician],
+    display: [],
+    page: 0,
+  });
+  const [musicianListByRegist, dispatchRegist] = useReducer(reducer, {
+    list: [defaultMusician],
+    display: [],
+    page: 0,
+  });
   return (
     <MusicianContext.Provider
       value={{
@@ -81,3 +87,5 @@ export const MusiciansStore = ({
     </MusicianContext.Provider>
   );
 };
+
+export default MusicianStore;
