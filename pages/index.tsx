@@ -10,6 +10,7 @@ import MusicianList from "../components/MusicianList";
 import Footer from "../components/Footer";
 import AudioPlayer from "../components/AudioPlayer";
 import SongStore from "./../stores/SongStore";
+import MusicianStore from "./../stores/MusicianStore";
 
 const Title = styled.h1`
   color: black;
@@ -104,8 +105,12 @@ const Index: React.FC = () => {
           <Banner />
           <SituationList />
           <Category />
-          <MusicianList />
-          <MusicianList />
+          <MusicianStore>
+            <MusicianList />
+          </MusicianStore>
+          <MusicianStore>
+            <MusicianList />
+          </MusicianStore>
           <Footer />
           <AudioPlayer />
         </MainContainer>
