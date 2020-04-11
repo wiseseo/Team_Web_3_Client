@@ -168,6 +168,7 @@ interface MusicianList {
   list: Musician[];
   display: Musician[];
   page: number;
+  end: number;
 }
 
 type ActionType = {
@@ -185,7 +186,7 @@ interface MusicianInterface {
   dispatch?: React.Dispatch<ActionType>;
 }
 export const MusicianContext = React.createContext<MusicianInterface>({
-  musicianList: { list: defaultMusicianList, display: [], page: 0 },
+  musicianList: { list: defaultMusicianList, display: [], page: 0, end: 0 },
 });
 
 const MusicianStore = ({ children }: { children: React.ReactElement }) => {
@@ -193,6 +194,7 @@ const MusicianStore = ({ children }: { children: React.ReactElement }) => {
     list: defaultMusicianList,
     display: [],
     page: 0,
+    end: 7,
   });
   useEffect(() => {
     dispatch({ type: "INIT_MUSICIANS", payload: defaultMusicianList });

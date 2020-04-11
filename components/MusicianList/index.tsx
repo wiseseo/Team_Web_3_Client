@@ -16,7 +16,7 @@ const MusicianList = (props: Props) => {
     <div>
       뮤지션 리스트
       <Slider>
-        <Back>
+        <Back onClick={() => dispatch({ type: "PREV_MUSICIANS" })}>
           <svg
             width="27"
             height="53"
@@ -30,7 +30,7 @@ const MusicianList = (props: Props) => {
         {musicianList.display.map((musician) => (
           <MusicianCard key={musician.id} musician={musician} />
         ))}
-        <Next>
+        <Next onClick={() => dispatch({ type: "NEXT_MUSICIANS" })}>
           <svg
             width="27"
             height="53"
