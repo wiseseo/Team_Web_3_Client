@@ -106,10 +106,10 @@ const Index: React.FC = () => {
           <SituationList />
           <Category />
           <MusicianStore>
-            <MusicianList />
+            <MusicianList title="리스너들의 선택" />
           </MusicianStore>
           <MusicianStore>
-            <MusicianList />
+            <MusicianList title="등장 새로운 뮤지션" />
           </MusicianStore>
           <Footer />
           <AudioPlayer />

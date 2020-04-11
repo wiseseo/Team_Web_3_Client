@@ -9,7 +9,7 @@ const Container = styled.div`
   padding: 72px 320px;
 `;
 const Title = styled.h1`
-  color: white;
+  color: #e2e1e2;
 `;
 
 const CardList = styled.ul`
