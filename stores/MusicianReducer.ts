@@ -78,7 +78,16 @@ const reducer = (musicianList: MusicianList, { type, payload }: ActionType) => {
       };
       return musicianList;
     case "SELECT_SONG":
-      return;
+      const newList = musicianList.list.map((musician) => {
+        musician.song.isPlaying =
+          musician.song.id === payload.id ? payload.status : false;
+        return musician;
+      });
+      return {
+        ...musicianList,
+        list: newList,
+        display: newList.slice(musicianList.page, musicianList.page + 3),
+      };
     case "PLAY_SONG":
       return;
     case "STOP_SONG":
