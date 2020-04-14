@@ -9,6 +9,7 @@ import MusicianList from "../components/MusicianList";
 import Footer from "../components/Footer";
 import AudioPlayer from "../components/AudioPlayer";
 import SongStore from "./../stores/SongStore";
+import MusicianStore from "./../stores/MusicianStore";
 
 
 const Title = styled.h1`
@@ -100,9 +101,12 @@ const Index: React.FC = () => {
           <Banner />
           <SituationList />
           <Category />
-          <MusicianList />
-          <MusicianList />
-
+          <MusicianStore>
+            <MusicianList title="리스너들의 선택" />
+          </MusicianStore>
+          <MusicianStore>
+            <MusicianList title="등장 새로운 뮤지션" />
+          </MusicianStore>
           <Footer />
           <AudioPlayer />
         </MainContainer>

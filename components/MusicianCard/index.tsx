@@ -2,21 +2,30 @@ import * as React from "react";
 import PlayButton from "./../AudioPlayer/PlayButton";
 import styled from "styled-components";
 
+interface Song {
+  id: string;
+  title: string;
+  date: string;
+  isPlaying: boolean;
+  isLike: boolean;
+  cover_url: string;
+  song_url: string;
+}
+
+interface Musician {
+  id: string;
+  name: string;
+  introduction: string;
+  tags: string[];
+  likes: number;
+  profile_url: string;
+  features: string[];
+  song: Song;
+}
 interface Props {
-  musician: {
-    name: string;
-    introduction: string;
-    tags: string[];
-    likes: number;
-    profile: string;
-    isPlaying: boolean;
-    song: {
-      title: string;
-      cover: string;
-      id: string;
-    };
-    features: string[];
-  };
+  musician: Musician;
+  toggleLike: (id: string) => void;
+  selectSong: (id: string, status: boolean, musician: Musician) => void;
 }
 const Card = styled.li`
   width: 392px;
@@ -142,28 +151,30 @@ const Tags = ({ tags }: { tags: string[] }) => {
     </TagList>
   );
 };
-const MusicianCard = ({ musician }: Props) => {
+const MusicianCard = ({ musician, toggleLike, selectSong }: Props) => {
   return (
     <Card>
-      <MusicContainer src={musician.song.cover}>
+      <MusicContainer src={musician.song.cover_url}>
         <Space height={40} />
         <PlayButton
-          playAudio={() => {}}
+          playAudio={() =>
+            selectSong(musician.song.id, !musician.song.isPlaying, musician)
+          }
           size={64}
-          status={musician.isPlaying}
+          status={musician.song.isPlaying}
         />
         <MusicInfo>{musician.song.title}</MusicInfo>
       </MusicContainer>
       <MusicianInfo>
         <ProfileContainer>
           <Circle>
-            <Profile src={musician.profile} />
+            <Profile src={musician.profile_url} />
           </Circle>
           <Info>
             <Name>{musician.name}</Name>
             <Introduction>{musician.introduction}</Introduction>
           </Info>
-          <Likes>
+          <Likes onClick={() => toggleLike(musician.id)}>
             <svg
               width="24"
               height="22"

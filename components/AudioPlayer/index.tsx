@@ -46,13 +46,23 @@ const AudioPlayer: React.FC = (): React.ReactElement => {
   const [duration, setDuration] = React.useState<number>(0);
   const audioRef = React.useRef<HTMLAudioElement>(null);
 
+  React.useEffect(() => {
+    stopAudio();
+    if (song.isPlaying) {
+      audioRef.current.play();
+    }
+  }, [song]);
+  const stopAudio = () => {
+    if (audioRef.current == null) return;
+    audioRef.current.pause();
+    audioRef.current.currentTime = 0;
+  };
   const playAudio = () => {
     if (audioRef.current == null) return;
     if (song.isPlaying) {
       audioRef.current.pause();
       dispatch({ type: "STOP_SONG" });
     } else {
-      setDuration(audioRef.current.duration);
       audioRef.current.play();
       dispatch({ type: "PLAY_SONG" });
     }
@@ -133,6 +143,9 @@ const AudioPlayer: React.FC = (): React.ReactElement => {
       </Volume>
 
       <audio
+        onLoadedMetadata={(event) => {
+          setDuration(audioRef.current.duration);
+        }}
         preload="metadata"
         ref={audioRef}
         src={song.song_url}
