@@ -20,8 +20,9 @@ const Header = (props: Props): React.ReactElement => {
   return (
     <HeaderContainer>
       <img
-        src="https://s.pstatic.net/static/www/img/uit/2019/sp_search.svg"
+        src="/static/logo.png"
         alt="logo"
+        style={{cursor:"pointer"}}
         onClick={()=>{location.href="/"}}
       />
       <SearchBar />
