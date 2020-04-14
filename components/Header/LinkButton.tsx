@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import Login from "../Login";
-
 import {Modal} from 'react-responsive-modal';
 
 interface Props {
@@ -10,6 +9,9 @@ interface Props {
   type: string;
 }
 
+const ModalOver = styled(Modal)`
+  
+`;
 const Button = styled.div`
   color: #b3b4be;
   font-size: 1.125rem;
@@ -46,10 +48,10 @@ const LinkButton = ({ text, type }: Props) => {
       <Button onClick={onOpenModal}>
           {text}
       </Button>
-      <Modal open={open} onClose={onCloseModal} center>
+      <ModalOver open={open} onClose={onCloseModal} center styles={{closeButton : {fill : "dimgray"}}}> 
         
         <Login/>
-      </Modal>
+      </ModalOver>
       </>
     )
   }
