@@ -17,7 +17,7 @@ const Find: React.FC = () => {
       <Header />
       <MusicianFinder/>
 
-      <AudioPlayer src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga" />
+      {/* <AudioPlayer src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga" /> */}
       </MainContainer>
     </div>
   );

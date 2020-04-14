@@ -11,10 +11,10 @@ const Button = styled.button`
   color: #6865fc;
   border: 2px solid #6865fc;
   border-radius: 10px;
-  font-size: 1.125rem;
+  font-size: 1rem;
   padding: 0.4em 2em;
   cursor: pointer;
-
+  min-width: fit-content;
 `;
 
 const MatchButton = ({ text }: Props) => {
