@@ -16,6 +16,9 @@ const HeaderContainer = styled.header`
   }
 `;
 
+const HeaderRightBtn = styled.div`
+  min-width: 300px
+`;
 const Header = (props: Props): React.ReactElement => {
   return (
     <HeaderContainer>
@@ -26,9 +29,11 @@ const Header = (props: Props): React.ReactElement => {
         onClick={()=>{location.href="/"}}
       />
       <SearchBar />
-      <MatchButton text="뮤지션매칭" />
-      <LinkButton text="뮤지션 등록"  type="enroll"/>
-      <LinkButton text="로그인/가입" type="sign" />
+
+        <MatchButton text="뮤지션매칭" />
+        <LinkButton text="뮤지션 등록"  type="enroll"/>
+        <LinkButton text="로그인/가입" type="sign" />
+
     </HeaderContainer>
   );
 };

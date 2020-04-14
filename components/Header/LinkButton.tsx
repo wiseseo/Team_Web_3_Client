@@ -14,10 +14,10 @@ const ModalOver = styled(Modal)`
 `;
 const Button = styled.div`
   color: #b3b4be;
-  font-size: 1.125rem;
+  font-size: 1rem;
   cursor: pointer;
   padding: 0.4em 2em;
-
+  min-width: fit-content;
 `;
 
 const LinkButton = ({ text, type }: Props) => {
