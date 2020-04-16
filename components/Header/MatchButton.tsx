@@ -15,6 +15,7 @@ const Button = styled.button`
   padding: 0.4em 2em;
   cursor: pointer;
   min-width: fit-content;
+  float: right;
 `;
 
 const MatchButton = ({ text }: Props) => {

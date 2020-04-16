@@ -28,12 +28,12 @@ const Header = (props: Props): React.ReactElement => {
         style={{cursor:"pointer"}}
         onClick={()=>{location.href="/"}}
       />
-      <SearchBar />
-
+      {/* <SearchBar /> */}
+      <div style={{float : "right", width: "100%", minWidth : 480}}>
         <MatchButton text="뮤지션매칭" />
         <LinkButton text="뮤지션 등록"  type="enroll"/>
         <LinkButton text="로그인/가입" type="sign" />
-
+      </div>
     </HeaderContainer>
   );
 };
