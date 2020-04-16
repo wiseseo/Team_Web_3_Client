@@ -18,6 +18,7 @@ const Button = styled.div`
   cursor: pointer;
   padding: 0.4em 2em;
   min-width: fit-content;
+  float: right;
 `;
 
 const LinkButton = ({ text, type }: Props) => {
