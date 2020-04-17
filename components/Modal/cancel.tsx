@@ -7,8 +7,6 @@ const LoginContainer = styled.div`
 
 const LoginModalLogo = styled.div`
   text-align : center;
-  padding-top : 10%;
-
 `;
 const LoginModalTitle = styled.div`
   color: #E2E1E2;
@@ -19,8 +17,8 @@ const LoginModalTitle = styled.div`
   line-height: 20px;
   align-items: center;
   text-align: center; 
-  padding-top : 5%;
-  padding-bottom : 15%;
+  padding-top : 15%;
+  padding-bottom : 10%;
 `;
 
 const LoginModalDescription = styled.div`
@@ -32,7 +30,7 @@ const LoginModalDescription = styled.div`
   line-height: 20px;
   align-items: center;
   text-align: center;   
-
+  padding-top : 5%;
 `;
 
 const LoginModalButton = styled.div`
@@ -73,36 +71,35 @@ const LeaveButton = styled.button`
   cursor : pointer;
 `;
 
-const Leave = ({onCloseModal}): React.ReactElement => {
+const Cancel = ({onCloseModal}): React.ReactElement => {
 
-    const leaveButton = (res: any) => {
+    const deleteButton = (res: any) => {
         console.log('Res : ', res);
     };
 
   return (
 
       <LoginContainer>
+
+        <LoginModalTitle>정말 의뢰를 취소하시겠어요?</LoginModalTitle>
+
         <LoginModalLogo>
           <img
-          src="/static/logo.png"
-          alt="logo"
-          style={{cursor:"pointer"}}
-          onClick={()=>{location.href="/"}}
+          src="/static/vector.png"
+          alt="vector"
         />
         </LoginModalLogo>
 
-        <LoginModalTitle>정말 탈퇴하시겠습니까 :(</LoginModalTitle>
-        <LoginModalDescription>튜나와 함께한 모든 추억이 사라집니다.</LoginModalDescription>
-        <LoginModalDescription>당신을 위한 뮤지션을 찾아보세요</LoginModalDescription>
+        <LoginModalDescription>취소시 작성한 의뢰서가 사라집니다.</LoginModalDescription>
 
         <LoginModalButton>
 
           <LoginModalButtonLayout>
-            <Button onClick={onCloseModal}>취소하겠습니다.</Button>
+            <Button onClick={onCloseModal}>아니요, 의뢰를 취소하지 않습니다.</Button>
           </LoginModalButtonLayout>
 
           <LoginModalButtonLayout>
-            <LeaveButton onClick={leaveButton}>탈퇴하겠습니다.</LeaveButton>
+            <LeaveButton onClick={deleteButton}>네, 의뢰서를 삭제합니다..</LeaveButton>
           </LoginModalButtonLayout>
 
         </LoginModalButton>
@@ -111,4 +108,4 @@ const Leave = ({onCloseModal}): React.ReactElement => {
   );
 };
 
-export default Leave;
+export default Cancel;

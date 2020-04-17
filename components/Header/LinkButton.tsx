@@ -5,8 +5,8 @@ import Login from "../Login";
 import {Modal} from 'react-responsive-modal';
 
 interface Props {
-  text: string;
-  type: string;
+  text: string,
+  type: string
 }
 
 const ModalOver = styled(Modal)`
@@ -21,7 +21,7 @@ const Button = styled.div`
   float: right;
 `;
 
-const LinkButton = ({ text, type }: Props) => {
+const LinkButton: React.FC<Props> = ({ text, type }) => {
 
   const [open, setOpen] = React.useState<boolean>(false);
 
@@ -32,7 +32,7 @@ const LinkButton = ({ text, type }: Props) => {
   const onCloseModal = () => {
     setOpen(false);
   };
-
+  console.log('main : ',onCloseModal);
   if(type=="enroll"){
     return (
     <Link href="/musician/enroll">
@@ -51,7 +51,8 @@ const LinkButton = ({ text, type }: Props) => {
       </Button>
       <ModalOver open={open} onClose={onCloseModal} center styles={{closeButton : {fill : "dimgray"}}}> 
         
-        <Login/>
+        <Login onCloseModal={onCloseModal}/>
+
       </ModalOver>
       </>
     )
