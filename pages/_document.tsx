@@ -28,7 +28,7 @@ export default class MyDocument extends Document<IProps> {
     return (
       <html>
         <Head>
-          <title>peoplefund</title>
+          {/* <title>peoplefund</title> */}
           {this.props.styleTags}
         </Head>
         <body>
