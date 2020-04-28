@@ -9,9 +9,7 @@ interface Props {
   type: string
 }
 
-const ModalOver = styled(Modal)`
-  
-`;
+const ModalOver = styled(Modal)``;
 const Button = styled.div`
   color: #b3b4be;
   font-size: 1rem;
