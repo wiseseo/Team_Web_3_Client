@@ -2,10 +2,16 @@ import * as React from "react";
 import styled from 'styled-components';
 import {Modal} from 'react-responsive-modal';
 
-import Quarter from "../ProgressBar/quarter";
+
 import Half from "../ProgressBar/half";
 import ThreeQuarters from "../ProgressBar/threeQuarters";
 import Fixed from "../ProgressBar/fixed";
+
+import Main from "./Curation/main";
+import StepOne from "./Curation/step_one";
+import StepTwo from "./Curation/step_two";
+import StepThree from "./Curation/step_three";
+import StepFour from "./Curation/step_four";
 
 const CurationContainer = styled.div`
   height: 45vh;
@@ -102,45 +108,20 @@ const Curation = (): React.ReactElement => {
       setStep(curationStep+1);
   };
   if(curationStep == 1){
-
     stepLayout = <Modal open={open} onClose={onCloseModal} center
-        styles={{
-            closeButton : {
-                fill : "dimgray"
-            }, 
-            modal : {
-                width : "800px",
-                minWidth : "500px",
-                height: "472px",
-                padding : 0,
-                borderRadius : 8
-            }
-                }}>
-        <CurationContainer>
-            <CurationModalGray/>
-            <CurationModalTitle>뮤지션 매칭하기</CurationModalTitle>
-            <CurationModalDescription>어서오세요. 당신에게 딱맞는~ 어쩌고 하는 큐레이션 설명글</CurationModalDescription>
-
-            <CurationModalLogo>
-            <img
-            src="/static/vector.png"
-            alt="vector"
-            style={{
-                
-            }}
-            />
-            </CurationModalLogo>
-
-            
-            <CurationModalButton>
-
-            <CurationModalButtonLayout>
-                <NextButton onClick={nextButton}>시작하기</NextButton>
-            </CurationModalButtonLayout>
-
-            </CurationModalButton>
-        </CurationContainer>
-        </Modal>
+    styles={{
+        closeButton : {
+            fill : "dimgray"
+        }, 
+        modal : {
+            width : "800px",
+            height: "472px",
+            padding : 0,
+            borderRadius : 8
+        }
+            }}>
+        <Main nextButton={nextButton}/>
+    </Modal>
 
   }
   else if(curationStep == 2){
@@ -156,156 +137,56 @@ const Curation = (): React.ReactElement => {
             borderRadius : 8
         }
             }}>
-    <CurationContainer>
-        <CurationModalGray>
-            <Quarter/>
-        </CurationModalGray>
-        <CurationModalTitle>1</CurationModalTitle>
-        <CurationModalDescription>어서오세요. 당신에게 딱맞는~ 어쩌고 하는 큐레이션 설명글</CurationModalDescription>
-
-        <CurationModalLogo>
-        <img
-        src="/static/vector.png"
-        alt="vector"
-        style={{
-            
-        }}
-        />
-        </CurationModalLogo>
-
-        
-        <CurationModalButton>
-
-        <CurationModalButtonLayout>
-            <NextButton onClick={nextButton}>시작하기</NextButton>
-        </CurationModalButtonLayout>
-
-        </CurationModalButton>
-    </CurationContainer>
+        <StepOne nextButton={nextButton}/>
     </Modal>
   }
   else if(curationStep == 3){
     stepLayout = <Modal open={open} onClose={onCloseModal} center
-        styles={{
-            closeButton : {
-                fill : "dimgray"
-            }, 
-            modal : {
-                width : "800px",
-                height: "472px",
-                padding : 0,
-                borderRadius : 8
-            }
-                }}>
-        <CurationContainer>
-            <CurationModalGray>
-                <Half/>
-            </CurationModalGray>
-            <CurationModalTitle>2</CurationModalTitle>
-            <CurationModalDescription>어서오세요. 당신에게 딱맞는~ 어쩌고 하는 큐레이션 설명글</CurationModalDescription>
-
-            <CurationModalLogo>
-            <img
-            src="/static/vector.png"
-            alt="vector"
-            style={{
-                
-            }}
-            />
-            </CurationModalLogo>
-
-            
-            <CurationModalButton>
-
-            <CurationModalButtonLayout>
-                <NextButton onClick={nextButton}>시작하기</NextButton>
-            </CurationModalButtonLayout>
-
-            </CurationModalButton>
-        </CurationContainer>
-        </Modal>
+    styles={{
+        closeButton : {
+            fill : "dimgray"
+        }, 
+        modal : {
+            width : "800px",
+            height: "472px",
+            padding : 0,
+            borderRadius : 8
+        }
+            }}>
+        <StepTwo nextButton={nextButton}/>
+    </Modal>
   }
   else if(curationStep == 4){
     stepLayout = <Modal open={open} onClose={onCloseModal} center
-        styles={{
-            closeButton : {
-                fill : "dimgray"
-            }, 
-            modal : {
-                width : "800px",
-                height: "472px",
-                padding : 0,
-                borderRadius : 8
-            }
-                }}>
-        <CurationContainer>
-            <CurationModalGray>
-                <ThreeQuarters/>
-            </CurationModalGray>
-            <CurationModalTitle>3</CurationModalTitle>
-            <CurationModalDescription>어서오세요. 당신에게 딱맞는~ 어쩌고 하는 큐레이션 설명글</CurationModalDescription>
-
-            <CurationModalLogo>
-            <img
-            src="/static/vector.png"
-            alt="vector"
-            style={{
-                
-            }}
-            />
-            </CurationModalLogo>
-
-            
-            <CurationModalButton>
-
-            <CurationModalButtonLayout>
-                <NextButton onClick={nextButton}>시작하기</NextButton>
-            </CurationModalButtonLayout>
-
-            </CurationModalButton>
-        </CurationContainer>
-        </Modal>
+    styles={{
+        closeButton : {
+            fill : "dimgray"
+        }, 
+        modal : {
+            width : "800px",
+            height: "472px",
+            padding : 0,
+            borderRadius : 8
+        }
+            }}>
+        <StepThree nextButton={nextButton}/>
+    </Modal>
   }
   else{
     stepLayout = <Modal open={open} onClose={onCloseModal} center
-        styles={{
-            closeButton : {
-                fill : "dimgray"
-            }, 
-            modal : {
-                width : "800px",
-                height: "472px",
-                padding : 0,
-                borderRadius : 8
-            }
-                }}>
-        <CurationContainer>
-            <CurationModalGray>
-                <Fixed/>
-            </CurationModalGray>
-            <CurationModalTitle>4</CurationModalTitle>
-            <CurationModalDescription>어서오세요. 당신에게 딱맞는~ 어쩌고 하는 큐레이션 설명글</CurationModalDescription>
-
-            <CurationModalLogo>
-            <img
-            src="/static/vector.png"
-            alt="vector"
-            style={{
-                
-            }}
-            />
-            </CurationModalLogo>
-
-            
-            <CurationModalButton>
-
-            <CurationModalButtonLayout>
-                <NextButton onClick={nextButton}>시작하기</NextButton>
-            </CurationModalButtonLayout>
-
-            </CurationModalButton>
-        </CurationContainer>
-        </Modal>
+    styles={{
+        closeButton : {
+            fill : "dimgray"
+        }, 
+        modal : {
+            width : "800px",
+            height: "472px",
+            padding : 0,
+            borderRadius : 8
+        }
+            }}>
+        <StepFour nextButton={nextButton}/>
+    </Modal>
   }
   
   return (
