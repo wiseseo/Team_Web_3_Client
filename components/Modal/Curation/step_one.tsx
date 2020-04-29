@@ -37,6 +37,7 @@ const CurationModalDescription = styled.div`
   padding-bottom : 3%;
   padding-left : 42px;
   font-weight: bold;
+  min-height : 25px;
 `;
 
 const CurationTagLayout = styled.div`
@@ -85,7 +86,7 @@ const BeforeButton = styled.button`
   cursor : pointer;
 `;
 const NextButton = styled.button`
-  background: #6865FC;
+  background: #B3B4BE;
   border-radius: 8px;
   border: none;
   color: #E2E1E2;
@@ -94,7 +95,7 @@ const NextButton = styled.button`
   width: 344px;
   height: 48px;
   outline-width : 0px;
-  cursor : pointer;
+  cursor : not-allowed;
 `;
 
 const StepOne = ({nextButton, beforeButton}): React.ReactElement=> {
@@ -178,11 +179,32 @@ const StepOne = ({nextButton, beforeButton}): React.ReactElement=> {
     }
   ])
   
+  const [nextButtonLayout, setNext] = React.useState<React.ReactElement>(<NextButton>다음으로</NextButton>)
+  const [nextDescription, setDescription] = React.useState<React.ReactElement>(
+  <CurationModalDescription>
+    <span>
+      <img
+      src="/static/alert.png"
+      alt="alert"
+      style={{
+        position: "relative",
+        top: "0.6vh",
+        right: "0.3vh"
+      }}
+      />
+    </span>
+    최소 1개 이상의 태그를 선택해주세요.
+  </CurationModalDescription>)
+
   const chosenTag = (key) => {
 
     let newTagList = [...tagList];
     newTagList[key-1].chosen = true; 
     setTagList(newTagList);
+
+    setNext(<NextButton onClick={nextButton} style={{background : "#6865FC", cursor : "pointer"}}>다음으로</NextButton>)
+    setDescription(<CurationModalDescription/>)
+
   }
 
   const releaseTag = (key) => {
@@ -190,9 +212,23 @@ const StepOne = ({nextButton, beforeButton}): React.ReactElement=> {
     let newTagList = [...tagList];
     newTagList[key-1].chosen = false;
     setTagList(newTagList);
-
+    setNext(<NextButton>다음으로</NextButton>)
+    setDescription(
+    <CurationModalDescription>
+      <span>
+        <img
+        src="/static/alert.png"
+        alt="alert"
+        style={{
+          position: "relative",
+          top: "0.6vh",
+          right: "0.3vh"
+        }}
+        />
+      </span>
+      최소 1개 이상의 태그를 선택해주세요.
+    </CurationModalDescription>)
   }
-
     return (
         
         <CurationContainer>
@@ -200,22 +236,11 @@ const StepOne = ({nextButton, beforeButton}): React.ReactElement=> {
                 <Quarter/>
             </CurationModalGray>
             <CurationModalTitle>
-              <span>
-                <img
-                src="/static/alert.png"
-                alt="alert"
-                style={{
-                  position: "relative",
-                  top: "0.6vh",
-                  right: "0.3vh"
-                }}
-                />
-              </span>
               어떤 테마의 음악을 원하시나요?
             </CurationModalTitle>
             
             
-            <CurationModalDescription>최소 1개 이상의 태그를 선택해주세요.</CurationModalDescription>
+            {nextDescription}
 
             <CurationTagLayout>
 
@@ -236,7 +261,7 @@ const StepOne = ({nextButton, beforeButton}): React.ReactElement=> {
 
             <CurationModalButtonLayout>
                 <BeforeButton onClick={beforeButton}>이전으로</BeforeButton>
-                <NextButton onClick={nextButton}>다음으로</NextButton>
+                {nextButtonLayout}
             </CurationModalButtonLayout>
 
             </CurationModalButton>
