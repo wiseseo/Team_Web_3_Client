@@ -1,30 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import Link from "next/link";
+import Curation from "../../components/Modal/curation";
 
-interface Props {
-  text: string;
-}
 
-const Button = styled.button`
-  background: transparent;
-  color: #6865fc;
-  border: 2px solid #6865fc;
-  border-radius: 10px;
-  font-size: 1rem;
-  padding: 0.4em 2em;
-  cursor: pointer;
-  min-width: fit-content;
-  float: right;
-`;
+const MatchButton = () => {
 
-const MatchButton = ({ text }: Props) => {
   return (
-    <Link href="/match/index">
-      <Button>
-        {text}
-      </Button> 
-    </Link>
+    <>
+      <Curation/>
+    </>
   );
 };
 

@@ -2,14 +2,83 @@ import * as React from "react";
 import styled from 'styled-components';
 import Fixed from "../../ProgressBar/fixed";
 
+let tagList = [
+    {
+      key : 1,
+      name : '드럼'
+    },
+    {
+      key : 2,
+      name : '일렉기타'
+    },
+    {
+      key : 3,
+      name : '어쿠스틱기타'
+    },
+    {
+      key : 4,
+      name : '벨'
+    },
+    {
+      key : 5,
+      name : '보컬'
+    },
+    {
+      key : 6,
+      name : '신디사이저'
+    },
+    {
+      key : 7,
+      name : '색소폰'
+    },
+    {
+      key : 8,
+      name : '스트링'
+    },
+    {
+      key : 9,
+      name : '오르골'
+    },
+    {
+      key : 10,
+      name : '오케스트라'
+    },
+    {
+      key : 11,
+      name : '전통악기'
+    },
+    {
+      key : 12,
+      name : '트럼펫'
+    },
+    {
+      key : 13,
+      name : '플룻'
+    },
+    {
+      key : 14,
+      name : '피아노'
+    },
+    {
+      key : 15,
+      name : '퍼거션'
+    },
+    {
+      key : 16,
+      name : '하프'
+    },
+    {
+      key : 17,
+      name : '효과음'
+    },
+    {
+      key : 18,
+      name : '선택안함'
+    }
+  ]
+
 const CurationContainer = styled.div`
   height: 45vh;
-`;
-
-const CurationModalLogo = styled.div`
-  text-align : center;
-
-  height: 200px;
 `;
 
 const CurationModalGray = styled.div`
@@ -26,26 +95,50 @@ const CurationModalTitle = styled.div`
   font-size: 1.25rem;
   line-height: 20px;
   align-items: center;
-  text-align: center; 
   padding-top : 32px;
+  padding-left : 42px;
+  font-weight: bold;
 `;
 
 const CurationModalDescription = styled.div`
-  color: #B3B4BE;
+    color: #6865FC;
+    font-family: SpoqaHanSans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 0.75rem;
+    line-height: 20px;
+    align-items: center;
+    padding-top : 1%;
+    padding-bottom : 3%;
+    padding-left : 42px;
+    font-weight: bold;
+`;
+
+const CurationTagLayout = styled.div`
+  padding : 0 42px;
+  height : 198px;
+`;
+
+const CurationTag = styled.span`
+  border-radius : 20px;
+  border : 1px solid #B3B4BE;
+  color : #B3B4BE;
+  margin-right : 16px;
+
   font-family: SpoqaHanSans;
   font-style: normal;
   font-weight: normal;
-  font-size: 0.75rem;
-  line-height: 20px;
-  align-items: center;
-  text-align: center;   
-  padding-top : 1%;
-  padding-bottom : 3%;
+  font-size: 0.875rem;
+  line-height: 22px;
+  margin-top : 8px;
+  padding : 3px 15px;
+  display : inline-block;
+  margin-bottom : 8px;
 `;
 
 const CurationModalButton = styled.div`
   padding-top : 40px;
-  margin: 0 10%;
+  margin: 0 5%;
 `;
 
 const CurationModalButtonLayout = styled.div`
@@ -53,6 +146,20 @@ const CurationModalButtonLayout = styled.div`
   height: 5vh;
   margin-bottom : 16px;
 `;
+
+const BeforeButton = styled.button`
+  background: #121212;
+  border-radius: 8px;
+  border: 1px solid #B3B4BE;
+  color: #E2E1E2;
+  float : left;
+  font-size: 0.75rem;
+  width: 344px;
+  height: 48px;
+  outline-width : 0px;
+  cursor : pointer;
+`;
+
 
 const NextButton = styled.button`
   background: #6865FC;
@@ -62,36 +169,50 @@ const NextButton = styled.button`
   fontFamily: "SpoqaHanSans";
   font-size: 0.75rem;
   width: 344px;
+  float : right;
   height: 48px;
   outline-width : 0px;
   cursor : pointer;
 `;
 
-const StepFour = ({nextButton}): React.ReactElement => {
+const StepFour = ({nextButton, beforeButton}): React.ReactElement => {
     return (
         
         <CurationContainer>
             <CurationModalGray>
                 <Fixed/>
             </CurationModalGray>
-            <CurationModalTitle>1</CurationModalTitle>
-            <CurationModalDescription>어서오세요. 당신에게 딱맞는~ 어쩌고 하는 큐레이션 설명글</CurationModalDescription>
+            <CurationModalTitle>
+                <span>
+                    <img
+                    src="/static/alert.png"
+                    alt="alert"
+                    style={{
+                    position: "relative",
+                    top: "0.6vh",
+                    right: "0.3vh"
+                    }}
+                    />
+                </span>
+                어떤 분위기의 음악을 원하시나요?
+            </CurationModalTitle>
+            <CurationModalDescription>최소 1개 이상의 태그를 선택해주세요.</CurationModalDescription>
 
-            <CurationModalLogo>
-            <img
-            src="/static/vector.png"
-            alt="vector"
-            style={{
-                
-            }}
-            />
-            </CurationModalLogo>
+            <CurationTagLayout>
 
+              {tagList.map((list, key) => {
+                return <CurationTag>{list.name}</CurationTag>
+              })}
+              
+            </CurationTagLayout>
+
+            
             
             <CurationModalButton>
 
             <CurationModalButtonLayout>
-                <NextButton onClick={nextButton}>시작하기</NextButton>
+                <BeforeButton onClick={beforeButton}>이전으로</BeforeButton>
+                <NextButton onClick={nextButton}>다음으로</NextButton>
             </CurationModalButtonLayout>
 
             </CurationModalButton>
