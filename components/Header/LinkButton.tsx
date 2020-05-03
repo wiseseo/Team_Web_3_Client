@@ -9,9 +9,7 @@ interface Props {
   type: string
 }
 
-const ModalOver = styled(Modal)`
-  
-`;
+const ModalOver = styled(Modal)``;
 const Button = styled.div`
   color: #b3b4be;
   font-size: 1rem;
@@ -32,7 +30,7 @@ const LinkButton: React.FC<Props> = ({ text, type }) => {
   const onCloseModal = () => {
     setOpen(false);
   };
-  console.log('main : ',onCloseModal);
+
   if(type=="enroll"){
     return (
     <Link href="/musician/enroll">
