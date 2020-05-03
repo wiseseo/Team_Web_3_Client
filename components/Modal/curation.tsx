@@ -1,11 +1,7 @@
 import * as React from "react";
 import styled from 'styled-components';
 import {Modal} from 'react-responsive-modal';
-
-
-import Half from "../ProgressBar/half";
-import ThreeQuarters from "../ProgressBar/threeQuarters";
-import Fixed from "../ProgressBar/fixed";
+import { CurationContext } from "./../../stores/CurationStore";
 
 import Main from "./Curation/main";
 import StepOne from "./Curation/step_one";
@@ -30,6 +26,9 @@ const Curation = ({}): React.ReactElement => {
   const [open, setOpen] = React.useState<boolean>(false);
   const [curationStep, setStep] = React.useState<number>(1);
 
+  const tags = React.useContext(CurationContext);
+
+
   let stepLayout = <></>
 
   const onOpenModal = () => {
@@ -41,10 +40,22 @@ const Curation = ({}): React.ReactElement => {
     setOpen(false);
   };
 
-  const nextButton = (res: any) => {
-      console.log(curationStep);
-      console.log('Res : ', res);
+  const nextButton = (step: number, tag : string) => {
+      
+      console.log('tags : ',tags);
 
+      if(step == 1){
+        tags.dispatch({ type : "ONE_TAG", payload : {tag: tag}})
+      }
+      else if(step == 2){
+        tags.dispatch({ type : "TWO_TAG", payload : {tag: tag}})
+      }
+      else if(step == 3){
+        tags.dispatch({ type : "THREE_TAG", payload : {tag: tag}})
+      }
+      else if(step == 4){
+        tags.dispatch({ type : "FOUR_TAG", payload : {tag: tag}})
+      }
       setStep(curationStep+1);
   };
 

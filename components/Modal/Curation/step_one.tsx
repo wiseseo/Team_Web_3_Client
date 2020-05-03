@@ -85,7 +85,7 @@ const BeforeButton = styled.button`
   cursor : pointer;
 `;
 const NextButton = styled.button`
-  background: #6865FC;
+  background: #B3B4BE;
   border-radius: 8px;
   border: none;
   color: #E2E1E2;
@@ -94,7 +94,6 @@ const NextButton = styled.button`
   width: 344px;
   height: 48px;
   outline-width : 0px;
-  cursor : pointer;
 `;
 
 const StepOne = ({nextButton, beforeButton}): React.ReactElement=> {
@@ -177,12 +176,19 @@ const StepOne = ({nextButton, beforeButton}): React.ReactElement=> {
       chosen : false
     }
   ])
-  
+  const [selectTag, setSelectTag] = React.useState<boolean>(false);
+  const [TagList, appendTagList] = React.useState([])
+
   const chosenTag = (key) => {
 
     let newTagList = [...tagList];
     newTagList[key-1].chosen = true; 
     setTagList(newTagList);
+    setSelectTag(true);
+
+    appendTagList([...TagList, newTagList[key-1].name]);
+
+
   }
 
   const releaseTag = (key) => {
@@ -190,10 +196,17 @@ const StepOne = ({nextButton, beforeButton}): React.ReactElement=> {
     let newTagList = [...tagList];
     newTagList[key-1].chosen = false;
     setTagList(newTagList);
+    
+    if(tagList.find(e => e.chosen == true) == undefined){
+      setSelectTag(false);
+    }
 
+    appendTagList(TagList.filter(e => e !== newTagList[key-1].name));
   }
 
-    return (
+  console.log('Tag List : ',TagList);
+
+  return (
         
         <CurationContainer>
             <CurationModalGray>
@@ -221,10 +234,10 @@ const StepOne = ({nextButton, beforeButton}): React.ReactElement=> {
 
               {tagList.map((list, key) => {
                 if(list.chosen == true){
-                  return  <CurationTag onClick={() => {releaseTag(list.key)}} style={{color : "white", background: "#6865FC", border : "none"}}>{list.name}</CurationTag>
+                  return  <CurationTag key={key} onClick={() => {releaseTag(list.key)}} style={{color : "white", background: "#6865FC", border : "none"}}>{list.name}</CurationTag>
                 }
                 else{
-                  return <CurationTag onClick={() => {chosenTag(list.key)}}>{list.name}</CurationTag>
+                  return <CurationTag key={key} onClick={() => {chosenTag(list.key)}}>{list.name}</CurationTag>
                 }
                 
               })}
@@ -236,7 +249,8 @@ const StepOne = ({nextButton, beforeButton}): React.ReactElement=> {
 
             <CurationModalButtonLayout>
                 <BeforeButton onClick={beforeButton}>이전으로</BeforeButton>
-                <NextButton onClick={nextButton}>다음으로</NextButton>
+                {selectTag == true ? (<NextButton onClick={()=>{nextButton(1, TagList)}} style={{background : "#6865FC", cursor : "pointer"}}>다음으로</NextButton>) : (<NextButton>다음으로</NextButton>)}
+                
             </CurationModalButtonLayout>
 
             </CurationModalButton>
