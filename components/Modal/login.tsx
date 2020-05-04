@@ -10,7 +10,6 @@ const LoginContainer = styled.div`
 const LoginModalLogo = styled.div`
   text-align : center;
   padding-top : 10%;
-
 `;
 const LoginModalTitle = styled.div`
   color: #E2E1E2;

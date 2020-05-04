@@ -37,7 +37,6 @@ const CurationModalDescription = styled.div`
   padding-bottom : 3%;
   padding-left : 42px;
   font-weight: bold;
-  min-height : 25px;
 `;
 
 const CurationTagLayout = styled.div`
@@ -50,7 +49,6 @@ const CurationTag = styled.span`
   border : 1px solid #B3B4BE;
   color : #B3B4BE;
   margin-right : 16px;
-
   font-family: SpoqaHanSans;
   font-style: normal;
   font-weight: normal;
@@ -95,7 +93,6 @@ const NextButton = styled.button`
   width: 344px;
   height: 48px;
   outline-width : 0px;
-  cursor : not-allowed;
 `;
 
 const StepOne = ({nextButton, beforeButton}): React.ReactElement=> {
@@ -178,32 +175,18 @@ const StepOne = ({nextButton, beforeButton}): React.ReactElement=> {
       chosen : false
     }
   ])
-  
-  const [nextButtonLayout, setNext] = React.useState<React.ReactElement>(<NextButton>다음으로</NextButton>)
-  const [nextDescription, setDescription] = React.useState<React.ReactElement>(
-  <CurationModalDescription>
-    <span>
-      <img
-      src="/static/alert.png"
-      alt="alert"
-      style={{
-        position: "relative",
-        top: "0.6vh",
-        right: "0.3vh"
-      }}
-      />
-    </span>
-    최소 1개 이상의 태그를 선택해주세요.
-  </CurationModalDescription>)
+  const [selectTag, setSelectTag] = React.useState<boolean>(false);
+  const [TagList, appendTagList] = React.useState([])
 
   const chosenTag = (key) => {
 
     let newTagList = [...tagList];
     newTagList[key-1].chosen = true; 
     setTagList(newTagList);
+    setSelectTag(true);
 
-    setNext(<NextButton onClick={nextButton} style={{background : "#6865FC", cursor : "pointer"}}>다음으로</NextButton>)
-    setDescription(<CurationModalDescription/>)
+    appendTagList([...TagList, newTagList[key-1].name]);
+
 
   }
 
@@ -212,44 +195,48 @@ const StepOne = ({nextButton, beforeButton}): React.ReactElement=> {
     let newTagList = [...tagList];
     newTagList[key-1].chosen = false;
     setTagList(newTagList);
-    setNext(<NextButton>다음으로</NextButton>)
-    setDescription(
-    <CurationModalDescription>
-      <span>
-        <img
-        src="/static/alert.png"
-        alt="alert"
-        style={{
-          position: "relative",
-          top: "0.6vh",
-          right: "0.3vh"
-        }}
-        />
-      </span>
-      최소 1개 이상의 태그를 선택해주세요.
-    </CurationModalDescription>)
+    
+    if(tagList.find(e => e.chosen == true) == undefined){
+      setSelectTag(false);
+    }
+
+    appendTagList(TagList.filter(e => e !== newTagList[key-1].name));
   }
-    return (
+
+  console.log('Tag List : ',TagList);
+
+  return (
         
         <CurationContainer>
             <CurationModalGray>
                 <Quarter/>
             </CurationModalGray>
             <CurationModalTitle>
+              <span>
+                <img
+                src="/static/alert.png"
+                alt="alert"
+                style={{
+                  position: "relative",
+                  top: "0.6vh",
+                  right: "0.3vh"
+                }}
+                />
+              </span>
               어떤 테마의 음악을 원하시나요?
             </CurationModalTitle>
             
             
-            {nextDescription}
+            <CurationModalDescription>최소 1개 이상의 태그를 선택해주세요.</CurationModalDescription>
 
             <CurationTagLayout>
 
               {tagList.map((list, key) => {
                 if(list.chosen == true){
-                  return  <CurationTag onClick={() => {releaseTag(list.key)}} style={{color : "white", background: "#6865FC", border : "none"}}>{list.name}</CurationTag>
+                  return  <CurationTag key={key} onClick={() => {releaseTag(list.key)}} style={{color : "white", background: "#6865FC", border : "none"}}>{list.name}</CurationTag>
                 }
                 else{
-                  return <CurationTag onClick={() => {chosenTag(list.key)}}>{list.name}</CurationTag>
+                  return <CurationTag key={key} onClick={() => {chosenTag(list.key)}}>{list.name}</CurationTag>
                 }
                 
               })}
@@ -261,7 +248,8 @@ const StepOne = ({nextButton, beforeButton}): React.ReactElement=> {
 
             <CurationModalButtonLayout>
                 <BeforeButton onClick={beforeButton}>이전으로</BeforeButton>
-                {nextButtonLayout}
+                {selectTag == true ? (<NextButton onClick={()=>{nextButton(1, TagList)}} style={{background : "#6865FC", cursor : "pointer"}}>다음으로</NextButton>) : (<NextButton>다음으로</NextButton>)}
+                
             </CurationModalButtonLayout>
 
             </CurationModalButton>
