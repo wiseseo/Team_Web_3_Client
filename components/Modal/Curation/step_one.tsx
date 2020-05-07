@@ -102,77 +102,92 @@ const StepOne = ({nextButton, beforeButton}): React.ReactElement=> {
     {
       key : 1,
       name : '비즈니스',
-      chosen : false
+      chosen : false,
+      chosenPossible : true,
     },
     {
       key : 2,
       name : '교육',
-      chosen : false
+      chosen : false,
+      chosenPossible : true,
     },
     {
       key : 3,
       name : '스포츠',
-      chosen : false
+      chosen : false,
+      chosenPossible : true,
     },
     {
       key : 4,
       name : '기술',
-      chosen : false
+      chosen : false,
+      chosenPossible : true,
     },
     {
       key : 5,
       name : '게임',
-      chosen : false
+      chosen : false,
+      chosenPossible : true,
     },
     {
       key : 6,
       name : '시즌',
-      chosen : false
+      chosen : false,
+      chosenPossible : true,
     },
     {
       key : 7,
       name : '키즈',
-      chosen : false
+      chosen : false,
+      chosenPossible : true,
     },
     {
       key : 8,
       name : '도시',
-      chosen : false
+      chosen : false,
+      chosenPossible : true,
     },
     {
       key : 9,
       name : '힐링',
-      chosen : false
+      chosen : false,
+      chosenPossible : true,
     },
     {
       key : 10,
       name : '일상',
-      chosen : false
+      chosen : false,
+      chosenPossible : true,
     },
     {
       key : 11,
       name : '여행',
-      chosen : false
+      chosen : false,
+      chosenPossible : true,
     },
     {
       key : 12,
       name : '파티',
-      chosen : false
+      chosen : false,
+      chosenPossible : true,
     },
     {
       key : 13,
       name : '웨딩',
-      chosen : false
+      chosen : false,
+      chosenPossible : true,
     },
     {
       key : 14,
       name : '패션',
-      chosen : false
+      chosen : false,
+      chosenPossible : true,
     },
     {
       key : 15,
       name : '선택안함',
-      chosen : false
+      chosen : false,
+      chosenPossible : true
     }
   ])
   const [selectTag, setSelectTag] = React.useState<boolean>(false);
@@ -180,27 +195,61 @@ const StepOne = ({nextButton, beforeButton}): React.ReactElement=> {
 
   const chosenTag = (key) => {
 
-    let newTagList = [...tagList];
-    newTagList[key-1].chosen = true; 
-    setTagList(newTagList);
-    setSelectTag(true);
+    if(key == 15){
+      let newTagList = [...tagList];
+      
+      for(let i = 0 ; i<newTagList.length ; i++){
+        newTagList[i].chosen = false;
+        newTagList[i].chosenPossible = false;
+      }
 
-    appendTagList([...TagList, newTagList[key-1].name]);
+      newTagList[key-1].chosen = true;
+      newTagList[key-1].chosenPossible = true;
+      setTagList(newTagList);
+      setSelectTag(true);
+      appendTagList([newTagList[key-1].name]);
 
+    }
+    else{
+      let newTagList = [...tagList];
+      newTagList[key-1].chosen = true; 
+      setTagList(newTagList);
+      setSelectTag(true);
+
+      appendTagList([...TagList, newTagList[key-1].name]);
+
+    }
+    
 
   }
 
   const releaseTag = (key) => {
 
-    let newTagList = [...tagList];
-    newTagList[key-1].chosen = false;
-    setTagList(newTagList);
-    
-    if(tagList.find(e => e.chosen == true) == undefined){
-      setSelectTag(false);
-    }
+    if(key == 15){
+      let newTagList = [...tagList];
+      
+      for(let i = 0 ; i<newTagList.length ; i++){
+        newTagList[i].chosen = false;
+        newTagList[i].chosenPossible = true;
+      }
 
-    appendTagList(TagList.filter(e => e !== newTagList[key-1].name));
+      setTagList(newTagList);
+      setSelectTag(false);
+      appendTagList(TagList.filter(e => e !== newTagList[key-1].name));
+
+    }
+    else{
+      let newTagList = [...tagList];
+      newTagList[key-1].chosen = false;
+      setTagList(newTagList);
+      
+      if(tagList.find(e => e.chosen == true) == undefined){
+        setSelectTag(false);
+      }
+  
+      appendTagList(TagList.filter(e => e !== newTagList[key-1].name));
+    }
+    
   }
 
   console.log('Tag List : ',TagList);
@@ -212,22 +261,24 @@ const StepOne = ({nextButton, beforeButton}): React.ReactElement=> {
                 <Quarter/>
             </CurationModalGray>
             <CurationModalTitle>
-              <span>
-                <img
-                src="/static/alert.png"
-                alt="alert"
-                style={{
-                  position: "relative",
-                  top: "0.6vh",
-                  right: "0.3vh"
-                }}
-                />
-              </span>
               어떤 테마의 음악을 원하시나요?
             </CurationModalTitle>
             
             
-            <CurationModalDescription>최소 1개 이상의 태그를 선택해주세요.</CurationModalDescription>
+            <CurationModalDescription>
+              <span>
+                  <img
+                  src="/static/alert.png"
+                  alt="alert"
+                  style={{
+                    position: "relative",
+                    top: "1vh",
+                    right: "0.3vh"
+                  }}
+                  />
+              </span>
+              최소 1개 이상의 태그를 선택해주세요.
+            </CurationModalDescription>
 
             <CurationTagLayout>
 
@@ -235,8 +286,11 @@ const StepOne = ({nextButton, beforeButton}): React.ReactElement=> {
                 if(list.chosen == true){
                   return  <CurationTag key={key} onClick={() => {releaseTag(list.key)}} style={{color : "white", background: "#6865FC", border : "none"}}>{list.name}</CurationTag>
                 }
-                else{
+                else if(list.chosenPossible == true){
                   return <CurationTag key={key} onClick={() => {chosenTag(list.key)}}>{list.name}</CurationTag>
+                }
+                else{
+                  return <CurationTag key={key} style={{color : "yellow", cursor : "auto"}}>{list.name}</CurationTag>
                 }
                 
               })}

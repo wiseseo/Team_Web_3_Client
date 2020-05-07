@@ -2,81 +2,6 @@ import * as React from "react";
 import styled from 'styled-components';
 import Fixed from "../../ProgressBar/fixed";
 
-let tagList = [
-    {
-      key : 1,
-      name : '드럼'
-    },
-    {
-      key : 2,
-      name : '일렉기타'
-    },
-    {
-      key : 3,
-      name : '어쿠스틱기타'
-    },
-    {
-      key : 4,
-      name : '벨'
-    },
-    {
-      key : 5,
-      name : '보컬'
-    },
-    {
-      key : 6,
-      name : '신디사이저'
-    },
-    {
-      key : 7,
-      name : '색소폰'
-    },
-    {
-      key : 8,
-      name : '스트링'
-    },
-    {
-      key : 9,
-      name : '오르골'
-    },
-    {
-      key : 10,
-      name : '오케스트라'
-    },
-    {
-      key : 11,
-      name : '전통악기'
-    },
-    {
-      key : 12,
-      name : '트럼펫'
-    },
-    {
-      key : 13,
-      name : '플룻'
-    },
-    {
-      key : 14,
-      name : '피아노'
-    },
-    {
-      key : 15,
-      name : '퍼거션'
-    },
-    {
-      key : 16,
-      name : '하프'
-    },
-    {
-      key : 17,
-      name : '효과음'
-    },
-    {
-      key : 18,
-      name : '선택안함'
-    }
-  ]
-
 const CurationContainer = styled.div`
   height: 45vh;
 `;
@@ -124,7 +49,6 @@ const CurationTag = styled.span`
   border : 1px solid #B3B4BE;
   color : #B3B4BE;
   margin-right : 16px;
-
   font-family: SpoqaHanSans;
   font-style: normal;
   font-weight: normal;
@@ -134,6 +58,7 @@ const CurationTag = styled.span`
   padding : 3px 15px;
   display : inline-block;
   margin-bottom : 8px;
+  cursor : pointer;
 `;
 
 const CurationModalButton = styled.div`
@@ -159,60 +84,242 @@ const BeforeButton = styled.button`
   outline-width : 0px;
   cursor : pointer;
 `;
-
-
 const NextButton = styled.button`
-  background: #6865FC;
+  background: #B3B4BE;
   border-radius: 8px;
   border: none;
   color: #E2E1E2;
-  fontFamily: "SpoqaHanSans";
+  float : right;
   font-size: 0.75rem;
   width: 344px;
-  float : right;
   height: 48px;
   outline-width : 0px;
-  cursor : pointer;
 `;
 
 const StepFour = ({nextButton, beforeButton}): React.ReactElement => {
-    return (
+    
+  const [tagList, setTagList] = React.useState([
+    {
+      key : 1,
+      name : '드럼',
+      chosen: false,
+      chosenPossible : true
+    },
+    {
+      key : 2,
+      name : '일렉기타',
+      chosen: false,
+      chosenPossible : true
+    },
+    {
+      key : 3,
+      name : '어쿠스틱기타',
+      chosen: false,
+      chosenPossible : true
+    },
+    {
+      key : 4,
+      name : '벨',
+      chosen: false,
+      chosenPossible : true
+    },
+    {
+      key : 5,
+      name : '보컬',
+      chosen: false,
+      chosenPossible : true
+    },
+    {
+      key : 6,
+      name : '신디사이저',
+      chosen: false,
+      chosenPossible : true
+    },
+    {
+      key : 7,
+      name : '색소폰',
+      chosen: false,
+      chosenPossible : true
+    },
+    {
+      key : 8,
+      name : '스트링',
+      chosen: false,
+      chosenPossible : true
+    },
+    {
+      key : 9,
+      name : '오르골',
+      chosen: false,
+      chosenPossible : true
+    },
+    {
+      key : 10,
+      name : '오케스트라',
+      chosen: false,
+      chosenPossible : true
+    },
+    {
+      key : 11,
+      name : '전통악기',
+      chosen: false,
+      chosenPossible : true
+    },
+    {
+      key : 12,
+      name : '트럼펫',
+      chosen: false,
+      chosenPossible : true
+    },
+    {
+      key : 13,
+      name : '플룻',
+      chosen: false,
+      chosenPossible : true
+    },
+    {
+      key : 14,
+      name : '피아노',
+      chosen: false,
+      chosenPossible : true
+    },
+    {
+      key : 15,
+      name : '퍼거션',
+      chosen: false,
+      chosenPossible : true
+    },
+    {
+      key : 16,
+      name : '하프',
+      chosen: false,
+      chosenPossible : true
+    },
+    {
+      key : 17,
+      name : '효과음',
+      chosen: false,
+      chosenPossible : true
+    },
+    {
+      key : 18,
+      name : '선택안함',
+      chosen: false,
+      chosenPossible : true
+    }
+  ])
+  const [selectTag, setSelectTag] = React.useState<boolean>(false);
+  const [TagList, appendTagList] = React.useState([])
+
+  const chosenTag = (key) => {
+
+    if(key == 18){
+      let newTagList = [...tagList];
+      
+      for(let i = 0 ; i<newTagList.length ; i++){
+        newTagList[i].chosen = false;
+        newTagList[i].chosenPossible = false;
+      }
+
+      newTagList[key-1].chosen = true;
+      newTagList[key-1].chosenPossible = true;
+      setTagList(newTagList);
+      setSelectTag(true);
+      appendTagList([newTagList[key-1].name]);
+
+    }
+    else{
+      let newTagList = [...tagList];
+      newTagList[key-1].chosen = true; 
+      setTagList(newTagList);
+      setSelectTag(true);
+
+      appendTagList([...TagList, newTagList[key-1].name]);
+
+    }
+    
+
+  }
+
+  const releaseTag = (key) => {
+
+    if(key == 18){
+      let newTagList = [...tagList];
+      
+      for(let i = 0 ; i<newTagList.length ; i++){
+        newTagList[i].chosen = false;
+        newTagList[i].chosenPossible = true;
+      }
+
+      setTagList(newTagList);
+      setSelectTag(false);
+      appendTagList(TagList.filter(e => e !== newTagList[key-1].name));
+
+    }
+    else{
+      let newTagList = [...tagList];
+      newTagList[key-1].chosen = false;
+      setTagList(newTagList);
+      
+      if(tagList.find(e => e.chosen == true) == undefined){
+        setSelectTag(false);
+      }
+  
+      appendTagList(TagList.filter(e => e !== newTagList[key-1].name));
+    }
+  }
+
+  console.log('Tag List : ',TagList);
+
+  
+  return (
         
         <CurationContainer>
             <CurationModalGray>
                 <Fixed/>
             </CurationModalGray>
-            <CurationModalTitle>
+            <CurationModalTitle> 
+                어떤 분위기의 음악을 원하시나요?
+            </CurationModalTitle>
+            <CurationModalDescription>
                 <span>
                     <img
                     src="/static/alert.png"
                     alt="alert"
                     style={{
                     position: "relative",
-                    top: "0.6vh",
+                    top: "1vh",
                     right: "0.3vh"
                     }}
                     />
                 </span>
-                어떤 분위기의 음악을 원하시나요?
-            </CurationModalTitle>
-            <CurationModalDescription>최소 1개 이상의 태그를 선택해주세요.</CurationModalDescription>
+              최소 1개 이상의 태그를 선택해주세요.
+            </CurationModalDescription>
 
             <CurationTagLayout>
 
-              {tagList.map((list, key) => {
-                return <CurationTag>{list.name}</CurationTag>
-              })}
+            {tagList.map((list, key) => {
+                if(list.chosen == true){
+                  return  <CurationTag key={key} onClick={() => {releaseTag(list.key)}} style={{color : "white", background: "#6865FC", border : "none"}}>{list.name}</CurationTag>
+                }
+                else if(list.chosenPossible == true){
+                  return <CurationTag key={key} onClick={() => {chosenTag(list.key)}}>{list.name}</CurationTag>
+                }
+                else{
+                  return <CurationTag key={key} style={{color : "yellow", cursor : "auto"}}>{list.name}</CurationTag>
+                }
+                
+            })}
               
             </CurationTagLayout>
 
-            
             
             <CurationModalButton>
 
             <CurationModalButtonLayout>
                 <BeforeButton onClick={beforeButton}>이전으로</BeforeButton>
-                <NextButton onClick={nextButton}>다음으로</NextButton>
+                {selectTag == true ? (<NextButton onClick={()=>{nextButton(4, TagList)}} style={{background : "#6865FC", cursor : "pointer"}}>다음으로</NextButton>) : (<NextButton>다음으로</NextButton>)}
+                
             </CurationModalButtonLayout>
 
             </CurationModalButton>

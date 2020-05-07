@@ -2,88 +2,6 @@ import * as React from "react";
 import ThreeQuarters from "../../ProgressBar/threeQuarters";
 import styled from 'styled-components';
 
-let tagList = [
-    {
-      key : 1,
-      name : '긴장'
-    },
-    {
-      key : 2,
-      name : '감동'
-    },
-    {
-      key : 3,
-      name : '공포'
-    },
-    {
-      key : 4,
-      name : '공상'
-    },
-    {
-      key : 5,
-      name : '깜찍'
-    },
-    {
-      key : 6,
-      name : '모험'
-    },
-    {
-      key : 7,
-      name : '몽환'
-    },
-    {
-      key : 8,
-      name : '발랄'
-    },
-    {
-      key : 9,
-      name : '잔잔'
-    },
-    {
-      key : 10,
-      name : '사랑'
-    },
-    {
-      key : 11,
-      name : '서사'
-    },
-    {
-      key : 12,
-      name : '섹시'
-    },
-    {
-      key : 13,
-      name : '슬픔'
-    },
-    {
-      key : 14,
-      name : '신남'
-    },
-    {
-      key : 15,
-      name : '심각'
-    },
-    {
-      key : 16,
-      name : '어둠'
-    },
-    {
-      key : 17,
-      name : '코믹'
-    },
-    {
-      key : 18,
-      name : '희망'
-    },
-    {
-      key : 19,
-      name : '행복'
-    },
-    {
-      key : 20,
-      name : '선택안함'
-    }
-  ]
 const CurationContainer = styled.div`
   height: 45vh;
 `;
@@ -132,7 +50,6 @@ const CurationTag = styled.span`
   border : 1px solid #B3B4BE;
   color : #B3B4BE;
   margin-right : 16px;
-
   font-family: SpoqaHanSans;
   font-style: normal;
   font-weight: normal;
@@ -142,6 +59,7 @@ const CurationTag = styled.span`
   padding : 3px 15px;
   display : inline-block;
   margin-bottom : 8px;
+  cursor : pointer;
 `;
 
 const CurationModalButton = styled.div`
@@ -169,7 +87,7 @@ const BeforeButton = styled.button`
 `;
 
 const NextButton = styled.button`
-  background: #6865FC;
+  background: #B3B4BE;
   border-radius: 8px;
   border: none;
   color: #E2E1E2;
@@ -179,37 +97,233 @@ const NextButton = styled.button`
   width: 344px;
   height: 48px;
   outline-width : 0px;
-  cursor : pointer;
+
 `;
 
 const StepThree = ({nextButton, beforeButton}): React.ReactElement => {
-    return (
+  const [tagList, setTagList] = React.useState([
+    {
+      key : 1,
+      name : '긴장',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 2,
+      name : '감동',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 3,
+      name : '공포',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 4,
+      name : '공상',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 5,
+      name : '깜찍',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 6,
+      name : '모험',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 7,
+      name : '몽환',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 8,
+      name : '발랄',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 9,
+      name : '잔잔',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 10,
+      name : '사랑',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 11,
+      name : '서사',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 12,
+      name : '섹시',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 13,
+      name : '슬픔',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 14,
+      name : '신남',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 15,
+      name : '심각',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 16,
+      name : '어둠',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 17,
+      name : '코믹',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 18,
+      name : '희망',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 19,
+      name : '행복',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 20,
+      name : '선택안함',
+      chosen : false,
+      chosenPossible : true
+    }
+  ])
+  const [selectTag, setSelectTag] = React.useState<boolean>(false);
+  const [TagList, appendTagList] = React.useState([])
+  
+  const chosenTag = (key) => {
+
+    if(key == 20){
+      let newTagList = [...tagList];
+      
+      for(let i = 0 ; i<newTagList.length ; i++){
+        newTagList[i].chosen = false;
+        newTagList[i].chosenPossible = false;
+      }
+
+      newTagList[key-1].chosen = true;
+      newTagList[key-1].chosenPossible = true;
+      setTagList(newTagList);
+      setSelectTag(true);
+      appendTagList([newTagList[key-1].name]);
+
+    }
+    else{
+      let newTagList = [...tagList];
+      newTagList[key-1].chosen = true; 
+      setTagList(newTagList);
+      setSelectTag(true);
+
+      appendTagList([...TagList, newTagList[key-1].name]);
+
+    }
+    
+
+  }
+
+  const releaseTag = (key) => {
+
+    if(key == 20){
+      let newTagList = [...tagList];
+      
+      for(let i = 0 ; i<newTagList.length ; i++){
+        newTagList[i].chosen = false;
+        newTagList[i].chosenPossible = true;
+      }
+
+      setTagList(newTagList);
+      setSelectTag(false);
+      appendTagList(TagList.filter(e => e !== newTagList[key-1].name));
+
+    }
+    else{
+      let newTagList = [...tagList];
+      newTagList[key-1].chosen = false;
+      setTagList(newTagList);
+      
+      if(tagList.find(e => e.chosen == true) == undefined){
+        setSelectTag(false);
+      }
+  
+      appendTagList(TagList.filter(e => e !== newTagList[key-1].name));
+    }
+  }
+  
+  return (
         
         <CurationContainer>
             <CurationModalGray>
                 <ThreeQuarters/>
             </CurationModalGray>
             <CurationModalTitle>
+              어떤 분위기의 음악을 원하시나요?
+            </CurationModalTitle>
+
+            <CurationModalDescription>
+
               <span>
                 <img
                 src="/static/alert.png"
                 alt="alert"
                 style={{
                   position: "relative",
-                  top: "0.6vh",
+                  top: "1vh",
                   right: "0.3vh"
                 }}
                 />
               </span>
-              어떤 분위기의 음악을 원하시나요?
-            </CurationModalTitle>
-
-            <CurationModalDescription>최소 1개 이상의 태그를 선택해주세요.</CurationModalDescription>
+              최소 1개 이상의 태그를 선택해주세요.
+              
+            </CurationModalDescription>
 
             <CurationTagLayout>
 
-              {tagList.map((list, key) => {
-                return <CurationTag>{list.name}</CurationTag>
+            {tagList.map((list, key) => {
+                if(list.chosen == true){
+                  return  <CurationTag key={key} onClick={() => {releaseTag(list.key)}} style={{color : "white", background: "#6865FC", border : "none"}}>{list.name}</CurationTag>
+                }
+                else if(list.chosenPossible == true){
+                  return <CurationTag key={key} onClick={() => {chosenTag(list.key)}}>{list.name}</CurationTag>
+                }
+                else{
+                  return <CurationTag key={key} style={{color : "yellow", cursor : "auto"}}>{list.name}</CurationTag>
+                }
+                
               })}
               
             </CurationTagLayout>
@@ -218,8 +332,10 @@ const StepThree = ({nextButton, beforeButton}): React.ReactElement => {
 
             <CurationModalButtonLayout>
                 <BeforeButton onClick={beforeButton}>이전으로</BeforeButton>
-                <NextButton onClick={nextButton}>다음으로</NextButton>
+                {selectTag == true ? (<NextButton onClick={()=>{nextButton(3, TagList)}} style={{background : "#6865FC", cursor : "pointer"}}>다음으로</NextButton>) : (<NextButton>다음으로</NextButton>)}
+                
             </CurationModalButtonLayout>
+
 
             </CurationModalButton>
         </CurationContainer>

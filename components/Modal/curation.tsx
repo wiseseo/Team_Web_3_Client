@@ -41,9 +41,7 @@ const Curation = ({}): React.ReactElement => {
   };
 
   const nextButton = (step: number, tag : string) => {
-      
-      console.log('tags : ',tags);
-
+    
       if(step == 1){
         tags.dispatch({ type : "ONE_TAG", payload : {tag: tag}})
       }
@@ -55,6 +53,9 @@ const Curation = ({}): React.ReactElement => {
       }
       else if(step == 4){
         tags.dispatch({ type : "FOUR_TAG", payload : {tag: tag}})
+        
+        setOpen(false);
+        
       }
       setStep(curationStep+1);
   };
@@ -131,7 +132,7 @@ const Curation = ({}): React.ReactElement => {
         <StepThree nextButton={nextButton} beforeButton={beforeButton}/>
     </Modal>
   }
-  else{
+  else if(curationStep == 5){
     stepLayout = <Modal open={open} onClose={onCloseModal} center
     styles={{
         closeButton : {
@@ -146,6 +147,10 @@ const Curation = ({}): React.ReactElement => {
             }}>
         <StepFour nextButton={nextButton} beforeButton={beforeButton}/>
     </Modal>
+  }
+  else{
+    stepLayout = <Modal open={open} onClose={onCloseModal}/>
+    console.log('final Tags : ',tags)
   }
   
   return (
