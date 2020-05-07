@@ -21,19 +21,10 @@ const HalfProgressBar = styled.div`
     height: 8px;
 `;
 const HalfPro_One = styled.div`
-    width : 25%;
+    width : 50%;
     float : left;
     background : linear-gradient(173.96deg, #6865FC 36.28%, #658DFC 100%);
     border-radius : 0 2px 2px 0;
-    height: 100%;
-`;
-
-const HalfPro_Two = styled.div`
-    width : 25%;
-    float : left;
-    background : linear-gradient(173.96deg, #6865FC 36.28%, #658DFC 100%);
-    border-radius : 0 2px 2px 0;
-    box-shadow: 1px 4px 1px rgba(0, 0, 0, 0.25);
     height: 100%;
 `;
 
@@ -59,7 +50,6 @@ const Half = (props: Props) => {
         <HalfPercent>50%</HalfPercent>
         <HalfProgressBar>
             <HalfPro_One/>
-            <HalfPro_Two/>
             <HalfPro_Three/>
             <HalfPro_Four/>
         </HalfProgressBar>

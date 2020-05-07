@@ -21,37 +21,13 @@ const FixedProgressBar = styled.div`
     height: 8px;
 `;
 const FixedPro_One = styled.div`
-    width : 25%;
+    width : 100%;
     float : left;
     background : linear-gradient(173.96deg, #6865FC 36.28%, #658DFC 100%);
     border-radius : 0 2px 2px 0;
     height: 100%;
 `;
 
-const FixedPro_Two = styled.div`
-    width : 25%;
-    float : left;
-    background : linear-gradient(173.96deg, #6865FC 36.28%, #658DFC 100%);
-    border-radius : 0 2px 2px 0;
-    box-shadow: 1px 4px 1px rgba(0, 0, 0, 0.25);
-    height: 100%;
-`;
-
-const FixedPro_Three = styled.div`
-    width : 25%;
-    float : left;
-    background : linear-gradient(173.96deg, #6865FC 36.28%, #658DFC 100%);
-    border-radius : 0 2px 2px 0;
-    height: 100%;
-`;
-
-const FixedPro_Four = styled.div`
-    width : 25%;
-    float : left;
-    background : linear-gradient(173.96deg, #6865FC 36.28%, #658DFC 100%);
-    border-radius : 0 2px 2px 0;
-    height: 100%;
-`;
 
 const Fixed = (props: Props) => {
     return <>
@@ -59,9 +35,6 @@ const Fixed = (props: Props) => {
             <FixedPercent>100%</FixedPercent>
             <FixedProgressBar>
                 <FixedPro_One/>
-                <FixedPro_Two/>
-                <FixedPro_Three/>
-                <FixedPro_Four/>
             </FixedProgressBar>
         </FixedContainer>
     </>

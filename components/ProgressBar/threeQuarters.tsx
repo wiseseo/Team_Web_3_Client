@@ -21,24 +21,7 @@ const ThreeQuartersProgressBar = styled.div`
     height: 8px;
 `;
 const ThreeQuartersPro_One = styled.div`
-    width : 25%;
-    float : left;
-    background : linear-gradient(173.96deg, #6865FC 36.28%, #658DFC 100%);
-    border-radius : 0 2px 2px 0;
-    height: 100%;
-`;
-
-const ThreeQuartersPro_Two = styled.div`
-    width : 25%;
-    float : left;
-    background : linear-gradient(173.96deg, #6865FC 36.28%, #658DFC 100%);
-    border-radius : 0 2px 2px 0;
-    box-shadow: 1px 4px 1px rgba(0, 0, 0, 0.25);
-    height: 100%;
-`;
-
-const ThreeQuartersPro_Three = styled.div`
-    width : 25%;
+    width : 75%;
     float : left;
     background : linear-gradient(173.96deg, #6865FC 36.28%, #658DFC 100%);
     border-radius : 0 2px 2px 0;
@@ -59,8 +42,6 @@ const ThreeQuarters = (props: Props) => {
             <ThreeQuartersPercent>75%</ThreeQuartersPercent>
             <ThreeQuartersProgressBar>
                 <ThreeQuartersPro_One/>
-                <ThreeQuartersPro_Two/>
-                <ThreeQuartersPro_Three/>
                 <ThreeQuartersPro_Four/>
             </ThreeQuartersProgressBar>
         </ThreeQuartersContainer>
