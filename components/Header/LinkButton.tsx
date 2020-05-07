@@ -30,7 +30,7 @@ const LinkButton: React.FC<Props> = ({ text, type }) => {
   const onCloseModal = () => {
     setOpen(false);
   };
-  console.log('main : ',onCloseModal);
+
   if(type=="enroll"){
     return (
     <Link href="/musician/enroll">

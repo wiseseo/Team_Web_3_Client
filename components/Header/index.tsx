@@ -30,7 +30,7 @@ const Header = (props: Props): React.ReactElement => {
       />
       {/* <SearchBar /> */}
       <div style={{float : "right", width: "100%", minWidth : 480}}>
-        <MatchButton text="뮤지션매칭" />
+        <MatchButton />
         <LinkButton text="뮤지션 등록"  type="enroll"/>
         <LinkButton text="로그인/가입" type="sign" />
       </div>
