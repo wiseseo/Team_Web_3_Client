@@ -6,7 +6,7 @@ interface Props {}
 const StepOneContainer = styled.div`
   width : 100%;
   background: #040104;
-  height : 100vh;
+  padding-bottom : 10%;
 `;
 
 const StepOneTitle = styled.div`
