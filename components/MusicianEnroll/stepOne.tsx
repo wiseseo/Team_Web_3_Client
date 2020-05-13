@@ -87,8 +87,55 @@ const FormContainerInputTitle = styled.div`
   height: 32px;
 `;
 
+const FormContainerAddURL = styled.div`
+  float: right;
+  margin-bottom : 2%;
+  width: 73%;
+`;
+
+const FormContainerAddURLButton = styled.button`
+  border-radius: 8px;
+  border: 1px solid #FFFFFF;
+  background: #040104;
+  color: #B3B4BE;
+  height: 32px;
+  width: 144px;
+  cursor : pointer;
+`;
+
+const FormContainerInputSelect = styled.div`
+  margin-bottom : 3%;
+  width : 32%;
+  float : right;
+  padding-left : 3%;
+`;
+
+const FormContainerInputSelectBox = styled.select`
+  border-radius : 8px;
+  padding-left: 3%;
+  background: #040104;
+  height: 32px;
+  color: #B3B4BE;
+  border: 1px solid #B3B4BE;
+  width: 50%;
+`;
+
 const StepOne = ({ nextButton }) => {
 
+  const [addUrl, setAddUrl] = React.useState([0]);
+  const [addSns, setAddSns] = React.useState([0]);
+  const addUrlButton = () => {
+
+    setAddUrl(previousUrl => (previousUrl.concat(addUrl.length)));
+
+  }  
+
+  const addSnsButton = () => {
+
+    setAddSns(previousSns => (previousSns.concat(addSns.length)));
+
+  }  
+  // console.log(addUrl)
   return (
   <>
     <StepOneContainer>
@@ -142,22 +189,81 @@ const StepOne = ({ nextButton }) => {
 
       <FormContainer>
         <FormContainerTitle>경력<span style={{color : "#6865FC"}}>*</span></FormContainerTitle>
-        <FormContainerInput/>
+
+        <FormContainerInput style={{marginBottom : "3%", height : 200}}/>
+        
+
       </FormContainer>
 
       <FormContainer>
         <FormContainerTitle>포트폴리오 링크</FormContainerTitle>
-        <FormContainerInput/>
+
+          {addUrl.map((value, idx) => {
+            
+            console.log('value : ',value,idx);
+            return <FormContainerInput style={{marginBottom : "3%"}} key={idx}/>;
+          })}
+          
+        <div><div style={{width : "30%"}}/></div>
+  
+        <FormContainerAddURL> 
+          <FormContainerAddURLButton onClick={addUrlButton}>+ url추가하기</FormContainerAddURLButton>
+        </FormContainerAddURL>
+        
+        <div><div style={{width : "30%"}}/></div>
+
+        <FormContainerProfileContent style={{width : "73%", float : "right", marginBottom : "2%"}}> 
+          유튜브, 사운드클라우드, 개인사이트 등 작업 음원을 올리는 포트폴리오 사이트 링크를 등록해주세요
+        </FormContainerProfileContent>
+        
       </FormContainer>
 
       <FormContainer>
         <FormContainerTitle>휴대폰 번호<span style={{color : "#6865FC"}}>*</span></FormContainerTitle>
         <FormContainerInput placeholder="010-1234-5678"/>
+
+        <div><div style={{width : "30%"}}/></div>
+
+        <FormContainerProfileContent style={{width : "73%", float : "right", marginBottom : "2%", marginTop : "2%"}}> 
+          거래가 성사되기 전에는 뮤지션의 연락처가 공개되지 않습니다. 원활한 소통을 위해 연락처를 기입해주세요.
+        </FormContainerProfileContent>
       </FormContainer>
 
       <FormContainer>
         <FormContainerTitle>SNS 연락처</FormContainerTitle>
-        <FormContainerInput/>
+        
+        {addSns.map((value, idx) => {
+          
+          console.log(value,idx);
+          return (
+          <div> 
+            
+            <FormContainerInputSelect>
+              <FormContainerInputSelectBox name="cars">
+                <option disabled selected>선택해주세요</option>
+                <option value="카카오톡">카카오톡</option>
+                <option value="페이스북">페이스북</option>
+                <option value="인스타그램">인스타그램</option>
+                <option value="트위터">트위터</option>
+              </FormContainerInputSelectBox>
+            </FormContainerInputSelect>
+
+            <FormContainerInput style={{marginBottom : "3%", width : "35%", float : "right"}} key={idx}/>
+            
+          </div>
+        )})}
+        
+
+        <FormContainerAddURL> 
+          <FormContainerAddURLButton onClick={addSnsButton}>+ SNS추가하기</FormContainerAddURLButton>
+        </FormContainerAddURL>
+
+        <div><div style={{width : "30%"}}/></div>
+
+        <FormContainerProfileContent style={{width : "73%", float : "right", marginBottom : "2%"}}> 
+          원활한 소통을 위해 고객이 확인 가능한 SNS 아이디를 남겨주세요.
+        </FormContainerProfileContent>
+
       </FormContainer>
 
       <FormContainer>
