@@ -3,6 +3,8 @@ import StepOne from "./stepOne";
 import StepTwo from "./stepTwo";
 import StepThree from "./stepThree";
 import styled from "styled-components";
+import {MusicianEnrollContext} from "../../stores/MusicianEnrollStore";
+
 interface Props {}
 
 const EnrollContainer = styled.div`
@@ -27,6 +29,9 @@ const MusicianEnroll = (props: Props) => {
 
     const [enrollStep, setStep] = React.useState<number>(1);
   
+    const stepOne = React.useContext(MusicianEnrollContext);
+
+    console.log("stepOne : ", stepOne)
     const nextButton = () => {
         setStep(enrollStep+1);
     }

@@ -59,7 +59,7 @@ const FormContainerProfile = styled.div`
   float : right;
   width : 73%;
   position : relative;
-  top : -1.5vh;
+  top : -1vh;
 `;
 
 const FormContainerProfileUpload = styled.button`
@@ -71,7 +71,7 @@ const FormContainerProfileUpload = styled.button`
   font-weight : bold;
   border : none;
   border-radius: 6px;
-  margin-bottom : 0.5%;
+  margin-bottom : 1.5%;
 
 `;
 
@@ -85,6 +85,22 @@ const FormContainerInputTitle = styled.div`
   width : 73%;
   color : #B3B4BE;
   height: 32px;
+`;
+
+const FormContainerFixLayout = styled.div`
+  float : right;
+  width : 30%;
+  line-height : 32px;
+`;
+
+const FormContainerFixButton = styled.span`
+  vertical-align : middle;
+  cursor : pointer;
+  color : #6865FC;
+  font-size : 0.75rem;
+  font-weight : bold;
+  background-color : #040104;
+  padding : 3%;
 `;
 
 const FormContainerAddURL = styled.div`
@@ -120,22 +136,86 @@ const FormContainerInputSelectBox = styled.select`
   width: 50%;
 `;
 
+const FlowButtonLayout = styled.div`
+  padding : 0 5%;
+  padding-bottom : 10%;
+`;
+
+const BeforeButton = styled.button`
+  float : left;
+  background : #B3B4BE;
+  border-radius : 8px;
+  color : #4C4C50;
+  padding : 1.5% 4%;
+  width : 168px;
+  border: none;
+  font-size : 1rem;
+`;
+
+const AfterButton = styled.button`
+  float : right;
+  width : 304px;
+  background : #6865FC;
+  border-radius : 8px;
+  color : #E2E1E2;
+  padding : 1.5% 4%;
+  border: none;
+  font-size : 1rem;
+`;
 const StepOne = ({ nextButton }) => {
 
-  const [addUrl, setAddUrl] = React.useState([0]);
+  const [addUrl, setAddUrl] = React.useState([{key : 0, data : "", fixFlag : false}]);
+  const [addUrlIdx, setAddUrlIdx] = React.useState<number>(1)
+
   const [addSns, setAddSns] = React.useState([0]);
-  const addUrlButton = () => {
+  const [addMusic, setAddMusic] = React.useState([0]);
+  const [stepOneObj, setStepOne] = React.useState({
+    nickNm : '',
+    introduction: '',
+    career: '',
+    celPhone: '',
+    portFolioLink: [],
+    sns: [],
+    snsStr : "",
+    snsType: [],
+    songEsntlUrl: {},
+    songChcUrl: []
+  });
 
-    setAddUrl(previousUrl => (previousUrl.concat(addUrl.length)));
+  // 포트폴리오 url, sns id, songchcurl
+  const addUrlButton = (idx) => {
 
+    console.log("addURL Button : ", idx)
+    let newArr = {
+      key : addUrlIdx,
+      data : "",
+      fixFlag : false
+    }
+    setAddUrl(prevArray => [...prevArray, newArr])
+    setAddUrlIdx(addUrlIdx+1);
+  }  
+  
+  const addUrlFixed = (idx) => {
+    console.log("생성 버튼 : ", idx);
+  
+  }
+  const removeUrlButton = (idx) => {
+    console.log("remove Button : ", idx)
   }  
 
-  const addSnsButton = () => {
+  const addSnsButton = (idx) => {
 
     setAddSns(previousSns => (previousSns.concat(addSns.length)));
 
   }  
-  // console.log(addUrl)
+
+  const addMusicButton = () => {
+
+    setAddMusic(previousMusic => (previousMusic.concat(addMusic.length)));
+
+  }  
+  console.log("addUrl : ",addUrl)
+  // console.log(stepOneObj);
   return (
   <>
     <StepOneContainer>
@@ -145,7 +225,10 @@ const StepOne = ({ nextButton }) => {
       
       <FormContainer>
         <FormContainerTitle>뮤지션 활동명<span style={{color : "#6865FC"}}>*</span></FormContainerTitle>
-        <FormContainerInput/>
+        <FormContainerInput onChange={e => {
+          setStepOne({...stepOneObj, nickNm : e.target.value})}
+        }/>
+
       </FormContainer>
 
       <FormContainer>
@@ -169,7 +252,10 @@ const StepOne = ({ nextButton }) => {
               document.getElementById('getFile').click()
             }}>업로드
             </FormContainerProfileUpload>
-            <input style={{visibility : "hidden"}} type="file" id="getFile"/>
+            <input style={{visibility : "hidden"}} type="file" id="getFile" onChange={e => {
+              console.log(e.target.files[0], typeof e.target.files[0])
+              setStepOne({...stepOneObj, songEsntlUrl : e.target.files[0]})
+            }}/>
 
             <FormContainerProfileContent>250x250 픽셀에 최적화되어 있으며, 10Mb 이하의 JPG, GIF, PNG 파일을 지원합니다.</FormContainerProfileContent>
           </div>
@@ -183,14 +269,23 @@ const StepOne = ({ nextButton }) => {
           <div style={{fontSize : "0.875rem", float:"left"}}>뮤지션으로서의 자신을 한문장으로 표현해주세요</div>
           <div style={{float : "right", fontSize:"0.625rem"}}>40자</div>
         </FormContainerInputTitle>
-        <FormContainerInput style={{marginBottom : "3%"}}/>
+        <FormContainerInput style={{marginBottom : "3%"}}onChange={e => {
+          setStepOne({...stepOneObj, introduction : e.target.value})}
+        }/>
 
       </FormContainer>
 
       <FormContainer>
         <FormContainerTitle>경력<span style={{color : "#6865FC"}}>*</span></FormContainerTitle>
+        
+        <FormContainerInputTitle>
+          <div style={{fontSize : "0.875rem", float:"left"}}>발매한 음원, 의뢰 경력 등을 서술해주세요.</div>
+          <div style={{float : "right", fontSize:"0.625rem"}}>3000자</div>
+        </FormContainerInputTitle>
 
-        <FormContainerInput style={{marginBottom : "3%", height : 200}}/>
+        <FormContainerInput style={{marginBottom : "3%", height : 200}} onChange={e => {
+          setStepOne({...stepOneObj, career : e.target.value})}
+        }/>
         
 
       </FormContainer>
@@ -198,16 +293,77 @@ const StepOne = ({ nextButton }) => {
       <FormContainer>
         <FormContainerTitle>포트폴리오 링크</FormContainerTitle>
 
+
           {addUrl.map((value, idx) => {
             
-            console.log('value : ',value,idx);
-            return <FormContainerInput style={{marginBottom : "3%"}} key={idx}/>;
+            return (
+            <>
+              <FormContainerFixLayout>
+                {value.data === "stopped" ? 
+                <FormContainerFixButton style={{display : "none"}}/>
+                :
+                (value.fixFlag ? 
+                
+                  <FormContainerFixButton onClick={() => {
+                    let removeArr = [...addUrl];
+  
+                    for(let i = 0 ; i < removeArr.length ; i++){
+                      if(removeArr[i].key === idx){
+                        removeArr[i].data = "stopped";
+                      }
+                    }
+  
+                    setAddUrl(removeArr);
+                  
+                  }}>삭제</FormContainerFixButton>
+                  : 
+                  <FormContainerFixButton onClick={() => {
+                    let fixedArr = [...addUrl];
+                    
+                    for(let i = 0 ; i < fixedArr.length ; i++){
+                      if(fixedArr[i].key === idx){
+                        fixedArr[i].fixFlag = true;
+                      }
+                    }
+  
+                    setAddUrl(fixedArr);
+                    
+                  }}>생성</FormContainerFixButton>   
+                )
+              }
+                
+                
+              </FormContainerFixLayout>
+
+              {value.data === "stopped" ? 
+              <FormContainerInput disabled style={{marginBottom : "3%", width: "40%", display : "none"}} key={idx}/> 
+              :
+                (value.fixFlag ?
+                  <FormContainerInput disabled style={{marginBottom : "3%", width: "40%"}} key={idx}/> 
+                  : 
+                  <FormContainerInput style={{marginBottom : "3%", width: "40%"}} key={idx} onChange={e => {
+                    
+                    let inputArr = [...addUrl];
+                    
+                    for(let i = 0 ; i < inputArr.length ; i++){
+                      if(inputArr[i].key === idx){
+                        inputArr[i].data = e.target.value;
+                      }
+                    }
+                    setAddUrl(inputArr);
+                  }}/>
+                )
+              }} 
+            </>
+            );
           })}
+          
+
           
         <div><div style={{width : "30%"}}/></div>
   
         <FormContainerAddURL> 
-          <FormContainerAddURLButton onClick={addUrlButton}>+ url추가하기</FormContainerAddURLButton>
+          <FormContainerAddURLButton onClick={() => {addUrlButton(addUrlIdx)}}>+ url추가하기</FormContainerAddURLButton>
         </FormContainerAddURL>
         
         <div><div style={{width : "30%"}}/></div>
@@ -220,7 +376,9 @@ const StepOne = ({ nextButton }) => {
 
       <FormContainer>
         <FormContainerTitle>휴대폰 번호<span style={{color : "#6865FC"}}>*</span></FormContainerTitle>
-        <FormContainerInput placeholder="010-1234-5678"/>
+        <FormContainerInput placeholder="010-1234-5678" onChange={e => {
+              setStepOne({...stepOneObj, celPhone : e.target.value})}
+            }/>
 
         <div><div style={{width : "30%"}}/></div>
 
@@ -234,13 +392,13 @@ const StepOne = ({ nextButton }) => {
         
         {addSns.map((value, idx) => {
           
-          console.log(value,idx);
+          // console.log(value,idx);
           return (
-          <div> 
+          <div key={idx}> 
             
             <FormContainerInputSelect>
-              <FormContainerInputSelectBox name="cars">
-                <option disabled selected>선택해주세요</option>
+              <FormContainerInputSelectBox name="cars" defaultValue={"선택해주세요"} onChange={e => setStepOne({...stepOneObj, snsType : stepOneObj.snsType.concat(e.target.value)})}>
+                <option disabled value="선택해주세요">선택해주세요</option>
                 <option value="카카오톡">카카오톡</option>
                 <option value="페이스북">페이스북</option>
                 <option value="인스타그램">인스타그램</option>
@@ -248,7 +406,9 @@ const StepOne = ({ nextButton }) => {
               </FormContainerInputSelectBox>
             </FormContainerInputSelect>
 
-            <FormContainerInput style={{marginBottom : "3%", width : "35%", float : "right"}} key={idx}/>
+            <FormContainerInput style={{marginBottom : "3%", width : "35%", float : "right"}} key={idx} onChange={e => 
+              setStepOne({...stepOneObj, sns : stepOneObj.sns.concat(e.target.value)})
+            }/>
             
           </div>
         )})}
@@ -266,10 +426,75 @@ const StepOne = ({ nextButton }) => {
 
       </FormContainer>
 
-      <FormContainer>
+      <FormContainer style={{height : 380, paddingBottom : 0}}>
         <FormContainerTitle>포트폴리오 음원</FormContainerTitle>
-        <FormContainerInput/>
+
+        <FormContainerInputTitle>
+          <div style={{fontSize : "0.875rem", marginBottom : "3%"}}>대표곡의 앨범 커버 이미지를 업로드해주세요.</div>
+        </FormContainerInputTitle>
+
+
+        <FormContainerProfile style={{top : "0", position : "initial", borderBottom : "1px solid rgba(104,101,252,0.4)", paddingBottom : "3%"}}>
+          
+          <img
+            src="/static/vector.png"
+            alt="vector"
+            style={{
+                width : 45,
+                height : 45,
+                float : "left",
+                marginRight : "3%"
+            }}
+            />
+
+          <div>
+            <FormContainerProfileUpload onClick={()=>{
+              document.getElementById('getFile').click()
+            }}>업로드
+            </FormContainerProfileUpload>
+            <input style={{visibility : "hidden"}} type="file" id="getFile"/>
+
+            <FormContainerProfileContent>250x250 픽셀에 최적화되어 있으며, 10Mb 이하의 JPG, GIF, PNG 파일을 지원합니다.</FormContainerProfileContent>
+          </div>
+        </FormContainerProfile>
+
+        <FormContainerInputTitle style={{marginTop : "3%"}}>
+          <div style={{fontSize : "0.875rem", marginBottom : "3%"}}>대표곡을 업로드해주세요. 업로드한 파일이 대표 음원이 됩니다. (mp3,mp4 형식)</div>
+        </FormContainerInputTitle>
+
+        {addMusic.map((value, idx) => {
+          
+          // console.log(value,idx);
+          return (
+          <div key={idx}> 
+            <div style={{float : "right", width : "32%", paddingLeft : "3%"}}>
+              <FormContainerProfileUpload onClick={()=>{
+                document.getElementById('getFile').click()
+              }}>업로드
+              </FormContainerProfileUpload>
+              <input style={{visibility : "hidden"}} type="file" id="getFile"/>
+            </div>
+            <FormContainerInput style={{marginBottom : "3%", width : "35%", float : "right"}} key={idx} placeholder="파일명이 음악이름으로 등록됩니다."/>
+            
+          </div>
+        )})}
+
+        <FormContainerAddURL> 
+          <FormContainerAddURLButton onClick={addMusicButton}>+ 음원추가하기</FormContainerAddURLButton>
+        </FormContainerAddURL>
+
+
+        <FormContainerProfileContent style={{float : "right", width : "73%"}}>저작권에 주의해주세요. 반드시 자신이 작업한 작업물을 업로드해주세요.</FormContainerProfileContent>
+        <FormContainerProfileContent style={{float : "right", width : "73%"}}>공동작업물은 대표곡으로 업로드가 불가합니다.</FormContainerProfileContent>
       </FormContainer>
+
+      <FlowButtonLayout>
+
+          <BeforeButton>이전으로</BeforeButton>
+          <AfterButton>저장하고 다음으로</AfterButton>
+
+      </FlowButtonLayout>
+
 
     </StepOneContainer>
   </>
@@ -277,5 +502,3 @@ const StepOne = ({ nextButton }) => {
 };
 
 export default StepOne;
-
-{/* <button onClick={nextButton}>hi</button> */}
