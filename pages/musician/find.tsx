@@ -8,7 +8,8 @@ import MusicianFinder from "../../components/MusicianFinder"
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background: #040104;
+  background-color: #040104
+  /*background: skyblue;*/
 `;
 
 const Find: React.FC = () => {
