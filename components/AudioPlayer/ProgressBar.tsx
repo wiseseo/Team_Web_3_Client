@@ -7,7 +7,9 @@ interface Props {
   changeCurrent: (value: number) => void;
 }
 const ProgressWrapper = styled.div`
-  span {
+  display: flex;
+  align-items: center;
+  div {
     display: inline-block;
     font-size: 1.125rem;
     color: #b3b4be;
@@ -20,6 +22,7 @@ const ProgressWrapper = styled.div`
     }
   }
   input[type="range"] {
+    margin: 0 1rem;
     -webkit-appearance: none;
     appearance: none;
     background-color: #b3b4be;
@@ -37,16 +40,16 @@ const ProgressWrapper = styled.div`
 `;
 
 const TimeDisplay = ({ value }: { value: number }): React.ReactElement => (
-  <span>
+  <div>
     {Math.floor(value / 60)}:{Math.floor(value % 60) < 10 && 0}
     {Math.floor(value % 60)}
-  </span>
+  </div>
 );
 
 const ProgressBar = ({
   current = 0,
   duration,
-  changeCurrent
+  changeCurrent,
 }: Props): React.ReactElement => {
   const changeHandler = React.useCallback(
     (event: React.SyntheticEvent<HTMLInputElement, Event>) => {

@@ -1,15 +1,24 @@
 import * as React from "react";
 import styled from 'styled-components';
 
+
 const SignInTitle = styled.h1`
   color : black
 `;
 
-const SignIn: React.FC = () => {
+const MainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: #040104;
+`;
+
+const SignIn: React.FC = (open, onClose) => {
   return (
-    <div>
+    
+    <MainContainer>
       <SignInTitle>SignIn</SignInTitle>
-    </div>
+    </MainContainer>
+    
   );
 };
 

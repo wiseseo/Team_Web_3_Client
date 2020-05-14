@@ -3,13 +3,15 @@ import styled from "styled-components";
 
 interface Props {
   playAudio: () => void;
+  size: number;
   status: boolean;
 }
 
 const Button = styled.button`
   border: 1px solid #e2e1e2;
-  width: 3rem;
-  height: 3rem;
+  width: ${({ size }: { size: number }) => size}px;
+  height: ${({ size }: { size: number }) => size}px;
+  font-size: ${({ size }: { size: number }) => size / 2.4}px;
   border-radius: 50%;
   background: transparent;
   display: flex;
@@ -21,7 +23,7 @@ const Toggle = styled.input.attrs(({ checked }: { checked: boolean }) => ({
   type: "checkbox",
   checked,
   readOnly: true,
-  disabled: false
+  disabled: false,
 }))`
   appearance: none;
   outline: none;
@@ -29,7 +31,7 @@ const Toggle = styled.input.attrs(({ checked }: { checked: boolean }) => ({
   height: 1em;
   position: relative;
   margin-left: 0.1em;
-  font-size: 1.4rem;
+  font-size: 1em;
 
   &:checked ::before {
     transition: 0.1s;
@@ -72,9 +74,9 @@ const Toggle = styled.input.attrs(({ checked }: { checked: boolean }) => ({
   }
 `;
 
-const PlayButton = ({ playAudio, status }: Props): React.ReactElement => {
+const PlayButton = ({ playAudio, size, status }: Props): React.ReactElement => {
   return (
-    <Button onClick={playAudio}>
+    <Button onClick={playAudio} size={size}>
       <Toggle checked={status} />
     </Button>
   );

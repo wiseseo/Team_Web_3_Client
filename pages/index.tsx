@@ -1,7 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import Link from "next/link";
-import Head from "next/head";
+
 import Header from "../components/Header";
 import Banner from "../components/Banner";
 import SituationList from "../components/SituationList";
@@ -9,6 +8,9 @@ import Category from "../components/Category";
 import MusicianList from "../components/MusicianList";
 import Footer from "../components/Footer";
 import AudioPlayer from "../components/AudioPlayer";
+import SongStore from "./../stores/SongStore";
+import MusicianStore from "./../stores/MusicianStore";
+import CurationStore from "./../stores/CurationStore"
 
 const Title = styled.h1`
   color: black;
@@ -21,7 +23,7 @@ const NavLi = styled.li`
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  /*background: #040104;*/
+  background: #040104;
 `;
 
 const Index: React.FC = () => {
@@ -91,22 +93,26 @@ const Index: React.FC = () => {
           </Link>
         </li>
       </ul> */}
-
-      <Head>
-        <title>Tuna!!</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <style>{`body{margin:0;}`}</style>
-      </Head>
-      <MainContainer>
-        <Header />
-        <Banner />
-        <SituationList />
-        <Category />
-        <MusicianList />
-        <MusicianList />
-        <Footer />
-        <AudioPlayer src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga" />
-      </MainContainer>
+      
+      
+      <SongStore>
+        <MainContainer>
+          <CurationStore>
+            <Header />
+          </CurationStore>
+          <Banner />
+          <SituationList />
+          <Category />
+          <MusicianStore>
+            <MusicianList title="리스너들의 선택" />
+          </MusicianStore>
+          <MusicianStore>
+            <MusicianList title="등장 새로운 뮤지션" />
+          </MusicianStore>
+          <Footer />
+          <AudioPlayer />
+        </MainContainer>
+      </SongStore>
     </div>
   );
 };
