@@ -587,6 +587,75 @@ const SearchFilter= (props: Props) => {
     const [filter, setFilter] = React.useState(-1);
     const [sort, setSort] = React.useState(true);
     
+    const [selectTag, setSelectTag] = React.useState<boolean>(false);
+    const [TagList, appendTagList] = React.useState([]);
+  
+    const chosenTag = (filterNo,key) => {
+  
+      if(key == 15){
+        let newTagList = [...tagList[filterNo]];
+        
+        for(let i = 0 ; i<newTagList.length ; i++){
+          newTagList[i].chosen = false;
+          newTagList[i].chosenPossible = false;
+        }
+  
+        newTagList[key-1].chosen = true;
+        newTagList[key-1].chosenPossible = true;
+        tagList[filterNo] = newTagList;
+        setTagList(tagList);
+        setSelectTag(true);
+        appendTagList([newTagList[key-1].name]);
+  
+      }
+      else{
+        let newTagList = [...tagList[filterNo]];
+        newTagList[key-1].chosen = true; 
+        tagList[filterNo] = newTagList;
+        setTagList(tagList);
+        setSelectTag(true);
+  
+        appendTagList([...TagList, newTagList[key-1].name]);
+  
+      }
+      
+  
+    }
+  
+    const releaseTag = (filterNo,key) => {
+  
+      if(key == 15){
+        let newTagList = [...tagList[filterNo]];
+        
+        for(let i = 0 ; i<newTagList.length ; i++){
+          newTagList[i].chosen = false;
+          newTagList[i].chosenPossible = true;
+        }
+  
+        tagList[filterNo] = newTagList;
+        setTagList(tagList);
+        setSelectTag(false);
+        appendTagList(TagList.filter(e => e !== newTagList[key-1].name));
+  
+      }
+      else{
+        let newTagList = [...tagList[filterNo]];
+        newTagList[key-1].chosen = false;
+        tagList[filterNo] = newTagList;
+        setTagList(tagList);
+        
+        if(tagList[filterNo].find(e => e.chosen == true) == undefined){
+          setSelectTag(false);
+        }
+    
+        appendTagList(TagList.filter(e => e !== newTagList[key-1].name));
+      }
+      
+    }
+  
+    console.log('Tag List : ',TagList);
+
+    
     return (
         <FilterSection>
             <DropDown>
@@ -603,7 +672,16 @@ const SearchFilter= (props: Props) => {
             <TagSection>
                 {filter != -1 ? 
                     (tagList[filter].map((list, key)=>{
-                    return (<FilterTag key={key}>{list.name}</FilterTag>)
+
+                        if(list.chosen == true) {
+                            return  <FilterTag key={key} onClick={() => {releaseTag(filter,list.key)}} style={{color : "white", background: "#6865FC", border : "none"}}>{list.name}</FilterTag>
+                        }
+                        else if(list.chosenPossible == true){
+                            return <FilterTag key={key} onClick={() => {chosenTag(filter,list.key)}}>{list.name}</FilterTag>
+                        }
+                        else{
+                        return <FilterTag key={key} style={{color : "grey", cursor : "auto"}}>{list.name}</FilterTag>
+                        }
                     }))
                     :
                     <span></span>
