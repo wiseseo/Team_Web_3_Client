@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from 'styled-components';
 import SearchFilter from './SearchFilter';
+import MusicianList from './MusicianList';
 import Footer from '../Footer';
 
 interface Props {}
@@ -33,6 +34,7 @@ const MusicianFinder = (props: Props) => {
     <Contents>
       <Title>뮤지션 찾기</Title>
       <SearchFilter/>
+      <MusicianList></MusicianList>
       <Footer></Footer>
     </Contents>
   )
