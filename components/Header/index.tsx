@@ -11,13 +11,11 @@ const HeaderContainer = styled.header`
   background: #040104;
   align-items: center;
   padding: 2em 5em;
-  input[type="text"] {
-    margin-right: auto;
-  }
+  justify-content: center;
 `;
 
 const HeaderRightBtn = styled.div`
-  min-width: 300px
+  min-width: 300px;
 `;
 const Header = (props: Props): React.ReactElement => {
   return (
@@ -25,15 +23,15 @@ const Header = (props: Props): React.ReactElement => {
       <img
         src="/static/logo.png"
         alt="logo"
-        style={{cursor:"pointer"}}
-        onClick={()=>{location.href="/"}}
+        style={{ cursor: "pointer", marginRight: "auto" }}
+        onClick={() => {
+          location.href = "/";
+        }}
       />
       {/* <SearchBar /> */}
-      <div style={{float : "right", width: "100%", minWidth : 480}}>
-        <MatchButton />
-        <LinkButton text="뮤지션 등록"  type="enroll"/>
-        <LinkButton text="로그인/가입" type="sign" />
-      </div>
+      <MatchButton />
+      <LinkButton text="뮤지션 등록" type="enroll" />
+      <LinkButton text="로그인/가입" type="sign" />
     </HeaderContainer>
   );
 };
