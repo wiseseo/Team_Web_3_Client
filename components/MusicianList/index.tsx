@@ -31,12 +31,13 @@ interface Musician {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 72px 320px;
+  padding: 72px 80px;
 `;
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
   color: #e2e1e2;
+  align-items: center;
 `;
 
 const Title = styled.h1``;
