@@ -6,7 +6,7 @@ interface Props {}
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 72px 320px;
+  padding: 72px 80px;
 `;
 const Title = styled.h1`
   color: #e2e1e2;
@@ -45,7 +45,7 @@ const Answer = styled.div`
 const customs = [
   { title: "작품에 필요한가요?", content: "크리에이티브 뮤직 커스텀" },
   { title: "특별한 선물인가요?", content: "이벤트 뮤직 커스텀" },
-  { title: "혼자 들으실건가요?", content: "취향맞춤 뮤직 커스텀" },
+  { title: "혼자 들으시나요?", content: "취향맞춤 뮤직 커스텀" },
   { title: "기업 이신가요?", content: "비즈니스 뮤직 커스텀" },
 ];
 
