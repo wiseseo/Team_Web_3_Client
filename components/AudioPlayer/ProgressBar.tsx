@@ -9,9 +9,9 @@ interface Props {
 const ProgressWrapper = styled.div`
   display: flex;
   align-items: center;
+  margin-right: auto;
   div {
     display: inline-block;
-    font-size: 1.125rem;
     color: #b3b4be;
     width: 3em;
     &:first-child {
@@ -29,12 +29,14 @@ const ProgressWrapper = styled.div`
     overflow: hidden;
     height: 8px;
     width: 800px;
+    border-radius: 2px;
 
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
       width: 1px;
       box-shadow: -100vw 0 0 100vw #6865fc;
+      background: linear-gradient(138.6deg, #6865fc 36.28%, #658dfc 100%);
     }
   }
 `;

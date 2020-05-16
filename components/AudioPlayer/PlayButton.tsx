@@ -30,7 +30,7 @@ const Toggle = styled.input.attrs(({ checked }: { checked: boolean }) => ({
   width: 1em;
   height: 1em;
   position: relative;
-  margin-left: 0.1em;
+  margin-left: auto;
   font-size: 1em;
 
   &:checked ::before {
