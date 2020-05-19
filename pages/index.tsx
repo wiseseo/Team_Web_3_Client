@@ -97,9 +97,11 @@ const Index: React.FC = () => {
       
       <SongStore>
         <MainContainer>
+          
           <CurationStore>
             <Header />
           </CurationStore>
+
           <Banner />
           <SituationList />
           <Category />
