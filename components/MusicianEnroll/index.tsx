@@ -3,7 +3,7 @@ import StepOne from "./stepOne";
 import StepTwo from "./stepTwo";
 import StepThree from "./stepThree";
 import styled from "styled-components";
-// import {MusicianEnrollContext} from "../../stores/MusicianEnrollStore";
+import {MusicianEnrollContext} from "../../stores/MusicianEnrollStore";
 
 interface Props {}
 
@@ -29,32 +29,46 @@ const MusicianEnroll = (props: Props) => {
 
     const [enrollStep, setStep] = React.useState<number>(1);
   
-    // const enrollData = React.useContext(MusicianEnrollContext);
+    const enrollData = React.useContext(MusicianEnrollContext);
 
-    // console.log("enrollData : ", enrollData);
-    // console.log("enrollStep : ",enrollStep);
     const nextButton = (step : number, object : object) => {
         
-        if(step == 1){
-            console.log('1 : ', object);    
+        if(step === 1){
+            enrollData.dispatch({type : "INSERT_STEPONE", payload : {stepOne_Tag : object}})  
         }
-        else if(step == 2){
-            console.log('2 : ', object);
+        else if(step === 2){
+            enrollData.dispatch({type : "INSERT_STEPTWO", payload : {stepTwo_Tag : object}})  
         }
-        else if(step == 3){
-            console.log('3 : ', object);
+        else if(step === 3){
+            enrollData.dispatch({type : "INSERT_STEPTHREE", payload : {stepThree_Tag : object}})  
+
+            console.log("finish Data Set", enrollData.enrollTags);
         }
+        
         setStep(enrollStep+1);
     }
 
+    const beforeButton = (step : number, object : object) => {
+        
+        if(step === 2){
+            console.log('2 : ', object);
+            enrollData.dispatch({type : "INSERT_STEPTWO", payload : {stepTwo_Tag : object}})      
+        }
+        else if(step == 2){
+            console.log('3 : ', object);
+            enrollData.dispatch({type : "INSERT_STEPTHREE", payload : {stepThree_Tag : object}})  
+        }
+        setStep(enrollStep-1);
+    }
+
     if(enrollStep == 1){
-        stepLayout = <StepTwo nextButton ={nextButton} />
+        stepLayout = <StepOne nextButton ={nextButton} object={enrollData.enrollTags.stepOne_Tag}/>
     }
     else if(enrollStep == 2){
-        stepLayout = <StepTwo nextButton ={nextButton} />
+        stepLayout = <StepTwo nextButton ={nextButton} beforeButton = {beforeButton} object={enrollData.enrollTags.stepTwo_Tag}/>
     }
     else{
-        stepLayout = <StepThree nextButton ={nextButton} />
+        stepLayout = <StepThree nextButton ={nextButton} beforeButton = {beforeButton} object={enrollData.enrollTags.stepThree_Tag}/>
     }
 
     return(

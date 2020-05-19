@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import OneThird from "../ProgressBar/oneThird";
+import TwoThird from "../ProgressBar/twoThird";
 interface Props {}
 
 const StepOneContainer = styled.div`
@@ -19,6 +19,7 @@ const StepOneNeeds = styled.div`
   color: #B3B4BE;
   float : right;
   padding-bottom : 1%;
+  padding-top : 3%;
 `;
 
 const FormContainer = styled.div`
@@ -78,6 +79,48 @@ const CurationTag = styled.span`
   cursor : pointer;
 `;
 
+const FormContainerTextarea = styled.textarea`
+
+  color : #B3B4BE;
+  background: #121212;
+  border-radius: 8px;
+  padding : 1.5%;
+  border : none;
+  line-height : 20px;
+  width : 97%;
+  height : 120px;
+  &&{
+    ::placeholder {
+      color : rgba(179, 180, 190, 0.5);
+      font-size : 0.75rem;
+    }
+  }
+  &:focus {
+    outline : none;
+  }
+`;
+
+const FormContainerInput = styled.input`
+
+  color : #B3B4BE;
+  background: #121212;
+  border-radius: 8px;
+  padding : 1.5%;
+  border : none;
+  line-height : 20px;
+  width : 97%;
+  height : 32px;
+  &&{
+    ::placeholder {
+      color : rgba(179, 180, 190, 0.5);
+      font-size : 0.75rem;
+    }
+  }
+  &:focus {
+    outline : none;
+  }
+`;
+
 const FlowButtonLayout = styled.div`
   padding : 0 5%;
   padding-bottom : 10%;
@@ -104,7 +147,7 @@ const AfterButton = styled.button`
   border: none;
   font-size : 1rem;
 `;
-const StepTwo = ({ nextButton }) => {
+const StepTwo = ({ nextButton, beforeButton, object }) => {
 
   const [tagList, setTagList] = React.useState([
     {
@@ -952,17 +995,202 @@ const StepTwo = ({ nextButton }) => {
     
   }
 
-  console.log("0 : ", stepTwoObj.spclNoteKindNm);
-  console.log("1 : ", stepTwoObj.themeKindNm);
-  console.log("2 : ", stepTwoObj.genreKindNm);
-  console.log("3 : ", stepTwoObj.atmoKindNm);
-  console.log("4 : ", stepTwoObj.instruKindNm);
-  // console.log(stepTwoObj);
+  React.useEffect(() => {
+    setStepTwo(object);
+
+    let tagFlag = true;
+    let oneTagFlag = true;
+    let oneTagIdx = 0
+    let twoTagFlag = true;
+    let twoTagIdx = 0
+    let threeTagFlag = true;
+    let threeTagIdx = 0
+    let fourTagFlag = true;
+    let fourTagIdx = 0
+
+    for(let i = 0 ; i < tagList.length ; i++){
+      for(let j = 0 ; j < object.spclNoteKindNm.length ; j++){
+        setSelectTag(true);
+        if(tagList[i].key === 7 && tagList[i].name === object.spclNoteKindNm[j]){
+          tagFlag = false; 
+        }
+      }
+    }
+
+    if(tagFlag){
+      for(let i = 0 ; i < tagList.length ; i++){
+        for(let j = 0 ; j < object.spclNoteKindNm.length ; j++){
+          if(tagList[i].name === object.spclNoteKindNm[j]){
+              tagList[i].chosen = true; 
+          }
+        }
+      }
+    }
+    else{
+      for(let i = 0 ; i < tagList.length ; i++){
+        for(let j = 0 ; j < object.spclNoteKindNm.length ; j++){
+          if(tagList[i].key === 7){
+              tagList[i].chosen = true;
+              tagList[i].chosenPossible = true; 
+          }
+          else{
+              tagList[i].chosen = false;
+              tagList[i].chosenPossible = false; 
+          }
+        }
+      }
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    for(let i = 0 ; i < oneTagList.length ; i++){
+      for(let j = 0 ; j < object.themeKindNm.length ; j++){
+        setSelectOneTag(true);
+        if((oneTagList[i].key === 15 || oneTagList[i].key === 16) && oneTagList[i].name === object.themeKindNm[j]){
+          oneTagFlag = false; 
+          oneTagIdx = oneTagList[i].key
+        }
+      }
+    }
+
+    if(oneTagFlag){
+      for(let i = 0 ; i < oneTagList.length ; i++){
+        for(let j = 0 ; j < object.themeKindNm.length ; j++){
+          if(oneTagList[i].name === object.themeKindNm[j]){
+            oneTagList[i].chosen = true; 
+          }
+        }
+      }
+    }
+    else{
+      for(let i = 0 ; i < oneTagList.length ; i++){
+        for(let j = 0 ; j < object.themeKindNm.length ; j++){
+          if(oneTagList[i].key === oneTagIdx){
+            oneTagList[i].chosen = true;
+            oneTagList[i].chosenPossible = true; 
+          }
+          else{
+            oneTagList[i].chosen = false;
+            oneTagList[i].chosenPossible = false; 
+          }
+        }
+      }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    for(let i = 0 ; i < twoTagList.length ; i++){
+      for(let j = 0 ; j < object.genreKindNm.length ; j++){
+        setSelectTwoTag(true);
+        if((twoTagList[i].key === 28 || twoTagList[i].key === 29) && twoTagList[i].name === object.genreKindNm[j]){
+          twoTagFlag = false; 
+          twoTagIdx = twoTagList[i].key
+        }
+      }
+    }
+
+    if(twoTagFlag){
+      for(let i = 0 ; i < twoTagList.length ; i++){
+        for(let j = 0 ; j < object.genreKindNm.length ; j++){
+          if(twoTagList[i].name === object.genreKindNm[j]){
+            twoTagList[i].chosen = true; 
+          }
+        }
+      }
+    }
+    else{
+      for(let i = 0 ; i < twoTagList.length ; i++){
+        for(let j = 0 ; j < object.genreKindNm.length ; j++){
+          if(twoTagList[i].key === twoTagIdx){
+            twoTagList[i].chosen = true;
+            twoTagList[i].chosenPossible = true; 
+          }
+          else{
+            twoTagList[i].chosen = false;
+            twoTagList[i].chosenPossible = false; 
+          }
+        }
+      }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    for(let i = 0 ; i < threeTagList.length ; i++){
+      for(let j = 0 ; j < object.atmoKindNm.length ; j++){
+        setSelectThreeTag(true);
+        if((threeTagList[i].key === 20 || threeTagList[i].key === 21) && threeTagList[i].name === object.atmoKindNm[j]){
+          threeTagFlag = false; 
+          threeTagIdx = threeTagList[i].key
+        }
+      }
+    }
+
+    if(threeTagFlag){
+      for(let i = 0 ; i < threeTagList.length ; i++){
+        for(let j = 0 ; j < object.atmoKindNm.length ; j++){
+          if(threeTagList[i].name === object.atmoKindNm[j]){
+            threeTagList[i].chosen = true; 
+          }
+        }
+      }
+    }
+    else{
+      for(let i = 0 ; i < threeTagList.length ; i++){
+        for(let j = 0 ; j < object.atmoKindNm.length ; j++){
+          if(threeTagList[i].key === threeTagIdx){
+            threeTagList[i].chosen = true;
+            threeTagList[i].chosenPossible = true; 
+          }
+          else{
+            threeTagList[i].chosen = false;
+            threeTagList[i].chosenPossible = false; 
+          }
+        }
+      }
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    for(let i = 0 ; i < fourTagList.length ; i++){
+      for(let j = 0 ; j < object.instruKindNm.length ; j++){
+        setSelectFourTag(true);
+        if((fourTagList[i].key === 18 || fourTagList[i].key === 19) && fourTagList[i].name === object.instruKindNm[j]){
+          fourTagFlag = false; 
+          fourTagIdx = fourTagList[i].key
+        }
+      }
+    }
+
+    if(fourTagFlag){
+      for(let i = 0 ; i < fourTagList.length ; i++){
+        for(let j = 0 ; j < object.instruKindNm.length ; j++){
+          if(fourTagList[i].name === object.instruKindNm[j]){
+            fourTagList[i].chosen = true; 
+          }
+        }
+      }
+    }
+    else{
+      for(let i = 0 ; i < fourTagList.length ; i++){
+        for(let j = 0 ; j < object.instruKindNm.length ; j++){
+          if(fourTagList[i].key === fourTagIdx){
+            fourTagList[i].chosen = true;
+            fourTagList[i].chosenPossible = true; 
+          }
+          else{
+            fourTagList[i].chosen = false;
+            fourTagList[i].chosenPossible = false; 
+          }
+        }
+      }
+    }
+  }, [object]) 
+  console.log("0 : ", stepTwoObj.spclNoteKindNm, tagList);
+  console.log("1 : ", stepTwoObj.themeKindNm, oneTagList);
+  console.log("2 : ", stepTwoObj.genreKindNm, twoTagList);
+  console.log("3 : ", stepTwoObj.atmoKindNm, threeTagList);
+  console.log("4 : ", stepTwoObj.instruKindNm, fourTagList);
+  console.log(stepTwoObj);
   return (
   <>
     <StepOneContainer>
       <StepOneTitle><span style={{fontWeight : "bold"}}>STEP2</span> 작업 방식</StepOneTitle>
-      <OneThird/>
+      <TwoThird/>
       <StepOneNeeds><span style={{color : "#6865FC"}}>*</span>는 필수입니다.</StepOneNeeds>
       
       <FormContainer>
@@ -1054,45 +1282,59 @@ const StepTwo = ({ nextButton }) => {
         <FormContainerRight>
           <FormContainerMainDesc style={{margin : "0"}}>구체적인 작업 단계를 설명해주세요.</FormContainerMainDesc> 
           <FormContainerDesc>최소 1step 이상 입력해주세요.</FormContainerDesc>
-          <FormContainerSubDesc>step1</FormContainerSubDesc>
-
-
-          <FormContainerSubDesc>step2</FormContainerSubDesc>
-
-          <FormContainerSubDesc>step3</FormContainerSubDesc>
           
+          <FormContainerSubDesc style={{borderBottom : "none"}}>step1</FormContainerSubDesc>
+          <FormContainerTextarea defaultValue={stepTwoObj.workStage01} placeholder="작업 단계에 대해 설명해주세요." onChange={e => {
+            setStepTwo({...stepTwoObj, workStage01 : e.target.value})
+          }}/>
+
+          <FormContainerSubDesc style={{borderBottom : "none"}}>step2</FormContainerSubDesc>
+          <FormContainerTextarea defaultValue={stepTwoObj.workStage02} placeholder="작업 단계에 대해 설명해주세요." onChange={e => {
+            setStepTwo({...stepTwoObj, workStage02 : e.target.value})
+          }}/>
+
+          <FormContainerSubDesc style={{borderBottom : "none"}}>step3</FormContainerSubDesc>  
+          <FormContainerTextarea defaultValue={stepTwoObj.workStage03} placeholder="작업 단계에 대해 설명해주세요." onChange={e => {
+            setStepTwo({...stepTwoObj, workStage03 : e.target.value})
+          }}/>
+        
         </FormContainerRight>
       </FormContainer>
 
       <FormContainer>
         <FormContainerTitle>FAQ</FormContainerTitle>
         <FormContainerRight>
-          <FormContainerSubDesc style={{margin : "0"}}>다른 사람들과 차별화된 자신의 직업스타일 태그를 선택해주세요.</FormContainerSubDesc> 
-          <FormContainerDesc>가능한 특성태그를 모두 선택해주세요. 해당없음 선택 시 기존 선택이 해제되고, 기본 문구가 노출됩니다.</FormContainerDesc>
-          {tagList.map((list, key) => {
-                if(list.chosen == true){
-                  return  <CurationTag key={key} onClick={() => {releaseTag(list.key, 0)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
-                }
-                else if(list.chosenPossible == true){
-                  return <CurationTag key={key} onClick={() => {chosenTag(list.key, 0)}}>{list.name}</CurationTag>
-                }
-                else{
-                  return <CurationTag key={key} style={{color : "#3E3E41", cursor : "auto", border : "1px solid #3E3E41"}}>{list.name}</CurationTag>
-                }
-                
-          })}
+          
+          <FormContainerSubDesc style={{borderBottom : "none"}}>1. 자신의 음악 스타일에 어떤 강점이 있나요?</FormContainerSubDesc> 
+          <FormContainerInput defaultValue={stepTwoObj.qstnAns01} onChange={e => {
+            setStepTwo({...stepTwoObj, qstnAns01 : e.target.value})
+          }}/>
+          
+          <FormContainerSubDesc style={{borderBottom : "none"}}>2. 수정 요청 또는 환불 규정이 어떻게 되나요?</FormContainerSubDesc> 
+          <FormContainerInput defaultValue={stepTwoObj.qstnAns02} onChange={e => {
+            setStepTwo({...stepTwoObj, qstnAns02 : e.target.value})
+          }}/>
+          
+          <FormContainerSubDesc style={{borderBottom : "none"}}>3. 제작한 음원 중 가장 대표적인 음원의 작업 기간은 얼마나 되나요?</FormContainerSubDesc> 
+          <FormContainerInput defaultValue={stepTwoObj.qstnAns03} onChange={e => {
+            setStepTwo({...stepTwoObj, qstnAns03 : e.target.value})
+          }}/>
+          
+          <FormContainerSubDesc style={{borderBottom : "none"}}>4. 커스터마이징 작곡 서비스의 견적은 어떤 기준으로 산정했나요?</FormContainerSubDesc>  
+          <FormContainerInput defaultValue={stepTwoObj.qstnAns04} onChange={e => {
+            setStepTwo({...stepTwoObj, qstnAns04 : e.target.value})
+          }}/>
+
         </FormContainerRight>
       </FormContainer>
 
       <FlowButtonLayout>
 
-          <BeforeButton onClick={()=>{history.back()}}>이전으로</BeforeButton>
-          {selectTag === true &&
-          selectOneTag === true &&
-          selectTwoTag === true &&
-          selectThreeTag === true &&
-          selectFourTag === true ?
-          <AfterButton onClick={nextButton} style={{cursor : "pointer", background : "#6865FC"}}>저장하고 다음으로</AfterButton>
+          <BeforeButton onClick={() => {beforeButton(2, stepTwoObj)}}>이전으로</BeforeButton>
+          {
+          (stepTwoObj.workStage01 !== "" || stepTwoObj.workStage02 !== "" || stepTwoObj.workStage03 !== "")
+          ?
+          <AfterButton onClick={() => {nextButton(2, stepTwoObj)}} style={{cursor : "pointer", background : "#6865FC"}}>저장하고 다음으로</AfterButton>
           :
           <AfterButton>저장하고 다음으로</AfterButton>
           }

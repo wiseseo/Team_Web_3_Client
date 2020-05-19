@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import OneThird from "../ProgressBar/oneThird";
-
+import Enroll from "../../pages/musician/enroll";
 const StepOneContainer = styled.div`
   width : 100%;
   background: #040104;
@@ -18,6 +18,7 @@ const StepOneNeeds = styled.div`
   color: #B3B4BE;
   float : right;
   padding-bottom : 1%;
+  padding-top : 3%;
 `;
 
 const FormContainer = styled.div`
@@ -205,22 +206,22 @@ const AfterButton = styled.button`
   border: none;
   font-size : 1rem;
 `;
-const StepOne = ({ nextButton }) => {
+const StepOne = ({ nextButton, object }) => {
 
-  const [addUrl, setAddUrl] = React.useState([{key : 0, data : "", fixFlag : false}]);
-  const [addUrlIdx, setAddUrlIdx] = React.useState<number>(1)
-
-  const [profileFile, setprofileFile] = React.useState<string>('');
-  const [portFile, setportFile] = React.useState<string>('');
-  const [profileFilePreview, setprofileFilePreview] = React.useState<any>('');
-  const [portFilePreview, setportFilePreview] = React.useState<any>('');
-  const [stepOneObj, setStepOne] = React.useState({
+  const [stepOneObj, setStepOne] = React.useState<any>({
     nickNm : '',
     introduction: '',
     profileUrl : {},
+    profilePreview : '',
     career: '',
     celPhone: '',
     portFolioLink: [],
+    addUrl : [{
+      key : 0,
+      data : '',
+      fixFlag : false
+    }],
+    addUrlIdx : 1,
     sns: [
       {
         key : 1,
@@ -240,6 +241,7 @@ const StepOne = ({ nextButton }) => {
       }
     ],
     songEsntlUrl: {},
+    songEsntPreview : '',
     portFolioMainMusic: {
       lastModified: 0,
       name: '',
@@ -257,25 +259,21 @@ const StepOne = ({ nextButton }) => {
 
   const [nickNmFlag, setnickNmFlag] = React.useState<number>(0);
   const [introductionFlag, setintroductionFlag] = React.useState<number>(0);
-  const [profileUrlFlag, setprofileUrlFlag] = React.useState<number>(0);
   const [careerFlag, setcareerFlag] = React.useState<number>(0);
   const [celPhoneFlag, setcelPhoneFlag] = React.useState<number>(0);
-  const [songEsntlUrlFlag, setsongEsntlUrlFlag] = React.useState<number>(0);
-  const [portFolioMainMusicFlag, setportFolioMainMusicFlag] = React.useState<number>(0);
 
   const phoneNumberRegExp = /^\d{3}-\d{3,4}-\d{4}$/;
 
   // 포트폴리오 url, sns id, songchcurl
   const addUrlButton = (idx) => {
 
-    console.log("addURL Button : ", idx)
     let newArr = {
-      key : addUrlIdx,
+      key : stepOneObj.addUrlIdx,
       data : "",
       fixFlag : false
     }
-    setAddUrl(prevArray => [...prevArray, newArr]);
-    setAddUrlIdx(addUrlIdx+1);
+
+    setStepOne({...stepOneObj, addUrlIdx : stepOneObj.addUrlIdx + 1, addUrl : stepOneObj.addUrl.concat(newArr)})
   }  
   
   const handleFileOnChange = (event) => {
@@ -283,8 +281,8 @@ const StepOne = ({ nextButton }) => {
     let reader = new FileReader();
     let file = event.target.files[0];
     reader.onloadend = () => {
-      setprofileFile(file);
-      setprofileFilePreview(reader.result)
+      setStepOne({...stepOneObj, profilePreview : reader.result})
+
     }
     reader.readAsDataURL(file);
   }
@@ -294,29 +292,15 @@ const StepOne = ({ nextButton }) => {
     let reader = new FileReader();
     let file = event.target.files[0];
     reader.onloadend = () => {
-      setportFile(file);
-      setportFilePreview(reader.result)
+      setStepOne({...stepOneObj, songEsntPreview : reader.result})
     }
     reader.readAsDataURL(file);
   }
   
-  const nextStep = () => {
-    nextButton(1, stepOneObj)
-  }
-
-  // console.log("addUrl : ",addUrl)
   // console.log(stepOneObj);
-  // console.log("Total Flag : ",
-  // nickNmFlag,
-  // profileUrlFlag,
-  // introductionFlag,
-  // careerFlag,
-  // celPhoneFlag,
-  // songEsntlUrlFlag,
-  // portFolioMainMusicFlag);
-
-
-            
+  React.useEffect(() => {
+    setStepOne(object);
+  }, [object])  
   React.useEffect(() => {
     // 0이 기본, 1 성공, 2 실패
     if (stepOneObj.nickNm !== "") {
@@ -383,23 +367,6 @@ const StepOne = ({ nextButton }) => {
       }
     }
 
-    if (Object.keys(stepOneObj.profileUrl).length === 0 && stepOneObj.profileUrl.constructor === Object) {
-      setprofileUrlFlag(0)
-    } else {
-      setprofileUrlFlag(1)
-    }
-
-    if (Object.keys(stepOneObj.songEsntlUrl).length === 0 && stepOneObj.songEsntlUrl.constructor === Object) {
-      setsongEsntlUrlFlag(0)
-    } else {
-      setsongEsntlUrlFlag(1)
-    }
-
-    if (stepOneObj.portFolioMainMusic.name !== "") {
-      setportFolioMainMusicFlag(1)
-    } else {
-      setportFolioMainMusicFlag(0)
-    }
   }, [stepOneObj]);
   
   return (
@@ -412,17 +379,18 @@ const StepOne = ({ nextButton }) => {
       <FormContainer>
         <FormContainerTitle>뮤지션 활동명<span style={{color : "#6865FC"}}>*</span></FormContainerTitle>
         {nickNmFlag === 0 ?
-        <FormContainerInput onChange={e => {
+        <FormContainerInput defaultValue={stepOneObj.nickNm} onChange={e => {
+          // enrollData.dispatch
           setStepOne({...stepOneObj, nickNm : e.target.value});
         }
         }/>
         :
         (nickNmFlag === 1 ? 
-        <FormContainerInput onChange={e => {
+        <FormContainerInput defaultValue={stepOneObj.nickNm} onChange={e => {
           setStepOne({...stepOneObj, nickNm : e.target.value});
         }}/>
         : 
-        <FormContainerInput style={{border : "1px solid red"}} onChange={e => {
+        <FormContainerInput style={{border : "1px solid #C93E37"}} onChange={e => {
           setStepOne({...stepOneObj, nickNm : e.target.value});
         }}/>
         )
@@ -436,7 +404,7 @@ const StepOne = ({ nextButton }) => {
         <FormContainerTitle>프로필 사진<span style={{color : "#6865FC"}}>*</span></FormContainerTitle>
         <FormContainerProfile>
           
-          {profileFile === '' ? 
+          {stepOneObj.profilePreview === '' ? 
           
           <img
             src="/static/vector.png"
@@ -451,7 +419,7 @@ const StepOne = ({ nextButton }) => {
           />
           : 
           <img
-            src={profileFilePreview}
+            src={stepOneObj.profilePreview}
             alt="vector"
             style={{
                 width : 45,
@@ -473,7 +441,7 @@ const StepOne = ({ nextButton }) => {
             }}>업로드
             </FormContainerProfileUpload>
             <input accept="image/*" style={{visibility : "hidden"}} type="file" id="getFile" onChange={e => {
-              console.log(e.target.files[0], typeof e.target.files[0])
+              // console.log(e.target.files[0], typeof e.target.files[0])
               handleFileOnChange(e);
               setStepOne({...stepOneObj, profileUrl : e.target.files[0]})
             }}/>
@@ -497,16 +465,16 @@ const StepOne = ({ nextButton }) => {
         </FormContainerInputTitle>
 
         {introductionFlag === 0 ?
-        <FormContainerInput style={{marginBottom : "3%"}}onChange={e => {
+        <FormContainerInput defaultValue={stepOneObj.introduction} style={{marginBottom : "3%"}}onChange={e => {
           setStepOne({...stepOneObj, introduction : e.target.value})}
         }/>
         :
         (introductionFlag === 1 ? 
-        <FormContainerInput style={{marginBottom : "3%"}}onChange={e => {
+        <FormContainerInput defaultValue={stepOneObj.introduction} style={{marginBottom : "3%"}}onChange={e => {
           setStepOne({...stepOneObj, introduction : e.target.value})}
         }/>
         : 
-        <FormContainerInput style={{marginBottom : "3%", border : "1px solid red"}}onChange={e => {
+        <FormContainerInput defaultValue={stepOneObj.introduction} style={{marginBottom : "3%", border : "1px solid #C93E37"}}onChange={e => {
           setStepOne({...stepOneObj, introduction : e.target.value})}
         }/>
         )
@@ -530,16 +498,16 @@ const StepOne = ({ nextButton }) => {
         </FormContainerInputTitle>
         
         {careerFlag === 0 ?
-        <FormContainerTextarea style={{marginBottom : "3%", height : 200}} onChange={e => {
+        <FormContainerTextarea style={{marginBottom : "3%", height : 200}} defaultValue={stepOneObj.career} onChange={e => {
           setStepOne({...stepOneObj, career : e.target.value})}
         }/>
         :
         (careerFlag === 1 ? 
-          <FormContainerTextarea style={{marginBottom : "3%", height : 200}} onChange={e => {
+          <FormContainerTextarea style={{marginBottom : "3%", height : 200}} defaultValue={stepOneObj.career} onChange={e => {
             setStepOne({...stepOneObj, career : e.target.value})}
           }/>
         : 
-        <FormContainerTextarea style={{marginBottom : "3%", height : 200, border : "1px solid red"}} onChange={e => {
+        <FormContainerTextarea style={{marginBottom : "3%", height : 200, border : "1px solid #C93E37"}} defaultValue={stepOneObj.career} onChange={e => {
           setStepOne({...stepOneObj, career : e.target.value})}
         }/>
         )
@@ -551,7 +519,7 @@ const StepOne = ({ nextButton }) => {
       <FormContainer>
         <FormContainerTitle>포트폴리오 링크</FormContainerTitle>
 
-          {addUrl.map((value, idx) => {
+          {stepOneObj.addUrl.map((value, idx) => {
             return (
               <div key={idx}>
               <FormContainerFixLayout>
@@ -566,7 +534,7 @@ const StepOne = ({ nextButton }) => {
                   
                   // fixed 되어, 삭제루틴
                   <FormContainerFixButton key={idx} onClick={() => {
-                    let removeArr = [...addUrl];
+                    let removeArr = [...stepOneObj.addUrl];
                     
                     for(let i = 0 ; i < removeArr.length ; i++){
                       if(removeArr[i].key === idx){
@@ -574,13 +542,13 @@ const StepOne = ({ nextButton }) => {
                       }
                     }
   
-                    setAddUrl(removeArr);
-                    setStepOne({...stepOneObj, portFolioLink : stepOneObj.portFolioLink = removeArr.filter(item => item.key !== idx && item.data !== "" && item.data !== "stopped")})
+                    setStepOne({...stepOneObj, addUrl : removeArr})
+                    setStepOne({...stepOneObj, portFolioLink : stepOneObj.portFolioLink = removeArr.filter(item => item.key !== idx && item.data !== "" && item.data !== "stopped" && item.fixFlag !== false)})
                   }}>삭제</FormContainerFixButton>
                   : 
                   // fixed 하기 위한, 생성 루틴
                   <FormContainerFixButton key={idx} onClick={() => {
-                    let fixedArr = [...addUrl];
+                    let fixedArr = [...stepOneObj.addUrl];
                     let keyNum = 0          
 
                     if(value.data === ""){ 
@@ -594,7 +562,7 @@ const StepOne = ({ nextButton }) => {
                         }
                       }
     
-                      setAddUrl(fixedArr);
+                      setStepOne({...stepOneObj, addUrl : fixedArr})
                       setStepOne({...stepOneObj, portFolioLink : stepOneObj.portFolioLink.concat({key : idx, data : fixedArr[keyNum].data, fixFlag : true})})
                     }
                     
@@ -609,19 +577,19 @@ const StepOne = ({ nextButton }) => {
               <FormContainerInput disabled style={{marginBottom : "3%", width: "40%", display : "none"}} key={idx}/> 
               :
                 (value.fixFlag ?
-                  <FormContainerInput disabled style={{marginBottom : "3%", width: "40%"}} key={idx}/> 
+                  <FormContainerInput defaultValue={value.data} disabled style={{marginBottom : "3%", width: "40%"}} key={idx}/> 
                   : 
                   // 입력 가능한 폼 onChange!!
-                  <FormContainerInput style={{marginBottom : "3%", width: "40%"}} key={idx} onChange={e => {
+                  <FormContainerInput defaultValue={value.data} style={{marginBottom : "3%", width: "40%"}} key={idx} onChange={e => {
                     
-                    let inputArr = [...addUrl];
+                    let inputArr = [...stepOneObj.addUrl];
                     
                     for(let i = 0 ; i < inputArr.length ; i++){
                       if(inputArr[i].key === idx){
                         inputArr[i].data = e.target.value;
                       }
                     }
-                    setAddUrl(inputArr);
+                    setStepOne({...stepOneObj, addUrl : inputArr})
                   }}/>
                 )
               }
@@ -633,7 +601,7 @@ const StepOne = ({ nextButton }) => {
         <div><div style={{width : "30%"}}/></div>
   
         <FormContainerAddURL> 
-          <FormContainerAddURLButton onClick={() => {addUrlButton(addUrlIdx)}}>+ url추가하기</FormContainerAddURLButton>
+          <FormContainerAddURLButton onClick={() => {addUrlButton(stepOneObj.addUrlIdx)}}>+ url추가하기</FormContainerAddURLButton>
         </FormContainerAddURL>
         
         <div><div style={{width : "30%"}}/></div>
@@ -648,16 +616,16 @@ const StepOne = ({ nextButton }) => {
         <FormContainerTitle>휴대폰 번호<span style={{color : "#6865FC"}}>*</span></FormContainerTitle>
 
         {celPhoneFlag === 0 ?
-        <FormContainerInput placeholder="010-1234-5678" onChange={e => {
+        <FormContainerInput defaultValue={stepOneObj.celPhone} placeholder="010-1234-5678" onChange={e => {
           setStepOne({...stepOneObj, celPhone : e.target.value})}
         }/>
         :
         (celPhoneFlag === 1 ? 
-          <FormContainerInput placeholder="010-1234-5678" onChange={e => {
+          <FormContainerInput defaultValue={stepOneObj.celPhone} placeholder="010-1234-5678" onChange={e => {
             setStepOne({...stepOneObj, celPhone : e.target.value})}
           }/>
         : 
-        <FormContainerInput placeholder="010-1234-5678" style={{border : "1px solid red"}} onChange={e => {
+        <FormContainerInput placeholder="010-1234-5678" style={{border : "1px solid #C93E37"}} onChange={e => {
           setStepOne({...stepOneObj, celPhone : e.target.value})}
         }/>
         )
@@ -677,7 +645,7 @@ const StepOne = ({ nextButton }) => {
         <div style={{position : "relative", top: "-3vh"}}>
           <FormContainerSnsLayout> 
 
-            <FormContainerInput placeholder="사용 계정을 입력하세요." style={{marginBottom : "3%", width : "46%", float : "right"}} onChange={e => {
+            <FormContainerInput defaultValue={stepOneObj.sns[0].id} placeholder="사용 계정을 입력하세요." style={{marginBottom : "3%", width : "46%", float : "right"}} onChange={e => {
               let newArr = [...stepOneObj.sns];
               newArr[0].id = e.target.value
               setStepOne({...stepOneObj, sns : newArr})
@@ -692,7 +660,7 @@ const StepOne = ({ nextButton }) => {
           
           <FormContainerSnsLayout> 
 
-            <FormContainerInput placeholder="사용 계정을 입력하세요." style={{marginBottom : "3%", width : "46%", float : "right"}} onChange={e => {
+            <FormContainerInput defaultValue={stepOneObj.sns[1].id} placeholder="사용 계정을 입력하세요." style={{marginBottom : "3%", width : "46%", float : "right"}} onChange={e => {
               let newArr = [...stepOneObj.sns];
               newArr[1].id = e.target.value
               setStepOne({...stepOneObj, sns : newArr})
@@ -707,7 +675,7 @@ const StepOne = ({ nextButton }) => {
           
           <FormContainerSnsLayout> 
 
-            <FormContainerInput placeholder="사용 계정을 입력하세요." style={{marginBottom : "3%", width : "46%", float : "right"}} onChange={e => {
+            <FormContainerInput defaultValue={stepOneObj.sns[2].id} placeholder="사용 계정을 입력하세요." style={{marginBottom : "3%", width : "46%", float : "right"}} onChange={e => {
               let newArr = [...stepOneObj.sns];
               newArr[2].id = e.target.value
               setStepOne({...stepOneObj, sns : newArr})
@@ -722,7 +690,7 @@ const StepOne = ({ nextButton }) => {
           
           <FormContainerSnsLayout> 
 
-            <FormContainerInput placeholder="사용 계정을 입력하세요." style={{marginBottom : "3%", width : "46%", float : "right"}} onChange={e => {
+            <FormContainerInput defaultValue={stepOneObj.sns[3].id} placeholder="사용 계정을 입력하세요." style={{marginBottom : "3%", width : "46%", float : "right"}} onChange={e => {
               let newArr = [...stepOneObj.sns];
               newArr[3].id = e.target.value
               setStepOne({...stepOneObj, sns : newArr})
@@ -753,7 +721,7 @@ const StepOne = ({ nextButton }) => {
         <FormContainerProfile style={{top : "0", position : "initial", borderBottom : "1px solid rgba(104,101,252,0.4)", paddingBottom : "3%"}}>
           
 
-        {portFile === '' ? 
+        {stepOneObj.songEsntPreview === '' ? 
           
           <img
             src="/static/vector.png"
@@ -768,7 +736,7 @@ const StepOne = ({ nextButton }) => {
           />
           : 
           <img
-            src={portFilePreview}
+            src={stepOneObj.songEsntPreview}
             alt="vector"
             style={{
                 width : 45,
@@ -787,7 +755,7 @@ const StepOne = ({ nextButton }) => {
             </FormContainerProfileUpload>
             <input accept="image/*" style={{visibility : "hidden"}} type="file" id="getPortFile"
               onChange={e => {
-              console.log(e.target.files[0], typeof e.target.files[0])
+              // console.log(e.target.files[0], typeof e.target.files[0])
               handlePortFileOnChange(e);
               setStepOne({...stepOneObj, songEsntlUrl : e.target.files[0]})
               }}
@@ -815,7 +783,7 @@ const StepOne = ({ nextButton }) => {
             
             <input accept=".mp3,.mp4" style={{visibility : "hidden"}} type="file" id="getMusic"
             onChange={e => {
-              console.log(e.target.files[0])
+              // console.log(e.target.files[0])
               setStepOne({...stepOneObj, portFolioMainMusic : e.target.files[0]})
             }}
             />
@@ -873,20 +841,20 @@ const StepOne = ({ nextButton }) => {
 
             if(idx === 0){
               return (
-                <>
-                  <MusicNameLayout style={{marginBottom : "3%", width : "35%", float : "right"}}>
+                
+                  <MusicNameLayout key={idx} style={{marginBottom : "3%", width : "35%", float : "right"}}>
                     {value.name}
                   </MusicNameLayout>
-                </>
+                
               )
             }
             else{
               return (
-                <>
+                
                   <MusicNameLayout key={idx} style={{marginBottom : "3%", width : "35%", float : "right", marginRight : "35%"}}>
                     {value.name}
                   </MusicNameLayout>
-                </>
+                
               )
             }
             
@@ -903,13 +871,13 @@ const StepOne = ({ nextButton }) => {
           <BeforeButton onClick={()=>{history.back()}}>이전으로</BeforeButton>
           {nickNmFlag === 1 &&
           introductionFlag === 1 &&
-          profileUrlFlag === 1 &&
+          (stepOneObj.profileUrl !== {}) &&
           careerFlag === 1 &&
           celPhoneFlag === 1 &&
-          songEsntlUrlFlag === 1 &&
-          portFolioMainMusicFlag
+          (stepOneObj.songEsntlUrl !== {}) &&
+          (stepOneObj.portFolioMainMusic.size !== 0)
           ? 
-          <AfterButton onClick={nextStep} style={{cursor : "pointer", background : "#6865FC"}}>저장하고 다음으로</AfterButton>
+          <AfterButton onClick={()=>{nextButton(1, stepOneObj)}} style={{cursor : "pointer", background : "#6865FC"}}>저장하고 다음으로</AfterButton>
           :
           <AfterButton>저장하고 다음으로</AfterButton>
           }
