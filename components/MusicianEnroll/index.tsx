@@ -3,7 +3,7 @@ import StepOne from "./stepOne";
 import StepTwo from "./stepTwo";
 import StepThree from "./stepThree";
 import styled from "styled-components";
-import {MusicianEnrollContext} from "../../stores/MusicianEnrollStore";
+// import {MusicianEnrollContext} from "../../stores/MusicianEnrollStore";
 
 interface Props {}
 
@@ -29,21 +29,32 @@ const MusicianEnroll = (props: Props) => {
 
     const [enrollStep, setStep] = React.useState<number>(1);
   
-    const stepOne = React.useContext(MusicianEnrollContext);
+    // const enrollData = React.useContext(MusicianEnrollContext);
 
-    console.log("stepOne : ", stepOne)
-    const nextButton = () => {
+    // console.log("enrollData : ", enrollData);
+    // console.log("enrollStep : ",enrollStep);
+    const nextButton = (step : number, object : object) => {
+        
+        if(step == 1){
+            console.log('1 : ', object);    
+        }
+        else if(step == 2){
+            console.log('2 : ', object);
+        }
+        else if(step == 3){
+            console.log('3 : ', object);
+        }
         setStep(enrollStep+1);
     }
 
     if(enrollStep == 1){
-        stepLayout = <StepOne nextButton ={nextButton}/>
+        stepLayout = <StepTwo nextButton ={nextButton} />
     }
     else if(enrollStep == 2){
-        stepLayout = <StepTwo nextButton ={nextButton}/>
+        stepLayout = <StepTwo nextButton ={nextButton} />
     }
     else{
-        stepLayout = <StepThree nextButton ={nextButton}/>
+        stepLayout = <StepThree nextButton ={nextButton} />
     }
 
     return(
