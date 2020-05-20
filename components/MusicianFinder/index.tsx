@@ -9,8 +9,8 @@ interface Props {}
 const Contents = styled.div `
   display: flex;
   flex-direction: column;
-  padding-right : 5rem;
-  padding-left : 5rem;
+  padding-right : 25rem;
+  padding-left : 25rem;
 `;
 const Title = styled.h1`
   margin : 0;

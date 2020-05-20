@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from 'styled-components';
-import MusicianSmallCard from './MusicianSmallCard';
+import MusicianItem from './MusicianItem';
 //import Footer from '../Footer';
 
 interface Props {}
@@ -11,7 +11,7 @@ const MusicianList = (props: Props) => {
     return(
         <>
         {musicianList.map((m)=>{
-            return <MusicianSmallCard></MusicianSmallCard>
+            return <MusicianItem></MusicianItem>
         })}
         </>
     
