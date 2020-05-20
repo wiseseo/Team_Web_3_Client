@@ -11,7 +11,7 @@ const MainContainer = styled.div`
   background-color: #040104;
   justify-content : center;
   align-items : center;
-  /*background: skyblue;*/
+  /*background: white;*/
 `;
 
 const Find: React.FC = () => {

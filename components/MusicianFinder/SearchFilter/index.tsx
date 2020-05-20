@@ -12,6 +12,7 @@ const FilterSection = styled.div`
 const DropDown = styled.div`
   &:hover .dropdown-content {
     display: block;
+    box-shadow: -2px 0px 10px rgba(88, 90, 107, 0.4);
   }
 `;
 const DropBtn = styled.button`
@@ -34,6 +35,7 @@ const DropContents = styled.div`
     border-radius: 8px;
     color: #ffffff;
     overflow : hidden;
+    
 `;
 
 const DropFilters = styled.li`
