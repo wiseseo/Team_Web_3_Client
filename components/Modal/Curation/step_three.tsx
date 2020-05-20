@@ -100,7 +100,7 @@ const NextButton = styled.button`
 
 `;
 
-const StepThree = ({nextButton, beforeButton}): React.ReactElement => {
+const StepThree = ({nextButton, beforeButton, object}): React.ReactElement => {
   const [tagList, setTagList] = React.useState([
     {
       key : 1,
@@ -284,6 +284,45 @@ const StepThree = ({nextButton, beforeButton}): React.ReactElement => {
     }
   }
   
+  React.useEffect(() => {
+    appendTagList(object);
+
+    let tagFlag = true;
+
+    for(let i = 0 ; i < tagList.length ; i++){
+      for(let j = 0 ; j < object.length ; j++){
+        setSelectTag(true);
+        if(tagList[i].key === 20 && tagList[i].name === object[j]){
+          tagFlag = false; 
+        }
+      }
+    }
+
+    if(tagFlag){
+      for(let i = 0 ; i < tagList.length ; i++){
+        for(let j = 0 ; j < object.length ; j++){
+          if(tagList[i].name === object[j]){
+              tagList[i].chosen = true; 
+          }
+        }
+      }
+    }
+    else{
+      for(let i = 0 ; i < tagList.length ; i++){
+        for(let j = 0 ; j < object.length ; j++){
+          if(tagList[i].key === 20){
+              tagList[i].chosen = true;
+              tagList[i].chosenPossible = true; 
+          }
+          else{
+              tagList[i].chosen = false;
+              tagList[i].chosenPossible = false; 
+          }
+        }
+      }
+    }
+    // console.log(object);
+  }, [object])
   return (
         
         <CurationContainer>
@@ -321,7 +360,7 @@ const StepThree = ({nextButton, beforeButton}): React.ReactElement => {
                   return <CurationTag key={key} onClick={() => {chosenTag(list.key)}}>{list.name}</CurationTag>
                 }
                 else{
-                  return <CurationTag key={key} style={{color : "yellow", cursor : "auto"}}>{list.name}</CurationTag>
+                  return <CurationTag key={key} style={{color : "#3E3E41", cursor : "auto", border : "1px solid #3E3E41"}}>{list.name}</CurationTag>
                 }
                 
               })}
@@ -331,7 +370,7 @@ const StepThree = ({nextButton, beforeButton}): React.ReactElement => {
             <CurationModalButton>
 
             <CurationModalButtonLayout>
-                <BeforeButton onClick={beforeButton}>이전으로</BeforeButton>
+                <BeforeButton onClick={() => {beforeButton(3, TagList)}}>이전으로</BeforeButton>
                 {selectTag == true ? (<NextButton onClick={()=>{nextButton(3, TagList)}} style={{background : "#6865FC", cursor : "pointer"}}>다음으로</NextButton>) : (<NextButton>다음으로</NextButton>)}
                 
             </CurationModalButtonLayout>

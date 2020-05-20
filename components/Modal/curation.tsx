@@ -60,9 +60,20 @@ const Curation = ({}): React.ReactElement => {
       setStep(curationStep+1);
   };
 
-  const beforeButton = (res: any) => {
-    console.log(curationStep);
-    console.log('Res : ', res);
+  const beforeButton = (step: any, tag : object) => {
+    
+    if(step == 1){
+      tags.dispatch({ type : "ONE_TAG", payload : {tag: tag}})
+    }
+    else if(step == 2){
+      tags.dispatch({ type : "TWO_TAG", payload : {tag: tag}})
+    }
+    else if(step == 3){
+      tags.dispatch({ type : "THREE_TAG", payload : {tag: tag}})
+    }
+    else if(step == 4){
+      tags.dispatch({ type : "FOUR_TAG", payload : {tag: tag}})
+    }
 
     setStep(curationStep-1);
   }
@@ -97,7 +108,7 @@ const Curation = ({}): React.ReactElement => {
             borderRadius : 8
         }
             }}>
-        <StepOne nextButton={nextButton} beforeButton={beforeButton}/>
+        <StepOne nextButton={nextButton} beforeButton={beforeButton} object={tags.tags.stepOne_Tag}/>
     </Modal>
   }
   else if(curationStep == 3){
@@ -113,7 +124,7 @@ const Curation = ({}): React.ReactElement => {
             borderRadius : 8
         }
             }}>
-        <StepTwo nextButton={nextButton} beforeButton={beforeButton}/>
+        <StepTwo nextButton={nextButton} beforeButton={beforeButton} object={tags.tags.stepTwo_Tag}/>
     </Modal>
   }
   else if(curationStep == 4){
@@ -129,7 +140,7 @@ const Curation = ({}): React.ReactElement => {
             borderRadius : 8
         }
             }}>
-        <StepThree nextButton={nextButton} beforeButton={beforeButton}/>
+        <StepThree nextButton={nextButton} beforeButton={beforeButton} object={tags.tags.stepThree_Tag}/>
     </Modal>
   }
   else if(curationStep == 5){
@@ -145,14 +156,13 @@ const Curation = ({}): React.ReactElement => {
             borderRadius : 8
         }
             }}>
-        <StepFour nextButton={nextButton} beforeButton={beforeButton}/>
+        <StepFour nextButton={nextButton} beforeButton={beforeButton} object={tags.tags.stepFour_Tag}/>
     </Modal>
   }
   else{
     stepLayout = <Modal open={open} onClose={onCloseModal}/>
-    console.log('final Tags : ',tags)
+    console.log('final Tags : ',tags.tags)
   }
-  
   return (
     <>
       <Button onClick={onOpenModal}>
