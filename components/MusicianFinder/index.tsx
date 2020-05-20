@@ -34,7 +34,7 @@ const MusicianFinder = (props: Props) => {
     <Contents>
       <Title>뮤지션 찾기</Title>
       <SearchFilter/>
-      <MusicianList></MusicianList>
+      <MusicianList/>
       <Footer></Footer>
     </Contents>
   )

@@ -6,11 +6,16 @@ import MusicianSmallCard from './MusicianSmallCard';
 interface Props {}
 
 const MusicianList = (props: Props) => { 
+    const musicianList = [1,2,3,4,5];
     
-    return (
-        <MusicianSmallCard></MusicianSmallCard>
-    )
-  
+    return(
+        <>
+        {musicianList.map((m)=>{
+            return <MusicianSmallCard></MusicianSmallCard>
+        })}
+        </>
+    
+    );
 };
 
 export default MusicianList;
