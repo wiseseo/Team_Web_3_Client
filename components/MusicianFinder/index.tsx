@@ -9,8 +9,9 @@ interface Props {}
 const Contents = styled.div `
   display: flex;
   flex-direction: column;
-  padding-right : 5rem;
-  padding-left : 5rem;
+  /*padding-right : 25rem;
+  padding-left : 25rem;*/
+  width : 70rem;
 `;
 const Title = styled.h1`
   margin : 0;
@@ -34,7 +35,7 @@ const MusicianFinder = (props: Props) => {
     <Contents>
       <Title>뮤지션 찾기</Title>
       <SearchFilter/>
-      <MusicianList></MusicianList>
+      <MusicianList/>
       <Footer></Footer>
     </Contents>
   )

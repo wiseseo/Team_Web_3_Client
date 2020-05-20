@@ -75,6 +75,8 @@ const SortingSection = styled.div`
     flex-direction: row;
     justify-content : flex-end; 
     cursor : pointer;
+    padding-top : 5rem;
+    padding-bottom : 1.5rem;
 `;
 
 const Sort= styled.div`
