@@ -97,6 +97,24 @@ const ImageStyled = styled.img`
 `;
 const Login = (): React.ReactElement => {
   
+  const [response, setResponse] = React.useState(null);
+  const [error, setError] = React.useState(null);
+
+  React.useEffect(() => {
+    const FetchData = async () => {
+      try {
+        const res = await fetch(`https://dog.ceo/api/breeds/image/random`, {});
+        const json = await res.json();
+        setResponse(json);
+      } catch (error) {
+        setError(error);
+      }
+    };
+    FetchData();
+  }, []);
+
+  console.log('response : ',response)
+  console.log('error : ', error)
   return (
 
       <LoginContainer>
