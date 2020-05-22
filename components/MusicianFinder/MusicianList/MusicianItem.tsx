@@ -52,6 +52,7 @@ const AlbumCover = styled.div`
     background-image: url("${({ src }: { src: string }) => src}");
     background-repeat: no-repeat;
     background-position: center center;
+    background-size : contain;
 `;
 
 const MusicianContainer = styled.div`
