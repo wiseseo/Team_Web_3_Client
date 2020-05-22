@@ -11,7 +11,7 @@ const Container = styled.div`
   position: relative;
 `;
 const Background = styled.img.attrs(({ src }: { src: string }) => ({ src }))`
-  opacity: 0.2;
+  opacity: 0.5;
 `;
 const Position = styled.div`
   position: absolute;
@@ -21,7 +21,7 @@ const Position = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
 `;
 const Button = styled.button`
   background: linear-gradient(157.06deg, #6865fc 36.28%, #658dfc 100%);
@@ -29,10 +29,19 @@ const Button = styled.button`
   border: none;
   color: #fdfdff;
   font-size: 1.5rem;
-  padding: 0.75em 5em;
+  padding: 1rem 6rem;
 `;
-const Space = styled.div`
-  height: 4rem;
+const Logo = styled.img``;
+const Text = styled.div`
+  color: #b3b4be;
+  font-size: 1.27rem;
+  margin: 1.5rem;
+  margin-bottom: 2.5rem;
+`;
+const Descript = styled.div`
+  color: #b3b4be;
+  font-size: 0.875rem;
+  margin: 1.5rem;
 `;
 
 interface Props {}
@@ -42,7 +51,9 @@ const Banner = (props: Props): React.ReactElement => {
     <Container>
       <Background src="/banner.png" />
       <Position>
-        <Space></Space>
+        <Logo src="/static/tuna.png" alt="logo" />
+        <Text>당신의 뮤지션은 누구?</Text>
+        <Descript>뮤지션과 함께 커스터마이징 음악을 만들어보세요</Descript>
         <Button>뮤지션 매칭하기</Button>
       </Position>
     </Container>
