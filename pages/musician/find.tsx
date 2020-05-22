@@ -4,7 +4,7 @@ import Header from "../../components/Header"
 import AudioPlayer from "../../components/AudioPlayer"
 //import Footer from "../../components/Footer";
 import MusicianFinder from "../../components/MusicianFinder"
-import MusicianStore from "../../stores/MusicianStore";
+import FindStore from "../../stores/FindStore";
 
 const MainContainer = styled.div`
   display: flex;
@@ -20,9 +20,9 @@ const Find: React.FC = () => {
     <>
         <Header/>
         <MainContainer>
-          <MusicianStore>
+          <FindStore>
             <MusicianFinder/>
-          </MusicianStore>
+          </FindStore>
         {/*<Footer/>*/}
         </MainContainer>
         {/* <AudioPlayer src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga" /> */}
