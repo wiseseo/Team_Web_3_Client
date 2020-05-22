@@ -3,7 +3,10 @@ import styled from 'styled-components';
 import Header from "../../components/Header"
 import AudioPlayer from "../../components/AudioPlayer"
 //import Footer from "../../components/Footer";
-import MusicianFinder from "../../components/MusicianFinder"
+//import MusicianFinder from "../../components/MusicianFinder"
+import SearchFilter from '../../components/MusicianFinder/SearchFilter';
+import MusicianList from '../../components/MusicianFinder/MusicianList';
+import Footer from '../../components/Footer';
 import FindStore from "../../stores/FindStore";
 
 const MainContainer = styled.div`
@@ -15,13 +18,34 @@ const MainContainer = styled.div`
   /*background: white;*/
 `;
 
+const Contents = styled.div `
+  display: flex;
+  flex-direction: column;
+  /*padding-right : 25rem;
+  padding-left : 25rem;*/
+  width : 70rem;
+`;
+const Title = styled.h1`
+  margin : 0;
+  font-size : 1.5rem;
+  background: #040104;
+  /*background : grey;*/
+  color: #ffffff;
+  padding : 5rem 25rem 3rem 0rem;
+`;
+
 const Find: React.FC = () => {
   return (
     <>
         <Header/>
         <MainContainer>
           <FindStore>
-            <MusicianFinder/>
+            <Contents>
+              <Title>뮤지션 찾기</Title>
+              <SearchFilter/>
+              <MusicianList/>
+              <Footer></Footer>
+            </Contents>
           </FindStore>
         {/*<Footer/>*/}
         </MainContainer>
