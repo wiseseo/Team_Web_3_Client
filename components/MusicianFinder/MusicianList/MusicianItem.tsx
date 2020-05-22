@@ -1,7 +1,30 @@
 import * as React from "react";
 import styled from 'styled-components';
 
-interface Props {}
+
+interface Song {
+    id: string;
+    title: string;
+    date: string;
+    isPlaying: boolean;
+    isLike: boolean;
+    cover_url: string;
+    song_url: string;
+  }
+  
+  interface Musician {
+    id: string;
+    name: string;
+    introduction: string;
+    tags: string[];
+    likes: number;
+    profile_url: string;
+    features: string[];
+    song: Song;
+  }
+  interface Props {
+    musician: Musician;
+  }
 
 const Card = styled.div`
   display: flex;
@@ -25,7 +48,10 @@ const PlayerContainer = styled.div`
 const AlbumCover = styled.div`
     width : 5rem;
     height : 5rem;
-    background : black;
+    background : white;
+    background-image: url("${({ src }: { src: string }) => src}");
+    background-repeat: no-repeat;
+    background-position: center center;
 `;
 
 const MusicianContainer = styled.div`
@@ -36,6 +62,7 @@ const MusicianContainer = styled.div`
     justify-content : space-between;
     align-items : center;
 `;
+
 
 const LeftContainer = styled.div`
     display: flex;
@@ -68,6 +95,9 @@ const Profile = styled.div`
     width: 100%;
     height: 100%;
     background : white;
+    background-image: url("${({ src }: { src: string }) => src}");
+    background-repeat: no-repeat;
+    background-size: contain;
 `;
 const Name = styled.div`
   color: #ffffff;
@@ -126,12 +156,12 @@ const ProfileButton = styled.a`
     display: inline-block;
 `;
 
-const MusicianItem = (props: Props) => { 
-    const tags = ["스포츠", "기술", "게임", "시즌"];
+const MusicianItem = ( {musician }: Props) => { 
+    //const tags = ["스포츠", "기술", "게임", "시즌"];
     return (
         <Card>
             <PlayerContainer>
-                <AlbumCover>
+                <AlbumCover src={musician.song.cover_url}> 
 
                 </AlbumCover>
             </PlayerContainer>
@@ -139,22 +169,22 @@ const MusicianItem = (props: Props) => {
                 <LeftContainer>
                     <ProfileContainer>
                         <Circle>
-                            <Profile></Profile>
+                            <Profile src={musician.profile_url}/>
                         </Circle>
                         <Info>
-                            <Name>이름</Name>
-                            <Introduction>소개</Introduction>
+                            <Name>{musician.name}</Name>
+                            <Introduction>{musician.introduction}</Introduction>
                         </Info>
                     </ProfileContainer>
                     <TagContainer>
-                        {tags.map((tag)=>{
+                        {musician.tags.map((tag)=>{
                             return <Tag key={tag.toString()}>{tag}</Tag>
                         })}
                     </TagContainer>
                 </LeftContainer>
                 <RightContainer>
                     <SpecialNote>
-                        빠른 작업/3분이상/효과음/보컬 곡 작곡
+                    {musician.features.reduce((res, feature) => `${res}/${feature}`)}
                     </SpecialNote>
                 </RightContainer>
             </MusicianContainer>
