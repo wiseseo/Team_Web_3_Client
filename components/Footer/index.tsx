@@ -8,6 +8,7 @@ const Foot = styled.footer`
   margin: 124px;
   text-align: center;
   font-size: 12px;
+  padding-bottom: 22px;
 `;
 const Footer = (props: Props): React.ReactElement => {
   return <Foot>Copyright ⓒ2020 Tuna.yaap@gmail.com</Foot>;
