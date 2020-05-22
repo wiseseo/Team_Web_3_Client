@@ -263,7 +263,7 @@ const StepThree = ({ nextButton, beforeButton, object }) => {
             }} placeholder="구체적 작업 기간, 피드백 방식, 수정가능 횟수 등"/>
           </>
           : 
-          ""
+          <div style={{height : "30vh"}}></div>
           }
           
 
