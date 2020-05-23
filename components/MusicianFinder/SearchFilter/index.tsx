@@ -87,6 +87,11 @@ const Sort= styled.div`
 
 `;
 
+const TagDescrip = styled.span`
+    color: #6865FC;
+    margin-left : 1.5rem;
+`;
+
 
 const SearchFilter= (props: Props) => { 
     
@@ -211,6 +216,12 @@ const SearchFilter= (props: Props) => {
         name : '선택안함',
         chosen : false,
         chosenPossible : true
+        },
+        {
+            key : 21,
+            name : '제한없음',
+            chosen : false,
+            chosenPossible : true
         }
     ],
     [ 
@@ -301,6 +312,12 @@ const SearchFilter= (props: Props) => {
         {
             key : 15,
             name : '선택안함',
+            chosen : false,
+            chosenPossible : true
+        },
+        {
+            key : 16,
+            name : '제한없음',
             chosen : false,
             chosenPossible : true
         }
@@ -474,6 +491,12 @@ const SearchFilter= (props: Props) => {
             name : '선택안함',
             chosen : false,
             chosenPossible : true
+        },
+        {
+            key : 29,
+            name : '제한없음',
+            chosen : false,
+            chosenPossible : true
         }
     ],
     [
@@ -584,12 +607,19 @@ const SearchFilter= (props: Props) => {
             name : '선택안함',
             chosen: false,
             chosenPossible : true
+          },
+          {
+            key : 19,
+            name : '제한없음',
+            chosen: false,
+            chosenPossible : true
           }
     ]]);
-    const filterStatus = [{key:0, value:"분위기"}, {key:1, value:"테마"}, {key:2, value:"장르"}, {key:3, value:"악기"}];
-    const [dropdownName, setDropDownName] = React.useState("선택해주세요");
-    const [filter, setFilter] = React.useState(-1);
-    const [sort, setSort] = React.useState(true);
+    const filterType = [{id:0, type:"선택해주세요"},{id:1, type:"분위기"},{id:1, type:"테마"},{id:2, type:"장르"}, {id:3, type:"악기"}];
+    const [dropdownName, setDropDownName] = React.useState(0);
+
+    //const [filter, setFilter] = React.useState(-1);
+    const [sort, setSort] = React.useState<boolean>(true);
     
     const [selectTag, setSelectTag] = React.useState<boolean>(false);
     const [TagList, appendTagList] = React.useState([]);
@@ -660,31 +690,32 @@ const SearchFilter= (props: Props) => {
     console.log('Tag List : ',TagList);
 
     
+    
     return (
         <FilterSection>
             <DropDown>
-                <DropBtn>{dropdownName}</DropBtn>
+                <DropBtn>{filterType[dropdownName].type}</DropBtn>
+                {filterType[dropdownName].id == 0 ? <TagDescrip>태그를 선택해주세요</TagDescrip> : <span></span>}
                 <DropContents className="dropdown-content">
-                    {filterStatus.map((list, key)=>{
-                        return <DropFilters key={key} onClick={()=>{
-                            setDropDownName(list.value);
-                            setFilter(list.key);
-                        }}>{list.value}</DropFilters>
+                    {filterType.splice(1).map(({id,type})=>{
+                        return <DropFilters key={id} onClick={()=>{
+                            setDropDownName(id);
+                        }}>{type}</DropFilters>
                     })}
                 </DropContents>
             </DropDown>
             <TagSection>
-                {filter != -1 ? 
-                    (tagList[filter].map((list, key)=>{
+                {dropdownName != 0 ? 
+                    (tagList[dropdownName-1].map((list, key)=>{
 
                         if(list.chosen == true) {
-                            return  <FilterTag key={key} onClick={() => {releaseTag(filter,list.key)}} style={{color : "white", background: "#6865FC", border : "none"}}>{list.name}</FilterTag>
+                            return  <FilterTag key={key} onClick={() => {releaseTag(dropdownName-1,list.key)}} style={{color : "white", background: "#6865FC", border : "none"}}>{list.name}</FilterTag>
                         }
                         else if(list.chosenPossible == true){
-                            return <FilterTag key={key} onClick={() => {chosenTag(filter,list.key)}}>{list.name}</FilterTag>
+                            return <FilterTag key={key} onClick={() => {chosenTag(dropdownName-1,list.key)}}>{list.name}</FilterTag>
                         }
                         else{
-                        return <FilterTag key={key} style={{color : "grey", cursor : "auto"}}>{list.name}</FilterTag>
+                            return <FilterTag key={key} style={{color : "grey", cursor : "auto"}}>{list.name}</FilterTag>
                         }
                     }))
                     :
