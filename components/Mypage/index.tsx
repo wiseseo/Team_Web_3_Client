@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import ReqList from "./reqList";
 import PickList from "./pickList";
+import BeforeList from "./beforeList";
 import Footer from "../../components/Footer";
 interface Props {}
 
@@ -203,10 +204,10 @@ const Mypage = (props: Props) => {
                 </MyPageTitleBox>
 
                 <PickListBox>
-                    <PickList/>
-                    <PickList/>
-                    <PickList/>
-                    <PickList/>
+                    <BeforeList/>
+                    <BeforeList/>
+                    <BeforeList/>
+                    <BeforeList/>
                 </PickListBox>
 
                 <AddButtonLayout>
