@@ -180,7 +180,7 @@ const Curation = ({className}): React.ReactElement => {
   } 
   else{
     ButtonType = <BannerButton className={className} onClick={onOpenModal}>
-                    뮤지션매칭
+                    뮤지션 매칭하기
                 </BannerButton>
   }
   return (

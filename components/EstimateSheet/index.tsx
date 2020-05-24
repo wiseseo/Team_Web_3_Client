@@ -1,9 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
-import ReqList from "./reqList";
-import PickList from "./pickList";
-import BeforeList from "./beforeList";
 import Footer from "../../components/Footer";
+
 interface Props {}
 
 const MyPageContainer = styled.div`
@@ -112,7 +110,7 @@ const AddButtonLayout = styled.div`
     text-align : center;
     width : 100%;
 `;
-const Mypage = (props: Props) => {
+const EstimateSheet = (props: Props) => {
 
     return(
         <>
@@ -160,64 +158,6 @@ const Mypage = (props: Props) => {
                 </MyPageUserInfoImg>
 
             </MyPageUserInfo>
-
-            <MyPageUserInfo style={{paddingTop : "12%", flexDirection : "column"}}>
-                <MyPageTitleBox>
-                    <MyPageTitle style={{fontSize : "1.5rem"}}>내 의뢰 리스트</MyPageTitle>
-                    
-                    <div style={{display : "table", height : "100%"}}>
-                        <MyPageSubDesc>의뢰는 동시 3건까지 가능합니다.</MyPageSubDesc>
-                    </div>
-                </MyPageTitleBox>
-
-                <ReqListBox>
-                    <ReqList context={1}/>
-                    <ReqList context={2}/>
-                    <ReqList context={3}/>
-                </ReqListBox>
-            </MyPageUserInfo>
-
-            <MyPageUserInfo style={{paddingTop : "12%", flexDirection : "column"}}>
-                <MyPageTitleBox>
-                    <MyPageTitle style={{fontSize : "1.5rem"}}>내가 pick한 뮤지션</MyPageTitle>
-                    
-                    <div style={{display : "table", height : "100%"}}>
-                        <MyPageSubDesc>뮤지션 Pick는 최대 16명까지 가능합니다.</MyPageSubDesc>
-                    </div>
-                </MyPageTitleBox>
-
-                <PickListBox>
-                    <PickList/>
-                    <PickList/>
-                    <PickList/>
-                    <PickList/>
-                </PickListBox>
-
-                <AddButtonLayout>
-                    <div style={{display : "table-cell", verticalAlign : "middle"}}>
-                        더보기 (1/4)
-                    </div> 
-                </AddButtonLayout>
-            </MyPageUserInfo>
-            
-            <MyPageUserInfo style={{paddingTop : "12%", flexDirection : "column"}}>
-                <MyPageTitleBox>
-                    <MyPageTitle style={{fontSize : "1.5rem"}}>이전 의뢰 리스트</MyPageTitle>
-                </MyPageTitleBox>
-
-                <PickListBox>
-                    <BeforeList/>
-                    <BeforeList/>
-                    <BeforeList/>
-                    <BeforeList/>
-                </PickListBox>
-
-                <AddButtonLayout>
-                    <div style={{display : "table-cell", verticalAlign : "middle"}}>
-                        더보기 (1/4)
-                    </div> 
-                </AddButtonLayout>
-            </MyPageUserInfo>
             
             <Footer/>
         </MyPageContainer>
@@ -225,4 +165,4 @@ const Mypage = (props: Props) => {
     );
 };
 
-export default Mypage;
+export default EstimateSheet;

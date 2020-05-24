@@ -1,16 +1,23 @@
 import * as React from "react";
-import styled from 'styled-components';
+import Header from "../../components/Header";
+import AudioPlayer from "../../components/AudioPlayer";
+import CurationStore from "./../../stores/CurationStore";
+import MyPageComponent from "../../components/Mypage/musicianMyPage";
 
-const MypageTitle = styled.h1`
-  color : black
-`;
 
-const Mypage: React.FC = () => {
+const MyPage: React.FC = () => {
   return (
-    <div>
-      <MypageTitle>Mypage</MypageTitle>
-    </div>
+    <>
+      <CurationStore>
+        <Header/>
+      </CurationStore>
+
+      <MyPageComponent/>      
+
+      <AudioPlayer />
+
+    </>
   );
 };
 
-export default Mypage;
+export default MyPage;

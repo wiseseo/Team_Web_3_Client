@@ -24,6 +24,8 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   background: #040104;
+  max-width : 1300px;
+  margin : 0 auto;
 `;
 
 const Index: React.FC = () => {

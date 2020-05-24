@@ -103,8 +103,8 @@ const FormContainerProfileUpload = styled.button`
   font-size : 0.75rem;
   font-weight : bold;
   border : none;
-  border-radius: 6px;
-  margin-bottom : 1.5%;
+  border-radius: 8px;
+  margin-bottom : 8px;
 
 `;
 
@@ -869,13 +869,15 @@ const StepOne = ({ nextButton, object }) => {
       <FlowButtonLayout>
 
           <BeforeButton onClick={()=>{history.back()}}>이전으로</BeforeButton>
-          {nickNmFlag === 1 &&
-          introductionFlag === 1 &&
-          (stepOneObj.profileUrl !== {}) &&
-          careerFlag === 1 &&
-          celPhoneFlag === 1 &&
-          (stepOneObj.songEsntlUrl !== {}) &&
-          (stepOneObj.portFolioMainMusic.size !== 0)
+          {
+          // nickNmFlag === 1 &&
+          // introductionFlag === 1 &&
+          // (stepOneObj.profileUrl !== {}) &&
+          // careerFlag === 1 &&
+          // celPhoneFlag === 1 &&
+          // (stepOneObj.songEsntlUrl !== {}) &&
+          // (stepOneObj.portFolioMainMusic.size !== 0)
+          1
           ? 
           <AfterButton onClick={()=>{nextButton(1, stepOneObj)}} style={{cursor : "pointer", background : "#6865FC"}}>저장하고 다음으로</AfterButton>
           :

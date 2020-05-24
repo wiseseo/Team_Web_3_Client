@@ -12,6 +12,8 @@ const EnrollContainer = styled.div`
     font-family: SpoqaHanSans;
     font-style: normal;
     padding: 0 5em;
+    max-width : 1300px;
+    margin : 0 auto;
 `;
 const EnrollTitle = styled.div`
     
@@ -45,24 +47,16 @@ const MusicianEnroll = (props: Props) => {
             enrollData.dispatch({type : "INSERT_STEPTHREE", payload : {stepThree_Tag : object}})  
 
             console.log("finish Data Set", enrollData.enrollTags);
-            
-            try {
-            
-            axios.post("http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/musicians", enrollData.enrollTags)
+
+            const header = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type : application/json, Accept : application/json' }
+            axios.post("http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/musicians", enrollData.enrollTags, {headers : header})
             .then((musicians) =>{
                 console.log("musicians : ", musicians)
             })
             .catch((e) => {
                 console.log("musicians Catch : ", e);
             })
-            
-            
-            
-            } catch (e) {
-        
-                setError(e);
-                console.log("two catch : ",e);
-            }
+
             
         }
         
