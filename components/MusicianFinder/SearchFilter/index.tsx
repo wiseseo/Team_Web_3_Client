@@ -28,7 +28,7 @@ const DropBtn = styled.button`
 `;
 
 const DropContents = styled.div`
-    width: 48pxrem;
+    width: 48px;
     background-color: #121212;
     display: none;
     position: absolute;
