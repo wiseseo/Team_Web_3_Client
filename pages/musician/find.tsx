@@ -18,6 +18,9 @@ const MainContainer = styled.div`
   /*background: white;*/
   max-width : 1920px;
   min-width : 765px;
+  /*@media only screen and (max-width: 765px) {
+    width : 765px;
+  }*/
 
 `;
 
@@ -29,6 +32,9 @@ const Contents = styled.div `
   width : 1120px;
   max-width : 1120px;
   min-width : 765px;
+  @media only screen and (max-width: 1280px) {
+    width : 600px;
+  }
 `;
 const Title = styled.h1`
   margin : 0;
@@ -36,7 +42,7 @@ const Title = styled.h1`
   background: #040104;
   /*background : grey;*/
   color: #ffffff;
-  padding : 5rem 25rem 3rem 0rem;
+  padding : 80px 400px 48px 0px;
   min-width : 765px;
 `;
 
