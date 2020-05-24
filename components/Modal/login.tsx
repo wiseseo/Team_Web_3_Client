@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from 'styled-components';
+import axios from 'axios';
 
 const LoginContainer = styled.div`
   height: 45vh;
@@ -100,18 +101,30 @@ const Login = (): React.ReactElement => {
   const [response, setResponse] = React.useState(null);
   const [error, setError] = React.useState(null);
 
-  React.useEffect(() => {
-    const FetchData = async () => {
-      try {
-        const res = await fetch(`https://dog.ceo/api/breeds/image/random`, {});
-        const json = await res.json();
-        setResponse(json);
-      } catch (error) {
-        setError(error);
-      }
-    };
-    FetchData();
-  }, []);
+  const GoogleLogin = async () => {
+
+    console.log("hi");
+    
+    console.log(response, error)
+    try {
+      window.location.assign("http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google");
+      axios.get("http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/login")
+      .then((loginRes) =>{
+        console.log("loginRes : ", loginRes)
+      })
+      .catch((e) => {
+        console.log("login Catch : ", e);
+      })
+      
+      
+      
+    } catch (e) {
+
+      setError(e);
+    }
+
+      console.log(response, error)
+  }
 
   console.log('response : ',response)
   console.log('error : ', error)
@@ -148,7 +161,7 @@ const Login = (): React.ReactElement => {
           </LoginModalButtonLayout>
 
           <LoginModalButtonLayout>
-              <button onClick={(e) => {}} style={GoogleButtonStyled}>
+              <button onClick={GoogleLogin} style={GoogleButtonStyled}>
                 <ImageStyled src="/static/google.png"/>
                 구글 계정으로 로그인
               </button>

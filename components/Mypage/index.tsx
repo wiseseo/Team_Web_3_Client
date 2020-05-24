@@ -197,7 +197,25 @@ const Mypage = (props: Props) => {
                 </AddButtonLayout>
             </MyPageUserInfo>
             
+            <MyPageUserInfo style={{paddingTop : "12%", flexDirection : "column"}}>
+                <MyPageTitleBox>
+                    <MyPageTitle style={{fontSize : "1.5rem"}}>이전 의뢰 리스트</MyPageTitle>
+                </MyPageTitleBox>
 
+                <PickListBox>
+                    <PickList/>
+                    <PickList/>
+                    <PickList/>
+                    <PickList/>
+                </PickListBox>
+
+                <AddButtonLayout>
+                    <div style={{display : "table-cell", verticalAlign : "middle"}}>
+                        더보기 (1/4)
+                    </div> 
+                </AddButtonLayout>
+            </MyPageUserInfo>
+            
             <Footer/>
         </MyPageContainer>
         </>
