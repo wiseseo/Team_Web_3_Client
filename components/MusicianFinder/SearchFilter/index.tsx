@@ -21,14 +21,14 @@ const DropBtn = styled.button`
     color: white;
     border: 1px solid #E2E1E2;
     cursor: pointer;
-    border-radius: 0.375rem;
-    width: 11.5rem;
-    height: 3rem;
+    border-radius: 6px;
+    width: 184px;
+    height: 48px;
     font-size: 1rem;
 `;
 
 const DropContents = styled.div`
-    width: 11.5rem;
+    width: 48pxrem;
     background-color: #121212;
     display: none;
     position: absolute;
@@ -69,7 +69,7 @@ const FilterTag = styled.span`
 `;
 
 const TagSection = styled.div`
-    margin-top : 1.5rem;
+    margin-top : 24px;
 `;
 
 const SortingSection = styled.div`
@@ -77,19 +77,19 @@ const SortingSection = styled.div`
     flex-direction: row;
     justify-content : flex-end; 
     cursor : pointer;
-    padding-top : 5rem;
-    padding-bottom : 1.5rem;
+    padding-top : 80px;
+    padding-bottom : 24px;
 `;
 
 const Sort= styled.div`
     color :  #${(props:{isSelected: boolean}) => props.isSelected ? '6865FC' : 'B3B4BE'};
-    margin-left : 0.5rem;
+    margin-left : 8px;
 
 `;
 
 const TagDescrip = styled.span`
     color: #6865FC;
-    margin-left : 1.5rem;
+    margin-left : 24px;
 `;
 
 
