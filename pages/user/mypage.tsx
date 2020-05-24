@@ -5,9 +5,6 @@ import AudioPlayer from "../../components/AudioPlayer";
 import CurationStore from "./../../stores/CurationStore";
 import MyPageComponent from "../../components/Mypage";
 
-const MyPageTitle = styled.h1`
-  color : black
-`;
 
 const MyPage: React.FC = () => {
   return (

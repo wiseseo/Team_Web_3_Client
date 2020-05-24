@@ -108,15 +108,6 @@ const Login = (): React.ReactElement => {
     console.log(response, error)
     try {
       window.location.assign("http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google");
-      axios.get("http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/login")
-      .then((loginRes) =>{
-        console.log("loginRes : ", loginRes)
-      })
-      .catch((e) => {
-        console.log("login Catch : ", e);
-      })
-      
-      
       
     } catch (e) {
 
@@ -154,13 +145,16 @@ const Login = (): React.ReactElement => {
           </LoginModalButtonLayout>
 
           <LoginModalButtonLayout>
-              <button onClick={(e) => {}} style={NaverButtonStyled}>
-                <ImageStyled src="/static/naver.png"/>
-                네이버 계정으로 로그인
-              </button>
+              
+                <a style={NaverButtonStyled} href={"http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google"}>
+                  <ImageStyled src="/static/naver.png"/>
+                  네이버 계정으로 로그인
+                </a>
+              
           </LoginModalButtonLayout>
 
           <LoginModalButtonLayout>
+              
               <button onClick={GoogleLogin} style={GoogleButtonStyled}>
                 <ImageStyled src="/static/google.png"/>
                 구글 계정으로 로그인
