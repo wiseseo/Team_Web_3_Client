@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import ReqList from "./reqList";
 import PickList from "./pickList";
+import BeforeList from "./beforeList";
 import Footer from "../../components/Footer";
 interface Props {}
 
@@ -197,7 +198,25 @@ const Mypage = (props: Props) => {
                 </AddButtonLayout>
             </MyPageUserInfo>
             
+            <MyPageUserInfo style={{paddingTop : "12%", flexDirection : "column"}}>
+                <MyPageTitleBox>
+                    <MyPageTitle style={{fontSize : "1.5rem"}}>이전 의뢰 리스트</MyPageTitle>
+                </MyPageTitleBox>
 
+                <PickListBox>
+                    <BeforeList/>
+                    <BeforeList/>
+                    <BeforeList/>
+                    <BeforeList/>
+                </PickListBox>
+
+                <AddButtonLayout>
+                    <div style={{display : "table-cell", verticalAlign : "middle"}}>
+                        더보기 (1/4)
+                    </div> 
+                </AddButtonLayout>
+            </MyPageUserInfo>
+            
             <Footer/>
         </MyPageContainer>
         </>
