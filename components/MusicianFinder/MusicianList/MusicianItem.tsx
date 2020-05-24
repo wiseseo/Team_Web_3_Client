@@ -30,16 +30,17 @@ const Card = styled.div`
   display: flex;
   flex-direction: row;
   /*background: #121212;*/
-  background: white;
+  background-color: red;
   border-radius: 0.5rem;
   height : 7.5rem;
   margin-bottom : 1rem;
+  min-width : 765px;
 `;
 
 const PlayerContainer = styled.div`
     flex:9;
     /*background: blue;*/
-    background: #121212;
+    /*background: #121212;*/
     display: flex;
     justify-content : center;
     align-items : center;
@@ -58,7 +59,7 @@ const AlbumCover = styled.div`
 const MusicianContainer = styled.div`
     flex:50;
     /*background: yellow;*/
-    background: #121212;
+    /*background: #121212;*/
     display: flex;
     justify-content : space-between;
     align-items : center;
@@ -141,7 +142,7 @@ const SpecialNote = styled.div`
 const LinkContainer = styled.div`
     flex:11;
     /*background: green;*/
-    background: #121212;
+    /*background: #121212;*/
     display: flex;
     justify-content : center;
     align-items : center;

@@ -17,7 +17,7 @@ const MainContainer = styled.div`
   align-items : center;
   /*background: white;*/
   max-width : 1920px;
-  main-width : 760px;
+  min-width : 765px;
 
 `;
 
@@ -26,9 +26,9 @@ const Contents = styled.div `
   flex-direction: column;
   /*padding-right : 25rem;
   padding-left : 25rem;*/
-  width : 70rem;
-  /*max-width : 1680px;
-  main-width : 760px;*/
+  width : 1120px;
+  max-width : 1120px;
+  min-width : 765px;
 `;
 const Title = styled.h1`
   margin : 0;
@@ -37,7 +37,7 @@ const Title = styled.h1`
   /*background : grey;*/
   color: #ffffff;
   padding : 5rem 25rem 3rem 0rem;
-  main-width : 760px;
+  min-width : 765px;
 `;
 
 const Find: React.FC = () => {
