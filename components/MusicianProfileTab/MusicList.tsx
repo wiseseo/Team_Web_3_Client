@@ -23,6 +23,10 @@ const Card = styled.li`
 `;
 const AlbumCover = styled.div`
 background-image: url("${({ src }: { src: string }) => src}");
+background-repeat: no-repeat;
+background-position: center center;
+background-size : contain;
+border-radius: 4px;
 margin: 0.5rem;
 width: 3rem;
 height: 3rem;
