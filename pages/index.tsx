@@ -11,8 +11,6 @@ import AudioPlayer from "../components/AudioPlayer";
 import SongStore from "./../stores/SongStore";
 import MusicianStore from "./../stores/MusicianStore";
 import CurationStore from "./../stores/CurationStore";
-import MusicianProfile from "../components/MusicianProfile";
-import MusicianProfileTab from "../components/MusicianProfileTab";
 
 const Title = styled.h1`
   color: black;
@@ -26,8 +24,8 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   background: #040104;
-  max-width : 1300px;
-  margin : 0 auto;
+  max-width: 1300px;
+  margin: 0 auto;
 `;
 
 const Index: React.FC = () => {
@@ -103,11 +101,7 @@ const Index: React.FC = () => {
           <CurationStore>
             <Header />
           </CurationStore>
-          <div style={{ display: "flex" }}>
-            <MusicianProfile></MusicianProfile>
-            <MusicianProfileTab></MusicianProfileTab>
-          </div>
-          {/* 
+
           <Banner />
           <SituationList />
           <Category />
@@ -116,7 +110,8 @@ const Index: React.FC = () => {
           </MusicianStore>
           <MusicianStore>
             <MusicianList title="등장 새로운 뮤지션" />
-          </MusicianStore>*/}
+          </MusicianStore>
+
           <Footer />
           <AudioPlayer />
         </MainContainer>

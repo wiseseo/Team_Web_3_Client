@@ -1,6 +1,7 @@
 import * as React from "react";
 import PlayButton from "./../AudioPlayer/PlayButton";
 import styled from "styled-components";
+import Link from "next/link";
 
 interface Song {
   id: string;
@@ -153,41 +154,43 @@ const Tags = ({ tags }: { tags: string[] }) => {
 };
 const MusicianCard = ({ musician, toggleLike, selectSong }: Props) => {
   return (
-    <Card>
-      <MusicContainer src={musician.song.cover_url}>
-        <Space height={40} />
-        <PlayButton
-          playAudio={() =>
-            selectSong(musician.song.id, !musician.song.isPlaying, musician)
-          }
-          size={64}
-          status={musician.song.isPlaying}
-        />
-        <MusicInfo>{musician.song.title}</MusicInfo>
-      </MusicContainer>
-      <MusicianInfo>
-        <ProfileContainer>
-          <Circle>
-            <Profile src={musician.profile_url} />
-          </Circle>
-          <Info>
-            <Name>{musician.name}</Name>
-            <Introduction>{musician.introduction}</Introduction>
-          </Info>
-          <Likes onClick={() => toggleLike(musician.id)}>
-            <img src="/static/like.png" alt="like" />
-            <div>{musician.likes}</div>
-          </Likes>
-        </ProfileContainer>
-        <Tags tags={musician.tags} />
-        <MusicianLink>
-          <Features>
-            {musician.features.reduce((res, feature) => `${res}/${feature}`)}
-          </Features>
-          <ShowButton>뮤지션 보기</ShowButton>
-        </MusicianLink>
-      </MusicianInfo>
-    </Card>
+    <Link href="/detail">
+      <Card>
+        <MusicContainer src={musician.song.cover_url}>
+          <Space height={40} />
+          <PlayButton
+            playAudio={() =>
+              selectSong(musician.song.id, !musician.song.isPlaying, musician)
+            }
+            size={64}
+            status={musician.song.isPlaying}
+          />
+          <MusicInfo>{musician.song.title}</MusicInfo>
+        </MusicContainer>
+        <MusicianInfo>
+          <ProfileContainer>
+            <Circle>
+              <Profile src={musician.profile_url} />
+            </Circle>
+            <Info>
+              <Name>{musician.name}</Name>
+              <Introduction>{musician.introduction}</Introduction>
+            </Info>
+            <Likes onClick={() => toggleLike(musician.id)}>
+              <img src="/static/like.png" alt="like" />
+              <div>{musician.likes}</div>
+            </Likes>
+          </ProfileContainer>
+          <Tags tags={musician.tags} />
+          <MusicianLink>
+            <Features>
+              {musician.features.reduce((res, feature) => `${res}/${feature}`)}
+            </Features>
+            <ShowButton>뮤지션 보기</ShowButton>
+          </MusicianLink>
+        </MusicianInfo>
+      </Card>
+    </Link>
   );
 };
 
