@@ -10,6 +10,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 5em;
+  position: sticky;
+  top: 16px;
 `;
 const MusicianProfile = (props: Props) => {
   return (

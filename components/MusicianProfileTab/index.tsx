@@ -9,6 +9,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
+const Content = styled.div`
+  height: 3000px;
+`;
 const MusicianProfileTab = (props: Props) => {
   const [tabIndex, setTabIndex] = React.useState<number>(0);
   const changeTab = (index: number): void => {
@@ -17,6 +20,7 @@ const MusicianProfileTab = (props: Props) => {
   return (
     <Container>
       <TabHeader changeTab={changeTab} selected={tabIndex}></TabHeader>
+      <Content></Content>
     </Container>
   );
 };

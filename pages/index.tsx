@@ -114,9 +114,9 @@ const Index: React.FC = () => {
           </MusicianStore>
           <MusicianStore>
             <MusicianList title="등장 새로운 뮤지션" />
-          </MusicianStore>
+          </MusicianStore>*/}
           <Footer />
-          <AudioPlayer /> */}
+          <AudioPlayer />
         </MainContainer>
       </SongStore>
     </div>
