@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import TabHeader from "./TabHeader";
+import IntroductTab from "./IntroductTab";
 
 interface Props {}
 const Container = styled.div`
@@ -20,6 +21,7 @@ const MusicianProfileTab = (props: Props) => {
   return (
     <Container>
       <TabHeader changeTab={changeTab} selected={tabIndex}></TabHeader>
+      <IntroductTab></IntroductTab>
       <Content></Content>
     </Container>
   );
