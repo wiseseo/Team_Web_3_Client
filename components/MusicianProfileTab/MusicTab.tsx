@@ -1,102 +1,60 @@
 import * as React from "react";
 import styled from "styled-components";
-import MusicianStyle from "./MusicianStyle";
-import WorkingStep from "./WorkingStep";
+import MusicList from "./MusicList";
 
 interface Props {}
 const Container = styled.div`
-  color: #e2e1e2;
-  display: flex;
-  flex-direction: column;
   margin-right: 10rem;
 `;
-const Title = styled.h3`
-  color: #6865fc;
-`;
-const Introduct = styled.p`
-  color: #b3b4be;
-`;
+
 const MusicTab = (props: Props) => {
-  const tabList = ["음악리스트", "뮤지션 소개", "가격 정보"];
-  const styles = [
+  const musicList = [
     {
-      title: "이런 테마의 작업이 가능합니다.",
-      features: ["스포츠", "기술", "게임", "시즌"],
+      title: "글을 한 개의 칼럼에 넣는다.",
+      album:
+        "https://mblogthumb-phinf.pstatic.net/MjAxODAxMjFfNyAg/MDAxNTE2NTEzNDMwNTIz.jhaceEmlCn_SPq5bEgzBVrDyi1gGeF4lRB-KWrRvrC8g.It70Wg4tXXRCpy6HlJdfP_XkTSY2CW3kZbBZE1EEYQ0g.JPEG.kimleeple/170822_%25EA%25B0%259C%25EA%25B8%25B0%25EC%259A%25B1_(1).jpg?type=o_webp",
+      isPlaying: false,
     },
     {
-      title: "이런 장르의 작업이 가능합니다.",
-      features: ["스포츠", "기술", "게임", "시즌"],
+      title: "글을 한 개의 칼럼에 넣는다.",
+      album:
+        "https://mblogthumb-phinf.pstatic.net/MjAxODAxMjFfNyAg/MDAxNTE2NTEzNDMwNTIz.jhaceEmlCn_SPq5bEgzBVrDyi1gGeF4lRB-KWrRvrC8g.It70Wg4tXXRCpy6HlJdfP_XkTSY2CW3kZbBZE1EEYQ0g.JPEG.kimleeple/170822_%25EA%25B0%259C%25EA%25B8%25B0%25EC%259A%25B1_(1).jpg?type=o_webp",
+      isPlaying: false,
     },
     {
-      title: "이런 분위기의 작업이 가능합니다.",
-      features: ["스포츠", "기술", "게임", "시즌"],
+      title: "글을 한 개의 칼럼에 넣는다.",
+      album:
+        "https://mblogthumb-phinf.pstatic.net/MjAxODAxMjFfNyAg/MDAxNTE2NTEzNDMwNTIz.jhaceEmlCn_SPq5bEgzBVrDyi1gGeF4lRB-KWrRvrC8g.It70Wg4tXXRCpy6HlJdfP_XkTSY2CW3kZbBZE1EEYQ0g.JPEG.kimleeple/170822_%25EA%25B0%259C%25EA%25B8%25B0%25EC%259A%25B1_(1).jpg?type=o_webp",
+      isPlaying: false,
     },
     {
-      title: "이런 악기를 사용한 작업이 가능합니다",
-      features: ["스포츠", "기술", "게임", "시즌"],
+      title: "글을 한 개의 칼럼에 넣는다.",
+      album:
+        "https://mblogthumb-phinf.pstatic.net/MjAxODAxMjFfNyAg/MDAxNTE2NTEzNDMwNTIz.jhaceEmlCn_SPq5bEgzBVrDyi1gGeF4lRB-KWrRvrC8g.It70Wg4tXXRCpy6HlJdfP_XkTSY2CW3kZbBZE1EEYQ0g.JPEG.kimleeple/170822_%25EA%25B0%259C%25EA%25B8%25B0%25EC%259A%25B1_(1).jpg?type=o_webp",
+      isPlaying: false,
     },
-  ];
-  const steps = [
-    "한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.로 정리하였습니다.로 정리하였습니다.로 정리하였습니다.로 정리",
-    "한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.로 정리하였습니다.로 정리하였습니다.로 정리하였습니다.로 정리",
-    "한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.로 정리하였습니다.로 정리하였습니다.로 정리하였습니다.로 정리",
+    {
+      title: "글을 한 개의 칼럼에 넣는다.",
+      album:
+        "https://mblogthumb-phinf.pstatic.net/MjAxODAxMjFfNyAg/MDAxNTE2NTEzNDMwNTIz.jhaceEmlCn_SPq5bEgzBVrDyi1gGeF4lRB-KWrRvrC8g.It70Wg4tXXRCpy6HlJdfP_XkTSY2CW3kZbBZE1EEYQ0g.JPEG.kimleeple/170822_%25EA%25B0%259C%25EA%25B8%25B0%25EC%259A%25B1_(1).jpg?type=o_webp",
+      isPlaying: false,
+    },
+    {
+      title: "글을 한 개의 칼럼에 넣는다.",
+      album:
+        "https://mblogthumb-phinf.pstatic.net/MjAxODAxMjFfNyAg/MDAxNTE2NTEzNDMwNTIz.jhaceEmlCn_SPq5bEgzBVrDyi1gGeF4lRB-KWrRvrC8g.It70Wg4tXXRCpy6HlJdfP_XkTSY2CW3kZbBZE1EEYQ0g.JPEG.kimleeple/170822_%25EA%25B0%259C%25EA%25B8%25B0%25EC%259A%25B1_(1).jpg?type=o_webp",
+      isPlaying: false,
+    },
+    {
+      title: "글을 한 개의 칼럼에 넣는다.",
+      album:
+        "https://mblogthumb-phinf.pstatic.net/MjAxODAxMjFfNyAg/MDAxNTE2NTEzNDMwNTIz.jhaceEmlCn_SPq5bEgzBVrDyi1gGeF4lRB-KWrRvrC8g.It70Wg4tXXRCpy6HlJdfP_XkTSY2CW3kZbBZE1EEYQ0g.JPEG.kimleeple/170822_%25EA%25B0%259C%25EA%25B8%25B0%25EC%259A%25B1_(1).jpg?type=o_webp",
+      isPlaying: false,
+    },
   ];
   return (
     <Container>
-      <Title>뮤지션의 스타일은?</Title>
-      <MusicianStyle styles={styles} />
-      <Title>당신은 어떤 뮤지션인가요?</Title>
-      <Introduct>
-        한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서
-        지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을
-        준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부
-        방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.한 사람이 질문을
-        하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온
-        질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에
-        따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를
-        벗어난 질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해
-        모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의
-        답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠
-        놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로
-        정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게
-        됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF
-        자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와
-        별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.한
-        사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지
-        자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다.
-        Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의
-        주제를 벗어난 질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그
-        질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문
-        70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라
-        분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난
-        질문은 따로 정리하였습니다.로 정리하였습니다.로 정리하였습니다.로
-        정리하였습니다.로 정리한 사람이 질문을 하면, 그 질문을 통해 모두가
-        배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을
-        정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고,
-        Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로
-        정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게
-        됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF
-        자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와
-        별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.한
-        사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지
-        자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다.
-        Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의
-        주제를 벗어난 질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그
-        질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문
-        70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라
-        분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난
-        질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가
-        배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을
-        정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고,
-        Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로
-        정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게
-        됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF
-        자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와
-        별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.로
-        정리하였습니다.로 정리하였습니다.로 정리하였습니다.로 정리
-      </Introduct>
-      <Title>작업 단계는 어떻게 되나요?</Title>
-      <WorkingStep steps={steps} />
+      <MusicList musicList={musicList} />
     </Container>
   );
 };
