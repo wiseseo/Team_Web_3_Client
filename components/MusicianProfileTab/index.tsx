@@ -4,7 +4,7 @@ import styled from "styled-components";
 interface Props {}
 const Container = styled.div`
   color: white;
-  flex: 2;
+  flex: 5;
   display: flex;
 `;
 const MusicianProfileTab = (props: Props) => {

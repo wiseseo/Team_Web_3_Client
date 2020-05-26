@@ -6,9 +6,10 @@ import Features from "./Features";
 interface Props {}
 const Container = styled.div`
   color: white;
-  flex: 1;
+  flex: 2;
   display: flex;
   flex-direction: column;
+  padding-left: 5em;
 `;
 const MusicianProfile = (props: Props) => {
   return (

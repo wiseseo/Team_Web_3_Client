@@ -6,39 +6,17 @@ const Container = styled.div`
   color: white;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-contents: center;
   background: #121212;
   border-radius: 8px;
-  padding: 1rem;
-`;
-const ProfileImage = styled.div`
-    background-image: url("${({ source }: { source: string }) => source}");
-    background-repeat: no-repeat;
-    background-size: contain;
-    border-radius: 50%;
-    width: 3.5rem;
-    height: 3.5rem;
-    margin: 1.5rem 7.25rem .5rem;
-`;
-const Name = styled.div`
-  color: white;
-  font-size: 0.875rem;
-  color: #e2e1e2;
-`;
-const Introduction = styled.div`
-  color: white;
-  font-size: 0.75rem;
-  color: #b3b4be;
-  margin: 0.25rem 0 1.5rem;
-  max-width: 10rem;
-  text-align: center;
 `;
 const List = styled.ul`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   list-style: none;
+  padding: 0 0.5rem;
+  margin-top: 0;
 `;
 const Feature = styled.li`
   color: #a2a2a2;
@@ -47,8 +25,24 @@ const Feature = styled.li`
   border-style: solid;
   border-radius: 20px;
   padding: 0.25em 0.75em;
+  margin: 0.5rem;
 `;
-const Representation = styled.div``;
+const Divide = styled.div`
+  height: 0;
+  border: 0.74px solid #3e3e41;
+  align-self: stretch;
+  margin: 0 0.625rem;
+`;
+
+const Title = styled.h4`
+  color: #b3b4be;
+  margin: 1.5rem 1rem 1rem;
+`;
+const Style = styled.li`
+  color: #6865fc;
+  font-size: 0.75rem;
+  margin: 0 0.5rem;
+`;
 const FeatureList = ({ features }: { features: string[] }) => {
   return (
     <List>
@@ -58,26 +52,77 @@ const FeatureList = ({ features }: { features: string[] }) => {
     </List>
   );
 };
+const StyleList = ({ styles }: { styles: string[] }) => {
+  return (
+    <List>
+      <Style>{styles.join("/")}</Style>
+    </List>
+  );
+};
+const SNSLink = styled.div`
+  color: #b3b4be;
+  font-size: 0.625rem;
+  padding: 0 1rem 0.75rem;
+  display: flex;
+  align-items: center;
+`;
+const LINK = styled.div`
+  margin-left: 0.4rem;
+`;
 const Features = (props: Props) => {
   return (
     <Container>
-      <Representation>
-        <FeatureList
-          features={[
-            "스포츠",
-            "기술",
-            "게임",
-            "시즌",
-            "스포츠",
-            "기술",
-            "게임",
-            "시즌",
-          ]}
-        ></FeatureList>
-      </Representation>
-      <ProfileImage source="https://mblogthumb-phinf.pstatic.net/MjAxODAxMjFfNyAg/MDAxNTE2NTEzNDMwNTIz.jhaceEmlCn_SPq5bEgzBVrDyi1gGeF4lRB-KWrRvrC8g.It70Wg4tXXRCpy6HlJdfP_XkTSY2CW3kZbBZE1EEYQ0g.JPEG.kimleeple/170822_%25EA%25B0%259C%25EA%25B8%25B0%25EC%259A%25B1_(1).jpg?type=o_webp" />
-      <Name>마약왕</Name>
-      <Introduction>일이삼사오육칠팔구십일이삼사오육치랄구십</Introduction>
+      <Title>뮤지션 대표 특성</Title>
+      <FeatureList
+        features={[
+          "스포츠",
+          "기술",
+          "게임",
+          "시즌",
+          "스포츠",
+          "기술",
+          "게임",
+          "시즌",
+        ]}
+      ></FeatureList>
+      <Divide />
+      <Title>작업 스타일</Title>
+      <StyleList
+        styles={[
+          "빠른 작업",
+          "효과음",
+          "빠른 작업",
+          "빠른 작업",
+          "빠른 작업",
+          "사업자등록증",
+        ]}
+      ></StyleList>
+      <Divide />
+      <Title>SNS ID</Title>
+      <SNSLink>
+        <img src="/static/sns_facebook.png" alt="facebook" />
+        <LINK>@dkjflajdflajkfd</LINK>
+      </SNSLink>
+      <SNSLink>
+        <img src="/static/sns_instagram.png" alt="instagram" />
+        <LINK>@dkjflajdflajkfd</LINK>
+      </SNSLink>
+      <SNSLink>
+        <img src="/static/sns_twitter.png" alt="twitter" />
+        <LINK>@dkjflajdflajkfd</LINK>
+      </SNSLink>
+      <Divide />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          paddingRight: "1rem",
+        }}
+      >
+        <Title>포트폴리오 사이트</Title>
+        <img src="/static/link.png" alt="link" width={8} height={16} />
+      </div>
     </Container>
   );
 };
