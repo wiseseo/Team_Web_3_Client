@@ -61,6 +61,7 @@ const AudioPlayer: React.FC = (): React.ReactElement => {
   };
   const playAudio = () => {
     if (audioRef.current == null) return;
+    if (duration == 0) setDuration(audioRef.current.duration);
     if (song.isPlaying) {
       audioRef.current.pause();
       dispatch({ type: "STOP_SONG" });
