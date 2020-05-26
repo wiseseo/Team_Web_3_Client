@@ -2,6 +2,8 @@ import * as React from "react";
 import styled from "styled-components";
 import TabHeader from "./TabHeader";
 import IntroductTab from "./IntroductTab";
+import PriceTab from "./PriceTab";
+import MusicTab from "./MusicTab";
 
 interface Props {}
 const Container = styled.div`
@@ -18,11 +20,11 @@ const MusicianProfileTab = (props: Props) => {
   const changeTab = (index: number): void => {
     setTabIndex(index);
   };
+  const TabPages = [<MusicTab />, <IntroductTab />, <PriceTab />];
   return (
     <Container>
       <TabHeader changeTab={changeTab} selected={tabIndex}></TabHeader>
-      <IntroductTab></IntroductTab>
-      <Content></Content>
+      {TabPages[tabIndex]}
     </Container>
   );
 };
