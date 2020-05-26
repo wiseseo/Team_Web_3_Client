@@ -23,6 +23,7 @@ const Like = styled.div`
 const Volume = styled.div`
   display: flex;
   align-items: center;
+  margin-left: 1rem;
   input[type="range"] {
     margin: 0 1rem;
     -webkit-appearance: none;
