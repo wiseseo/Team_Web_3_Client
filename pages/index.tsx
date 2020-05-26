@@ -10,7 +10,9 @@ import Footer from "../components/Footer";
 import AudioPlayer from "../components/AudioPlayer";
 import SongStore from "./../stores/SongStore";
 import MusicianStore from "./../stores/MusicianStore";
-import CurationStore from "./../stores/CurationStore"
+import CurationStore from "./../stores/CurationStore";
+import MusicianProfile from "../components/MusicianProfile";
+import MusicianProfileTab from "../components/MusicianProfileTab";
 
 const Title = styled.h1`
   color: black;
@@ -93,15 +95,17 @@ const Index: React.FC = () => {
           </Link>
         </li>
       </ul> */}
-      
-      
+
       <SongStore>
         <MainContainer>
-          
           <CurationStore>
             <Header />
           </CurationStore>
-
+          <div style={{ display: "flex" }}>
+            <MusicianProfile></MusicianProfile>
+            <MusicianProfileTab></MusicianProfileTab>
+          </div>
+          {/* 
           <Banner />
           <SituationList />
           <Category />
@@ -112,7 +116,7 @@ const Index: React.FC = () => {
             <MusicianList title="등장 새로운 뮤지션" />
           </MusicianStore>
           <Footer />
-          <AudioPlayer />
+          <AudioPlayer /> */}
         </MainContainer>
       </SongStore>
     </div>
