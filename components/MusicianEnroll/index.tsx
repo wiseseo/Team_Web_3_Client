@@ -4,7 +4,7 @@ import StepTwo from "./stepTwo";
 import StepThree from "./stepThree";
 import styled from "styled-components";
 import {MusicianEnrollContext} from "../../stores/MusicianEnrollStore";
-
+import axios from "axios";
 interface Props {}
 
 const EnrollContainer = styled.div`
@@ -12,6 +12,8 @@ const EnrollContainer = styled.div`
     font-family: SpoqaHanSans;
     font-style: normal;
     padding: 0 5em;
+    max-width : 1300px;
+    margin : 0 auto;
 `;
 const EnrollTitle = styled.div`
     
@@ -28,7 +30,9 @@ const MusicianEnroll = (props: Props) => {
     let stepLayout = <></>
 
     const [enrollStep, setStep] = React.useState<number>(1);
-  
+    const [response, setResponse] = React.useState(null);
+    const [error, setError] = React.useState(null);
+
     const enrollData = React.useContext(MusicianEnrollContext);
 
     const nextButton = (step : number, object : object) => {
@@ -43,6 +47,17 @@ const MusicianEnroll = (props: Props) => {
             enrollData.dispatch({type : "INSERT_STEPTHREE", payload : {stepThree_Tag : object}})  
 
             console.log("finish Data Set", enrollData.enrollTags);
+
+            const header = { 'Content-Type' : 'application/json', 'Accept' : 'application/json' };
+            axios.post("http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/musicians", enrollData.enrollTags, {headers : header})
+            .then((musicians) =>{
+                console.log("musicians : ", musicians)
+            })
+            .catch((e) => {
+                console.log("musicians Catch : ", e);
+            })
+
+            
         }
         
         setStep(enrollStep+1);

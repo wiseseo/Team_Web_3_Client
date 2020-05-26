@@ -112,7 +112,7 @@ const AddButtonLayout = styled.div`
     text-align : center;
     width : 100%;
 `;
-const Mypage = (props: Props) => {
+const MusicianMyPage = (props: Props) => {
 
     return(
         <>
@@ -121,7 +121,7 @@ const Mypage = (props: Props) => {
             <MyPageUserInfo>
 
                 <MyPageUserInfoData>
-                    <MyPageTitle>김튜나</MyPageTitle>
+                    <MyPageTitle>뮤지션</MyPageTitle>
                     <MyPageMainDesc style={{color : "#B3B4BE"}}>tuna@gmail.com</MyPageMainDesc>
                     <MyPageMainDesc>일이삼사오육칠팔구십일이삼사오육칠팔구십</MyPageMainDesc>
 
@@ -141,7 +141,7 @@ const Mypage = (props: Props) => {
 
                     </MyPageReqBox>
 
-                    <MyPageChangeMusician>뮤지션으로 전환</MyPageChangeMusician>
+                    <MyPageChangeMusician>일반 회원으로 전환</MyPageChangeMusician>
                 </MyPageUserInfoData>
                 
                 <MyPageUserInfoImg>
@@ -176,29 +176,6 @@ const Mypage = (props: Props) => {
                     <ReqList context={3}/>
                 </ReqListBox>
             </MyPageUserInfo>
-
-            <MyPageUserInfo style={{paddingTop : "12%", flexDirection : "column"}}>
-                <MyPageTitleBox>
-                    <MyPageTitle style={{fontSize : "1.5rem"}}>내가 pick한 뮤지션</MyPageTitle>
-                    
-                    <div style={{display : "table", height : "100%"}}>
-                        <MyPageSubDesc>뮤지션 Pick는 최대 16명까지 가능합니다.</MyPageSubDesc>
-                    </div>
-                </MyPageTitleBox>
-
-                <PickListBox>
-                    <PickList/>
-                    <PickList/>
-                    <PickList/>
-                    <PickList/>
-                </PickListBox>
-
-                <AddButtonLayout>
-                    <div style={{display : "table-cell", verticalAlign : "middle"}}>
-                        더보기 (1/4)
-                    </div> 
-                </AddButtonLayout>
-            </MyPageUserInfo>
             
             <MyPageUserInfo style={{paddingTop : "12%", flexDirection : "column"}}>
                 <MyPageTitleBox>
@@ -225,4 +202,4 @@ const Mypage = (props: Props) => {
     );
 };
 
-export default Mypage;
+export default MusicianMyPage;

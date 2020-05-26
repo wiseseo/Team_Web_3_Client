@@ -51,8 +51,8 @@ const customs = [
 
 const Cards = (): React.ReactElement => (
   <CardList>
-    {customs.map(({ title, content }: { title: string; content: string }) => (
-      <Card>
+    {customs.map(({ title, content }: { title: string; content: string}, index) => (
+      <Card key={index}>
         <Question>{title}</Question>
         <Answer>{content}</Answer>
       </Card>

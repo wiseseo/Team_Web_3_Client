@@ -21,7 +21,16 @@ background: transparent;
   float: right;
 `;
 
-const Curation = ({}): React.ReactElement => {
+const BannerButton = styled.button`
+    background: linear-gradient(157.06deg, #6865fc 36.28%, #658dfc 100%);
+    border-radius: 8px;
+    border: none;
+    color: #fdfdff;
+    font-size: 1.5rem;
+    padding: 1rem 6rem;
+    cursor : pointer;
+`;
+const Curation = ({className}): React.ReactElement => {
 
   const [open, setOpen] = React.useState<boolean>(false);
   const [curationStep, setStep] = React.useState<number>(1);
@@ -29,8 +38,8 @@ const Curation = ({}): React.ReactElement => {
   const tags = React.useContext(CurationContext);
 
 
-  let stepLayout = <></>
-
+  let stepLayout = <></>;
+  let ButtonType = <></>;
   const onOpenModal = () => {
     setOpen(true);
     setStep(1);
@@ -163,11 +172,20 @@ const Curation = ({}): React.ReactElement => {
     stepLayout = <Modal open={open} onClose={onCloseModal}/>
     console.log('final Tags : ',tags.tags)
   }
+
+  if(className === "header"){
+    ButtonType = <Button className={className} onClick={onOpenModal}>
+                    뮤지션매칭
+                </Button>
+  } 
+  else{
+    ButtonType = <BannerButton className={className} onClick={onOpenModal}>
+                    뮤지션 매칭하기
+                </BannerButton>
+  }
   return (
     <>
-      <Button onClick={onOpenModal}>
-          뮤지션매칭
-      </Button>
+      {ButtonType}
       {stepLayout}
       
     </>
