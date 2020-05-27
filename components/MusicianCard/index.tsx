@@ -27,6 +27,7 @@ interface Props {
   musician: Musician;
   toggleLike: (id: string) => void;
   selectSong: (id: string, status: boolean, musician: Musician) => void;
+  currentSong: Song;
 }
 const Card = styled.li`
   width: 392px;
@@ -152,21 +153,28 @@ const Tags = ({ tags }: { tags: string[] }) => {
     </TagList>
   );
 };
-const MusicianCard = ({ musician, toggleLike, selectSong }: Props) => {
+const MusicianCard = ({
+  musician,
+  toggleLike,
+  selectSong,
+  currentSong,
+}: Props) => {
   return (
-    <Link href="/detail">
-      <Card>
-        <MusicContainer src={musician.song.cover_url}>
-          <Space height={40} />
-          <PlayButton
-            playAudio={() =>
-              selectSong(musician.song.id, !musician.song.isPlaying, musician)
-            }
-            size={64}
-            status={musician.song.isPlaying}
-          />
-          <MusicInfo>{musician.song.title}</MusicInfo>
-        </MusicContainer>
+    <Card>
+      <MusicContainer src={musician.song.cover_url}>
+        <Space height={40} />
+        <PlayButton
+          playAudio={() =>
+            selectSong(musician.song.id, !musician.song.isPlaying, musician)
+          }
+          size={64}
+          status={
+            currentSong.id === musician.song.id ? currentSong.isPlaying : false
+          }
+        />
+        <MusicInfo>{musician.song.title}</MusicInfo>
+      </MusicContainer>
+      <Link href="/detail">
         <MusicianInfo>
           <ProfileContainer>
             <Circle>
@@ -189,8 +197,8 @@ const MusicianCard = ({ musician, toggleLike, selectSong }: Props) => {
             <ShowButton>뮤지션 보기</ShowButton>
           </MusicianLink>
         </MusicianInfo>
-      </Card>
-    </Link>
+      </Link>
+    </Card>
   );
 };
 
