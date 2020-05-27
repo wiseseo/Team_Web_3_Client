@@ -10,12 +10,27 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 5em;
-  position: sticky;
-  top: 16px;
 `;
 const MusicianProfile = (props: Props) => {
+  const profileRef = React.useRef(null);
+  React.useEffect(() => {
+    const scrollHandler = (event) => {
+      if (
+        event.srcElement.scrollingElement.scrollTop >
+        profileRef.current.offsetTop
+      ) {
+        console.log("떠있어야함");
+      } else {
+        console.log("올라가야함");
+      }
+    };
+    window.addEventListener("scroll", scrollHandler);
+    return () => {
+      window.removeEventListener("scroll", scrollHandler);
+    };
+  }, []);
   return (
-    <Container>
+    <Container ref={profileRef}>
       <ProfileInfo />
       <Features />
     </Container>
