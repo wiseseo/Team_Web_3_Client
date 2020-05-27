@@ -27,8 +27,6 @@ const MainContainer = styled.div`
 const Contents = styled.div `
   display: flex;
   flex-direction: column;
-  /*padding-right : 25rem;
-  padding-left : 25rem;*/
   width : 1120px;
   max-width : 1120px;
   min-width : 765px;
@@ -48,21 +46,15 @@ const Title = styled.h1`
 
 const Find: React.FC = () => {
   return (
-    <>
-        <Header/>
-        <MainContainer>
-          <FindStore>
-            <Contents>
-              <Title>뮤지션 찾기</Title>
-              <SearchFilter/>
-              <MusicianList/>
-              <Footer></Footer>
-            </Contents>
-          </FindStore>
-        {/*<Footer/>*/}
-        </MainContainer>
-        {/* <AudioPlayer src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga" /> */}
-    </>
+    <MainContainer>
+      <FindStore>
+        <Contents>
+          <Title>뮤지션 찾기</Title>
+          <SearchFilter/>
+          <MusicianList/>
+        </Contents>
+      </FindStore>
+    </MainContainer>
   );
 };
 
