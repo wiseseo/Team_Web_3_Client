@@ -19,6 +19,8 @@ const ImgContainer = styled.div`
     display : flex;
     justify-content : center;
     align-items : center;
+    position: relative;
+    width : 100%;
 `;
 
 const Photo = styled.div`
@@ -31,7 +33,46 @@ const Photo = styled.div`
     background-size : contain;
     border-radius: 50%;
     overflow: hidden;
+    &:hover .modifyImg {
+        display : block;
+    }
+
+    &:hover {
+        opacity: 0.7;
+    }
+
 `;
+
+const PhotoSelectBtn = styled.button`
+    display : none;
+
+    position: absolute;
+    top: 80%;
+    left: 50%;
+
+    background: #6865FC;
+    border-radius: 0.25rem; 
+    padding : 7px 15px;
+    color: white;
+    text-align: center;
+
+    transform: translate(-50%, -50%);
+`;
+
+/*const ImgChangeBtn = styled.input.attrs({ 
+    type: 'file',
+    value: '사진 수정하기'
+  })`
+    display : none;
+    background: #6865FC;
+    border-radius: 4px; 
+    width: 112px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FDFDFF;
+`;*/
+
 const InfoContainer = styled.div`
     flex: 1;
     /*background-color : #040104;*/
@@ -120,11 +161,18 @@ const WithdrawalBtn = styled.button`
 `;
 
 const EditProfile = (props: Props) => { 
+    const [isNickName, setNickName] = React.useState<boolean>(false);
+    const [isPhonenumber, setPhoneNumber] = React.useState<boolean>(false);
 
     return(
         <Contents>
            <ImgContainer>
                 <Photo/>
+                {/*<ImgChangeBtn className="modifyImg"/>*/}
+                <PhotoSelectBtn className="modifyImg">
+                    사진 수정하기
+                </PhotoSelectBtn>
+                <input type="file" className="imgFileInput" style={{display:"none"}}/>
            </ImgContainer>
            <InfoContainer>
                 <EmailContainer>
@@ -139,19 +187,27 @@ const EditProfile = (props: Props) => {
                     <Label>
                         닉네임
                     </Label>
-                    <NickNameBox>
-                        fdfd
-                    </NickNameBox>
-                    <ModifyBtn/>
+                    {!isNickName ? 
+                        (<NickNameBox onClick={()=>setNickName(true)}>
+                            fdfd
+                        </NickNameBox>)
+                        :
+                        (<NickNameInput/>)
+                    } 
+                    <ModifyBtn onClick={()=>setNickName(false)}/>
                 </NickNameContainer>
                 <PhoneNumberContainer>
                     <Label>
                         전화번호
                     </Label>
-                    <PhoneNumberBox>
-                        fsfd
-                    </PhoneNumberBox>
-                    <ModifyBtn/>
+                    {!isPhonenumber ?
+                        (<PhoneNumberBox onClick={()=>setPhoneNumber(true)}>
+                            fsfd
+                        </PhoneNumberBox>
+                        ):
+                        (<PhoneNumberInput/>)
+                    }
+                    <ModifyBtn onClick={()=>setPhoneNumber(false)}/>
                 </PhoneNumberContainer>
                 <WithdrawalBtn>
                     회원탈퇴

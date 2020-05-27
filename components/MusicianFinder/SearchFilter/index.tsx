@@ -615,7 +615,7 @@ const SearchFilter= (props: Props) => {
             chosenPossible : true
           }
     ]]);
-    const filterType = [{id:0, type:"선택해주세요"},{id:1, type:"분위기"},{id:1, type:"테마"},{id:2, type:"장르"}, {id:3, type:"악기"}];
+    const filterType = [{id:0, type:"선택해주세요"},{id:1, type:"분위기"},{id:2, type:"테마"},{id:3, type:"장르"}, {id:4, type:"악기"}];
     const [dropdownName, setDropDownName] = React.useState(0);
 
     //const [filter, setFilter] = React.useState(-1);
