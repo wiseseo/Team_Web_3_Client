@@ -21,11 +21,7 @@ const NavLi = styled.li`
 `;
 
 const MainContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  background: #040104;
-  max-width: 1300px;
-  margin: 0 auto;
+  
 `;
 
 const Index: React.FC = () => {
@@ -101,7 +97,7 @@ const Index: React.FC = () => {
           <CurationStore>
             <Header />
           </CurationStore>
-
+          <div style={{maxWidth : 1300, margin : "0 auto"}}>
           <Banner />
           <SituationList />
           <Category />
@@ -114,6 +110,7 @@ const Index: React.FC = () => {
 
           <Footer />
           <AudioPlayer />
+          </div>
         </MainContainer>
       </SongStore>
     </div>

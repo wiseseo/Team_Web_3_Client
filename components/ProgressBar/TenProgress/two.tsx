@@ -43,7 +43,7 @@ const Pro_Two = styled.div`
 const index = (props: Props) => {
   return <>
     <Container>
-        <Percent>50%</Percent>
+        <Percent>원하는 음악을 찾아가 볼까요?</Percent>
         <ProgressBar>
             <Pro_One/>
             <Pro_Two/>

@@ -39,7 +39,7 @@ const EstimateTitle = styled.div`
     color : #E2E1E2;
     font-size : 1.55rem;
     font-weight : bold;
-    padding-top : 7%;
+    padding-top : 3%;
 `;
 
 

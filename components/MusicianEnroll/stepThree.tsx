@@ -88,7 +88,7 @@ const FormContainerRadioLabel = styled.label`
     width: 20px;
     height: 20px;
     border-radius: 11px;
-    border: 2px solid #6865FC;
+    border: 2px solid #3E3E41;
     background-color: transparent;
   }
 `;
