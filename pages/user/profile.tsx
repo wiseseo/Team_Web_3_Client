@@ -26,19 +26,16 @@ const Title = styled.h1`
   /*background : grey;*/
   color: #ffffff;
   padding : 80px 400px 48px 0px;
+  margin-left : 50px;
   min-width : 765px;
 `;
 
 const Profile: React.FC = () => {
   return (
-    <>
-        <Header/>
-        <MainContainer>
-          <Title>프로필 편집</Title>
-          <EditProfile/>
-        </MainContainer>
-        <Footer/>
-    </>
+    <MainContainer>
+        <Title>프로필 편집</Title>
+        <EditProfile/>
+    </MainContainer>
   );
 };
 

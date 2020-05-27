@@ -29,7 +29,7 @@ const ImgBox  = styled.div`
     background-color : #040104;
     border-radius: 50%;
     overflow: hidden;
-
+    
     transition: .3s ease;
 
     &:hover {
@@ -63,6 +63,7 @@ const PhotoSelectBtn = styled.button`
     left: 50%;
 
     background: #6865FC;
+    border : none;
     border-radius: 0.25rem; 
     padding : 7px 15px;
     color: white;
@@ -283,7 +284,7 @@ const EditProfile = (props: Props) => {
     const onChangePhoneNumber = e => {
         setPhoneNumber(e.target.value);
         if(e.target.value=="") setValidPN(false);
-        else setValidPN(false);
+        else setValidPN(true);
     };
 
     React.useEffect(() => {
