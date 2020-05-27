@@ -11,6 +11,7 @@ const Contents = styled.div`
     width :  644px;
     height : 247px;
     color : white;
+    padding-bottom : 10rem;
 `;
 
 const ImgContainer = styled.div`
@@ -20,37 +21,43 @@ const ImgContainer = styled.div`
     justify-content : center;
     align-items : center;
     position: relative;
-    width : 100%;
 `;
 
-const Photo = styled.div`
+const ImgBox  = styled.div`
     width : 240px;
     height : 240px;
-    background : white;
-    background-image: url("https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size : contain;
+    background-color : #040104;
     border-radius: 50%;
     overflow: hidden;
-    /*&:focus { outline:none; }*/
-    /*&:hover .modifyImg {
-        display : block;
-    }*/
 
-    /*&:hover {
+    transition: .3s ease;
+
+    &:hover {
         opacity: 0.7;
         .modify-img {
             display: block;
         }
 
-    }*/
+    }
+
+
+`;
+
+const Photo = styled.div`
+    /*width : 240px;
+    height : 240px;*/
+    width : 100%;
+    height : 100%;
+    background-image: url("https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size : contain;
 
 `;
 
 const PhotoSelectBtn = styled.button`
-    /*display : none;*/
-    display : block;
+    display : none;
+    /*display : block;*/
     position: absolute;
     top: 80%;
     left: 50%;
@@ -63,30 +70,16 @@ const PhotoSelectBtn = styled.button`
 
     transform: translate(-50%, -50%);
     cursor : pointer;
+    transition: .5s ease;
     &:focus { outline:none; }
-    /*${Photo}:hover & {
-        display: block;
-    }*/
+
 `;
 
-/*const ImgChangeBtn = styled.input.attrs({ 
-    type: 'file',
-    value: '사진 수정하기'
-  })`
-    display : none;
-    background: #6865FC;
-    border-radius: 4px; 
-    width: 112px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #FDFDFF;
-`;*/
 
 const InfoContainer = styled.div`
     flex: 1;
-    /*background-color : #040104;*/
-    background-color : white;
+    background-color : #040104;
+    /*background-color : white;*/
     display : flex;
     flex-direction : column;
     justify-content : space-between;
@@ -96,80 +89,157 @@ const InfoContainer = styled.div`
 const EmailContainer = styled.div`
     width : 320px;
     height : 32px;
-    background : red;
+    /*background : red;*/
+    background : #040104;
     display : flex;
     flex-direction : row;
+    justify-content : flex-end;
 `;
 
 const EmailBox = styled.div`
-    width : 212px;
+    width : 196px;
     height : 32px;
-    background-color : blue;
-    /*background-color : #040104;*/
+    padding-left : 16px;
+
+    margin-right : 33px;
+    /*background-color : blue;*/
+    background-color : #040104;
+    display : flex;
+    align-items: center;
+    color : #B3B4BE;
 `;
 
 const NickNameContainer = styled.div`
     width : 320px;
     height : 32px;
-    background : red;
+    /*background : red;*/
+    background-color : #040104;
     display : flex;
     flex-direction : row;
+    justify-content : flex-end;
 `;
 
 const NickNameBox = styled.div`
-    width : 212px;
+    width : 196px;
     height : 32px;
-    background-color : blue;
-    /*background-color : #040104;*/
-
-    cursor : pointer;
+    padding-left : 16px;
+    /*background-color : blue;*/
+    background-color : #040104;
+    display : flex;
+    align-items: center;
+    color : #B3B4BE;
 `;
 
 const NickNameInput = styled.input`
     &:focus { outline:none; }
     cursor : pointer;
+
+    width: 196px;
+    height: 31px;
+    padding : 0px 0px 0px 16px;
+    margin : 0;
+
+    background: #121212;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border : none;
+    border-radius: 0.5rem;
+
+    color : #FFFFFF;
+    font-size : 0.875rem;
+    
 `;
 
 const PhoneNumberContainer = styled.div`
     width : 320px;
     height : 32px;
-    background : red;
+    /*background : red;*/
+    background-color : #040104;
     display : flex;
     flex-direction : row;
+    justify-content : flex-end;
 `;
 
 const PhoneNumberBox = styled.div`
-    width : 212px;
+    width : 196px;
     height : 32px;
-    background-color : blue;
-    /*background-color : #040104;*/
+    padding-left : 16px;
 
-    cursor : pointer;
+    /*background-color : blue;*/
+    background-color : #040104;
+
+    display : flex;
+    align-items: center;
+    color : #B3B4BE;
 `;
 
 const PhoneNumberInput = styled.input`
     cursor : pointer;
     &:focus { outline:none; }
+
+    width: 196px;
+    height: 31px;
+    padding : 0px 0px 0px 16px;
+    margin : 0;
+
+    background: #121212;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border : none;
+    border-radius: 0.5rem;
+
+    color : #FFFFFF;
+    font-size : 0.875rem;
     
 `;
 
 const Label = styled.label`
     color : #B3B4BE;
     font-size : 0.875rem;
+    display : flex;
+    align-items: center;
+    padding-right: 16px;
 `;
 
-const ModifyBtn = styled.input.attrs({ 
+const ModifyNNBtn = styled.input.attrs({ 
     type: 'submit',
     value: '수정'
   })`
-    color : #6865FC;
+    color :  #${(props:{hasValidNN: boolean}) => props.hasValidNN ? '6865FC' : '3E3E41'};
+    font-size ; 0.825rem;
+    background-color : #040104;
+    border : none;
+
+    cursor : pointer;
+
+    &:focus { outline:none; }
+`;
+
+const ModifyPNBtn = styled.input.attrs({ 
+    type: 'submit',
+    value: '수정'
+  })`
+    color :  #${(props:{hasValidPN: boolean}) => props.hasValidPN ? '6865FC' : '3E3E41'};
+    font-size ; 0.825rem;
+    background-color : #040104;
+    border : none;
+    cursor : pointer;
+
+    &:focus { outline:none; }
+`;
+/*
+const RegistBtn = styled.input.attrs({ 
+    type: 'submit',
+    value: '등록'
+  })`
+    
+    color :  #${(props:{vasValidValue: boolean}) => props.vasValidValue ? '6865FC' : '3E3E41'};
     font-size ; 0.75rem;
     background-color : #040104;
 
     cursor : pointer;
 
     &:focus { outline:none; }
-`;
+`;*/
+
 const WithdrawalBtn = styled.button`
     width : 320px;
     height : 32px;
@@ -179,38 +249,68 @@ const WithdrawalBtn = styled.button`
     box-sizing: border-box;
     border-radius: 0.5rem;
     color: #B3B4BE;
-    font-size : 0.75rem;
+    font-size : 0.825rem;
     cursor : pointer;
 
     &:focus { outline:none; }
     
 `;
 
+const ChangeAlarm = ({ value }: { value: string }) => {
+    return (
+        <div>
+            {value}가 수정되었습니다.
+        </div>
+    );
+}
 const EditProfile = (props: Props) => { 
     const [isNNClicked, setNNClicked] = React.useState<boolean>(false);
     const [isPNClicked, setPNClicked] = React.useState<boolean>(false);
+    const [nickName, setNickName] = React.useState("거대한 참치");
+    const [phoneNumber, setPhoneNumber] = React.useState("010-1111-1111");
 
-    const [nickName, setNickName] = React.useState("");
-    const [phoneNumber, setPhoneNumber] = React.useState("");
+    const [hasValidNN, setValidNN] = React.useState<boolean>(false);
+    const [hasValidPN, setValidPN] = React.useState<boolean>(false);
+
+    //const [isVisible, setIsVisible] = React.useState<boolean>(false);
 
     const onChangeNickName = e => {
         setNickName(e.target.value);
+        if(e.target.value=="") setValidNN(false);
+        else setValidNN(true);
     }
 
     const onChangePhoneNumber = e => {
         setPhoneNumber(e.target.value);
-      };
+        if(e.target.value=="") setValidPN(false);
+        else setValidPN(false);
+    };
+
+    React.useEffect(() => {
+        console.log(nickName);
+        console.log(hasValidNN);
+
+        //if(nickName==="") setValidNN(false);
+        //else setValidNN(true);
+    }, [nickName]);
+
+    React.useEffect(() => {
+        console.log(phoneNumber);
+        console.log(hasValidPN);
+    }, [phoneNumber]);
+
     return(
         <Contents>
            <ImgContainer>
-                <Photo/>
-                {/*<ImgChangeBtn className="modifyImg"/>*/}
-                <PhotoSelectBtn className="modify-img" onClick={()=>{
-                    document.getElementById('imgFileInput').click();
-                    }}>
-                    사진 수정하기
-                </PhotoSelectBtn>
-                <input type="file" id="imgFileInput" style={{display:"none"}}/>
+                <ImgBox>                
+                    <Photo/>
+                    <PhotoSelectBtn className="modify-img" onClick={()=>{
+                        document.getElementById('imgFileInput').click();
+                        }}>
+                        사진 수정하기
+                    </PhotoSelectBtn>
+                    <input type="file" id="imgFileInput" style={{display:"none"}}/>
+                </ImgBox>
            </ImgContainer>
            <InfoContainer>
                 <EmailContainer>
@@ -220,28 +320,26 @@ const EditProfile = (props: Props) => {
                 <NickNameContainer>
                     <Label>닉네임</Label>
                     {!isNNClicked ? 
-                        (<NickNameBox onClick={()=>setNNClicked(true)}>
+                        (<NickNameBox onClick={()=>{setNNClicked(true); setValidNN(true);}}>
                             {nickName}
                         </NickNameBox>)
                         :
-                        (<NickNameInput value={nickName} onChange={onChangeNickName}/>)
+                        (<NickNameInput value={nickName} style={{fontSize: "0.875rem"}} onChange={onChangeNickName}/>)
                     } 
-                    <ModifyBtn onClick={()=>setNNClicked(false)}/>
+                    <ModifyNNBtn hasValidNN={hasValidNN} onClick={()=>{ setNNClicked(false); setValidNN(false);} }/>
                 </NickNameContainer>
                 <PhoneNumberContainer>
                     <Label>전화번호</Label>
                     {!isPNClicked ?
-                        (<PhoneNumberBox onClick={()=>setPNClicked(true)}>
+                        (<PhoneNumberBox onClick={()=>{setPNClicked(true); setValidPN(true);}}>
                             {phoneNumber}
                         </PhoneNumberBox>
                         ):
-                        (<PhoneNumberInput value={phoneNumber} onChange={onChangePhoneNumber}/>)
+                        (<PhoneNumberInput value={phoneNumber} style={{fontSize: "0.875rem"}} onChange={onChangePhoneNumber}/>)
                     }
-                    <ModifyBtn onClick={()=>setPNClicked(false)}/>
+                    <ModifyPNBtn hasValidPN={hasValidPN} onClick={()=>{setPNClicked(false); setValidPN(false);}}/>
                 </PhoneNumberContainer>
-                <WithdrawalBtn>
-                    회원탈퇴
-                </WithdrawalBtn>
+                <WithdrawalBtn>회원탈퇴</WithdrawalBtn>
            </InfoContainer>
         </Contents>
         
