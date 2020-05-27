@@ -57,10 +57,8 @@ const ProgressBar = ({
   const changeHandler = (
     event: React.SyntheticEvent<HTMLInputElement, Event>
   ) => {
-    console.log("hhe");
     changeCurrent(Number((event.target as HTMLInputElement).value));
   };
-  React.useEffect(() => console.log(duration), [duration]);
   return (
     <ProgressWrapper>
       <TimeDisplay value={current} />

@@ -89,6 +89,7 @@ const MusicianList = ({ title }: Props) => {
             musician={musician}
             toggleLike={toggleLike}
             selectSong={selectSong}
+            currentSong={song.song}
           />
         ))}
         <Next onClick={() => dispatch({ type: "NEXT_MUSICIANS" })}>
