@@ -12,10 +12,6 @@ const EnrollTitle = styled.h1`
 const Enroll: React.FC = () => {
   return (
     <>
-
-        <CurationStore>
-          <Header/>
-        </CurationStore>
         
         <MusicianEnrollStore>
           <MusicianEnroll/>

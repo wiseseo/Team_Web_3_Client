@@ -8,9 +8,6 @@ import EstimateSheetComponent from "../../components/EstimateSheet";
 const EstimateSheet: React.FC = () => {
   return (
     <>
-      <CurationStore>
-        <Header/>
-      </CurationStore>
 
       <EstimateSheetComponent/>      
 

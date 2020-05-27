@@ -48,7 +48,7 @@ const MusicianEnroll = (props: Props) => {
 
             console.log("finish Data Set", enrollData.enrollTags);
 
-            const header = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type : application/json, Accept : application/json' }
+            const header = { 'Content-Type' : 'application/json', 'Accept' : 'application/json' };
             axios.post("http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/musicians", enrollData.enrollTags, {headers : header})
             .then((musicians) =>{
                 console.log("musicians : ", musicians)

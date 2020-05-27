@@ -9,6 +9,7 @@ interface Props {
 const Container = styled.div`
   display: flex;
   align-items: center;
+  padding-right: 1rem;
 `;
 const Cover = styled.div`
     background-image: url("${({ source }: { source: string }) => source}");
