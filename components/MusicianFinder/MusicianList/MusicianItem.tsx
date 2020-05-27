@@ -29,25 +29,26 @@ interface Song {
 const Card = styled.div`
   display: flex;
   flex-direction: row;
-  /*background: #121212;*/
-  background: white;
-  border-radius: 0.5rem;
-  height : 7.5rem;
+  background: #121212;
+  /*background-color: red;*/
+  border-radius: 8px;
+  height : 120px;
   margin-bottom : 1rem;
+  min-width : 765px;
 `;
 
 const PlayerContainer = styled.div`
     flex:9;
     /*background: blue;*/
-    background: #121212;
+    /*background: #121212;*/
     display: flex;
     justify-content : center;
     align-items : center;
 `;
 
 const AlbumCover = styled.div`
-    width : 5rem;
-    height : 5rem;
+    width : 80px;
+    height : 80px;
     background : white;
     background-image: url("${({ src }: { src: string }) => src}");
     background-repeat: no-repeat;
@@ -58,7 +59,7 @@ const AlbumCover = styled.div`
 const MusicianContainer = styled.div`
     flex:50;
     /*background: yellow;*/
-    background: #121212;
+    /*background: #121212;*/
     display: flex;
     justify-content : space-between;
     align-items : center;
@@ -75,22 +76,22 @@ const LeftContainer = styled.div`
 const ProfileContainer = styled.div`
   /*flex: 3;*/
   display: flex;
-  padding: 0.5rem 1.5rem;
+  padding: 8px 24px;
   justify-content: space-between;
   align-items: center;
 `;
 const Info = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 0.75rem;
+  margin-left: 12px;
   margin-right: auto;
 `;
 const Circle = styled.div`
-  width: 2rem;
-  height: 2rem;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   overflow: hidden;
-  margin: 0.5rem 0;
+  margin: 8px 0;
 `;
 const Profile = styled.div`
     width: 100%;
@@ -107,13 +108,13 @@ const Name = styled.div`
 const Introduction = styled.div`
   color: #e2e1e2;
   font-size: 0.875rem;
-  margin: 0.2rem 0;
+  margin: 3.2px 0;
 `;
 
 const TagContainer = styled.div`
     display: flex;
     justify-content: flex-start;
-    padding: 0.5rem 1.5rem;
+    padding: 8px 24px;
 `;
 
 const Tag = styled.li`
@@ -141,7 +142,7 @@ const SpecialNote = styled.div`
 const LinkContainer = styled.div`
     flex:11;
     /*background: green;*/
-    background: #121212;
+    /*background: #121212;*/
     display: flex;
     justify-content : center;
     align-items : center;
@@ -150,8 +151,8 @@ const LinkContainer = styled.div`
 const ProfileButton = styled.a`
     background-color: #6865FC;
     color: white;
-    border-radius: 0.25rem;
-    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    padding: 8px 16px;
     text-align: center;
     text-decoration: none;
     display: inline-block;

@@ -96,7 +96,7 @@ const NextButton = styled.button`
   outline-width : 0px;
 `;
 
-const StepFour = ({nextButton, beforeButton}): React.ReactElement => {
+const StepFour = ({nextButton, beforeButton, object}): React.ReactElement => {
     
   const [tagList, setTagList] = React.useState([
     {
@@ -269,7 +269,46 @@ const StepFour = ({nextButton, beforeButton}): React.ReactElement => {
     }
   }
 
-  console.log('Tag List : ',TagList);
+  React.useEffect(() => {
+    appendTagList(object);
+
+    let tagFlag = true;
+
+    for(let i = 0 ; i < tagList.length ; i++){
+      for(let j = 0 ; j < object.length ; j++){
+        setSelectTag(true);
+        if(tagList[i].key === 18 && tagList[i].name === object[j]){
+          tagFlag = false; 
+        }
+      }
+    }
+
+    if(tagFlag){
+      for(let i = 0 ; i < tagList.length ; i++){
+        for(let j = 0 ; j < object.length ; j++){
+          if(tagList[i].name === object[j]){
+              tagList[i].chosen = true; 
+          }
+        }
+      }
+    }
+    else{
+      for(let i = 0 ; i < tagList.length ; i++){
+        for(let j = 0 ; j < object.length ; j++){
+          if(tagList[i].key === 18){
+              tagList[i].chosen = true;
+              tagList[i].chosenPossible = true; 
+          }
+          else{
+              tagList[i].chosen = false;
+              tagList[i].chosenPossible = false; 
+          }
+        }
+      }
+    }
+    // console.log(object);
+  }, [object])
+  // console.log('Tag List : ',TagList);
 
   
   return (
@@ -279,7 +318,7 @@ const StepFour = ({nextButton, beforeButton}): React.ReactElement => {
                 <Fixed/>
             </CurationModalGray>
             <CurationModalTitle> 
-                어떤 분위기의 음악을 원하시나요?
+                어떤 종류의 악기를 원하시나요?
             </CurationModalTitle>
             <CurationModalDescription>
                 <span>
@@ -300,13 +339,13 @@ const StepFour = ({nextButton, beforeButton}): React.ReactElement => {
 
             {tagList.map((list, key) => {
                 if(list.chosen == true){
-                  return  <CurationTag key={key} onClick={() => {releaseTag(list.key)}} style={{color : "white", background: "#6865FC", border : "none"}}>{list.name}</CurationTag>
+                  return  <CurationTag key={key} onClick={() => {releaseTag(list.key)}} style={{color : "white", background: "#6865FC", border : "1px solid rgb(4, 1, 4)"}}>{list.name}</CurationTag>
                 }
                 else if(list.chosenPossible == true){
                   return <CurationTag key={key} onClick={() => {chosenTag(list.key)}}>{list.name}</CurationTag>
                 }
                 else{
-                  return <CurationTag key={key} style={{color : "yellow", cursor : "auto"}}>{list.name}</CurationTag>
+                  return <CurationTag key={key} style={{color : "#3E3E41", cursor : "auto", border : "1px solid #3E3E41"}}>{list.name}</CurationTag>
                 }
                 
             })}
@@ -317,7 +356,7 @@ const StepFour = ({nextButton, beforeButton}): React.ReactElement => {
             <CurationModalButton>
 
             <CurationModalButtonLayout>
-                <BeforeButton onClick={beforeButton}>이전으로</BeforeButton>
+                <BeforeButton onClick={() => {beforeButton(4, TagList)}}>이전으로</BeforeButton>
                 {selectTag == true ? (<NextButton onClick={()=>{nextButton(4, TagList)}} style={{background : "#6865FC", cursor : "pointer"}}>다음으로</NextButton>) : (<NextButton>다음으로</NextButton>)}
                 
             </CurationModalButtonLayout>

@@ -1,6 +1,7 @@
 import * as React from "react";
 import PlayButton from "./../AudioPlayer/PlayButton";
 import styled from "styled-components";
+import Link from "next/link";
 
 interface Song {
   id: string;
@@ -26,6 +27,7 @@ interface Props {
   musician: Musician;
   toggleLike: (id: string) => void;
   selectSong: (id: string, status: boolean, musician: Musician) => void;
+  currentSong: Song;
 }
 const Card = styled.li`
   width: 392px;
@@ -98,7 +100,7 @@ const Introduction = styled.div`
 `;
 const Likes = styled.div`
   font-size: 0.875rem;
-  color: #6865fc;
+  color: #3e3e41;
   margin: 0.5rem 0;
 `;
 
@@ -151,7 +153,12 @@ const Tags = ({ tags }: { tags: string[] }) => {
     </TagList>
   );
 };
-const MusicianCard = ({ musician, toggleLike, selectSong }: Props) => {
+const MusicianCard = ({
+  musician,
+  toggleLike,
+  selectSong,
+  currentSong,
+}: Props) => {
   return (
     <Card>
       <MusicContainer src={musician.song.cover_url}>
@@ -161,43 +168,36 @@ const MusicianCard = ({ musician, toggleLike, selectSong }: Props) => {
             selectSong(musician.song.id, !musician.song.isPlaying, musician)
           }
           size={64}
-          status={musician.song.isPlaying}
+          status={
+            currentSong.id === musician.song.id ? currentSong.isPlaying : false
+          }
         />
         <MusicInfo>{musician.song.title}</MusicInfo>
       </MusicContainer>
-      <MusicianInfo>
-        <ProfileContainer>
-          <Circle>
-            <Profile src={musician.profile_url} />
-          </Circle>
-          <Info>
-            <Name>{musician.name}</Name>
-            <Introduction>{musician.introduction}</Introduction>
-          </Info>
-          <Likes onClick={() => toggleLike(musician.id)}>
-            <svg
-              width="24"
-              height="22"
-              viewBox="0 0 24 22"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M22.2489 2.58284C21.0652 1.23969 19.423 0.5 17.625 0.5C15.0962 0.5 13.4952 2.01031 12.5974 3.27734C12.3645 3.60612 12.1664 3.9358 12 4.24602C11.8336 3.9358 11.6355 3.60612 11.4026 3.27734C10.5048 2.01031 8.90381 0.5 6.375 0.5C4.57697 0.5 2.9348 1.23973 1.75102 2.58289C0.621891 3.86417 0 5.58017 0 7.41477C0 9.41178 0.779672 11.2692 2.45367 13.2601C3.94978 15.0395 6.10214 16.8736 8.59453 18.9974C9.52327 19.7889 10.4837 20.6073 11.5062 21.5019L11.5369 21.5288C11.6694 21.6449 11.8347 21.7029 12 21.7029C12.1653 21.7029 12.3306 21.6448 12.4631 21.5288L12.4938 21.5019C13.5163 20.6073 14.4767 19.7889 15.4056 18.9973C17.8979 16.8736 20.0502 15.0395 21.5463 13.2601C23.2203 11.2692 24 9.41178 24 7.41477C24 5.58017 23.3781 3.86417 22.2489 2.58284ZM14.4934 17.9271C13.6928 18.6093 12.8688 19.3115 12 20.0667C11.1312 19.3115 10.3072 18.6094 9.50644 17.927C4.62867 13.7705 1.40625 11.0245 1.40625 7.41477C1.40625 5.92273 1.90336 4.53692 2.80603 3.51266C3.71906 2.47677 4.98652 1.90625 6.375 1.90625C8.30292 1.90625 9.54919 3.09397 10.2551 4.09034C10.8884 4.98397 11.2188 5.88481 11.3315 6.23061C11.4257 6.52006 11.6956 6.71595 12 6.71595C12.3044 6.71595 12.5743 6.52006 12.6685 6.23061C12.7812 5.88481 13.1116 4.98397 13.7449 4.0903C14.4508 3.09397 15.6971 1.90625 17.625 1.90625C19.0135 1.90625 20.2809 2.47677 21.1939 3.51266C22.0966 4.53692 22.5938 5.92273 22.5938 7.41477C22.5938 11.0245 19.3713 13.7705 14.4934 17.9271Z"
-                fill="#E2E1E2"
-              />
-            </svg>
-            <div>{musician.likes}</div>
-          </Likes>
-        </ProfileContainer>
-        <Tags tags={musician.tags} />
-        <MusicianLink>
-          <Features>
-            {musician.features.reduce((res, feature) => `${res}/${feature}`)}
-          </Features>
-          <ShowButton>뮤지션 보기</ShowButton>
-        </MusicianLink>
-      </MusicianInfo>
+      <Link href="/detail">
+        <MusicianInfo>
+          <ProfileContainer>
+            <Circle>
+              <Profile src={musician.profile_url} />
+            </Circle>
+            <Info>
+              <Name>{musician.name}</Name>
+              <Introduction>{musician.introduction}</Introduction>
+            </Info>
+            <Likes onClick={() => toggleLike(musician.id)}>
+              <img src="/static/like.png" alt="like" />
+              <div>{musician.likes}</div>
+            </Likes>
+          </ProfileContainer>
+          <Tags tags={musician.tags} />
+          <MusicianLink>
+            <Features>
+              {musician.features.reduce((res, feature) => `${res}/${feature}`)}
+            </Features>
+            <ShowButton>뮤지션 보기</ShowButton>
+          </MusicianLink>
+        </MusicianInfo>
+      </Link>
     </Card>
   );
 };

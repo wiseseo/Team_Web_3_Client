@@ -1,15 +1,18 @@
 import * as React from "react";
 import styled from 'styled-components';
-
-const EstimateSheetTitle = styled.h1`
-  color : black
-`;
+import Header from "../../components/Header";
+import AudioPlayer from "../../components/AudioPlayer";
+import CurationStore from "./../../stores/CurationStore";
+import EstimateSheetComponent from "../../components/EstimateSheet";
 
 const EstimateSheet: React.FC = () => {
   return (
-    <div>
-      <EstimateSheetTitle>EstimateSheet</EstimateSheetTitle>
-    </div>
+    <>
+
+      <EstimateSheetComponent/>      
+
+      <AudioPlayer />
+    </>
   );
 };
 
