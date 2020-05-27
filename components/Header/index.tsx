@@ -12,8 +12,6 @@ const HeaderContainer = styled.header`
   align-items: center;
   padding: 2em 5em;
   justify-content: center;
-  max-width : 1300px;
-  margin : 0 auto;
 `;
 
 const HeaderRightBtn = styled.div`
