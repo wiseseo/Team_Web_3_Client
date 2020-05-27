@@ -33,19 +33,24 @@ const Photo = styled.div`
     background-size : contain;
     border-radius: 50%;
     overflow: hidden;
-    &:hover .modifyImg {
+    /*&:focus { outline:none; }*/
+    /*&:hover .modifyImg {
         display : block;
-    }
+    }*/
 
-    &:hover {
+    /*&:hover {
         opacity: 0.7;
-    }
+        .modify-img {
+            display: block;
+        }
+
+    }*/
 
 `;
 
 const PhotoSelectBtn = styled.button`
-    display : none;
-
+    /*display : none;*/
+    display : block;
     position: absolute;
     top: 80%;
     left: 50%;
@@ -57,6 +62,11 @@ const PhotoSelectBtn = styled.button`
     text-align: center;
 
     transform: translate(-50%, -50%);
+    cursor : pointer;
+    &:focus { outline:none; }
+    /*${Photo}:hover & {
+        display: block;
+    }*/
 `;
 
 /*const ImgChangeBtn = styled.input.attrs({ 
@@ -111,10 +121,13 @@ const NickNameBox = styled.div`
     height : 32px;
     background-color : blue;
     /*background-color : #040104;*/
+
+    cursor : pointer;
 `;
 
 const NickNameInput = styled.input`
-
+    &:focus { outline:none; }
+    cursor : pointer;
 `;
 
 const PhoneNumberContainer = styled.div`
@@ -130,9 +143,14 @@ const PhoneNumberBox = styled.div`
     height : 32px;
     background-color : blue;
     /*background-color : #040104;*/
+
+    cursor : pointer;
 `;
 
 const PhoneNumberInput = styled.input`
+    cursor : pointer;
+    &:focus { outline:none; }
+    
 `;
 
 const Label = styled.label`
@@ -147,6 +165,10 @@ const ModifyBtn = styled.input.attrs({
     color : #6865FC;
     font-size ; 0.75rem;
     background-color : #040104;
+
+    cursor : pointer;
+
+    &:focus { outline:none; }
 `;
 const WithdrawalBtn = styled.button`
     width : 320px;
@@ -158,56 +180,64 @@ const WithdrawalBtn = styled.button`
     border-radius: 0.5rem;
     color: #B3B4BE;
     font-size : 0.75rem;
+    cursor : pointer;
+
+    &:focus { outline:none; }
+    
 `;
 
 const EditProfile = (props: Props) => { 
-    const [isNickName, setNickName] = React.useState<boolean>(false);
-    const [isPhonenumber, setPhoneNumber] = React.useState<boolean>(false);
+    const [isNNClicked, setNNClicked] = React.useState<boolean>(false);
+    const [isPNClicked, setPNClicked] = React.useState<boolean>(false);
 
+    const [nickName, setNickName] = React.useState("");
+    const [phoneNumber, setPhoneNumber] = React.useState("");
+
+    const onChangeNickName = e => {
+        setNickName(e.target.value);
+    }
+
+    const onChangePhoneNumber = e => {
+        setPhoneNumber(e.target.value);
+      };
     return(
         <Contents>
            <ImgContainer>
                 <Photo/>
                 {/*<ImgChangeBtn className="modifyImg"/>*/}
-                <PhotoSelectBtn className="modifyImg">
+                <PhotoSelectBtn className="modify-img" onClick={()=>{
+                    document.getElementById('imgFileInput').click();
+                    }}>
                     사진 수정하기
                 </PhotoSelectBtn>
-                <input type="file" className="imgFileInput" style={{display:"none"}}/>
+                <input type="file" id="imgFileInput" style={{display:"none"}}/>
            </ImgContainer>
            <InfoContainer>
                 <EmailContainer>
-                    <Label>
-                        이메일
-                    </Label>
-                    <EmailBox>
-                        dffdf
-                    </EmailBox>
+                    <Label>이메일</Label>
+                    <EmailBox>dffdf</EmailBox>
                 </EmailContainer>
                 <NickNameContainer>
-                    <Label>
-                        닉네임
-                    </Label>
-                    {!isNickName ? 
-                        (<NickNameBox onClick={()=>setNickName(true)}>
-                            fdfd
+                    <Label>닉네임</Label>
+                    {!isNNClicked ? 
+                        (<NickNameBox onClick={()=>setNNClicked(true)}>
+                            {nickName}
                         </NickNameBox>)
                         :
-                        (<NickNameInput/>)
+                        (<NickNameInput value={nickName} onChange={onChangeNickName}/>)
                     } 
-                    <ModifyBtn onClick={()=>setNickName(false)}/>
+                    <ModifyBtn onClick={()=>setNNClicked(false)}/>
                 </NickNameContainer>
                 <PhoneNumberContainer>
-                    <Label>
-                        전화번호
-                    </Label>
-                    {!isPhonenumber ?
-                        (<PhoneNumberBox onClick={()=>setPhoneNumber(true)}>
-                            fsfd
+                    <Label>전화번호</Label>
+                    {!isPNClicked ?
+                        (<PhoneNumberBox onClick={()=>setPNClicked(true)}>
+                            {phoneNumber}
                         </PhoneNumberBox>
                         ):
-                        (<PhoneNumberInput/>)
+                        (<PhoneNumberInput value={phoneNumber} onChange={onChangePhoneNumber}/>)
                     }
-                    <ModifyBtn onClick={()=>setPhoneNumber(false)}/>
+                    <ModifyBtn onClick={()=>setPNClicked(false)}/>
                 </PhoneNumberContainer>
                 <WithdrawalBtn>
                     회원탈퇴
