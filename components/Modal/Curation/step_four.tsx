@@ -318,7 +318,7 @@ const StepFour = ({nextButton, beforeButton, object}): React.ReactElement => {
                 <Fixed/>
             </CurationModalGray>
             <CurationModalTitle> 
-                어떤 분위기의 음악을 원하시나요?
+                어떤 종류의 악기를 원하시나요?
             </CurationModalTitle>
             <CurationModalDescription>
                 <span>
@@ -339,7 +339,7 @@ const StepFour = ({nextButton, beforeButton, object}): React.ReactElement => {
 
             {tagList.map((list, key) => {
                 if(list.chosen == true){
-                  return  <CurationTag key={key} onClick={() => {releaseTag(list.key)}} style={{color : "white", background: "#6865FC", border : "none"}}>{list.name}</CurationTag>
+                  return  <CurationTag key={key} onClick={() => {releaseTag(list.key)}} style={{color : "white", background: "#6865FC", border : "1px solid rgb(4, 1, 4)"}}>{list.name}</CurationTag>
                 }
                 else if(list.chosenPossible == true){
                   return <CurationTag key={key} onClick={() => {chosenTag(list.key)}}>{list.name}</CurationTag>

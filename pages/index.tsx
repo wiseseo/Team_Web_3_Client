@@ -12,21 +12,6 @@ import SongStore from "./../stores/SongStore";
 import MusicianStore from "./../stores/MusicianStore";
 import CurationStore from "./../stores/CurationStore";
 
-const Title = styled.h1`
-  color: black;
-`;
-const NavLi = styled.li`
-  float: left;
-  margin-left: 5%;
-`;
-
-const MainContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  background: #040104;
-  max-width: 1300px;
-  margin: 0 auto;
-`;
 
 const Index: React.FC = () => {
   return (

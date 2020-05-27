@@ -197,6 +197,135 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
   const [oneTagList, setOneTagList] = React.useState([
     {
       key : 1,
+      name : '긴장',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 2,
+      name : '감동',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 3,
+      name : '공포',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 4,
+      name : '공상',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 5,
+      name : '깜찍',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 6,
+      name : '모험',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 7,
+      name : '몽환',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 8,
+      name : '발랄',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 9,
+      name : '잔잔',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 10,
+      name : '사랑',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 11,
+      name : '서사',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 12,
+      name : '섹시',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 13,
+      name : '슬픔',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 14,
+      name : '신남',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 15,
+      name : '심각',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 16,
+      name : '어둠',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 17,
+      name : '코믹',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 18,
+      name : '희망',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 19,
+      name : '행복',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 20,
+      name : '선택안함',
+      chosen : false,
+      chosenPossible : true
+    },
+    {
+      key : 21,
+      name : '제한없음',
+      chosen : false,
+      chosenPossible : true
+    }
+  ]);
+
+  const [twoTagList, setTwoTagList] = React.useState([
+    {
+      key : 1,
       name : '비즈니스',
       chosen : false,
       chosenPossible : true,
@@ -293,7 +422,8 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
     }
   ]);
 
-  const [twoTagList, setTwoTagList] = React.useState([
+  const [threeTagList, setThreeTagList] = React.useState([
+    
     {
       key : 1,
       name : '국악',
@@ -470,135 +600,6 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
     }
   ]);
 
-  const [threeTagList, setThreeTagList] = React.useState([
-    {
-      key : 1,
-      name : '긴장',
-      chosen : false,
-      chosenPossible : true
-    },
-    {
-      key : 2,
-      name : '감동',
-      chosen : false,
-      chosenPossible : true
-    },
-    {
-      key : 3,
-      name : '공포',
-      chosen : false,
-      chosenPossible : true
-    },
-    {
-      key : 4,
-      name : '공상',
-      chosen : false,
-      chosenPossible : true
-    },
-    {
-      key : 5,
-      name : '깜찍',
-      chosen : false,
-      chosenPossible : true
-    },
-    {
-      key : 6,
-      name : '모험',
-      chosen : false,
-      chosenPossible : true
-    },
-    {
-      key : 7,
-      name : '몽환',
-      chosen : false,
-      chosenPossible : true
-    },
-    {
-      key : 8,
-      name : '발랄',
-      chosen : false,
-      chosenPossible : true
-    },
-    {
-      key : 9,
-      name : '잔잔',
-      chosen : false,
-      chosenPossible : true
-    },
-    {
-      key : 10,
-      name : '사랑',
-      chosen : false,
-      chosenPossible : true
-    },
-    {
-      key : 11,
-      name : '서사',
-      chosen : false,
-      chosenPossible : true
-    },
-    {
-      key : 12,
-      name : '섹시',
-      chosen : false,
-      chosenPossible : true
-    },
-    {
-      key : 13,
-      name : '슬픔',
-      chosen : false,
-      chosenPossible : true
-    },
-    {
-      key : 14,
-      name : '신남',
-      chosen : false,
-      chosenPossible : true
-    },
-    {
-      key : 15,
-      name : '심각',
-      chosen : false,
-      chosenPossible : true
-    },
-    {
-      key : 16,
-      name : '어둠',
-      chosen : false,
-      chosenPossible : true
-    },
-    {
-      key : 17,
-      name : '코믹',
-      chosen : false,
-      chosenPossible : true
-    },
-    {
-      key : 18,
-      name : '희망',
-      chosen : false,
-      chosenPossible : true
-    },
-    {
-      key : 19,
-      name : '행복',
-      chosen : false,
-      chosenPossible : true
-    },
-    {
-      key : 20,
-      name : '선택안함',
-      chosen : false,
-      chosenPossible : true
-    },
-    {
-      key : 21,
-      name : '제한없음',
-      chosen : false,
-      chosenPossible : true
-    }
-  ]);
-
   const [fourTagList, setFourTagList] = React.useState([
     {
       key : 1,
@@ -765,7 +766,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
     }
     // One
     else if(idx === 1){
-      if(key === 15 || key === 16){
+      if(key === 20 || key === 21){
         let newTagList = [...oneTagList];
         
         for(let i = 0 ; i<newTagList.length ; i++){
@@ -790,7 +791,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
 
     // Two
     else if(idx === 2){
-      if(key === 28 || key === 29){
+      if(key === 15 || key === 16){
         let newTagList = [...twoTagList];
         
         for(let i = 0 ; i<newTagList.length ; i++){
@@ -815,7 +816,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
 
     // Three
     else if(idx === 3){
-      if(key === 20 || key === 21){
+      if(key === 28 || key === 29){
         let newTagList = [...threeTagList];
         
         for(let i = 0 ; i<newTagList.length ; i++){
@@ -892,7 +893,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
       }
     }
     else if(idx === 1){
-      if(key === 15 || key === 16){
+      if(key === 20 || key === 21){
         let newTagList = [...oneTagList];
         
         for(let i = 0 ; i<newTagList.length ; i++){
@@ -916,7 +917,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
       }
     }
     else if(idx === 2){
-      if(key === 28 || key === 29){
+      if(key === 15 || key === 16){
         let newTagList = [...twoTagList];
         
         for(let i = 0 ; i<newTagList.length ; i++){
@@ -942,7 +943,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
       }
     }
     else if(idx === 3){
-      if(key === 20 || key === 21){
+      if(key === 28 || key === 29){
         let newTagList = [...threeTagList];
         
         for(let i = 0 ; i<newTagList.length ; i++){
@@ -1219,7 +1220,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
           <FormContainerMainDesc>각 주제별로 작업 가능한 스타일의 태그를 선택해주세요.</FormContainerMainDesc> 
           <FormContainerDesc>첫번째 선택한 태그가 대표 태그로 지정됩니다.</FormContainerDesc>
 
-          <FormContainerSubDesc>1. 작업 가능한 테마를 선택해주세요.</FormContainerSubDesc>
+          <FormContainerSubDesc>1. 작업 가능한 표현 분위기를 선택해주세요.</FormContainerSubDesc>
           {oneTagList.map((list, key) => {
                 if(list.chosen == true){
                   return  <CurationTag key={key} onClick={() => {releaseTag(list.key, 1)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
@@ -1233,7 +1234,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
                 
           })}
 
-          <FormContainerSubDesc>2. 작업 가능한 장르를 선택해주세요.</FormContainerSubDesc>
+          <FormContainerSubDesc>2. 작업 가능한 테마를 선택해주세요.</FormContainerSubDesc>
           {twoTagList.map((list, key) => {
                 if(list.chosen == true){
                   return  <CurationTag key={key} onClick={() => {releaseTag(list.key, 2)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
@@ -1247,7 +1248,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
                 
           })}
           
-          <FormContainerSubDesc>3. 작업 가능한 표현 분위기를 선택해주세요.</FormContainerSubDesc>
+          <FormContainerSubDesc>3. 작업 가능한 장르를 선택해주세요.</FormContainerSubDesc>
           {threeTagList.map((list, key) => {
                 if(list.chosen == true){
                   return  <CurationTag key={key} onClick={() => {releaseTag(list.key, 3)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>

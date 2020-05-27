@@ -9,9 +9,6 @@ import MyPageComponent from "../../components/Mypage";
 const MyPage: React.FC = () => {
   return (
     <>
-      <CurationStore>
-        <Header/>
-      </CurationStore>
 
       <MyPageComponent/>      
 
