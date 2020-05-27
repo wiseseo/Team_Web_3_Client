@@ -1868,6 +1868,11 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
+classnames@^2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
+  integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
+
 cli-cursor@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/cli-cursor/-/cli-cursor-2.1.0.tgz#b35dac376479facc3e94747d41d0d0f5238ffcb5"
@@ -4063,6 +4068,11 @@ next@^9.2.2:
     webpack-hot-middleware "2.25.0"
     webpack-sources "1.4.3"
 
+no-scroll@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/no-scroll/-/no-scroll-2.1.1.tgz#f37e08cb159b75a5bdbfc0a87cd9223e120e6e27"
+  integrity sha512-YTzGAJOo/B6hkodeT5SKKHpOhAzjMfkUCCXjLJwjWk2F4/InIg+HbdH9kmT7bKpleDuqLZDTRy2OdNtAj0IVyQ==
+
 node-fetch@2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
@@ -5056,10 +5066,10 @@ react-error-overlay@5.1.6:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.6.tgz#0cd73407c5d141f9638ae1e0c63e7b2bf7e9929d"
   integrity sha512-X1Y+0jR47ImDVr54Ab6V9eGk0Hnu7fVWGeHQSOXHf/C2pF9c6uy3gef8QUeuUiWlNb0i08InPSE5a/KJzNzw1Q==
 
-react-google-login@^5.1.2:
-  version "5.1.2"
-  resolved "https://registry.yarnpkg.com/react-google-login/-/react-google-login-5.1.2.tgz#217a3337438b20ea45b72722aacdf919dd6ec428"
-  integrity sha512-kxqMiQ2+8kV9W0PDiJYHtedddTZmMtVLrDo1BWpFq7c4ZEm938JhrwONeWsEjRhO1cVtCis6HEF9J7e9vxhVYQ==
+react-google-login@^5.1.20:
+  version "5.1.20"
+  resolved "https://registry.yarnpkg.com/react-google-login/-/react-google-login-5.1.20.tgz#06afbf5fd9013455ae3bfba93054630df203542d"
+  integrity sha512-/5vDx8Hy7Wo1fO1VC/0e5D6/ZGWgIgvcscI8mYZUQ653QOFf0c4GhTnKkebX5uE7m5rAB/2bzzZIUlIesGqWig==
   dependencies:
     "@types/react" "*"
     prop-types "^15.6.0"
@@ -5078,6 +5088,14 @@ react-kakao-login@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/react-kakao-login/-/react-kakao-login-1.2.2.tgz#238ba1f329715bec8697a35b1602944d9792ce86"
   integrity sha512-FCihO3m+Z/N8W0pdwsitvn9fbGa1m7xtbdHvyupJhHBuS9mzS+wzbZUGhNipI2qYmh277umX3HT5/pFxey4GOg==
+
+react-responsive-modal@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/react-responsive-modal/-/react-responsive-modal-5.0.2.tgz#cb3e865ea3ae2efe71cab0e40b620667932fc546"
+  integrity sha512-7QzL5NIhzYKe+jnl3QQVBWlpVCQv6QDCKtlJQvBxEbnjNSMkwFep2uSTu4CQFt9QItFEBV7onC/1i6O0t78nYg==
+  dependencies:
+    classnames "^2.2.6"
+    no-scroll "^2.1.1"
 
 react-sizes@^2.0.0:
   version "2.0.0"
