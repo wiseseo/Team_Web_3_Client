@@ -1,12 +1,7 @@
 import * as React from "react";
 import styled from 'styled-components';
-import Header from "../../components/Header"
-import AudioPlayer from "../../components/AudioPlayer"
-//import Footer from "../../components/Footer";
-//import MusicianFinder from "../../components/MusicianFinder"
 import SearchFilter from '../../components/MusicianFinder/SearchFilter';
 import MusicianList from '../../components/MusicianFinder/MusicianList';
-import Footer from '../../components/Footer';
 import FindStore from "../../stores/FindStore";
 
 const MainContainer = styled.div`

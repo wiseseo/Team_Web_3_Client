@@ -2,6 +2,7 @@ type ActionType = {
     type:
       | "INIT_MUSICIANS"
       | "NEXT_MUSICIANS"
+      | "TOGGLE_LIKE"
       | "SELECT_SONG"
       | "PLAY_SONG"
       | "STOP_SONG";
@@ -55,8 +56,29 @@ type ActionType = {
               end: musicianList.end,
             };
         };
+      case "TOGGLE_LIKE":
+        // 고민
+        const index = musicianList.list.findIndex(
+          (musician) => payload === musician.id
+        );
+        const likedMusician = {
+          ...musicianList.list[index],
+          song: {
+            ...musicianList.list[index].song,
+            isLike: !musicianList.list[index].song.isLike,
+          },
+        };
       case "SELECT_SONG":
-        return;
+        const newList = musicianList.list.map((musician) => {
+          musician.song.isPlaying =
+            musician.song.id === payload.id ? payload.status : false;
+          return musician;
+        });
+        return {
+          ...musicianList,
+          list: newList,
+          display: newList.slice(musicianList.page, musicianList.page + 10),
+        };
       case "PLAY_SONG":
         return;
       case "STOP_SONG":

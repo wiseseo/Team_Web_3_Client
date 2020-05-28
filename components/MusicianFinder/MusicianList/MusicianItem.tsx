@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from 'styled-components';
-
+import PlayButton from '../../AudioPlayer/PlayButton';
 
 interface Song {
     id: string;
@@ -24,6 +24,9 @@ interface Song {
   }
   interface Props {
     musician: Musician;
+    toggleLike: (id: string) => void;
+    selectSong: (id: string, status: boolean, musician: Musician) => void;
+    currentSong: Song;
   }
 
 const Card = styled.div`
@@ -54,6 +57,10 @@ const AlbumCover = styled.div`
     background-repeat: no-repeat;
     background-position: center center;
     background-size : contain;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `;
 
 const MusicianContainer = styled.div`
@@ -162,13 +169,21 @@ const Likes = styled.div`
   margin-left : 24px;
 `;
 
-const MusicianItem = ( {musician }: Props) => { 
-    //const tags = ["스포츠", "기술", "게임", "시즌"];
+const MusicianItem = ( {musician, toggleLike, selectSong, currentSong }: Props) => { 
+    
     return (
         <Card>
             <PlayerContainer>
                 <AlbumCover src={musician.song.cover_url}> 
-
+                <PlayButton
+                  playAudio={() =>
+                    selectSong(musician.song.id, !musician.song.isPlaying, musician)
+                  }
+                  size={64}
+                  status={
+                    currentSong.id === musician.song.id ? currentSong.isPlaying : false
+                  }
+                />
                 </AlbumCover>
             </PlayerContainer>
             <MusicianContainer>
@@ -196,7 +211,7 @@ const MusicianItem = ( {musician }: Props) => {
             </MusicianContainer>
             <LinkContainer>
                 <ProfileButton>뮤지션 보기</ProfileButton>
-                <Likes>
+                <Likes onClick={() => toggleLike(musician.id)}>
                   <img src="/static/like.png" alt="like" />
                 </Likes>
             </LinkContainer>
