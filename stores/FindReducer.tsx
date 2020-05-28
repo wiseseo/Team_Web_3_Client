@@ -57,7 +57,7 @@ type ActionType = {
             };
         };
       case "TOGGLE_LIKE":
-        // 고민
+        // 미정입니다.
         const index = musicianList.list.findIndex(
           (musician) => payload === musician.id
         );

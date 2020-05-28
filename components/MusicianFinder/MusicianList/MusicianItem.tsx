@@ -179,7 +179,7 @@ const MusicianItem = ( {musician, toggleLike, selectSong, currentSong }: Props) 
                   playAudio={() =>
                     selectSong(musician.song.id, !musician.song.isPlaying, musician)
                   }
-                  size={64}
+                  size={48}
                   status={
                     currentSong.id === musician.song.id ? currentSong.isPlaying : false
                   }
