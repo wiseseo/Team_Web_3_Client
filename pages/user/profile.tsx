@@ -1,8 +1,6 @@
 import * as React from "react";
 import styled from 'styled-components';
-import Header from "../../components/Header"
 import EditProfile from '../../components/EditProfile';
-import Footer from '../../components/Footer';
 
 const MainContainer = styled.div`
   display: flex;

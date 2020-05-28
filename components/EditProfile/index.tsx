@@ -184,7 +184,7 @@ const PhoneNumberInput = styled.input`
 
     background: #121212;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border : none;
+    border : ${(props:{hasValidPN: boolean}) => props.hasValidPN ? 'none' : '1px solid #C93E37'};
     border-radius: 0.5rem;
 
     color : #FFFFFF;
@@ -241,6 +241,11 @@ const RegistBtn = styled.input.attrs({
     &:focus { outline:none; }
 `;*/
 
+const Warning = styled.div`
+    color: #C93E37;
+    font-size : 0.6rem;
+`;
+
 const WithdrawalBtn = styled.button`
     width : 320px;
     height : 32px;
@@ -283,10 +288,18 @@ const EditProfile = (props: Props) => {
 
     const onChangePhoneNumber = e => {
         setPhoneNumber(e.target.value);
-        if(e.target.value=="") setValidPN(false);
+        /*if(e.target.value=="") setValidPN(false);
+        else setValidPN(true);*/
+        if(!isValidPN(e.target.value)) setValidPN(false);
         else setValidPN(true);
     };
 
+    const isValidPN = (value : string) : boolean => {
+        const regExp = /^\d{3}-\d{3,4}-\d{4}$/;
+        return regExp.test(value);
+    }
+
+    
     React.useEffect(() => {
         console.log(nickName);
         console.log(hasValidNN);
@@ -298,6 +311,7 @@ const EditProfile = (props: Props) => {
     React.useEffect(() => {
         console.log(phoneNumber);
         console.log(hasValidPN);
+        console.log(isValidPN(phoneNumber));
     }, [phoneNumber]);
 
     return(
@@ -321,24 +335,39 @@ const EditProfile = (props: Props) => {
                 <NickNameContainer>
                     <Label>닉네임</Label>
                     {!isNNClicked ? 
-                        (<NickNameBox onClick={()=>{setNNClicked(true); setValidNN(true);}}>
+                        (<NickNameBox onClick={()=>{setNNClicked(true);}}>
                             {nickName}
                         </NickNameBox>)
                         :
                         (<NickNameInput value={nickName} style={{fontSize: "0.875rem"}} onChange={onChangeNickName}/>)
                     } 
-                    <ModifyNNBtn hasValidNN={hasValidNN} onClick={()=>{ setNNClicked(false); setValidNN(false);} }/>
+                    <ModifyNNBtn 
+                        hasValidNN={hasValidNN} 
+                        onClick={()=>{ 
+                            if(hasValidNN) {
+                                setNNClicked(false); 
+                                setValidNN(false);
+                            }
+                            else console.log('No!');}}/>
                 </NickNameContainer>
                 <PhoneNumberContainer>
                     <Label>전화번호</Label>
                     {!isPNClicked ?
-                        (<PhoneNumberBox onClick={()=>{setPNClicked(true); setValidPN(true);}}>
+                        (<PhoneNumberBox onClick={()=>{setPNClicked(true);}}>
                             {phoneNumber}
                         </PhoneNumberBox>
                         ):
-                        (<PhoneNumberInput value={phoneNumber} style={{fontSize: "0.875rem"}} onChange={onChangePhoneNumber}/>)
+                        (<PhoneNumberInput value={phoneNumber} style={{fontSize: "0.875rem"}} onChange={onChangePhoneNumber} hasValidPN={hasValidPN}/>
+                        )
                     }
-                    <ModifyPNBtn hasValidPN={hasValidPN} onClick={()=>{setPNClicked(false); setValidPN(false);}}/>
+                    <ModifyPNBtn 
+                        hasValidPN={hasValidPN} 
+                        onClick={()=>{
+                            if(hasValidPN) {
+                            setPNClicked(false);
+                            setValidPN(false);
+                            }
+                            else console.log('No!');}}/>
                 </PhoneNumberContainer>
                 <WithdrawalBtn>회원탈퇴</WithdrawalBtn>
            </InfoContainer>
