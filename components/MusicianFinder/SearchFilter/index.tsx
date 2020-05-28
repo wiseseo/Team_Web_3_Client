@@ -1,6 +1,5 @@
 import * as React from "react";
 import styled from 'styled-components';
-//import Footer from '../Footer';
 
 interface Props {}
 
@@ -615,10 +614,11 @@ const SearchFilter= (props: Props) => {
             chosenPossible : true
           }
     ]]);
+
     const filterType = [{id:0, type:"선택해주세요"},{id:1, type:"분위기"},{id:2, type:"테마"},{id:3, type:"장르"}, {id:4, type:"악기"}];
     const [dropdownName, setDropDownName] = React.useState(0);
 
-    //const [filter, setFilter] = React.useState(-1);
+    
     const [sort, setSort] = React.useState<boolean>(true);
     
     const [selectTag, setSelectTag] = React.useState<boolean>(false);
@@ -626,7 +626,7 @@ const SearchFilter= (props: Props) => {
   
     const chosenTag = (filterNo,key) => {
   
-      if(key == 15){
+      if(key == tagList[filterNo].length-1 || key == tagList[filterNo].length){
         let newTagList = [...tagList[filterNo]];
         
         for(let i = 0 ; i<newTagList.length ; i++){
@@ -658,7 +658,7 @@ const SearchFilter= (props: Props) => {
   
     const releaseTag = (filterNo,key) => {
   
-      if(key == 15){
+      if(key == tagList[filterNo].length-1 || key == tagList[filterNo].length){
         let newTagList = [...tagList[filterNo]];
         
         for(let i = 0 ; i<newTagList.length ; i++){
@@ -687,10 +687,22 @@ const SearchFilter= (props: Props) => {
       
     }
   
-    console.log('Tag List : ',TagList);
+    console.log('TagList : ',TagList);
 
+    React.useEffect(()=>{
+        if(dropdownName!=0) {
+            appendTagList([]);
+            for(let i=0; i<tagList.length; i++) {
+                for(let j=0; j<tagList[i].length; j++){
+                    tagList[i][j].chosen = false;
+                    tagList[i][j].chosenPossible = true;
+                }
+            }
+        }
+        console.log(`${dropdownName} : ${TagList}`);
+    },[dropdownName]);
     
-    
+
     return (
         <FilterSection>
             <DropDown>
@@ -709,18 +721,20 @@ const SearchFilter= (props: Props) => {
                     (tagList[dropdownName-1].map((list, key)=>{
 
                         if(list.chosen == true) {
-                            return  <FilterTag key={key} onClick={() => {releaseTag(dropdownName-1,list.key)}} style={{color : "white", background: "#6865FC", border : "none"}}>{list.name}</FilterTag>
+                            return  <FilterTag key={key} onClick={() => {releaseTag(dropdownName-1,list.key)}} style={{color : "white", background: "#6865FC", border : "1px solid #6865FC"}}>{list.name}</FilterTag>
                         }
                         else if(list.chosenPossible == true){
                             return <FilterTag key={key} onClick={() => {chosenTag(dropdownName-1,list.key)}}>{list.name}</FilterTag>
                         }
                         else{
-                            return <FilterTag key={key} style={{color : "grey", cursor : "auto"}}>{list.name}</FilterTag>
+                            return <FilterTag key={key} style={{color : "#3E3E41", border: "1px solid #3E3E41", cursor : "auto",   marginRight : "16px", padding : "3px 15px"}}>{list.name}</FilterTag>
                         }
                     }))
                     :
                     <span></span>
                 }
+
+                
             </TagSection>
             <SortingSection>
                 <Sort isSelected={sort} onClick={()=>setSort(true)}>

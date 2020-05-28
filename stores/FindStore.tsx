@@ -756,6 +756,7 @@ type ActionType = {
   type:
     | "INIT_MUSICIANS"
     | "NEXT_MUSICIANS"
+    | "TOGGLE_LIKE"
     | "SELECT_SONG"
     | "PLAY_SONG"
     | "STOP_SONG";
