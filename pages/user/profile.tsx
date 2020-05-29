@@ -17,6 +17,16 @@ const MainContainer = styled.div`
 
 `;
 
+const Contents = styled.div `
+  display: flex;
+  flex-direction: column;
+  width : 1120px;
+  max-width : 1120px;
+  min-width : 765px;
+  @media only screen and (max-width: 1280px) {
+    width : 600px;
+  }
+`;
 const Title = styled.h1`
   margin : 0;
   font-size : 1.5rem;
@@ -24,15 +34,26 @@ const Title = styled.h1`
   /*background : grey;*/
   color: #ffffff;
   padding : 80px 400px 48px 0px;
-  margin-left : 50px;
   min-width : 765px;
+  margin-bottom : 20px;
 `;
+/*const Title = styled.h1`
+  margin : 0;
+  font-size : 1.5rem;
+  background: #040104;
+  /*background : grey;*/
+  /*color: #ffffff;
+  padding : 80px 400px 48px 0px;
+  /*min-width : 765px;*/
+/*`;*/
 
 const Profile: React.FC = () => {
   return (
     <MainContainer>
+      <Contents>
         <Title>프로필 편집</Title>
         <EditProfile/>
+      </Contents>
     </MainContainer>
   );
 };
