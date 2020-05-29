@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
+import Link from "next/link";
 import MusicianCard from "./../MusicianCard";
 import { MusicianContext } from "./../../stores/MusicianStore";
 import { SongContext } from "./../../stores/SongStore";
@@ -56,6 +57,13 @@ const Next = styled.div`
   position: absolute;
   right: 40px;
 `;
+
+const MoreButton = styled.div`
+  color: #e2e1e2;
+  font-size: 0.875rem;
+  cursor: pointer;
+`;
+
 const MusicianList = ({ title }: Props) => {
   const { musicianList, dispatch } = React.useContext(MusicianContext);
   const song = React.useContext(SongContext);
@@ -76,7 +84,11 @@ const MusicianList = ({ title }: Props) => {
     <Container>
       <Header>
         <Title>{title}</Title>
-        <div>더보기</div>
+        <Link href="/musician/find">
+          <MoreButton>
+            더보기
+          </MoreButton>
+        </Link>
       </Header>
       <Slider>
         <Back onClick={() => dispatch({ type: "PREV_MUSICIANS" })}>

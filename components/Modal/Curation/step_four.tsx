@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from 'styled-components';
 import Fixed from "../../ProgressBar/curationFixed";
+import Link from "next/link";
 
 const CurationContainer = styled.div`
   height : 100%;
@@ -359,7 +360,7 @@ const StepFour = ({nextButton, beforeButton, object}): React.ReactElement => {
 
             <CurationModalButtonLayout>
                 <BeforeButton onClick={() => {beforeButton(4, TagList)}}>이전으로</BeforeButton>
-                {selectTag == true ? (<NextButton onClick={()=>{nextButton(4, TagList)}} style={{background : "#6865FC", cursor : "pointer"}}>다음으로</NextButton>) : (<NextButton>다음으로</NextButton>)}
+                {selectTag == true ? (<Link href="/musician/find"><NextButton onClick={()=>{nextButton(4, TagList)}} style={{background : "#6865FC", cursor : "pointer"}}>다음으로</NextButton></Link>) : (<NextButton>다음으로</NextButton>)}
                 
             </CurationModalButtonLayout>
 
