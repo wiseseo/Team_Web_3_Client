@@ -32,6 +32,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 72px 80px;
+  position: relative;
 `;
 const Header = styled.div`
   display: flex;
@@ -47,8 +48,14 @@ const Slider = styled.ul`
   justify-content: space-between;
   align-items: center;
 `;
-const Back = styled.div``;
-const Next = styled.div``;
+const Back = styled.div`
+  position: absolute;
+  left: 40px;
+`;
+const Next = styled.div`
+  position: absolute;
+  right: 40px;
+`;
 const MusicianList = ({ title }: Props) => {
   const { musicianList, dispatch } = React.useContext(MusicianContext);
   const song = React.useContext(SongContext);
