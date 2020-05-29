@@ -1332,7 +1332,8 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
 
           <BeforeButton onClick={() => {beforeButton(2, stepTwoObj)}}>이전으로</BeforeButton>
           {
-          (stepTwoObj.workStage01 !== "" || stepTwoObj.workStage02 !== "" || stepTwoObj.workStage03 !== "")
+          // (stepTwoObj.workStage01 !== "" || stepTwoObj.workStage02 !== "" || stepTwoObj.workStage03 !== "")
+          1
           ?
           <AfterButton onClick={() => {nextButton(2, stepTwoObj)}} style={{cursor : "pointer", background : "#6865FC"}}>저장하고 다음으로</AfterButton>
           :

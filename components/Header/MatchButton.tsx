@@ -7,7 +7,7 @@ const MatchButton = () => {
 
   return (
     <>
-      <Curation/>
+      <Curation className="header"/>
     </>
   );
 };

@@ -17,7 +17,7 @@ export default class RootApp extends App {
                 <Head>
                     <title>Tuna!!</title>
                     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                    <style>{`body{margin:0;}`}</style>
+                    <style>{`body{margin:0; background-color : #040104}`}</style>
                 </Head>
                 <Component {...pageProps} />
                 <Layout/>

@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-
+import Curation from "../Modal/curation";
 const Container = styled.div`
   background: radial-gradient(
     50.08% 50.08% at 50% 49.92%,
@@ -23,14 +23,7 @@ const Position = styled.div`
   align-items: center;
   justify-content: center;
 `;
-const Button = styled.button`
-  background: linear-gradient(157.06deg, #6865fc 36.28%, #658dfc 100%);
-  border-radius: 8px;
-  border: none;
-  color: #fdfdff;
-  font-size: 1.5rem;
-  padding: 1rem 6rem;
-`;
+
 const Logo = styled.img``;
 const Text = styled.div`
   color: #b3b4be;
@@ -54,7 +47,7 @@ const Banner = (props: Props): React.ReactElement => {
         <Logo src="/static/tuna.png" alt="logo" />
         <Text>당신의 뮤지션은 누구?</Text>
         <Descript>뮤지션과 함께 커스터마이징 음악을 만들어보세요</Descript>
-        <Button>뮤지션 매칭하기</Button>
+        <Curation className="banner"/>
       </Position>
     </Container>
   );
