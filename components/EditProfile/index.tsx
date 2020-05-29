@@ -1,13 +1,15 @@
 import * as React from "react";
 import styled from 'styled-components';
+import Toast from './Toast';
 
 interface Props {}
 
 const Container = styled.div`
     display : flex;
+    flex-direction : column;
     width : 1120px;
     justify-content : center;
-    align-items : flex-start;
+    align-items : center;
 `;
 
 const Contents = styled.div`
@@ -277,6 +279,7 @@ const ChangeAlarm = ({ value }: { value: string }) => {
         </div>
     );
 }
+
 const EditProfile = (props: Props) => { 
     const [isNNClicked, setNNClicked] = React.useState<boolean>(false);
     const [isPNClicked, setPNClicked] = React.useState<boolean>(false);
@@ -287,6 +290,7 @@ const EditProfile = (props: Props) => {
     const [hasValidPN, setValidPN] = React.useState<boolean>(false);
 
     //const [isVisible, setIsVisible] = React.useState<boolean>(false);
+    const [isToastShow, setToastShow] = React.useState<boolean>(false);
 
     const onChangeNickName = e => {
         setNickName(e.target.value);
@@ -322,9 +326,23 @@ const EditProfile = (props: Props) => {
         console.log(isValidPN(phoneNumber));
     }, [phoneNumber]);
 
+    React.useEffect(() => {
+        const interval = setInterval(() => {
+            if (isToastShow) {
+                setToastShow(false);
+            }
+        }, 2000);
+        
+        return () => {
+            clearInterval(interval);
+        }
+
+        // eslint-disable-next-line
+    }, [isToastShow]);
+
     return(
         <Container>
-
+            {isToastShow && <Toast/>}
             <Contents>
             <ImgContainer>
                     <ImgBox>                
@@ -357,6 +375,7 @@ const EditProfile = (props: Props) => {
                                 if(hasValidNN) {
                                     setNNClicked(false); 
                                     setValidNN(false);
+                                    setToastShow(true);
                                 }
                                 else console.log('No!');}}/>
                     </NickNameContainer>
@@ -376,6 +395,7 @@ const EditProfile = (props: Props) => {
                                 if(hasValidPN) {
                                 setPNClicked(false);
                                 setValidPN(false);
+                                setToastShow(true);
                                 }
                                 else console.log('No!');}}/>
                     </PhoneNumberContainer>
