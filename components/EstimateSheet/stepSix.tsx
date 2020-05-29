@@ -303,7 +303,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
         }
     }
 
-    console.log(checkBoxList);
+    // console.log(checkBoxList);
     return (
         <>
         <EstimateUserInfoData>

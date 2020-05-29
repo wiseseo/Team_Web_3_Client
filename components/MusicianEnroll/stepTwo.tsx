@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import TwoThird from "../ProgressBar/twoThird";
+import {Tooltip} from "antd"
 interface Props {}
 
 const StepOneContainer = styled.div`
@@ -122,9 +123,12 @@ const FormContainerInput = styled.input`
 `;
 
 const FlowButtonLayout = styled.div`
-  padding : 0 5%;
-  padding-bottom : 10%;
+  padding-top : 10%;
+  clear: both;
+
 `;
+
+const TooltipOver = styled(Tooltip)``;
 
 const BeforeButton = styled.button`
   float : left;
@@ -778,14 +782,14 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
         newTagList[key-1].chosenPossible = true;
         setOneTagList(newTagList);
         setSelectOneTag(true);
-        setStepTwo({...stepTwoObj, themeKindNm : [newTagList[key-1].name]});
+        setStepTwo({...stepTwoObj, atmoKindNm : [newTagList[key-1].name]});
       }
       else{
         let newTagList = [...oneTagList];
         newTagList[key-1].chosen = true; 
         setOneTagList(newTagList);
         setSelectOneTag(true);
-        setStepTwo({...stepTwoObj, themeKindNm : stepTwoObj.themeKindNm.concat(newTagList[key-1].name)});
+        setStepTwo({...stepTwoObj, atmoKindNm : stepTwoObj.atmoKindNm.concat(newTagList[key-1].name)});
       }
     }
 
@@ -803,14 +807,14 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
         newTagList[key-1].chosenPossible = true;
         setTwoTagList(newTagList);
         setSelectTwoTag(true);
-        setStepTwo({...stepTwoObj, genreKindNm : [newTagList[key-1].name]});
+        setStepTwo({...stepTwoObj, themeKindNm : [newTagList[key-1].name]});
       }
       else{
         let newTagList = [...twoTagList];
         newTagList[key-1].chosen = true; 
         setTwoTagList(newTagList);
         setSelectTwoTag(true);
-        setStepTwo({...stepTwoObj, genreKindNm : stepTwoObj.genreKindNm.concat(newTagList[key-1].name)});
+        setStepTwo({...stepTwoObj, themeKindNm : stepTwoObj.themeKindNm.concat(newTagList[key-1].name)});
       }
     }
 
@@ -828,14 +832,14 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
         newTagList[key-1].chosenPossible = true;
         setThreeTagList(newTagList);
         setSelectThreeTag(true);
-        setStepTwo({...stepTwoObj, atmoKindNm : [newTagList[key-1].name]});
+        setStepTwo({...stepTwoObj, genreKindNm : [newTagList[key-1].name]});
       }
       else{
         let newTagList = [...threeTagList];
         newTagList[key-1].chosen = true; 
         setThreeTagList(newTagList);
         setSelectThreeTag(true);
-        setStepTwo({...stepTwoObj, atmoKindNm : stepTwoObj.atmoKindNm.concat(newTagList[key-1].name)});
+        setStepTwo({...stepTwoObj, genreKindNm : stepTwoObj.genreKindNm.concat(newTagList[key-1].name)});
       }
     }
 
@@ -903,7 +907,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
   
         setOneTagList(newTagList);
         setSelectOneTag(false);
-        setStepTwo({...stepTwoObj, themeKindNm : stepTwoObj.themeKindNm.filter(e => e !== newTagList[key-1].name)});
+        setStepTwo({...stepTwoObj, atmoKindNm : stepTwoObj.atmoKindNm.filter(e => e !== newTagList[key-1].name)});
       }
       else{
         let newTagList = [...oneTagList];
@@ -913,7 +917,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
         if(oneTagList.find(e => e.chosen == true) == undefined){
           setSelectOneTag(false);
         }
-        setStepTwo({...stepTwoObj, themeKindNm : stepTwoObj.themeKindNm.filter(e => e !== newTagList[key-1].name)});
+        setStepTwo({...stepTwoObj, atmoKindNm : stepTwoObj.atmoKindNm.filter(e => e !== newTagList[key-1].name)});
       }
     }
     else if(idx === 2){
@@ -927,7 +931,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
   
         setTwoTagList(newTagList);
         setSelectTwoTag(false);
-        setStepTwo({...stepTwoObj, genreKindNm : stepTwoObj.genreKindNm.filter(e => e !== newTagList[key-1].name)});
+        setStepTwo({...stepTwoObj, themeKindNm : stepTwoObj.themeKindNm.filter(e => e !== newTagList[key-1].name)});
   
       }
       else{
@@ -939,7 +943,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
           setSelectTwoTag(false);
         }
     
-        setStepTwo({...stepTwoObj, genreKindNm : stepTwoObj.genreKindNm.filter(e => e !== newTagList[key-1].name)});
+        setStepTwo({...stepTwoObj, themeKindNm : stepTwoObj.themeKindNm.filter(e => e !== newTagList[key-1].name)});
       }
     }
     else if(idx === 3){
@@ -953,7 +957,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
   
         setThreeTagList(newTagList);
         setSelectThreeTag(false);
-        setStepTwo({...stepTwoObj, atmoKindNm : stepTwoObj.atmoKindNm.filter(e => e !== newTagList[key-1].name)});
+        setStepTwo({...stepTwoObj, genreKindNm : stepTwoObj.genreKindNm.filter(e => e !== newTagList[key-1].name)});
   
       }
       else{
@@ -965,7 +969,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
           setSelectThreeTag(false);
         }
     
-        setStepTwo({...stepTwoObj, atmoKindNm : stepTwoObj.atmoKindNm.filter(e => e !== newTagList[key-1].name)});
+        setStepTwo({...stepTwoObj, genreKindNm : stepTwoObj.genreKindNm.filter(e => e !== newTagList[key-1].name)});
       }
     }
     else if(idx === 4){
@@ -996,6 +1000,57 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
     
   }
 
+  const refresh = (idx) => {
+    if(idx === 1){
+      let newTagList = [...oneTagList];
+        
+        for(let i = 0 ; i<newTagList.length ; i++){
+          newTagList[i].chosen = false;
+          newTagList[i].chosenPossible = true;
+        }
+  
+        setOneTagList(newTagList);
+        setSelectOneTag(false);
+        setStepTwo({...stepTwoObj, atmoKindNm : []});
+  
+    }
+    else if(idx === 2){
+      let newTagList = [...twoTagList];
+        
+        for(let i = 0 ; i<newTagList.length ; i++){
+          newTagList[i].chosen = false;
+          newTagList[i].chosenPossible = true;
+        }
+  
+        setTwoTagList(newTagList);
+        setSelectTwoTag(false);
+        setStepTwo({...stepTwoObj, themeKindNm : []});
+    }
+    else if(idx === 3){
+      let newTagList = [...threeTagList];
+        
+        for(let i = 0 ; i<newTagList.length ; i++){
+          newTagList[i].chosen = false;
+          newTagList[i].chosenPossible = true;
+        }
+  
+        setThreeTagList(newTagList);
+        setSelectThreeTag(false);
+        setStepTwo({...stepTwoObj, genreKindNm : []});
+    }
+    else if(idx === 4){
+      let newTagList = [...fourTagList];
+        
+        for(let i = 0 ; i<newTagList.length ; i++){
+          newTagList[i].chosen = false;
+          newTagList[i].chosenPossible = true;
+        }
+  
+        setFourTagList(newTagList);
+        setSelectFourTag(false);
+        setStepTwo({...stepTwoObj, instruKindNm : []});
+    }
+  }
   React.useEffect(() => {
     setStepTwo(object);
 
@@ -1181,11 +1236,11 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
       }
     }
   }, [object]) 
-  console.log("0 : ", stepTwoObj.spclNoteKindNm, tagList);
-  console.log("1 : ", stepTwoObj.themeKindNm, oneTagList);
-  console.log("2 : ", stepTwoObj.genreKindNm, twoTagList);
-  console.log("3 : ", stepTwoObj.atmoKindNm, threeTagList);
-  console.log("4 : ", stepTwoObj.instruKindNm, fourTagList);
+  // console.log("0 : ", stepTwoObj.spclNoteKindNm, tagList);
+  console.log("1 : ", stepTwoObj.atmoKindNm, stepTwoObj.atmoKindNm.length,oneTagList);
+  // console.log("2 : ", stepTwoObj.genreKindNm, twoTagList);
+  // console.log("3 : ", stepTwoObj.atmoKindNm, threeTagList);
+  // console.log("4 : ", stepTwoObj.instruKindNm, fourTagList);
   console.log(stepTwoObj);
   return (
   <>
@@ -1222,36 +1277,127 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
 
           <FormContainerSubDesc>1. 작업 가능한 표현 분위기를 선택해주세요.</FormContainerSubDesc>
           {oneTagList.map((list, key) => {
-                if(list.chosen == true){
-                  return  <CurationTag key={key} onClick={() => {releaseTag(list.key, 1)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
-                }
-                else if(list.chosenPossible == true){
-                  return <CurationTag key={key} onClick={() => {chosenTag(list.key, 1)}}>{list.name}</CurationTag>
+                if(stepTwoObj.atmoKindNm.length === 0){
+                  return (
+                  <TooltipOver placement="top" title="대표태그">
+                    <CurationTag key={key} onClick={() => {chosenTag(list.key, 1)}}>{list.name}</CurationTag>
+                  </TooltipOver>
+                  )
                 }
                 else{
-                  return <CurationTag key={key} style={{color : "#3E3E41", cursor : "auto", border : "1px solid #3E3E41"}}>{list.name}</CurationTag>
+                  if(list.chosen == true){
+                  
+                    if(stepTwoObj.atmoKindNm[0] === list.name){
+                      return  (
+                        <TooltipOver placement="top" title="대표태그">
+                          <CurationTag key={key} onClick={() => {releaseTag(list.key, 1)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
+                        </TooltipOver>
+                      ) 
+                    }
+                    else{
+                      return  <CurationTag key={key} onClick={() => {releaseTag(list.key, 1)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
+                    }
+                    
+                  }
+                  else if(list.chosenPossible == true){
+                    return <CurationTag key={key} onClick={() => {chosenTag(list.key, 1)}}>{list.name}</CurationTag>
+                  }
+                  else{
+                    return <CurationTag key={key} style={{color : "#3E3E41", cursor : "auto", border : "1px solid #3E3E41"}}>{list.name}</CurationTag>
+                  }
                 }
                 
+                
           })}
+          <div style={{display : "flex", flexDirection : "row", marginTop : 5}}>
+            <img
+              onClick={() => {refresh(1)}}
+              src="/static/refresh.png"
+              alt="refresh"
+              style={{
+                  width : 24,
+                  height : 24,
+                  cursor : "pointer",
+              }}
+            />
+            <div style={{display : "table", marginLeft : 10}}>
+              <span style={{fontSize : "0.875rem", fontWeight : "bold", color : "#4C4C50", display : "table-cell", verticalAlign:"middle", height: "28px"}}>
+                다시선택
+              </span>
+            </div>
+          </div>
+          
 
           <FormContainerSubDesc>2. 작업 가능한 테마를 선택해주세요.</FormContainerSubDesc>
           {twoTagList.map((list, key) => {
-                if(list.chosen == true){
-                  return  <CurationTag key={key} onClick={() => {releaseTag(list.key, 2)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
-                }
-                else if(list.chosenPossible == true){
-                  return <CurationTag key={key} onClick={() => {chosenTag(list.key, 2)}}>{list.name}</CurationTag>
+                if(stepTwoObj.themeKindNm.length === 0){
+                  return (
+                  <TooltipOver placement="top" title="대표태그">
+                    <CurationTag key={key} onClick={() => {chosenTag(list.key, 2)}}>{list.name}</CurationTag>
+                  </TooltipOver>
+                  )
                 }
                 else{
-                  return <CurationTag key={key} style={{color : "#3E3E41", cursor : "auto", border : "1px solid #3E3E41"}}>{list.name}</CurationTag>
+                  if(list.chosen == true){
+                    if(stepTwoObj.themeKindNm[0] === list.name){
+                      return  (
+                        <TooltipOver placement="top" title="대표태그">
+                          <CurationTag key={key} onClick={() => {releaseTag(list.key, 2)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
+                        </TooltipOver>
+                      ) 
+                    }
+                    else{
+                      return  <CurationTag key={key} onClick={() => {releaseTag(list.key, 2)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
+                    }
+                  }
+                  else if(list.chosenPossible == true){
+                    return <CurationTag key={key} onClick={() => {chosenTag(list.key, 2)}}>{list.name}</CurationTag>
+                  }
+                  else{
+                    return <CurationTag key={key} style={{color : "#3E3E41", cursor : "auto", border : "1px solid #3E3E41"}}>{list.name}</CurationTag>
+                  }
                 }
                 
+                
           })}
-          
+          <div style={{display : "flex", flexDirection : "row", marginTop : 5}}>
+          <img
+              onClick={() => {refresh(2)}}
+              src="/static/refresh.png"
+              alt="refresh"
+              style={{
+                  width : 24,
+                  height : 24,
+                  cursor : "pointer",
+              }}
+            />
+            <div style={{display : "table", marginLeft : 10}}>
+              <span style={{fontSize : "0.875rem", fontWeight : "bold", color : "#4C4C50", display : "table-cell", verticalAlign:"middle", height: "28px"}}>
+                다시선택
+              </span>
+            </div>
+          </div>
+
           <FormContainerSubDesc>3. 작업 가능한 장르를 선택해주세요.</FormContainerSubDesc>
           {threeTagList.map((list, key) => {
+              if(stepTwoObj.genreKindNm.length === 0){
+                return (
+                <TooltipOver placement="top" title="대표태그">
+                  <CurationTag key={key} onClick={() => {chosenTag(list.key, 3)}}>{list.name}</CurationTag>
+                </TooltipOver>
+                )
+              }
+              else{
                 if(list.chosen == true){
-                  return  <CurationTag key={key} onClick={() => {releaseTag(list.key, 3)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
+                  if(stepTwoObj.genreKindNm[0] === list.name){
+                    return (
+                    <TooltipOver placement="top" title="대표태그">
+                      <CurationTag key={key} onClick={() => {releaseTag(list.key, 3)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
+                    </TooltipOver>)
+                  }
+                  else{
+                    return  <CurationTag key={key} onClick={() => {releaseTag(list.key, 3)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
+                  }
                 }
                 else if(list.chosenPossible == true){
                   return <CurationTag key={key} onClick={() => {chosenTag(list.key, 3)}}>{list.name}</CurationTag>
@@ -1259,22 +1405,78 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
                 else{
                   return <CurationTag key={key} style={{color : "#3E3E41", cursor : "auto", border : "1px solid #3E3E41"}}>{list.name}</CurationTag>
                 }
+              }
+                
                 
           })}
 
+          <div style={{display : "flex", flexDirection : "row", marginTop : 5}}>
+          <img
+              onClick={() => {refresh(3)}}
+              src="/static/refresh.png"
+              alt="refresh"
+              style={{
+                  width : 24,
+                  height : 24,
+                  cursor : "pointer",
+              }}
+            />
+            <div style={{display : "table", marginLeft : 10}}>
+              <span style={{fontSize : "0.875rem", fontWeight : "bold", color : "#4C4C50", display : "table-cell", verticalAlign:"middle", height: "28px"}}>
+                다시선택
+              </span>
+            </div>
+          </div>
+
           <FormContainerSubDesc>4. 작업에 사용 가능한 악기를 선택해주세요.</FormContainerSubDesc>
           {fourTagList.map((list, key) => {
-                if(list.chosen == true){
-                  return  <CurationTag key={key} onClick={() => {releaseTag(list.key, 4)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
-                }
-                else if(list.chosenPossible == true){
-                  return <CurationTag key={key} onClick={() => {chosenTag(list.key, 4)}}>{list.name}</CurationTag>
+            if(stepTwoObj.instruKindNm.length === 0){
+              return (
+              <TooltipOver placement="top" title="대표태그">
+                <CurationTag key={key} onClick={() => {chosenTag(list.key, 4)}}>{list.name}</CurationTag>
+              </TooltipOver>
+              )
+            }
+            else{
+              if(list.chosen == true){
+                if(stepTwoObj.instruKindNm[0] === list.name){
+                  return (
+                    <TooltipOver placement="top" title="대표태그">
+                      <CurationTag key={key} onClick={() => {releaseTag(list.key, 4)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
+                    </TooltipOver>
+                  )
                 }
                 else{
-                  return <CurationTag key={key} style={{color : "#3E3E41", cursor : "auto", border : "1px solid #3E3E41"}}>{list.name}</CurationTag>
+                  return  <CurationTag key={key} onClick={() => {releaseTag(list.key, 4)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
                 }
+              }
+              else if(list.chosenPossible == true){
+                return <CurationTag key={key} onClick={() => {chosenTag(list.key, 4)}}>{list.name}</CurationTag>
+              }
+              else{
+                return <CurationTag key={key} style={{color : "#3E3E41", cursor : "auto", border : "1px solid #3E3E41"}}>{list.name}</CurationTag>
+              }
+              
+            }
                 
           })}
+          <div style={{display : "flex", flexDirection : "row", marginTop : 5}}>
+          <img
+              onClick={() => {refresh(4)}}
+              src="/static/refresh.png"
+              alt="refresh"
+              style={{
+                  width : 24,
+                  height : 24,
+                  cursor : "pointer",
+              }}
+            />
+            <div style={{display : "table", marginLeft : 10}}>
+              <span style={{fontSize : "0.875rem", fontWeight : "bold", color : "#4C4C50", display : "table-cell", verticalAlign:"middle", height: "28px"}}>
+                다시선택
+              </span>
+            </div>
+          </div>
         </FormContainerRight>
       </FormContainer>
 

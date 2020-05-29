@@ -2,7 +2,9 @@ import * as React from "react";
 import styled from 'styled-components';
 
 const CurationContainer = styled.div`
-  height: 45vh;
+  height : 100%;
+  background : #121212;
+  border-radius: 8px;
 `;
 
 const CurationModalLogo = styled.div`
@@ -43,7 +45,6 @@ const CurationModalDescription = styled.div`
 `;
 
 const CurationModalButton = styled.div`
-  padding-top : 40px;
   margin: 0 10%;
 `;
 

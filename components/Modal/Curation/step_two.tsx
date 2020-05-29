@@ -3,7 +3,9 @@ import Half from "../../ProgressBar/half";
 import styled from 'styled-components';
 
 const CurationContainer = styled.div`
-  height: 45vh;
+  height : 100%;
+  background : #121212;
+  border-radius: 8px;
 `;
 
 const CurationModalGray = styled.div`
@@ -311,7 +313,7 @@ const StepTwo = ({nextButton, beforeButton, object}): React.ReactElement=> {
                   alt="alert"
                   style={{
                     position: "relative",
-                    top: "1vh",
+                    top: "0.3vh",
                     right: "0.3vh"
                   }}
                   />

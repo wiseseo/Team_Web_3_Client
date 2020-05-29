@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from 'styled-components';
-import {Modal} from 'react-responsive-modal';
+import {Modal} from 'antd';
 import { CurationContext } from "./../../stores/CurationStore";
 
 import Main from "./Curation/main";
@@ -18,9 +18,28 @@ background: transparent;
   padding: 0.4em 2em;
   cursor: pointer;
   min-width: fit-content;
-  float: right;
 `;
 
+const ModalOver = styled(Modal)`
+  &&{
+    .ant-modal-close {
+      color : #93949C;
+    };
+    .ant-modal-content {
+      background-color : #181818;
+      fill : dimgray;
+      width : 800px;
+      height: 472px;
+      padding : 0;
+      border-radius : 8px;
+    };
+    .ant-modal-body {
+      padding : 0;
+      height: 100%;
+    }
+  }
+
+`;
 const BannerButton = styled.button`
     background: linear-gradient(157.06deg, #6865fc 36.28%, #658dfc 100%);
     border-radius: 8px;
@@ -32,7 +51,7 @@ const BannerButton = styled.button`
 `;
 const Curation = ({className}): React.ReactElement => {
 
-  const [open, setOpen] = React.useState<boolean>(false);
+  const [open, setOpen] = React.useState<any>(false);
   const [curationStep, setStep] = React.useState<number>(1);
 
   const tags = React.useContext(CurationContext);
@@ -87,89 +106,57 @@ const Curation = ({className}): React.ReactElement => {
     setStep(curationStep-1);
   }
   if(curationStep == 1){
-    stepLayout = <Modal open={open} onClose={onCloseModal} center
-    styles={{
-        closeButton : {
-            fill : "dimgray"
-        }, 
-        modal : {
-            width : "800px",
-            height: "472px",
-            padding : 0,
-            borderRadius : 8,
-            minWidth : 500
-        }
-            }}>
+    stepLayout = <ModalOver visible={open} onOk={onCloseModal} onCancel={onCloseModal}
+    footer={null}
+    width={800}
+    style={{ top: 130 }}
+    >
         <Main nextButton={nextButton}/>
-    </Modal>
+    </ModalOver>
 
   }
   else if(curationStep == 2){
-    stepLayout = <Modal open={open} onClose={onCloseModal} center
-    styles={{
-        closeButton : {
-            fill : "dimgray"
-        }, 
-        modal : {
-            minWidth : "800px",
-            height: "472px",
-            padding : 0,
-            borderRadius : 8
-        }
-            }}>
+    stepLayout = <ModalOver visible={open} onOk={onCloseModal}onCancel={onCloseModal}
+    footer={null}
+    width={800}
+    style={{ top: 130 }}
+    >
         <StepOne nextButton={nextButton} beforeButton={beforeButton} object={tags.tags.stepOne_Tag}/>
-    </Modal>
+    </ModalOver>
   }
   else if(curationStep == 3){
-    stepLayout = <Modal open={open} onClose={onCloseModal} center
-    styles={{
-        closeButton : {
-            fill : "dimgray"
-        }, 
-        modal : {
-            minWidth : "800px",
-            height: "472px",
-            padding : 0,
-            borderRadius : 8
-        }
-            }}>
+    stepLayout =  <ModalOver visible={open} onOk={onCloseModal} onCancel={onCloseModal}
+    footer={null}
+    width={800}
+    style={{ top: 130 }}
+    >
         <StepTwo nextButton={nextButton} beforeButton={beforeButton} object={tags.tags.stepTwo_Tag}/>
-    </Modal>
+    </ModalOver>
   }
   else if(curationStep == 4){
-    stepLayout = <Modal open={open} onClose={onCloseModal} center
-    styles={{
-        closeButton : {
-            fill : "dimgray"
-        }, 
-        modal : {
-            minWidth : "800px",
-            height: "472px",
-            padding : 0,
-            borderRadius : 8
-        }
-            }}>
+    stepLayout =  <ModalOver visible={open} onOk={onCloseModal} onCancel={onCloseModal}
+    footer={null}
+    width={800}
+    style={{ top: 130 }}
+    >
         <StepThree nextButton={nextButton} beforeButton={beforeButton} object={tags.tags.stepThree_Tag}/>
-    </Modal>
+    </ModalOver>
   }
   else if(curationStep == 5){
-    stepLayout = <Modal open={open} onClose={onCloseModal} center
-    styles={{
-        closeButton : {
-            fill : "dimgray"
-        }, 
-        modal : {
-            minWidth : "800px",
-            height: "472px",
-            padding : 0,
-            borderRadius : 8
-        }
-            }}>
+    stepLayout =  <ModalOver visible={open} onOk={onCloseModal} onCancel={onCloseModal}
+    footer={null}
+    width={800}
+    style={{ top: 130 }}
+    >
         <StepFour nextButton={nextButton} beforeButton={beforeButton} object={tags.tags.stepFour_Tag}/>
-    </Modal>
+    </ModalOver>
   }
   else{
-    stepLayout = <Modal open={open} onClose={onCloseModal}/>
+    stepLayout = <ModalOver visible={open} onCancel={onCloseModal}
+    footer={null}
+    width={800}
+    style={{ top: 130 }}
+    />
     console.log('final Tags : ',tags.tags)
   }
 

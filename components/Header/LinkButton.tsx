@@ -2,21 +2,47 @@ import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import Login from "../Login";
-import {Modal} from 'react-responsive-modal';
-
+import {Modal} from 'antd';
 interface Props {
   text: string,
   type: string
 }
 
-const ModalOver = styled(Modal)``;
+const ModalOver = styled(Modal)`
+  
+  &&{
+    .ant-modal-root {
+      font-size : 12rem;
+      .ant-modal-mask {
+        .ant-modal-wrap {
+          min-width : 1300px;
+        }
+      }
+    };
+    .ant-modal-close {
+      color : #93949C;
+    };
+    .ant-modal-content {
+      background-color : #181818;
+      fill : dimgray;
+      padding : 0;
+      height : 424px;
+      border-radius: 8px;
+    };
+    .ant-modal-body {
+      padding : 0;
+      height: 100%;
+    };
+  }
+
+`;
+
 const Button = styled.div`
   color: #b3b4be;
   font-size: 1rem;
   cursor: pointer;
   padding: 0.4em 2em;
   min-width: fit-content;
-  float: right;
 `;
 
 const LinkButton: React.FC<Props> = ({ text, type }) => {
@@ -47,8 +73,12 @@ const LinkButton: React.FC<Props> = ({ text, type }) => {
       <Button onClick={onOpenModal}>
           {text}
       </Button>
-      <ModalOver open={open} onClose={onCloseModal} center styles={{closeButton : {fill : "dimgray"}}}> 
-        
+      <ModalOver visible={open} onOk={onCloseModal} onCancel={onCloseModal}
+        footer={null}
+        width={368}
+      
+        style={{ top: 130, minWidth : 368 }}
+        >
         <Login onCloseModal={onCloseModal}/>
 
       </ModalOver>

@@ -3,24 +3,15 @@ import styled from 'styled-components';
 
 interface Props {}
 
-const FixedContainer = styled.div`
-    position : absolute;
-    bottom : 0px;
-    width : 100%;
+const Container = styled.div`
+    margin : 1% 0;
 `;
 
-const FixedPercent = styled.div`
-    width: 100%;
-    color: #6865FC;
-    font-size:0.75rem;
-    text-align : center;
-`;
-
-const FixedProgressBar = styled.div`
+const ProgressBar = styled.div`
     width : 100%;
     height: 8px;
 `;
-const FixedPro_One = styled.div`
+const Pro_One = styled.div`
     width : 100%;
     float : left;
     background : linear-gradient(173.96deg, #6865FC 36.28%, #658DFC 100%);
@@ -28,15 +19,14 @@ const FixedPro_One = styled.div`
     height: 100%;
 `;
 
-
 const Fixed = (props: Props) => {
     return <>
-        <FixedContainer>
-            <FixedPercent>100%</FixedPercent>
-            <FixedProgressBar>
-                <FixedPro_One/>
-            </FixedProgressBar>
-        </FixedContainer>
+        <Container>
+            <ProgressBar>
+                <Pro_One/>
+
+            </ProgressBar>
+        </Container>
     </>
 };
 

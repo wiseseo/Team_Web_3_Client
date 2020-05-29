@@ -7,16 +7,16 @@ import LinkButton from "./LinkButton";
 interface Props {}
 
 const HeaderContainer = styled.header`
-  display: flex;
+  
   background: #040104;
   align-items: center;
   padding: 2em 5em;
-  justify-content: center;
+  width : 100%;
+  max-width : 1300px;
+  margin : 0 auto;
+  display : flex;
 `;
 
-const HeaderRightBtn = styled.div`
-  min-width: 300px;
-`;
 const Header = (props: Props): React.ReactElement => {
   return (
     <HeaderContainer>

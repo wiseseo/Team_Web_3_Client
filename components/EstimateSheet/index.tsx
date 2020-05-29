@@ -1,6 +1,5 @@
 import * as React from "react";
 import styled from "styled-components";
-import Footer from "../../components/Footer";
 
 import StepOne from "./stepOne";
 import StepTwo from "./stepTwo";
@@ -169,8 +168,7 @@ const EstimateSheet = (props: Props) => {
                 {stepLayout}
 
             </EstimateUserInfo>
-            
-            <Footer/>
+        
         </EstimateContainer>
         </>
     );
