@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import OneThird from "../ProgressBar/oneThird";
+import Fixed from "../ProgressBar/fixed";
 interface Props {}
 
 const StepOneContainer = styled.div`
@@ -98,11 +98,11 @@ const FormContainerRadio = styled.input`
 
   &:checked + ${FormContainerRadioLabel}:after {
     border-radius: 11px;
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     position: absolute;
-    top: 10px;
-    left: 11px;
+    top: 9px;
+    left: 10px;
     content: " ";
     display: block;
     background: #6865FC;
@@ -139,7 +139,7 @@ const FormContainerInput = styled.input`
   border : none;
   line-height : 20px;
   width : 20%;
-  height : 20px;
+  height : 32px;
   margin-top : 2%;
   &&{
     ::placeholder {
@@ -153,8 +153,9 @@ const FormContainerInput = styled.input`
 `;
 
 const FlowButtonLayout = styled.div`
-  padding : 0 5%;
-  padding-bottom : 10%;
+  padding-top : 10%;
+  clear: both;
+
 `;
 
 const BeforeButton = styled.button`
@@ -199,8 +200,8 @@ const StepThree = ({ nextButton, beforeButton, object }) => {
   return (
   <>
     <StepOneContainer>
-      <StepOneTitle><span style={{fontWeight : "bold"}}>STEP2</span> 작업 방식</StepOneTitle>
-      <OneThird/>
+      <StepOneTitle><span style={{fontWeight : "bold"}}>STEP3</span> 가격옵션</StepOneTitle>
+      <Fixed/>
       <StepOneNeeds style={{float : "right"}}><span style={{color : "#6865FC"}}>*</span>는 필수입니다.</StepOneNeeds>
       
       <FormContainer>

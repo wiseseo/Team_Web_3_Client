@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 const LoginContainer = styled.div`
-  height: 45vh;
+  height : 100%;
+  background : #121212;
+  border-radius: 8px;
 `;
 
 const LoginModalLogo = styled.div`
@@ -35,13 +37,13 @@ const LoginModalDescription = styled.div`
 `;
 
 const LoginModalButton = styled.div`
-  padding-top : 10%;
+  padding-top : 16px;
   margin: 0 10%;
 `;
 
 const LoginModalButtonLayout = styled.div`
   text-align : center;
-  height: 5vh;
+  height: 40px;
   margin-bottom : 16px;
 `;
 
@@ -146,10 +148,10 @@ const Login = (): React.ReactElement => {
 
           <LoginModalButtonLayout>
               
-                <a style={NaverButtonStyled} href={"http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google"}>
+                <button style={NaverButtonStyled} >
                   <ImageStyled src="/static/naver.png"/>
                   네이버 계정으로 로그인
-                </a>
+                </button>
               
           </LoginModalButtonLayout>
 

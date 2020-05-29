@@ -13,7 +13,9 @@ const EnrollContainer = styled.div`
     font-style: normal;
     padding: 0 5em;
     max-width : 1300px;
+    min-width : 950px;
     margin : 0 auto;
+    width : 100%;
 `;
 const EnrollTitle = styled.div`
     

@@ -2,7 +2,9 @@ import * as React from "react";
 import styled from 'styled-components';
 
 const LoginContainer = styled.div`
-  height: 45vh;
+  height : 100%;
+  background : #121212;
+  border-radius: 8px;
 `;
 
 const LoginModalLogo = styled.div`
@@ -36,13 +38,13 @@ const LoginModalDescription = styled.div`
 `;
 
 const LoginModalButton = styled.div`
-  padding-top : 10%;
+  padding-top : 60px;
   margin: 0 10%;
 `;
 
 const LoginModalButtonLayout = styled.div`
   text-align : center;
-  height: 5vh;
+  height: 40px;
   margin-bottom : 16px;
 `;
 

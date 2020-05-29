@@ -293,7 +293,7 @@ const index = ({nextButton , object}): React.ReactElement => {
         }
     }
 
-    console.log(checkBoxList);
+    // console.log(checkBoxList);
     return (
         <>
         <EstimateUserInfoData>

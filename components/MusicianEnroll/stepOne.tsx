@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import OneThird from "../ProgressBar/oneThird";
-import Enroll from "../../pages/musician/enroll";
+
 const StepOneContainer = styled.div`
   width : 100%;
   background: #040104;
@@ -40,7 +40,7 @@ const FormContainerTitle = styled.div`
 
 const FormContainerInput = styled.input`
   float : right;
-  width : 70%;
+  width : 73%;
   color : #B3B4BE;
   background: #121212;
   border-radius: 8px;
@@ -60,7 +60,7 @@ const FormContainerInput = styled.input`
 
 const FormContainerTextarea = styled.textarea`
   float : right;
-  width : 70%;
+  width : 73%;
   color : #B3B4BE;
   background: #121212;
   border-radius: 8px;
@@ -179,8 +179,7 @@ const FormContainerSnsName = styled.div`
 `;
 
 const FlowButtonLayout = styled.div`
-  padding : 0 5%;
-  padding-bottom : 10%;
+  padding-top : 10%;
   clear: both;
 
 `;
@@ -574,13 +573,13 @@ const StepOne = ({ nextButton, object }) => {
               </FormContainerFixLayout>
 
               {value.data === "stopped" ? 
-              <FormContainerInput disabled style={{marginBottom : "3%", width: "40%", display : "none"}} key={idx}/> 
+              <FormContainerInput disabled style={{marginBottom : "3%", width: "43%", display : "none"}} key={idx}/> 
               :
                 (value.fixFlag ?
-                  <FormContainerInput defaultValue={value.data} disabled style={{marginBottom : "3%", width: "40%"}} key={idx}/> 
+                  <FormContainerInput defaultValue={value.data} disabled style={{marginBottom : "3%", width: "43%"}} key={idx}/> 
                   : 
                   // 입력 가능한 폼 onChange!!
-                  <FormContainerInput defaultValue={value.data} style={{marginBottom : "3%", width: "40%"}} key={idx} onChange={e => {
+                  <FormContainerInput defaultValue={value.data} style={{marginBottom : "3%", width: "43%"}} key={idx} onChange={e => {
                     
                     let inputArr = [...stepOneObj.addUrl];
                     
@@ -645,7 +644,7 @@ const StepOne = ({ nextButton, object }) => {
         <div style={{position : "relative", top: "-3vh"}}>
           <FormContainerSnsLayout> 
 
-            <FormContainerInput defaultValue={stepOneObj.sns[0].id} placeholder="사용 계정을 입력하세요." style={{marginBottom : "3%", width : "46%", float : "right"}} onChange={e => {
+            <FormContainerInput defaultValue={stepOneObj.sns[0].id} placeholder="사용 계정을 입력하세요." style={{marginBottom : "3%", width : "49%", float : "right"}} onChange={e => {
               let newArr = [...stepOneObj.sns];
               newArr[0].id = e.target.value
               setStepOne({...stepOneObj, sns : newArr})
@@ -660,7 +659,7 @@ const StepOne = ({ nextButton, object }) => {
           
           <FormContainerSnsLayout> 
 
-            <FormContainerInput defaultValue={stepOneObj.sns[1].id} placeholder="사용 계정을 입력하세요." style={{marginBottom : "3%", width : "46%", float : "right"}} onChange={e => {
+            <FormContainerInput defaultValue={stepOneObj.sns[1].id} placeholder="사용 계정을 입력하세요." style={{marginBottom : "3%", width : "49%", float : "right"}} onChange={e => {
               let newArr = [...stepOneObj.sns];
               newArr[1].id = e.target.value
               setStepOne({...stepOneObj, sns : newArr})
@@ -675,7 +674,7 @@ const StepOne = ({ nextButton, object }) => {
           
           <FormContainerSnsLayout> 
 
-            <FormContainerInput defaultValue={stepOneObj.sns[2].id} placeholder="사용 계정을 입력하세요." style={{marginBottom : "3%", width : "46%", float : "right"}} onChange={e => {
+            <FormContainerInput defaultValue={stepOneObj.sns[2].id} placeholder="사용 계정을 입력하세요." style={{marginBottom : "3%", width : "49%", float : "right"}} onChange={e => {
               let newArr = [...stepOneObj.sns];
               newArr[2].id = e.target.value
               setStepOne({...stepOneObj, sns : newArr})
@@ -690,7 +689,7 @@ const StepOne = ({ nextButton, object }) => {
           
           <FormContainerSnsLayout> 
 
-            <FormContainerInput defaultValue={stepOneObj.sns[3].id} placeholder="사용 계정을 입력하세요." style={{marginBottom : "3%", width : "46%", float : "right"}} onChange={e => {
+            <FormContainerInput defaultValue={stepOneObj.sns[3].id} placeholder="사용 계정을 입력하세요." style={{marginBottom : "3%", width : "49%", float : "right"}} onChange={e => {
               let newArr = [...stepOneObj.sns];
               newArr[3].id = e.target.value
               setStepOne({...stepOneObj, sns : newArr})
@@ -775,7 +774,7 @@ const StepOne = ({ nextButton, object }) => {
         </FormContainerInputDescription>
 
         <div style={{lineHeight : "32px", clear : "both"}}> 
-          <div style={{float : "right", width : "32%", paddingLeft : "3%"}}>
+          <div style={{float : "right", width : "38%", paddingLeft : "3%"}}>
             <FormContainerProfileUpload onClick={()=>{
               document.getElementById('getMusic').click()
             }}>업로드
@@ -812,7 +811,7 @@ const StepOne = ({ nextButton, object }) => {
 
         <div style={{lineHeight : "32px", clear : "both"}}> 
 
-          <div style={{float : "right", width : "32%", paddingLeft : "3%"}}>
+          <div style={{float : "right", width : "38%", paddingLeft : "3%"}}>
             <FormContainerProfileUpload onClick={()=>{
               document.getElementById('getSubMusic').click()
             }}>업로드

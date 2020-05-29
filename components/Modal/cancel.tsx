@@ -2,7 +2,9 @@ import * as React from "react";
 import styled from 'styled-components';
 
 const LoginContainer = styled.div`
-  height: 45vh;
+  height : 100%;
+  background : #121212;
+  border-radius: 8px;
 `;
 
 const LoginModalLogo = styled.div`
@@ -40,7 +42,7 @@ const LoginModalButton = styled.div`
 
 const LoginModalButtonLayout = styled.div`
   text-align : center;
-  height: 5vh;
+  height: 40px;
   margin-bottom : 16px;
 `;
 

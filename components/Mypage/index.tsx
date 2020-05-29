@@ -3,7 +3,6 @@ import styled from "styled-components";
 import ReqList from "./reqList";
 import PickList from "./pickList";
 import BeforeList from "./beforeList";
-import Footer from "../../components/Footer";
 interface Props {}
 
 const MyPageContainer = styled.div`
@@ -219,7 +218,6 @@ const Mypage = (props: Props) => {
                 </AddButtonLayout>
             </MyPageUserInfo>
             
-            <Footer/>
         </MyPageContainer>
         </>
     );

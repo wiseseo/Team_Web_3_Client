@@ -6,16 +6,11 @@ import Banner from "../components/Banner";
 import SituationList from "../components/SituationList";
 import Category from "../components/Category";
 import MusicianList from "../components/MusicianList";
-import Footer from "../components/Footer";
-import AudioPlayer from "../components/AudioPlayer";
-import SongStore from "./../stores/SongStore";
 import MusicianStore from "./../stores/MusicianStore";
-import CurationStore from "./../stores/CurationStore";
-
 
 const Index: React.FC = () => {
   return (
-    <div>
+    <div style={{maxWidth : 1300, margin : "0 auto"}}>
       <Banner />
       <SituationList />
       <Category />

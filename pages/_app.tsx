@@ -1,6 +1,6 @@
 import App from "next/app";
 import React from "react";
-import "react-responsive-modal/styles.css";
+import 'antd/dist/antd.less';
 import Head from "next/head";
 import SongStore from "../stores/SongStore";
 import CurationStore from "../stores/CurationStore";
@@ -19,7 +19,6 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   background: #040104;
-  max-width: 1300px;
   margin: 0 auto;
 `;
 
@@ -34,7 +33,12 @@ export default class RootApp extends App {
             name="viewport"
             content="initial-scale=1.0, width=device-width"
           />
-          <style>{`body{margin:0; background-color : #040104}`}</style>
+          <style>{
+          `body {
+            margin:0;
+            background-color : #040104 !important;
+          }`
+          }</style>
         </Head>
         <SongStore>
           <MainContainer>
