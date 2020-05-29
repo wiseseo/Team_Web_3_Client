@@ -72,7 +72,7 @@ const InputLayout = styled.div`
 `;
 const Input = styled.input`
     
-    width : 189px;
+    width : 212px;
     color : #B3B4BE;
     background: #3E3E41;
     border-radius: 8px;
@@ -187,9 +187,9 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 // (stepOneObj.portFolioMainMusic.size !== 0)
                 1
                 ? 
-                <AfterButton onClick={()=>{nextButton(9, "")}} style={{cursor : "pointer", background : "#6865FC"}}>저장하고 다음으로</AfterButton>
+                <AfterButton onClick={()=>{nextButton(9, "")}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
                 :
-                <AfterButton>저장하고 다음으로</AfterButton>
+                <AfterButton>다음으로</AfterButton>
                 }
                 </div>
             </EstimateContentMainButton>

@@ -145,8 +145,6 @@ const CheckBoxLabelSpan = styled.span`
 
 const CheckBoxEtcInput = styled.input`
     margin-top : 15px;
-    float : left;
-    margin-left: 35px;
     width : 328px;
     color : #B3B4BE;
     background: #3E3E41;
@@ -179,7 +177,7 @@ const FormContainerRadioLayout = styled.div`
 `;
 
 const FormContainerRadioLabel = styled.label`
-  color: #666;
+  color: #B3B4BE;
   font-weight: normal;
   cursor : pointer;
   &:before {
@@ -187,7 +185,7 @@ const FormContainerRadioLabel = styled.label`
     display: inline-block;
     position: relative;
     top: 5px;
-    margin: 0 5px 0 0;
+    margin: 0 10px 0 0;
     width: 20px;
     height: 20px;
     border-radius: 11px;
@@ -201,11 +199,11 @@ const FormContainerRadio = styled.input`
 
   &:checked + ${FormContainerRadioLabel}:after {
     border-radius: 11px;
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     position: absolute;
-    top: 10px;
-    left: 11px;
+    top: 9px;
+    left: 10px;
     content: " ";
     display: block;
     background: #6865FC;
@@ -242,9 +240,9 @@ const AfterButton = styled.button`
 `;
 const index = ({nextButton , object}): React.ReactElement => {
 
-    const [checkBoxArr, setCheckBoxArr] = React.useState([])
+    const [radioBoxArr, setRadioBoxArr] = React.useState([])
 
-    const [checkBoxList, setCheckBoxList] = React.useState([
+    const [radioBoxList, setRadioBoxList] = React.useState([
         {
             label : "작품이 필요해요.",
             select : false
@@ -267,33 +265,50 @@ const index = ({nextButton , object}): React.ReactElement => {
         }
     ]);
 
+    const [radioBoxSubArr, setRadioBoxSubArr] = React.useState([]);
+    const [radioBoxSubList, setRadioBoxSubList] = React.useState([
+        {
+            label : "네",
+            select : false
+        },
+        {
+            label : "아니요",
+            select : false
+        },
+    ])
+
     const checkBox = (e) => {
         console.log(e.target.value);
-        if(checkBoxArr.includes(e.target.value)){
-            let newList = [...checkBoxList];
+        
+        let newList = [...radioBoxList];
 
-            for(let i = 0 ; i < checkBoxList.length ; i++){
-                if(checkBoxList[i].label === e.target.value){
-                    newList[i].select = false;
-                }
+        for(let i = 0 ; i < radioBoxList.length ; i++){
+            if(radioBoxList[i].label === e.target.value){
+                newList[i].select = true;
             }
-
-            setCheckBoxArr(checkBoxArr.filter((item) => item !== e.target.value))
-        }
-        else{
-            let newList = [...checkBoxList];
-
-            for(let i = 0 ; i < checkBoxList.length ; i++){
-                if(checkBoxList[i].label === e.target.value){
-                    newList[i].select = true;
-                }
+            else{
+                newList[i].select = false;
             }
-            setCheckBoxList(newList)
-            setCheckBoxArr([...checkBoxArr, e.target.value]);
         }
+        setRadioBoxList(newList)
+        setRadioBoxArr([...radioBoxArr, e.target.value]);
     }
 
-    // console.log(checkBoxList);
+    const subCheckBox = (e) => {
+        let newList = [...radioBoxSubList];
+
+        for(let i = 0 ; i < radioBoxSubList.length ; i++){
+            if(radioBoxSubList[i].label === e.target.value){
+                newList[i].select = true;
+            }
+            else{
+                newList[i].select = false;
+            }
+        }
+        setRadioBoxSubList(newList)
+        setRadioBoxSubArr([...radioBoxSubArr, e.target.value]);
+    }
+    // console.log(radioBoxList);
     return (
         <>
         <EstimateUserInfoData>
@@ -335,38 +350,42 @@ const index = ({nextButton , object}): React.ReactElement => {
             <EstimateContentMainSub>
 
                 <EstimateContentMainSubTitle>어떤 용도로 사용할 음악인가요?</EstimateContentMainSubTitle>
-                <EstimateContentMainSubTitleBack>최소 1개 이상의 항목을 선택해주세요.</EstimateContentMainSubTitleBack>
+                
                 
                 <CheckBoxContainer> 
-                    {checkBoxList.map((list, key) => {
+                    {radioBoxList.map((list, key) => {
                         console.log(list, key);
                         if(list.select === true){
 
                             if(list.label === "기타 (직접입력)"){
                                 return (
-                                    <CheckBoxLayout key={key}>
-                                        <CheckBoxInput onChange={(e) => {checkBox(e)}} type="checkbox" id={`checkbox${key}`} name="" value={list.label}/>
-                                        <CheckBoxLabel htmlFor={`checkbox${key}`}><CheckBoxLabelSpan style={{color : "#6865FC"}}>{list.label}</CheckBoxLabelSpan></CheckBoxLabel>
+                                    <FormContainerRadioLayout style={{flexDirection : "column"}} key={key}>
+
+                                        <FormContainerRadio onChange={(e) => {checkBox(e)}} type="radio" value={list.label} name="use" id={list.label}/> 
+                                        <FormContainerRadioLabel htmlFor={list.label} style={{color : "#6865FC"}}>{list.label}</FormContainerRadioLabel>
                                         <CheckBoxEtcInput />
-                                    </CheckBoxLayout>
+                                    </FormContainerRadioLayout>
                                 );
                             }
                             else{
                                 return (
-                                    
-                                    <CheckBoxLayout key={key}>
-                                        <CheckBoxInput onChange={(e) => {checkBox(e)}} type="checkbox" id={`checkbox${key}`} name="" value={list.label}/>
-                                        <CheckBoxLabel htmlFor={`checkbox${key}`}><CheckBoxLabelSpan style={{color : "#6865FC"}}>{list.label}</CheckBoxLabelSpan></CheckBoxLabel>
-                                    </CheckBoxLayout>
+                                    <FormContainerRadioLayout key={key}>
+
+                                        <FormContainerRadio onChange={(e) => {checkBox(e)}} type="radio" value={list.label} name="use" id={list.label}/> 
+                                        <FormContainerRadioLabel htmlFor={list.label} style={{color : "#6865FC"}}>{list.label}</FormContainerRadioLabel>
+
+                                    </FormContainerRadioLayout>
                                 );
                             }
                         }
                         else{
                             return (
-                            <CheckBoxLayout key={key}>
-                                <CheckBoxInput onChange={(e) => {checkBox(e)}} type="checkbox" id={`checkbox${key}`} name="" value={list.label}/>
-                                <CheckBoxLabel htmlFor={`checkbox${key}`}><CheckBoxLabelSpan>{list.label}</CheckBoxLabelSpan></CheckBoxLabel>
-                            </CheckBoxLayout>
+                                <FormContainerRadioLayout key={key}>
+
+                                    <FormContainerRadio onChange={(e) => {checkBox(e)}} type="radio" value={list.label} name="use" id={list.label}/> 
+                                    <FormContainerRadioLabel htmlFor={list.label}>{list.label}</FormContainerRadioLabel>
+
+                                </FormContainerRadioLayout>
                             );
                         }
 
@@ -376,19 +395,31 @@ const index = ({nextButton , object}): React.ReactElement => {
                 <EstimateContentMainSubTitle style={{marginTop : "83px"}}>음악의 상업적 이용이 가능한 저작권이 필요한가요?</EstimateContentMainSubTitle>
             
                 <div style={{display : "flex", flexDirection: "row"}}>
-                    <FormContainerRadioLayout>
+                    {radioBoxSubList.map((list, key) => {
+                            console.log(list, key);
+                            if(list.select === true){
+                                return (
+                                    <FormContainerRadioLayout key={key}>
 
-                        <FormContainerRadio type="radio" value="true" name="pay" id="ritema"/> 
-                        <FormContainerRadioLabel htmlFor="ritema">네</FormContainerRadioLabel>
+                                        <FormContainerRadio onChange={(e) => {subCheckBox(e)}} type="radio" value={list.label} name="pay" id={list.label}/> 
+                                        <FormContainerRadioLabel htmlFor={list.label} style={{color : "#6865FC"}}>{list.label}</FormContainerRadioLabel>
 
-                    </FormContainerRadioLayout>
+                                    </FormContainerRadioLayout>
+                                );
+                            
+                            }
+                            else{
+                                return (
+                                    <FormContainerRadioLayout key={key}>
 
-                    <FormContainerRadioLayout>
+                                        <FormContainerRadio onChange={(e) => {subCheckBox(e)}} type="radio" value={list.label} name="pay" id={list.label}/> 
+                                        <FormContainerRadioLabel htmlFor={list.label}>{list.label}</FormContainerRadioLabel>
 
-                        <FormContainerRadio type="radio" value="false" name="pay" id="ritemb"/> 
-                        <FormContainerRadioLabel htmlFor="ritemb">아니요</FormContainerRadioLabel>
+                                    </FormContainerRadioLayout>
+                                );
+                            }
 
-                    </FormContainerRadioLayout>
+                    })}
                 </div>
 
             </EstimateContentMainSub>
@@ -406,9 +437,9 @@ const index = ({nextButton , object}): React.ReactElement => {
                 // (stepOneObj.portFolioMainMusic.size !== 0)
                 1
                 ? 
-                <AfterButton onClick={()=>{nextButton(1, "")}} style={{cursor : "pointer", background : "#6865FC"}}>저장하고 다음으로</AfterButton>
+                <AfterButton onClick={()=>{nextButton(1, "")}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
                 :
-                <AfterButton>저장하고 다음으로</AfterButton>
+                <AfterButton>다음으로</AfterButton>
                 }
                 </div>
             </EstimateContentMainButton>

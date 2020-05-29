@@ -70,6 +70,75 @@ const EstimateContentMainButton = styled.div`
     text-align : center;
     display: table;
 `;
+
+const FormContainerTextarea = styled.textarea`
+
+    margin-top : 18px;
+    color : #B3B4BE;
+    background: #3E3E41;
+    border-radius: 8px;
+    padding : 1.5%;
+    border : none;
+    line-height : 20px;
+    width : 97%;
+    height : 120px;
+    &&{
+        ::placeholder {
+        color : #181818;
+        font-size : 0.75rem;
+        }
+    }
+    &:focus {
+        outline : none;
+    }
+`;
+
+const FormContainerRadioLayout = styled.div`
+  color : #B3B4BE;
+  font-size : 0.875rem;
+  display: flex;
+  flex-direction : row;
+  position: relative;
+  padding: 0 6px;
+  margin: 20px 0 0;
+  width : 100%;
+  margin-bottom : 1%;
+`;
+
+const FormContainerRadioLabel = styled.label`
+  color: #B3B4BE;
+  font-weight: normal;
+  cursor : pointer;
+  &:before {
+    content: " ";
+    display: inline-block;
+    position: relative;
+    top: 5px;
+    margin: 0 10px 0 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 11px;
+    border: 2px solid #3E3E41;
+    background-color: transparent;
+  }
+`;
+
+const FormContainerRadio = styled.input`
+  display : none;
+
+  &:checked + ${FormContainerRadioLabel}:after {
+    border-radius: 11px;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 9px;
+    left: 10px;
+    content: " ";
+    display: block;
+    background: #6865FC;
+  }
+`;
+
 const BeforeButton = styled.button`
     background : #121212;
     border-radius : 8px;
@@ -113,9 +182,9 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 }}
             />
             <EstimateMainDesc>튜나 팁</EstimateMainDesc>
-            <EstimateSubTitle>음원 길이란?</EstimateSubTitle>
+            <EstimateSubTitle>기획 의도란?</EstimateSubTitle>
             <EstimateSubDesc>
-                제작될 음원의 대략적인 플레이 시간을 선택해주세요. 음원 길이에 비례해 플레이 시간이 늘어납니다.
+                어떤 음악을 제작하고 싶은지 원하는 음원에 대해 상세하게 적어주세요. 참고 자료와 링크, 이미지를 첨부해주셔도 좋습니다.
             </EstimateSubDesc>
             
         </EstimateUserInfoData>
@@ -128,10 +197,25 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             
             <EstimateContentMainSub>
 
-                <EstimateContentMainSubTitle>음원 플레이 시간을 설정해주세요.</EstimateContentMainSubTitle>
-                <EstimateContentMainSubTitleBack>최소 최대 음원 시간을 입력해주세요.</EstimateContentMainSubTitleBack>
+                <EstimateContentMainSubTitle>음원 기획 의도를 알려주세요.</EstimateContentMainSubTitle>
+                <EstimateContentMainSubTitleBack>음원을 기획하게 된 사유와 상세한 기획 의도에 대해 적어주세요. (2000자)</EstimateContentMainSubTitleBack>
+                <FormContainerTextarea
+                    placeholder="최소 30자 이상 입력해주세요."
+                />
+                <FormContainerRadioLayout>
+
+                    <FormContainerRadio type="radio" value={"없음"} name="use" id={"없음"}/> 
+                    <FormContainerRadioLabel htmlFor={"없음"}>참고자료 없음</FormContainerRadioLabel>
+
+                </FormContainerRadioLayout>
                 
-               
+                <FormContainerRadioLayout>
+
+                    <FormContainerRadio type="radio" value={"참고"} name="use" id={"참고"}/> 
+                    <FormContainerRadioLabel htmlFor={"참고"}>참고자료 있음</FormContainerRadioLabel>
+
+                </FormContainerRadioLayout>
+
             </EstimateContentMainSub>
             
             <EstimateContentMainButton>
@@ -147,9 +231,9 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 // (stepOneObj.portFolioMainMusic.size !== 0)
                 1
                 ? 
-                <AfterButton onClick={()=>{nextButton(8, "")}} style={{cursor : "pointer", background : "#6865FC"}}>저장하고 다음으로</AfterButton>
+                <AfterButton onClick={()=>{nextButton(8, "")}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
                 :
-                <AfterButton>저장하고 다음으로</AfterButton>
+                <AfterButton>다음으로</AfterButton>
                 }
                 </div>
             </EstimateContentMainButton>
