@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import Progress from "../ProgressBar/TenProgress/three";
-
+import {Tooltip} from "antd";
 const EstimateUserInfoData = styled.div`
     flex: 0.2;
     color : #E2E1E2;
@@ -115,6 +115,28 @@ const EstimateContentMainButton = styled.div`
     text-align : center;
     display: table;
 `;
+
+const RefreshLayout = styled.div`
+  display : flex;
+  flex-direction : row;
+  margin-top : 5px;
+`;
+const RefreshImg = styled.img`
+  width : 24;
+  height : 24;
+  cursor : pointer;
+`;
+const RefreshLabel = styled.span`
+  font-size : 0.875rem;
+  font-weight : bold;
+  color : #4C4C50;
+  display : table-cell;
+  vertical-align : middle;
+  height : 28px;
+`;
+
+const TooltipOver = styled(Tooltip)``;
+
 const BeforeButton = styled.button`
     background : #121212;
     border-radius : 8px;
@@ -290,6 +312,22 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
       appendTagList(TagList.filter(e => e !== newTagList[key-1].name));
     }
   }
+
+  const refresh = () => {
+    
+    let newTagList = [...tagList];
+      
+      for(let i = 0 ; i<newTagList.length ; i++){
+        newTagList[i].chosen = false;
+        newTagList[i].chosenPossible = true;
+      }
+
+      setTagList(newTagList);
+      setSelectTag(false);
+      appendTagList([]);
+
+  }
+  
     return (
         <>
         <EstimateUserInfoData>
@@ -331,23 +369,62 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             <EstimateContentMainSub>
 
                 <EstimateContentMainSubTitle>어떤 테마의 음악을 원하시나요?</EstimateContentMainSubTitle>
-                <EstimateContentMainSubTitleBack>최소 1개 이상의 태그를 선택해주세요.</EstimateContentMainSubTitleBack>
+                <EstimateContentMainSubTitleBack>최소 1개 이상의 태그를 선택해주세요. 첫번째 선택한 태그가 <span style={{fontWeight : "bold"}}>대표 태그</span>로 지정됩니다.</EstimateContentMainSubTitleBack>
                 
                 
                 <CurationTagLayout>
 
                 {tagList.map((list, key) => {
-                    if(list.chosen == true){
-                      return  <CurationTag key={key} onClick={() => {releaseTag(list.key)}} style={{color : "white", background: "#6865FC", border : "1px solid rgb(4, 1, 4)"}}>{list.name}</CurationTag>
-                    }
-                    else if(list.chosenPossible == true){
-                      return <CurationTag key={key} onClick={() => {chosenTag(list.key)}}>{list.name}</CurationTag>
+                    if(TagList.length === 0) {
+                      return (
+                        <TooltipOver placement="top" title="대표태그" key={key}>
+                          <CurationTag key={key} onClick={() => {chosenTag(list.key)}}>{list.name}</CurationTag>
+                        </TooltipOver>          
+                      )
                     }
                     else{
-                      return <CurationTag key={key} style={{color : "#3E3E41", cursor : "auto", border : "1px solid #3E3E41"}}>{list.name}</CurationTag>
+                      if(list.chosen == true){
+
+                        if(TagList[0] === list.name){
+                          return (
+                          <TooltipOver placement="top" title="대표태그" key={key}>
+                            <CurationTag key={key} onClick={() => {releaseTag(list.key)}} style={{color : "white", background: "#6865FC", border : "1px solid rgb(4, 1, 4)"}}>{list.name}</CurationTag>
+                          </TooltipOver> 
+                          )
+                        }
+                        else{
+                          return  <CurationTag key={key} onClick={() => {releaseTag(list.key)}} style={{color : "white", background: "#6865FC", border : "1px solid rgb(4, 1, 4)"}}>{list.name}</CurationTag>
+                        }
+                        
+                      }
+                      else if(list.chosenPossible == true){
+                        return <CurationTag key={key} onClick={() => {chosenTag(list.key)}}>{list.name}</CurationTag>
+                      }
+                      else{
+                        return <CurationTag key={key} style={{color : "#3E3E41", cursor : "auto", border : "1px solid #3E3E41"}}>{list.name}</CurationTag>
+                      }
                     }
                     
+                    
                   })}
+                  
+                  <RefreshLayout style={{display : "flex", flexDirection : "row", marginTop : 5}}>
+                    <RefreshImg
+                      onClick={() => {refresh()}}
+                      src="/static/refresh.png"
+                      alt="refresh"
+                      style={{
+                          width : 24,
+                          height : 24,
+                          cursor : "pointer",
+                      }}
+                    />
+                    <div style={{display : "table", marginLeft : 10}}>
+                      <RefreshLabel style={{fontSize : "0.875rem", fontWeight : "bold", color : "#4C4C50", display : "table-cell", verticalAlign:"middle", height: "28px"}}>
+                        다시선택
+                      </RefreshLabel>
+                    </div>
+                  </RefreshLayout>
                   
                 </CurationTagLayout>
                   
@@ -369,9 +446,9 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 // (stepOneObj.portFolioMainMusic.size !== 0)
                 1
                 ? 
-                <AfterButton onClick={()=>{nextButton(3, "")}} style={{cursor : "pointer", background : "#6865FC"}}>저장하고 다음으로</AfterButton>
+                <AfterButton onClick={()=>{nextButton(3, "")}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
                 :
-                <AfterButton>저장하고 다음으로</AfterButton>
+                <AfterButton>다음으로</AfterButton>
                 }
                 </div>
             </EstimateContentMainButton>

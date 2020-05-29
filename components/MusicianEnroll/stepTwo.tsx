@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import TwoThird from "../ProgressBar/twoThird";
-import {Tooltip} from "antd"
+import {Tooltip} from "antd";
 interface Props {}
 
 const StepOneContainer = styled.div`
@@ -128,6 +128,24 @@ const FlowButtonLayout = styled.div`
 
 `;
 
+const RefreshLayout = styled.div`
+  display : flex;
+  flex-direction : row;
+  margin-top : 5px;
+`;
+const RefreshImg = styled.img`
+  width : 24;
+  height : 24;
+  cursor : pointer;
+`;
+const RefreshLabel = styled.span`
+  font-size : 0.875rem;
+  font-weight : bold;
+  color : #4C4C50;
+  display : table-cell;
+  vertical-align : middle;
+  height : 28px;
+`;
 const TooltipOver = styled(Tooltip)``;
 
 const BeforeButton = styled.button`
@@ -1279,7 +1297,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
           {oneTagList.map((list, key) => {
                 if(stepTwoObj.atmoKindNm.length === 0){
                   return (
-                  <TooltipOver placement="top" title="대표태그">
+                  <TooltipOver placement="top" title="대표태그" key={key}>
                     <CurationTag key={key} onClick={() => {chosenTag(list.key, 1)}}>{list.name}</CurationTag>
                   </TooltipOver>
                   )
@@ -1289,7 +1307,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
                   
                     if(stepTwoObj.atmoKindNm[0] === list.name){
                       return  (
-                        <TooltipOver placement="top" title="대표태그">
+                        <TooltipOver placement="top" title="대표태그" key={key}>
                           <CurationTag key={key} onClick={() => {releaseTag(list.key, 1)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
                         </TooltipOver>
                       ) 
@@ -1309,8 +1327,8 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
                 
                 
           })}
-          <div style={{display : "flex", flexDirection : "row", marginTop : 5}}>
-            <img
+          <RefreshLayout style={{display : "flex", flexDirection : "row", marginTop : 5}}>
+            <RefreshImg
               onClick={() => {refresh(1)}}
               src="/static/refresh.png"
               alt="refresh"
@@ -1321,18 +1339,18 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
               }}
             />
             <div style={{display : "table", marginLeft : 10}}>
-              <span style={{fontSize : "0.875rem", fontWeight : "bold", color : "#4C4C50", display : "table-cell", verticalAlign:"middle", height: "28px"}}>
+              <RefreshLabel style={{fontSize : "0.875rem", fontWeight : "bold", color : "#4C4C50", display : "table-cell", verticalAlign:"middle", height: "28px"}}>
                 다시선택
-              </span>
+              </RefreshLabel>
             </div>
-          </div>
+          </RefreshLayout>
           
 
           <FormContainerSubDesc>2. 작업 가능한 테마를 선택해주세요.</FormContainerSubDesc>
           {twoTagList.map((list, key) => {
                 if(stepTwoObj.themeKindNm.length === 0){
                   return (
-                  <TooltipOver placement="top" title="대표태그">
+                  <TooltipOver placement="top" title="대표태그" key={key}>
                     <CurationTag key={key} onClick={() => {chosenTag(list.key, 2)}}>{list.name}</CurationTag>
                   </TooltipOver>
                   )
@@ -1341,7 +1359,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
                   if(list.chosen == true){
                     if(stepTwoObj.themeKindNm[0] === list.name){
                       return  (
-                        <TooltipOver placement="top" title="대표태그">
+                        <TooltipOver placement="top" title="대표태그" key={key}>
                           <CurationTag key={key} onClick={() => {releaseTag(list.key, 2)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
                         </TooltipOver>
                       ) 
@@ -1360,8 +1378,8 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
                 
                 
           })}
-          <div style={{display : "flex", flexDirection : "row", marginTop : 5}}>
-          <img
+          <RefreshLayout style={{display : "flex", flexDirection : "row", marginTop : 5}}>
+            <RefreshImg
               onClick={() => {refresh(2)}}
               src="/static/refresh.png"
               alt="refresh"
@@ -1372,17 +1390,17 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
               }}
             />
             <div style={{display : "table", marginLeft : 10}}>
-              <span style={{fontSize : "0.875rem", fontWeight : "bold", color : "#4C4C50", display : "table-cell", verticalAlign:"middle", height: "28px"}}>
+              <RefreshLabel style={{fontSize : "0.875rem", fontWeight : "bold", color : "#4C4C50", display : "table-cell", verticalAlign:"middle", height: "28px"}}>
                 다시선택
-              </span>
+              </RefreshLabel>
             </div>
-          </div>
+          </RefreshLayout>
 
           <FormContainerSubDesc>3. 작업 가능한 장르를 선택해주세요.</FormContainerSubDesc>
           {threeTagList.map((list, key) => {
               if(stepTwoObj.genreKindNm.length === 0){
                 return (
-                <TooltipOver placement="top" title="대표태그">
+                <TooltipOver placement="top" title="대표태그" key={key}>
                   <CurationTag key={key} onClick={() => {chosenTag(list.key, 3)}}>{list.name}</CurationTag>
                 </TooltipOver>
                 )
@@ -1391,7 +1409,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
                 if(list.chosen == true){
                   if(stepTwoObj.genreKindNm[0] === list.name){
                     return (
-                    <TooltipOver placement="top" title="대표태그">
+                    <TooltipOver placement="top" title="대표태그" key={key}>
                       <CurationTag key={key} onClick={() => {releaseTag(list.key, 3)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
                     </TooltipOver>)
                   }
@@ -1410,8 +1428,8 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
                 
           })}
 
-          <div style={{display : "flex", flexDirection : "row", marginTop : 5}}>
-          <img
+          <RefreshLayout style={{display : "flex", flexDirection : "row", marginTop : 5}}>
+            <RefreshImg
               onClick={() => {refresh(3)}}
               src="/static/refresh.png"
               alt="refresh"
@@ -1422,17 +1440,17 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
               }}
             />
             <div style={{display : "table", marginLeft : 10}}>
-              <span style={{fontSize : "0.875rem", fontWeight : "bold", color : "#4C4C50", display : "table-cell", verticalAlign:"middle", height: "28px"}}>
+              <RefreshLabel style={{fontSize : "0.875rem", fontWeight : "bold", color : "#4C4C50", display : "table-cell", verticalAlign:"middle", height: "28px"}}>
                 다시선택
-              </span>
+              </RefreshLabel>
             </div>
-          </div>
+          </RefreshLayout>
 
           <FormContainerSubDesc>4. 작업에 사용 가능한 악기를 선택해주세요.</FormContainerSubDesc>
           {fourTagList.map((list, key) => {
             if(stepTwoObj.instruKindNm.length === 0){
               return (
-              <TooltipOver placement="top" title="대표태그">
+              <TooltipOver placement="top" title="대표태그" key={key}>
                 <CurationTag key={key} onClick={() => {chosenTag(list.key, 4)}}>{list.name}</CurationTag>
               </TooltipOver>
               )
@@ -1441,7 +1459,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
               if(list.chosen == true){
                 if(stepTwoObj.instruKindNm[0] === list.name){
                   return (
-                    <TooltipOver placement="top" title="대표태그">
+                    <TooltipOver placement="top" title="대표태그" key={key}>
                       <CurationTag key={key} onClick={() => {releaseTag(list.key, 4)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
                     </TooltipOver>
                   )
@@ -1460,8 +1478,8 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
             }
                 
           })}
-          <div style={{display : "flex", flexDirection : "row", marginTop : 5}}>
-          <img
+          <RefreshLayout style={{display : "flex", flexDirection : "row", marginTop : 5}}>
+            <RefreshImg
               onClick={() => {refresh(4)}}
               src="/static/refresh.png"
               alt="refresh"
@@ -1472,11 +1490,11 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
               }}
             />
             <div style={{display : "table", marginLeft : 10}}>
-              <span style={{fontSize : "0.875rem", fontWeight : "bold", color : "#4C4C50", display : "table-cell", verticalAlign:"middle", height: "28px"}}>
+              <RefreshLabel style={{fontSize : "0.875rem", fontWeight : "bold", color : "#4C4C50", display : "table-cell", verticalAlign:"middle", height: "28px"}}>
                 다시선택
-              </span>
+              </RefreshLabel>
             </div>
-          </div>
+          </RefreshLayout>
         </FormContainerRight>
       </FormContainer>
 
