@@ -101,7 +101,9 @@ const MusicianList = ({ title }: Props) => {
       <Slider>
         <Back onClick={() => dispatch({ type: "PREV_MUSICIANS" })}>
           <img
-            src="/static/back-disabled.png"
+            src={`/static/back-${
+              musicianList.page === 0 ? "dis" : "en"
+            }abled.png`}
             width={16}
             height={32}
             alt="next"
@@ -118,7 +120,9 @@ const MusicianList = ({ title }: Props) => {
         ))}
         <Next onClick={() => dispatch({ type: "NEXT_MUSICIANS" })}>
           <img
-            src="/static/next-enabled.png"
+            src={`/static/next-${
+              musicianList.page < musicianList.end - 3 ? "en" : "dis"
+            }abled.png`}
             width={16}
             height={32}
             alt="next"
