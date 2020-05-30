@@ -22,6 +22,7 @@ const DropDown = styled.div`
     display: block;
     box-shadow: -2px 0px 10px rgba(88, 90, 107, 0.4);
   }
+  &:focus { outline:none; }
   
 `;
 const DropBtn = styled.button`
@@ -38,6 +39,7 @@ const DropBtn = styled.button`
     display : flex;
     align-items : center;
     justify-content : space-around;
+    &:focus { outline:none; }
 `;
 
 const DropContents = styled.div`
@@ -713,6 +715,7 @@ const SearchFilter= (props: Props) => {
                     tagList[i][j].chosenPossible = true;
                 }
             }
+            document.getElementById('pathIcon').style.transform = "scaleY(-1)"
         }
         console.log(`${dropdownName} : ${TagList}`);
     },[dropdownName]);
@@ -721,17 +724,27 @@ const SearchFilter= (props: Props) => {
     return (
         <FilterSection>
             <DropDownSection>
-                <DropDown>
+                <DropDown
+                    onMouseOver={()=>{
+                        document.getElementById('dropdown-content').style.display = "block";
+                        document.getElementById('pathIcon').style.transform = "scaleY(1)"
+                    }}
+                    onMouseOut={()=>{
+                        document.getElementById('dropdown-content').style.display = "none";
+                        if(!dropdownName) document.getElementById('pathIcon').style.transform = "scaleY(1)"
+                        else document.getElementById('pathIcon').style.transform = "scaleY(-1)"
+                    }}>
                     <DropBtn>
                         <span>
                             {filterType[dropdownName].type}
                         </span>
-                        <img src="/static/path.png" alt="path" />
+                        <img src="/static/path.png" alt="path" className="pathIcon" id="pathIcon" style={{transform : "scaleY(1)"}}/>
                     </DropBtn>
-                    <DropContents className="dropdown-content">
+                    <DropContents className="dropdown-content" id="dropdown-content">
                         {filterType.splice(1).map(({id,type})=>{
                             return <DropFilters key={id} onClick={()=>{
                                 setDropDownName(id);
+                                document.getElementById('dropdown-content').style.display = "none";
                             }}>{type}</DropFilters>
                         })}
                     </DropContents>

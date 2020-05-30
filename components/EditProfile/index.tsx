@@ -236,20 +236,6 @@ const ModifyPNBtn = styled.input.attrs({
 
     &:focus { outline:none; }
 `;
-/*
-const RegistBtn = styled.input.attrs({ 
-    type: 'submit',
-    value: '등록'
-  })`
-    
-    color :  #${(props:{vasValidValue: boolean}) => props.vasValidValue ? '6865FC' : '3E3E41'};
-    font-size ; 0.75rem;
-    background-color : #040104;
-
-    cursor : pointer;
-
-    &:focus { outline:none; }
-`;*/
 
 const Warning = styled.div`
     color: #C93E37;
@@ -259,7 +245,7 @@ const Warning = styled.div`
 `;
 
 const WithdrawalBtn = styled.button`
-    width : 320px;
+    width : 300px;
     height : 32px;
     /*background : red;*/
     background-color : #040104;
@@ -274,13 +260,6 @@ const WithdrawalBtn = styled.button`
     
 `;
 
-const ChangeAlarm = ({ value }: { value: string }) => {
-    return (
-        <div>
-            {value}가 수정되었습니다.
-        </div>
-    );
-}
 
 const EditProfile = (props: Props) => { 
     const [isNNClicked, setNNClicked] = React.useState<boolean>(false);
