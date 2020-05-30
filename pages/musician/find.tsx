@@ -5,51 +5,36 @@ import MusicianList from '../../components/MusicianFinder/MusicianList';
 import FindStore from "../../stores/FindStore";
 
 const MainContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: #040104;
-  justify-content : center;
-  align-items : center;
   /*background: white;*/
-  max-width : 1920px;
-  min-width : 765px;
-  /*@media only screen and (max-width: 765px) {
-    width : 765px;
-  }*/
-
+  padding: 0 5em;
+  max-width : 1300px;
+  min-width : 1000px;
+  margin : 0 auto;
+  width: 100%;
 `;
 
-const Contents = styled.div `
-  display: flex;
-  flex-direction: column;
-  width : 1120px;
-  max-width : 1120px;
-  min-width : 765px;
-  @media only screen and (max-width: 1280px) {
-    width : 600px;
-  }
-`;
 const Title = styled.h1`
   margin : 0;
   font-size : 1.5rem;
   background: #040104;
   /*background : grey;*/
-  color: #ffffff;
-  padding : 80px 400px 48px 0px;
-  min-width : 765px;
+  color : #E2E1E2;
+  line-height: 41px;
+  height : 10vh;
+  padding-top : 5em;
+  padding-bottom : 4em;
+  
 `;
 
 const Find: React.FC = () => {
   return (
-    <MainContainer>
-      <FindStore>
-        <Contents>
-          <Title>뮤지션 찾기</Title>
-          <SearchFilter/>
-          <MusicianList/>
-        </Contents>
-      </FindStore>
-    </MainContainer>
+    <FindStore>
+      <MainContainer>
+        <Title>뮤지션 찾기</Title>
+        <SearchFilter/>
+        <MusicianList/>
+      </MainContainer>
+    </FindStore> 
   );
 };
 
