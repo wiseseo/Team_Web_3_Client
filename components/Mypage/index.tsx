@@ -3,6 +3,8 @@ import styled from "styled-components";
 import ReqList from "./reqList";
 import PickList from "./pickList";
 import BeforeList from "./beforeList";
+import Link from "next/link";
+
 interface Props {}
 
 const MyPageContainer = styled.div`
@@ -139,8 +141,9 @@ const Mypage = (props: Props) => {
                         <div style={{flex: 0.4}}></div>
 
                     </MyPageReqBox>
-
+                    <Link href="/musician/mypage">
                     <MyPageChangeMusician>뮤지션으로 전환</MyPageChangeMusician>
+                    </Link>
                 </MyPageUserInfoData>
                 
                 <MyPageUserInfoImg>
