@@ -23,7 +23,7 @@ const Title = styled.h1`
   height : 10vh;
   padding-top : 5em;
   padding-bottom : 4em;
-  
+  font-weight : bold;
 `;
 
 const Find: React.FC = () => {

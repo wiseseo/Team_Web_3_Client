@@ -21,8 +21,10 @@ const Header = (props: Props): React.ReactElement => {
   return (
     <HeaderContainer>
       <img
-        src="/static/logo.png"
+        src="/static/tuna-logotype2.png"
         alt="logo"
+        width="127px"
+        height="40px"
         style={{ cursor: "pointer", marginRight: "auto" }}
         onClick={() => {
           location.href = "/";

@@ -38,7 +38,7 @@ const DropBtn = styled.button`
 
     display : flex;
     align-items : center;
-    justify-content : space-around;
+    justify-content : space-between;
     &:focus { outline:none; }
 `;
 
@@ -85,7 +85,7 @@ const FilterTag = styled.span`
 `;
 
 const TagSection = styled.div`
-    margin-top : 24px;
+    margin-top : 16px;
 `;
 
 const SortingSection = styled.div`
@@ -93,20 +93,18 @@ const SortingSection = styled.div`
     flex-direction: row;
     justify-content : flex-end; 
     cursor : pointer;
-    padding-top : 80px;
+    padding-top : 20px;
     padding-bottom : 24px;
 `;
 
 const Sort= styled.div`
-    color :  #${(props:{isSelected: boolean}) => props.isSelected ? '6865FC' : '3E3E41'};
+    color :  #${(props:{isSelected: boolean}) => props.isSelected ? '6865FC' : 'B3B4BE'};
     margin-left : 8px;
+    font-size : 1rem;
+    font-weight : bold;
 
 `;
 
-const TagDescrip = styled.span`
-    color: #6865FC;
-    margin-left : 24px;
-`;
 
 
 const SearchFilter= (props: Props) => { 
@@ -735,10 +733,10 @@ const SearchFilter= (props: Props) => {
                         else document.getElementById('pathIcon').style.transform = "scaleY(-1)"
                     }}>
                     <DropBtn>
-                        <span>
+                        <span style={{paddingLeft : "11px"}}>
                             {filterType[dropdownName].type}
                         </span>
-                        <img src="/static/path.png" alt="path" className="pathIcon" id="pathIcon" style={{transform : "scaleY(1)"}}/>
+                        <img src="/static/path.png" alt="path" className="pathIcon" id="pathIcon" style={{transform : "scaleY(1)", paddingRight : "16px"}}/>
                     </DropBtn>
                     <DropContents className="dropdown-content" id="dropdown-content">
                         {filterType.splice(1).map(({id,type})=>{
@@ -774,7 +772,7 @@ const SearchFilter= (props: Props) => {
                 <Sort isSelected={sort} onClick={()=>setSort(true)}>
                     <span>인기순</span>
                 </Sort>
-                <Sort isSelected={!sort} onClick={()=>setSort(false)} >
+                <Sort isSelected={!sort} onClick={()=>setSort(false)} style={{marginLeft : "12px"}}>
                     <span>신규순</span>
                 </Sort>
             </SortingSection>
