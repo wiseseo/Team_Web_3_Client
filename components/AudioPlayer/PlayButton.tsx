@@ -27,9 +27,9 @@ const Toggle = styled.input.attrs(({ checked }: { checked: boolean }) => ({
 }))`
   appearance: none;
   outline: none;
-  width: ${({ size }: { size: number }) => size / 2}px;
-  height: ${({ size }: { size: number }) => size / 2}px;
-  background-size: contain;
+  width: ${({ size }: { size: number }) => size}px;
+  height: ${({ size }: { size: number }) => size}px;
+  background-size: cover;
   background-position: center center;
   background-image: url("/static/play.png");
   background-repeat: no-repeat;

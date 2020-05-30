@@ -69,6 +69,9 @@ const MoreButton = styled.div`
   color: #e2e1e2;
   font-size: 0.875rem;
   cursor: pointer;
+  &:hover {
+    color: #6865fc;
+  }
 `;
 
 const MusicianList = ({ title }: Props) => {
@@ -97,15 +100,12 @@ const MusicianList = ({ title }: Props) => {
       </Header>
       <Slider>
         <Back onClick={() => dispatch({ type: "PREV_MUSICIANS" })}>
-          <svg
-            width="27"
-            height="53"
-            viewBox="0 0 27 53"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M26 0.987305L1 25.8266L26 51.6594" stroke="#E2E1E2" />
-          </svg>
+          <img
+            src="/static/back-disabled.png"
+            width={16}
+            height={32}
+            alt="next"
+          />
         </Back>
         {musicianList.display.map((musician) => (
           <MusicianCard
@@ -117,15 +117,12 @@ const MusicianList = ({ title }: Props) => {
           />
         ))}
         <Next onClick={() => dispatch({ type: "NEXT_MUSICIANS" })}>
-          <svg
-            width="27"
-            height="53"
-            viewBox="0 0 27 53"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M1 1.02148L26 26.289L1 52.5673" stroke="#6865FC" />
-          </svg>
+          <img
+            src="/static/next-enabled.png"
+            width={16}
+            height={32}
+            alt="next"
+          />
         </Next>
       </Slider>
     </Container>

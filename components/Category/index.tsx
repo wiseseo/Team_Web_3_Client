@@ -10,7 +10,7 @@ const Container = styled.div`
 `;
 const Title = styled.h1`
   color: #e2e1e2;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   font-weight: bold;
   font-size: 1.375rem;
 `;

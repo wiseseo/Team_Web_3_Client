@@ -165,6 +165,7 @@ const ShowButton = styled.button`
   border: none;
   color: white;
   font-size: 0.75rem;
+  font-weight: bold;
 `;
 
 const Tags = ({ tags }: { tags: string[] }) => {
@@ -187,6 +188,7 @@ const MusicianCard = ({
     let str = features.reduce((res, feature) => `${res}/${feature}`);
     return str.length > 16 ? str.substring(0, 16) + "…" : str;
   };
+  const [isLiked, setLike] = React.useState(false);
   return (
     <Card>
       <MusicContainer src={musician.song.cover_url}>
@@ -216,7 +218,21 @@ const MusicianCard = ({
             </Info>
           </Link>
           <Likes onClick={() => toggleLike(musician.id)}>
-            <img src="/static/like.png" alt="like" />
+            <img
+              src={`/static/like${isLiked ? "d" : ""}.png`}
+              alt="like"
+              width={24}
+              height={24}
+              onMouseOver={(event) =>
+                (event.target.src = `/static/like${
+                  isLiked ? "d" : "-hover"
+                }.png`)
+              }
+              onMouseLeave={(event) =>
+                (event.target.src = `/static/like${isLiked ? "d" : ""}.png`)
+              }
+              onClick={(event) => setLike((prev) => !prev)}
+            />
             <div>{musician.likes}</div>
           </Likes>
         </ProfileContainer>

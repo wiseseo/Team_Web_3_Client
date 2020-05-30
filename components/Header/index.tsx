@@ -9,7 +9,7 @@ interface Props {}
 const HeaderContainer = styled.header`
   background: #040104;
   align-items: center;
-  padding: 2em 5em;
+  padding: 2em 0;
   width: 100%;
   min-width: 1000px;
   max-width: 1300px;
