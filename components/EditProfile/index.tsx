@@ -333,7 +333,7 @@ const EditProfile = (props: Props) => {
             if (isToastShow) {
                 setToastShow(false);
             }
-        }, 2000);
+        }, 900);
         
         return () => {
             clearInterval(interval);

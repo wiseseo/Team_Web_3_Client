@@ -1,7 +1,16 @@
 import * as React from "react";
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 
 interface Props {}
+
+const toast_in_top = keyframes`
+    from {
+        transform: translate(-50%, 0%px);
+    }
+    to {
+        transform: translate(-50%, 10%);
+    }
+`;
 
 const Container = styled.div`
     background-color: #040104;
@@ -14,13 +23,15 @@ const Container = styled.div`
     flex-direction : row;
     justify-content : spcae-evenly;
     align-items : center;
-
-    position: fixed;
-    left: 50%;
-    top: 15%;
-    transform: translate(-50%, -50%);
-    transition: .6s ease-in-out;
+    position : fixed;
+    left : 50%;
+    top : 15%;
+    transform : translate(-50%, -50%);
+    transition: tansform 1s ease-in-out;
+    animation : ${toast_in_top} 1s;
 `;
+
+
 const Toast = (props: Props) => { 
     return(
         <Container>
