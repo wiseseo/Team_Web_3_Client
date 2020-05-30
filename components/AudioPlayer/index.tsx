@@ -7,7 +7,7 @@ import { SongContext } from "./../../stores/SongStore";
 
 const AudioContainer = styled.div`
   display: flex;
-  padding: 1.25rem;
+  padding: 1.25rem 5rem;
   align-items: center;
   justify-content: space-around;
   background: rgba(17, 15, 17, 0.8);
@@ -42,6 +42,14 @@ const Volume = styled.div`
       background: linear-gradient(138.6deg, #6865fc 36.28%, #658dfc 100%);
     }
   }
+`;
+const Controller = styled.div`
+  margin-right: auto;
+  margin-left: auto;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 const AudioPlayer: React.FC = (): React.ReactElement => {
   const { song, dispatch } = React.useContext(SongContext);
@@ -91,12 +99,14 @@ const AudioPlayer: React.FC = (): React.ReactElement => {
   return (
     <AudioContainer>
       <Profile cover={song.cover_url} name={song.name} title={song.title} />
-      <PlayButton playAudio={playAudio} size={48} status={song.isPlaying} />
-      <ProgressBar
-        current={currentTime}
-        duration={duration}
-        changeCurrent={changeCurrent}
-      />
+      <Controller>
+        <PlayButton playAudio={playAudio} size={36} status={song.isPlaying} />
+        <ProgressBar
+          current={currentTime}
+          duration={duration}
+          changeCurrent={changeCurrent}
+        />
+      </Controller>
       <Like onClick={() => dispatch({ type: "TOGGLE_LIKE" })}>
         <img src="/static/like.png" alt="like" />
       </Like>

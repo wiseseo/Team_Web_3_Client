@@ -15,6 +15,7 @@ const Button = styled.button`
   background: transparent;
   display: flex;
   justify-content: center;
+  background-color: rgba(255, 255, 255, 0.3);
   align-items: center;
 `;
 
@@ -30,10 +31,10 @@ const Toggle = styled.input.attrs(({ checked }: { checked: boolean }) => ({
   height: ${({ size }: { size: number }) => size / 2}px;
   background-size: contain;
   background-position: center center;
-  background-image: url("/static/pause.png");
+  background-image: url("/static/play.png");
   background-repeat: no-repeat;
   &:checked {
-    background-image: url("/static/play.png");
+    background-image: url("/static/pause.png");
   }
 `;
 

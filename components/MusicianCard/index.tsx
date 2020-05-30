@@ -55,8 +55,13 @@ const MusicContainer = styled.div`
     background-position: 50% 45%;
     transition: 0.5s background;
   }
-  &:hover >button {
-    border-color: #6865FC;
+  &>button {
+    opacity: 0;
+    transition: 0.5s opacity;
+  }
+  &:hover>button {
+    opacity: 1;
+    transition: 0.5s opacity;
   }
 `;
 const MusicInfo = styled.div`
