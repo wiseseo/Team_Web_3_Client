@@ -96,7 +96,7 @@ const SortingSection = styled.div`
 `;
 
 const Sort= styled.div`
-    color :  #${(props:{isSelected: boolean}) => props.isSelected ? '6865FC' : 'B3B4BE'};
+    color :  #${(props:{isSelected: boolean}) => props.isSelected ? '6865FC' : '3E3E41'};
     margin-left : 8px;
 
 `;
