@@ -30,15 +30,17 @@ interface Props {
   currentSong: Song;
 }
 const Card = styled.li`
-  width: 392px;
+  width: 352px;
   background: #110f11;
   display: flex;
   flex-direction: column;
-  border-radius: 3px;
+  border-radius: 8px;
   overflow: hidden;
 `;
 const MusicContainer = styled.div`
-  height: 176px;
+  height: 168px;
+  background-color: rgba(18,18,18, 0.3);
+  background-blend-mode: multiply;
   background-image: url("${({ src }: { src: string }) => src}");
   background-repeat: no-repeat;
   background-position: center center;
@@ -46,26 +48,42 @@ const MusicContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  transition: 0.5s background;
+
+  &:hover {
+    background-color: transparent;
+    background-position: 50% 45%;
+    transition: 0.5s background;
+  }
+  &>button {
+    opacity: 0;
+    transition: 0.5s opacity;
+  }
+  &:hover>button {
+    opacity: 1;
+    transition: 0.5s opacity;
+  }
 `;
 const MusicInfo = styled.div`
   background: rgba(255, 255, 255, 0.15);
-  padding: 1em 2em;
+  padding: 0.5rem 1rem;
   font-size: 0.75rem;
   color: #b3b4be;
   align-self: stretch;
 `;
 const Space = styled.div`
   height: ${({ height }: { height: number }) => height}px;
+  align-self: stretch;
 `;
 const MusicianInfo = styled.div`
-  flex: 1;
+  height: 165px;
   display: flex;
   flex-direction: column;
 `;
 const ProfileContainer = styled.div`
-  flex: 3;
+  height: 108px;
   display: flex;
-  padding: 1rem 1.5rem;
+  padding: 1rem 1rem;
   justify-content: space-between;
   align-items: center;
 `;
@@ -80,7 +98,7 @@ const Circle = styled.div`
   height: 2rem;
   border-radius: 50%;
   overflow: hidden;
-  margin: 0.5rem 0;
+  cursor: pointer;
 `;
 const Profile = styled.div`
     width: 100%;
@@ -90,28 +108,33 @@ const Profile = styled.div`
     background-size: contain;
 `;
 const Name = styled.div`
-  color: #ffffff;
+  color: #fdfdff;
   font-size: 0.875rem;
+  font-weight: bold;
+  cursor: pointer;
+  cursor: pointer;
 `;
 const Introduction = styled.div`
   color: #e2e1e2;
-  font-size: 0.875rem;
-  margin: 0.2rem 0;
+  font-size: 0.75rem;
+  margin-top: 0.2rem;
+  cursor: pointer;
 `;
 const Likes = styled.div`
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   color: #3e3e41;
-  margin: 0.5rem 0;
+  cursor: pointer;
 `;
 
 const MusicianLink = styled.div`
-  flex: 2;
+  height: 56px;
   display: flex;
   margin-top: 1rem;
   padding: 1.25rem 1.5rem;
   border-top: 1px solid rgba(104, 101, 252, 0.4);
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 `;
 const Features = styled.div`
   font-size: 0.875rem;
@@ -121,14 +144,14 @@ const Features = styled.div`
 const TagList = styled.ul`
   display: flex;
   justify-content: flex-start;
-  padding: 0 1.5rem;
+  padding: 0 1rem;
 `;
 
 const Tag = styled.li`
-  font-size: 0.875rem;
-  border: 1px solid #b3b4be;
-  border-radius: 1.375rem;
-  padding: 0.375rem 0.5rem;
+  font-size: 0.75rem;
+  box-shadow: 0 0 0 1px #b3b4be inset;
+  border-radius: 1.25rem;
+  padding: 0.188rem 0.938rem;
   color: #b3b4be;
   display: block;
   text-align: center;
@@ -142,6 +165,7 @@ const ShowButton = styled.button`
   border: none;
   color: white;
   font-size: 0.75rem;
+  font-weight: bold;
 `;
 
 const Tags = ({ tags }: { tags: string[] }) => {
@@ -153,51 +177,73 @@ const Tags = ({ tags }: { tags: string[] }) => {
     </TagList>
   );
 };
+
 const MusicianCard = ({
   musician,
   toggleLike,
   selectSong,
   currentSong,
 }: Props) => {
+  const getFeatureString = (features: string[]): string => {
+    let str = features.reduce((res, feature) => `${res}/${feature}`);
+    return str.length > 16 ? str.substring(0, 16) + "…" : str;
+  };
+  const [isLiked, setLike] = React.useState(false);
   return (
     <Card>
       <MusicContainer src={musician.song.cover_url}>
-        <Space height={40} />
+        <Space height={32} />
         <PlayButton
           playAudio={() =>
             selectSong(musician.song.id, !musician.song.isPlaying, musician)
           }
-          size={64}
+          size={56}
           status={
             currentSong.id === musician.song.id ? currentSong.isPlaying : false
           }
         />
         <MusicInfo>{musician.song.title}</MusicInfo>
       </MusicContainer>
-      <Link href="/detail">
-        <MusicianInfo>
-          <ProfileContainer>
+      <MusicianInfo>
+        <ProfileContainer>
+          <Link href="/detail">
             <Circle>
               <Profile src={musician.profile_url} />
             </Circle>
+          </Link>
+          <Link href="/detail">
             <Info>
               <Name>{musician.name}</Name>
               <Introduction>{musician.introduction}</Introduction>
             </Info>
-            <Likes onClick={() => toggleLike(musician.id)}>
-              <img src="/static/like.png" alt="like" />
-              <div>{musician.likes}</div>
-            </Likes>
-          </ProfileContainer>
-          <Tags tags={musician.tags} />
+          </Link>
+          <Likes onClick={() => toggleLike(musician.id)}>
+            <img
+              src={`/static/like${isLiked ? "d" : ""}.png`}
+              alt="like"
+              width={24}
+              height={24}
+              onMouseOver={(event) =>
+                (event.target.src = `/static/like${
+                  isLiked ? "d" : "-hover"
+                }.png`)
+              }
+              onMouseLeave={(event) =>
+                (event.target.src = `/static/like${isLiked ? "d" : ""}.png`)
+              }
+              onClick={(event) => setLike((prev) => !prev)}
+            />
+            <div>{musician.likes}</div>
+          </Likes>
+        </ProfileContainer>
+        <Tags tags={musician.tags} />
+        <Link href="/detail">
           <MusicianLink>
-            <Features>
-              {musician.features.reduce((res, feature) => `${res}/${feature}`)}
-            </Features>
+            <Features>{getFeatureString(musician.features)}</Features>
             <ShowButton>뮤지션 보기</ShowButton>
           </MusicianLink>
-        </MusicianInfo>
-      </Link>
+        </Link>
+      </MusicianInfo>
     </Card>
   );
 };

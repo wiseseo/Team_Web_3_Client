@@ -21,6 +21,7 @@ const Cover = styled.div`
 `;
 const Info = styled.div`
   margin-left: 2rem;
+  width: 4rem;
 `;
 const Name = styled.div`
   color: #fdfdff;
