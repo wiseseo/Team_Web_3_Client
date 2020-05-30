@@ -57,7 +57,8 @@ const defaultMusicianList: Musician[] = [
       date: "string",
       cover_url:
         "https://post-phinf.pstatic.net/MjAxOTA4MDJfMTMg/MDAxNTY0NzE4NzAwOTA5.tn4HF1zjhfl6_aHxlR7asab1KXtzqAr9cdtE1N34esUg.5Mh8Nq1dlgLPhjjClwburE2_cSS3KlbKega_nY1Jc0Ig.JPEG/%EB%94%94%EB%85%B8%EB%A7%88%EB%93%9C%ED%95%99%EA%B5%90_%EC%95%84%ED%8A%B8%EB%94%94%EB%A0%89%ED%84%B0_NSH_%EC%95%A8%EB%B2%94_%EC%BB%A4%EB%B2%84_%EB%94%94%EC%9E%90%EC%9D%B8_1.jpg?type=w1200",
-      song_url: "https://s3.amazonaws.com/freecodecamp/simonSound1.mp3",
+      song_url:
+        "https://yapp-tuna.s3.ap-northeast-2.amazonaws.com/static/ITZY++WANNABE++M+V.mp3",
       isPlaying: false,
       isLike: false,
     },
@@ -77,7 +78,8 @@ const defaultMusicianList: Musician[] = [
       date: "string",
       cover_url:
         "https://post-phinf.pstatic.net/MjAxOTA4MDJfMTMg/MDAxNTY0NzE4NzAwOTA5.tn4HF1zjhfl6_aHxlR7asab1KXtzqAr9cdtE1N34esUg.5Mh8Nq1dlgLPhjjClwburE2_cSS3KlbKega_nY1Jc0Ig.JPEG/%EB%94%94%EB%85%B8%EB%A7%88%EB%93%9C%ED%95%99%EA%B5%90_%EC%95%84%ED%8A%B8%EB%94%94%EB%A0%89%ED%84%B0_NSH_%EC%95%A8%EB%B2%94_%EC%BB%A4%EB%B2%84_%EB%94%94%EC%9E%90%EC%9D%B8_1.jpg?type=w1200",
-      song_url: "https://html5tutorial.info/media/vincent.mp3",
+      song_url:
+        "https://yapp-tuna.s3.ap-northeast-2.amazonaws.com/static/%E1%84%82%E1%85%A1%E1%84%86%E1%85%AE+%E1%84%8E%E1%85%A2%E1%86%A8%E1%84%89%E1%85%A1%E1%86%BC.mp3",
       isPlaying: false,
       isLike: false,
     },
