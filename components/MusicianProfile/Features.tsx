@@ -9,6 +9,7 @@ const Container = styled.div`
   justify-contents: center;
   background: #121212;
   border-radius: 8px;
+  width: 288px;
 `;
 const List = styled.ul`
   display: flex;
@@ -25,7 +26,7 @@ const Feature = styled.li`
   border-style: solid;
   border-radius: 20px;
   padding: 0.25em 0.75em;
-  margin: 0.5rem;
+  margin: 0.25rem;
 `;
 const Divide = styled.div`
   height: 0;
@@ -37,6 +38,8 @@ const Divide = styled.div`
 const Title = styled.h4`
   color: #b3b4be;
   margin: 1.5rem 1rem 1rem;
+  font-weight: bold;
+  padding: 0;
 `;
 const Style = styled.li`
   color: #6865fc;
@@ -70,6 +73,7 @@ const LINK = styled.div`
   margin-left: 0.4rem;
 `;
 const Features = (props: Props) => {
+  const portfolioLink = ["https://grafolio.naver.com/works/1150932"];
   return (
     <Container>
       <Title>뮤지션 대표 특성</Title>
@@ -115,13 +119,16 @@ const Features = (props: Props) => {
       <div
         style={{
           display: "flex",
-          justifyContent: "space-between",
           alignItems: "center",
           paddingRight: "1rem",
         }}
       >
         <Title>포트폴리오 사이트</Title>
-        <img src="/static/link.png" alt="link" width={8} height={16} />
+        {portfolioLink.map((link) => (
+          <a href={link}>
+            <img src="/static/link.png" alt="link" width={20} height={20} />
+          </a>
+        ))}
       </div>
     </Container>
   );

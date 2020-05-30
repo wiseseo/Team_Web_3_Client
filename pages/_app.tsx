@@ -37,6 +37,8 @@ export default class RootApp extends App {
           body {
             margin:0;
             background-color : #040104 !important;
+          }html {
+            scroll-behavior: smooth;
           }
           * { font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }`}</style>
         </Head>

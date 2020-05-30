@@ -59,10 +59,12 @@ const Slider = styled.ul`
 const Back = styled.div`
   position: absolute;
   left: 40px;
+  cursor: pointer;
 `;
 const Next = styled.div`
   position: absolute;
   right: 40px;
+  cursor: pointer;
 `;
 
 const MoreButton = styled.div`

@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
+import Link from "next/link";
 
 interface Props {}
 
@@ -7,6 +8,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 72px 80px;
+  cursor: pointer;
 `;
 const Title = styled.h1`
   color: #e2e1e2;
@@ -35,15 +37,17 @@ const Card = styled.li`
 
 const Category = (props: Props) => {
   return (
-    <Container>
-      <Title>카테고리</Title>
-      <CardList>
-        <Card>분위기</Card>
-        <Card>테마</Card>
-        <Card>장르</Card>
-        <Card>악기</Card>
-      </CardList>
-    </Container>
+    <Link href="/musician/find">
+      <Container>
+        <Title>카테고리</Title>
+        <CardList>
+          <Card>분위기</Card>
+          <Card>테마</Card>
+          <Card>장르</Card>
+          <Card>악기</Card>
+        </CardList>
+      </Container>
+    </Link>
   );
 };
 

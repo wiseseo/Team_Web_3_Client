@@ -2,9 +2,12 @@ import * as React from "react";
 import styled from "styled-components";
 import MusicList from "./MusicList";
 
-interface Props {}
+interface Props {
+  space: number;
+}
 const Container = styled.div`
-  margin-right: 10rem;
+  width: 648px;
+  padding-top: ${({ space }: { space: number }) => space}px;
 `;
 
 const MusicTab = (props: Props) => {
@@ -53,7 +56,7 @@ const MusicTab = (props: Props) => {
     },
   ];
   return (
-    <Container>
+    <Container id="music-scroll" space={props.space}>
       <MusicList musicList={musicList} />
     </Container>
   );

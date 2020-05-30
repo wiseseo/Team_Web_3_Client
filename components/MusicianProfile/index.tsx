@@ -6,12 +6,16 @@ import Features from "./Features";
 interface Props {}
 const Container = styled.div`
   color: white;
-  flex: 2;
   display: flex;
   flex-direction: column;
-  padding-left: 5em;
+  width: 288px;
+`;
+const Wrapper = styled.div`
+  ${({ isFloat }: { isFloat: boolean }) =>
+    isFloat ? "position: fixed;top: 16px;" : ""}
 `;
 const MusicianProfile = (props: Props) => {
+  const [isFloat, setFloat] = React.useState(false);
   const profileRef = React.useRef(null);
   React.useEffect(() => {
     const scrollHandler = (event) => {
@@ -19,20 +23,22 @@ const MusicianProfile = (props: Props) => {
         event.srcElement.scrollingElement.scrollTop >
         profileRef.current.offsetTop
       ) {
-        console.log("떠있어야함");
+        setFloat(true);
       } else {
-        console.log("올라가야함");
+        setFloat(false);
       }
     };
-    window.addEventListener("scroll", scrollHandler);
+    //window.addEventListener("scroll", scrollHandler);
     return () => {
       window.removeEventListener("scroll", scrollHandler);
     };
   }, []);
   return (
-    <Container ref={profileRef}>
-      <ProfileInfo />
-      <Features />
+    <Container>
+      <Wrapper isFloat={isFloat} ref={profileRef}>
+        <ProfileInfo />
+        <Features />
+      </Wrapper>
     </Container>
   );
 };
