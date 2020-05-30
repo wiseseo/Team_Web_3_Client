@@ -749,7 +749,6 @@ const SearchFilter= (props: Props) => {
                         })}
                     </DropContents>
                 </DropDown>
-                {dropdownName == 0 ? <TagDescrip>태그를 선택해주세요</TagDescrip> : <span></span>}
             </DropDownSection>
             <TagSection>
                 {dropdownName != 0 ? 
