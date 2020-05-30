@@ -254,6 +254,8 @@ const RegistBtn = styled.input.attrs({
 const Warning = styled.div`
     color: #C93E37;
     font-size : 0.6rem;
+    margin-left : 10px;
+    margin-top : 4px;
 `;
 
 const WithdrawalBtn = styled.button`
@@ -386,7 +388,10 @@ const EditProfile = (props: Props) => {
                                 {phoneNumber}
                             </PhoneNumberBox>
                             ):
-                            (<PhoneNumberInput value={phoneNumber} style={{fontSize: "0.875rem"}} onChange={onChangePhoneNumber} hasValidPN={hasValidPN}/>
+                            (<div>
+                                <PhoneNumberInput value={phoneNumber} style={{fontSize: "0.875rem"}} onChange={onChangePhoneNumber} hasValidPN={hasValidPN}/>
+                                {!hasValidPN && <Warning>올바른 휴대폰 번호가 아닙니다.</Warning>}
+                            </div>
                             )
                         }
                         <ModifyPNBtn 

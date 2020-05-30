@@ -9,8 +9,9 @@ const MainContainer = styled.div`
   justify-content : center;
   align-items : center;
   /*background: white;*/
-  max-width : 1920px;
-  min-width : 765px;
+  max-width : 1300px;
+  min-width : 1000px;
+  margin : 0 auto;
   /*@media only screen and (max-width: 765px) {
     width : 765px;
   }*/

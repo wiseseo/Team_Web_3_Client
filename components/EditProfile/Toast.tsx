@@ -12,7 +12,7 @@ const Container = styled.div`
     height: 56px;
     display : flex;
     flex-direction : row;
-    justify-content : center;
+    justify-content : spcae-evenly;
     align-items : center;
 
     position: fixed;
@@ -24,8 +24,10 @@ const Container = styled.div`
 const Toast = (props: Props) => { 
     return(
         <Container>
-            {/*<img src={toast.icon} alt="" />*/}
-            <div style={{color: "#B3B4BE", fontSize: "14px", margin: "10px", padding: "10px"}}>변경사항이 저장되었습니다.</div>
+            <img src="/static/check.png" alt="check" style={{margin : "10px 10px 10px 20px"}}/>
+            <div style={{color: "#B3B4BE", fontSize: "14px", margin: "10px 0px"}}>
+                변경사항이 저장되었습니다.
+            </div>
         </Container>
     );
 };

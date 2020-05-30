@@ -8,11 +8,21 @@ const FilterSection = styled.div`
   flex-direction: column;
 `;
 
+const DropDownSection = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items : center;
+`;
+
+
 const DropDown = styled.div`
+    position : relative;
+
   &:hover .dropdown-content {
     display: block;
     box-shadow: -2px 0px 10px rgba(88, 90, 107, 0.4);
   }
+  
 `;
 const DropBtn = styled.button`
     /*background-color: red;*/
@@ -24,13 +34,18 @@ const DropBtn = styled.button`
     width: 184px;
     height: 48px;
     font-size: 1rem;
+
+    display : flex;
+    align-items : center;
+    justify-content : space-around;
 `;
 
 const DropContents = styled.div`
+    display: none;  
     width: 184px;
     background-color: #121212;
-    display: none;
     position: absolute;
+    top : 48px;
     border-radius: 8px;
     color: #ffffff;
     overflow : hidden;
@@ -705,17 +720,24 @@ const SearchFilter= (props: Props) => {
 
     return (
         <FilterSection>
-            <DropDown>
-                <DropBtn>{filterType[dropdownName].type}</DropBtn>
-                {filterType[dropdownName].id == 0 ? <TagDescrip>태그를 선택해주세요</TagDescrip> : <span></span>}
-                <DropContents className="dropdown-content">
-                    {filterType.splice(1).map(({id,type})=>{
-                        return <DropFilters key={id} onClick={()=>{
-                            setDropDownName(id);
-                        }}>{type}</DropFilters>
-                    })}
-                </DropContents>
-            </DropDown>
+            <DropDownSection>
+                <DropDown>
+                    <DropBtn>
+                        <span>
+                            {filterType[dropdownName].type}
+                        </span>
+                        <img src="/static/path.png" alt="path" />
+                    </DropBtn>
+                    <DropContents className="dropdown-content">
+                        {filterType.splice(1).map(({id,type})=>{
+                            return <DropFilters key={id} onClick={()=>{
+                                setDropDownName(id);
+                            }}>{type}</DropFilters>
+                        })}
+                    </DropContents>
+                </DropDown>
+                {dropdownName == 0 ? <TagDescrip>태그를 선택해주세요</TagDescrip> : <span></span>}
+            </DropDownSection>
             <TagSection>
                 {dropdownName != 0 ? 
                     (tagList[dropdownName-1].map((list, key)=>{
