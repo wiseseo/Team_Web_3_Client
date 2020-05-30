@@ -129,7 +129,7 @@ const NickNameContainer = styled.div`
 `;
 
 const NickNameBox = styled.div`
-    width : 196px;
+    width : 180px;
     height : 32px;
     padding-left : 16px;
     /*background-color : blue;*/
@@ -144,7 +144,7 @@ const NickNameInput = styled.input`
     &:focus { outline:none; }
     cursor : pointer;
 
-    width: 196px;
+    width: 180px;
     height: 31px;
     padding : 0px 0px 0px 16px;
     margin : 0;
@@ -170,7 +170,7 @@ const PhoneNumberContainer = styled.div`
 `;
 
 const PhoneNumberBox = styled.div`
-    width : 196px;
+    width : 180px;
     height : 32px;
     padding-left : 16px;
     cursor : pointer;
@@ -187,7 +187,7 @@ const PhoneNumberInput = styled.input`
     cursor : pointer;
     &:focus { outline:none; }
 
-    width: 196px;
+    width: 180px;
     height: 31px;
     padding : 0px 0px 0px 16px;
     margin : 0;
@@ -220,8 +220,9 @@ const ModifyNNBtn = styled.input.attrs({
     border : none;
 
     cursor : pointer;
-
+    margin-left : 10px;
     &:focus { outline:none; }
+    font-weight : bold;
 `;
 
 const ModifyPNBtn = styled.input.attrs({ 
@@ -233,6 +234,8 @@ const ModifyPNBtn = styled.input.attrs({
     background-color : #040104;
     border : none;
     cursor : pointer;
+    margin-left : 10px;
+    font-weight : bold;
 
     &:focus { outline:none; }
 `;
@@ -392,7 +395,7 @@ const EditProfile = (props: Props) => {
                                                 setToastShow(true);
                                             }
                                         }}/>
-                                    {!hasValidPN && <Warning>올바른 휴대폰 번호가 아닙니다.</Warning>}
+                                    {!hasValidPN && <Warning><img src="/static/warn.png" alt="warn" width="10px" height="10px" style={{ marginBottom : "4px", marginRight : "4px"}}/>올바른 휴대폰 번호가 아닙니다.</Warning>}
                                 </div>
                                 )
                             }

@@ -41,12 +41,17 @@ const Card = styled.div`
 `;
 
 const PlayerContainer = styled.div`
-    flex:9;
+    flex:8;
     /*background: blue;*/
     /*background: #121212;*/
     display: flex;
     justify-content : center;
     align-items : center;
+
+    &  button {
+      background: rgba(43, 43, 43, 0.3);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
 `;
 
 const AlbumCover = styled.div`
@@ -61,6 +66,7 @@ const AlbumCover = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius : 0.25rem;
 `;
 
 const MusicianContainer = styled.div`
@@ -83,9 +89,10 @@ const LeftContainer = styled.div`
 const ProfileContainer = styled.div`
   /*flex: 3;*/
   display: flex;
-  padding: 8px 24px;
+  padding: 0px;
   justify-content: space-between;
   align-items: center;
+  margin-bottom : 4px;
 `;
 const Info = styled.div`
   display: flex;
@@ -111,24 +118,26 @@ const Profile = styled.div`
 const Name = styled.div`
   color: #ffffff;
   font-size: 0.875rem;
+  font-weight : bold;
 `;
 const Introduction = styled.div`
   color: #e2e1e2;
   font-size: 0.875rem;
-  margin: 3.2px 0;
+  margin: 0px;
 `;
 
 const TagContainer = styled.div`
     display: flex;
     justify-content: flex-start;
-    padding: 8px 24px;
+    padding: 0px;
 `;
 
 const Tag = styled.li`
   font-size: 0.75rem;
   border: 1px solid #A2A2A2;
   border-radius: 1.25rem;
-  padding: 0.25rem 0.5rem;
+  /*padding: 0.22rem 0.5rem;*/
+  padding : 0.188rem 0.938rem;
   color: #A2A2A2;
   display: block;
   text-align: center;
@@ -136,9 +145,9 @@ const Tag = styled.li`
 `;
 
 const RightContainer = styled.div`
-    display: flex;
-    justify-content : center;
-    align-items : center;
+  display: flex;
+  justify-content : center;
+  align-items : center;
 `;
 
 const SpecialNote = styled.div`
@@ -147,11 +156,11 @@ const SpecialNote = styled.div`
 `;
 
 const LinkContainer = styled.div`
-    flex:15;
+    flex:12;
     /*background: green;*/
     background: #121212;
     display: flex;
-    justify-content : center;
+    justify-content : space-evenly;
     align-items : center;
 `;
 
@@ -163,10 +172,21 @@ const ProfileButton = styled.a`
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    font-weight : bold;
+
+    &:hover {
+      background-color: #6865FC;
+      color: white;
+      border-radius: 4px;
+      padding: 8px 16px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-weight : bold;
+    }
 `;
 
 const Likes = styled.div`
-  margin-left : 24px;
 `;
 
 const MusicianItem = ( {musician, toggleLike, selectSong, currentSong }: Props) => { 
@@ -212,7 +232,7 @@ const MusicianItem = ( {musician, toggleLike, selectSong, currentSong }: Props) 
             <LinkContainer>
                 <ProfileButton>뮤지션 보기</ProfileButton>
                 <Likes onClick={() => toggleLike(musician.id)}>
-                  <img src="/static/like.png" alt="like" />
+                  <img src="/static/like.png" alt="like" width="24" height="24"/>
                 </Likes>
             </LinkContainer>
         </Card>
