@@ -28,7 +28,6 @@ const Header = (props: Props): React.ReactElement => {
           location.href = "/";
         }}
       />
-      {/* <SearchBar /> */}
       <MatchButton />
       <LinkButton text="뮤지션 등록" type="enroll" />
       <LinkButton text="로그인/가입" type="sign" />

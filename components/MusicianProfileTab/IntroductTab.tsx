@@ -3,15 +3,21 @@ import styled from "styled-components";
 import MusicianStyle from "./MusicianStyle";
 import WorkingStep from "./WorkingStep";
 
-interface Props {}
+interface Props {
+  space: number;
+}
 const Container = styled.div`
+  margin-top: 1rem;
   color: #e2e1e2;
   display: flex;
   flex-direction: column;
-  margin-right: 10rem;
+  padding-top: ${({ space }: { space: number }) => space}px;
+  width: 648px;
 `;
 const Title = styled.h3`
   color: #6865fc;
+  font-weight: bold;
+  margin-top: 2rem;
 `;
 const Introduct = styled.p`
   color: #b3b4be;
@@ -42,7 +48,7 @@ const IntroductTab = (props: Props) => {
     "한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.한 사람이 질문을 하면, 그 질문을 통해 모두가 배우게 됩니다. 그래서 지금까지 자주 나온 질문 70~80개와 저의 답변을 정리한 PDF 자료집을 준비했습니다. Chapter에 따라 분야를 나눠 놓았고, Chapter와 별개로 공부 방법이나 강의 주제를 벗어난 질문은 따로 정리하였습니다.로 정리하였습니다.로 정리하였습니다.로 정리하였습니다.로 정리",
   ];
   return (
-    <Container>
+    <Container id="introduct-scroll" space={props.space}>
       <Title>뮤지션의 스타일은?</Title>
       <MusicianStyle styles={styles} />
       <Title>당신은 어떤 뮤지션인가요?</Title>

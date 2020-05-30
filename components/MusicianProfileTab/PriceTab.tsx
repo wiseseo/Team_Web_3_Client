@@ -3,15 +3,21 @@ import styled from "styled-components";
 import FAQList from "./FAQList";
 import PriceGuide from "./PriceGuide";
 
-interface Props {}
+interface Props {
+  space: number;
+}
 const Container = styled.div`
+  margin-top: 1rem;
   color: #e2e1e2;
   display: flex;
   flex-direction: column;
-  margin-right: 10rem;
+  padding-top: ${({ space }: { space: number }) => space}px;
+  width: 648px;
 `;
 const Title = styled.h3`
   color: #6865fc;
+  font-weight: bold;
+  margin: 2rem 0;
 `;
 const PriceTab = (props: Props) => {
   const guides = [
@@ -69,7 +75,7 @@ const PriceTab = (props: Props) => {
     },
   ];
   return (
-    <Container>
+    <Container id="price-scroll" space={props.space}>
       <Title>가격 가이드</Title>
       <PriceGuide guides={guides} />
       <Title>FAQ</Title>

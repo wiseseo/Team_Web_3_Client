@@ -29,6 +29,7 @@ const Divide = styled.div`
 const Type = styled.div`
   color: #e2e1e2;
   font-size: 0.875rem;
+  font-weight: bold;
 `;
 const Content = styled.div`
   max-width: 10rem;
@@ -37,7 +38,7 @@ const Content = styled.div`
   margin: 0.4rem 0;
 `;
 const Price = styled.div`
-  margin: 1.5rem 0;
+  margin-top: 1.5rem;
   color: #b3b4be;
   font-size: 0.75rem;
 `;
