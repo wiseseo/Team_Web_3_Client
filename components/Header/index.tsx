@@ -7,14 +7,14 @@ import LinkButton from "./LinkButton";
 interface Props {}
 
 const HeaderContainer = styled.header`
-  
   background: #040104;
   align-items: center;
   padding: 2em 5em;
-  width : 100%;
-  max-width : 1300px;
-  margin : 0 auto;
-  display : flex;
+  width: 100%;
+  min-width: 1000px;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
 `;
 
 const Header = (props: Props): React.ReactElement => {
