@@ -39,10 +39,17 @@ const Header = styled.div`
   display: flex;
   justify-content: space-between;
   color: #e2e1e2;
-  align-items: center;
+  align-items: flex-end;
+  margin-bottom: 2rem;
 `;
 
-const Title = styled.h1``;
+const Title = styled.h1`
+  color: #e2e1e2;
+  font-weight: bold;
+  font-size: 1.375rem;
+  padding: 0;
+  margin: 0;
+`;
 const Slider = styled.ul`
   padding: 0;
   display: flex;
@@ -85,9 +92,7 @@ const MusicianList = ({ title }: Props) => {
       <Header>
         <Title>{title}</Title>
         <Link href="/musician/find">
-          <MoreButton>
-            더보기
-          </MoreButton>
+          <MoreButton>더보기</MoreButton>
         </Link>
       </Header>
       <Slider>

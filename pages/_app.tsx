@@ -1,6 +1,6 @@
 import App from "next/app";
 import React from "react";
-import 'antd/dist/antd.less';
+import "antd/dist/antd.less";
 import Head from "next/head";
 import SongStore from "../stores/SongStore";
 import CurationStore from "../stores/CurationStore";
@@ -33,12 +33,12 @@ export default class RootApp extends App {
             name="viewport"
             content="initial-scale=1.0, width=device-width"
           />
-          <style>{
-          `body {
+          <style>{`@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+          body {
             margin:0;
             background-color : #040104 !important;
-          }`
-          }</style>
+          }
+          * { font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }`}</style>
         </Head>
         <SongStore>
           <MainContainer>

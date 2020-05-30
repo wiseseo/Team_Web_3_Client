@@ -10,9 +10,8 @@ import MusicianStore from "./../stores/MusicianStore";
 
 const Index: React.FC = () => {
   return (
-    <div style={{maxWidth : 1300, margin : "0 auto"}}>
+    <div style={{ maxWidth: 1300, margin: "0 auto" }}>
       <Banner />
-      <SituationList />
       <Category />
       <MusicianStore>
         <MusicianList title="리스너들의 선택" />
