@@ -237,6 +237,7 @@ const ModifyPNBtn = styled.input.attrs({
     &:focus { outline:none; }
 `;
 
+
 const Warning = styled.div`
     color: #C93E37;
     font-size : 0.6rem;
@@ -259,6 +260,7 @@ const WithdrawalBtn = styled.button`
     &:focus { outline:none; }
     
 `;
+
 
 
 const EditProfile = (props: Props) => { 
@@ -325,66 +327,87 @@ const EditProfile = (props: Props) => {
         <Container>
             {isToastShow && <Toast/>}
             <Contents>
-            <ImgContainer>
-                    <ImgBox>                
-                        <Photo/>
-                        <PhotoSelectBtn className="modify-img" onClick={()=>{
-                            document.getElementById('imgFileInput').click();
-                            }}>
-                            사진 수정하기
-                        </PhotoSelectBtn>
-                        <input type="file" id="imgFileInput" style={{display:"none"}}/>
-                    </ImgBox>
-            </ImgContainer>
-            <InfoContainer>
-                    <EmailContainer>
-                        <Label>이메일</Label>
-                        <EmailBox>dffdf</EmailBox>
-                    </EmailContainer>
-                    <NickNameContainer>
-                        <Label>닉네임</Label>
-                        {!isNNClicked ? 
-                            (<NickNameBox onClick={()=>{setNNClicked(true);}}>
-                                {nickName}
-                            </NickNameBox>)
-                            :
-                            (<NickNameInput value={nickName} style={{fontSize: "0.875rem"}} onChange={onChangeNickName}/>)
-                        } 
-                        <ModifyNNBtn 
-                            hasValidNN={hasValidNN} 
-                            onClick={()=>{ 
-                                if(hasValidNN) {
-                                    setNNClicked(false); 
-                                    setValidNN(false);
+                <ImgContainer>
+                        <ImgBox>                
+                            <Photo/>
+                            <PhotoSelectBtn className="modify-img" onClick={()=>{
+                                document.getElementById('imgFileInput').click();
+                                }}>
+                                사진 수정하기
+                            </PhotoSelectBtn>
+                            <input type="file" id="imgFileInput" style={{display:"none"}}/>
+                        </ImgBox>
+                </ImgContainer>
+                <InfoContainer>
+                        <EmailContainer>
+                            <Label>이메일</Label>
+                            <EmailBox>dffdf</EmailBox>
+                        </EmailContainer>
+                        <NickNameContainer>
+                            <Label>닉네임</Label>
+                            {!isNNClicked ? 
+                                (<NickNameBox onClick={()=>{setNNClicked(true);}}>
+                                    {nickName}
+                                </NickNameBox>)
+                                :
+                                (<NickNameInput 
+                                    value={nickName} 
+                                    style={{fontSize: "0.875rem"}} 
+                                    onChange={onChangeNickName}
+                                    onKeyUp={(e)=>{
+                                        if(e.keyCode == 13 && hasValidNN) {
+                                            setNNClicked(false); 
+                                            setValidNN(false);
+                                            setToastShow(true);
+                                        }
+                                    }}/>)
+                            } 
+                            <ModifyNNBtn 
+                                hasValidNN={hasValidNN} 
+                                onClick={()=>{ 
+                                    if(hasValidNN) {
+                                        setNNClicked(false); 
+                                        setValidNN(false);
+                                        setToastShow(true);
+                                    }
+                                    else console.log('No!');}}/>
+                        </NickNameContainer>
+                        <PhoneNumberContainer>
+                            <Label>전화번호</Label>
+                            {!isPNClicked ?
+                                (<PhoneNumberBox onClick={()=>{setPNClicked(true);}}>
+                                    {phoneNumber}
+                                </PhoneNumberBox>
+                                ):
+                                (<div>
+                                    <PhoneNumberInput 
+                                        value={phoneNumber} 
+                                        style={{fontSize: "0.875rem"}}
+                                        onChange={onChangePhoneNumber} 
+                                        hasValidPN={hasValidPN}
+                                        onKeyUp={(e)=>{
+                                            if(e.keyCode == 13 && hasValidPN) {
+                                                setPNClicked(false);
+                                                setValidPN(false);
+                                                setToastShow(true);
+                                            }
+                                        }}/>
+                                    {!hasValidPN && <Warning>올바른 휴대폰 번호가 아닙니다.</Warning>}
+                                </div>
+                                )
+                            }
+                            <ModifyPNBtn 
+                                hasValidPN={hasValidPN} 
+                                onClick={()=>{
+                                    if(hasValidPN) {
+                                    setPNClicked(false);
+                                    setValidPN(false);
                                     setToastShow(true);
-                                }
-                                else console.log('No!');}}/>
-                    </NickNameContainer>
-                    <PhoneNumberContainer>
-                        <Label>전화번호</Label>
-                        {!isPNClicked ?
-                            (<PhoneNumberBox onClick={()=>{setPNClicked(true);}}>
-                                {phoneNumber}
-                            </PhoneNumberBox>
-                            ):
-                            (<div>
-                                <PhoneNumberInput value={phoneNumber} style={{fontSize: "0.875rem"}} onChange={onChangePhoneNumber} hasValidPN={hasValidPN}/>
-                                {!hasValidPN && <Warning>올바른 휴대폰 번호가 아닙니다.</Warning>}
-                            </div>
-                            )
-                        }
-                        <ModifyPNBtn 
-                            hasValidPN={hasValidPN} 
-                            onClick={()=>{
-                                if(hasValidPN) {
-                                setPNClicked(false);
-                                setValidPN(false);
-                                setToastShow(true);
-                                }
-                                else console.log('No!');}}/>
-                    </PhoneNumberContainer>
-                    <WithdrawalBtn>회원탈퇴</WithdrawalBtn>
-            </InfoContainer>
+                                    }
+                                    else console.log('No!');}}/>
+                        </PhoneNumberContainer>
+                        <WithdrawalBtn>회원탈퇴</WithdrawalBtn>
+                </InfoContainer>
             </Contents>
         </Container>
     );
