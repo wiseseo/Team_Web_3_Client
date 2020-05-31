@@ -43,15 +43,17 @@ export default class RootApp extends App {
           * { font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }`}</style>
         </Head>
         <SongStore>
-          <MainContainer>
-            <CurationStore>
+          <CurationStore>
+            <MainContainer>
+            
               <Header />
-            </CurationStore>
+            
 
             <Component {...pageProps} />
             <Footer />
             <AudioPlayer />
           </MainContainer>
+          </CurationStore>
         </SongStore>
         <Layout />
       </>
