@@ -7,7 +7,7 @@ interface Props {
 const PickListContainer = styled.div`
     background : #121212;
     border-radius : 8px;
-    height : 79px;
+    height : 120px;
     margin-bottom :16px;
     display : flex;
     flex-direction : row;
@@ -48,7 +48,7 @@ const PickListContentTag = styled.span`
   font-weight: normal;
   font-size: 0.875rem;
   line-height: 22px;
-  margin-top : 8px;
+  margin-top : 10px;
   padding : 3px 15px;
   display : inline-block;
   margin-bottom : 8px;

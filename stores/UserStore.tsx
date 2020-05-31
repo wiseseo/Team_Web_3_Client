@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from "react";
-import reducer from "./FindReducer";
+import reducer from "./UserReducer";
 
 interface Song {
   id: string;
@@ -21,6 +21,52 @@ interface Musician {
   features: string[];
   song: Song;
 }
+
+interface MusicianList {
+  list: Musician[];
+  display: Musician[];
+  page: number;
+  end: number;
+}
+
+interface UserInfo {
+  name : string;
+  email : string;
+}
+
+interface ReqList {
+  name : string;
+  enrollDate : string;
+  forUse : string;
+  genre : string;
+  atmo : string;
+  length : string;
+  finalDate : string;
+  pay : string;
+}
+
+interface Before {
+  id : string;
+  profile_url : string;
+  name : string;
+  enrollDate : string;
+  status : string;
+  features: string[];
+}
+
+interface BeforeList {
+  list: Before[];
+  display: Before[];
+  page: number;
+  end: number;
+}
+interface UserData {
+  musicianList : MusicianList;
+  userInfo : UserInfo;
+  reqList : ReqList;
+  beforeList : BeforeList;
+}
+
 const defaultMusicianList: Musician[] = [
   {
     id: "1",
@@ -745,53 +791,183 @@ const defaultMusicianList: Musician[] = [
 
 ];
 
-interface MusicianList {
-  list: Musician[];
-  display: Musician[];
-  page: number;
-  end: number;
-}
+const defaultBeforeList: Before[] = [
+  {
+    id: "1",
+    profile_url:
+      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+    name: "마약왕1",
+    enrollDate: "2018-01-01",
+    status: "0",
+    features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
+  },
+  {
+    id: "2",
+    profile_url:
+      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+    name: "마약왕1",
+    enrollDate: "2018-01-01",
+    status: "0",
+    features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
+  },
+  {
+    id: "3",
+    profile_url:
+      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+    name: "마약왕1",
+    enrollDate: "2018-01-01",
+    status: "0",
+    features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
+  },
+  {
+    id: "4",
+    profile_url:
+      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+    name: "마약왕1",
+    enrollDate: "2018-01-01",
+    status: "0",
+    features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
+  },
+  {
+    id: "5",
+    profile_url:
+      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+    name: "마약왕1",
+    enrollDate: "2018-01-01",
+    status: "0",
+    features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
+  },
+  {
+    id: "6",
+    profile_url:
+      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+    name: "마약왕1",
+    enrollDate: "2018-01-01",
+    status: "0",
+    features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
+  },
+  {
+    id: "7",
+    profile_url:
+      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+    name: "마약왕1",
+    enrollDate: "2018-01-01",
+    status: "0",
+    features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
+  },
+  {
+    id: "8",
+    profile_url:
+      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+    name: "마약왕1",
+    enrollDate: "2018-01-01",
+    status: "0",
+    features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
+  },
+  {
+    id: "9",
+    profile_url:
+      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+    name: "마약왕1",
+    enrollDate: "2018-01-01",
+    status: "0",
+    features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
+  },
+  {
+    id: "10",
+    profile_url:
+      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+    name: "마약왕1",
+    enrollDate: "2018-01-01",
+    status: "0",
+    features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
+  },
+  {
+    id: "11",
+    profile_url:
+      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+    name: "마약왕1",
+    enrollDate: "2018-01-01",
+    status: "0",
+    features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
+  },
+  {
+    id: "12",
+    profile_url:
+      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+    name: "마약왕1",
+    enrollDate: "2018-01-01",
+    status: "0",
+    features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
+  }
 
+];
 type ActionType = {
   type:
-    | "INIT_MUSICIANS"
+    | "INIT_DATA"
     | "NEXT_MUSICIANS"
     | "TOGGLE_LIKE"
     | "SELECT_SONG"
     | "PLAY_SONG"
-    | "STOP_SONG";
+    | "STOP_SONG"
+    ;
   payload?: any;
 };
-interface MusicianInterface {
-  musicianList: MusicianList;
-
+interface UserDataInterface {
+  userData : UserData;
   dispatch?: React.Dispatch<ActionType>;
 }
-export const FindContext = React.createContext<MusicianInterface>({
-  musicianList: { list: defaultMusicianList, display: [], page:0, end: 0 },
+export const UserContext = React.createContext<UserDataInterface>({
+  userData : {
+    musicianList: { list: defaultMusicianList, display: [], page:0, end: 0 },
+    userInfo : {name : "", email: ""},
+    reqList: {
+      name : "",
+      enrollDate : "",
+      forUse : "",
+      genre : "",
+      atmo : "",
+      length : "",
+      finalDate : "",
+      pay : ""
+    },
+    beforeList : { list : defaultBeforeList, display : [], page :0, end:0}
+  }
 });
 
-const FindStore = ({ children }: { children: React.ReactElement }) => {
-  const [musicianList, dispatch] = useReducer(reducer, {
-    list: defaultMusicianList,
-    display : [],
-    page: 0,
-    end: 36,
+const UserStore = ({ children }: { children: React.ReactElement }) => {
+  const [userData, dispatch] = useReducer(reducer, {
+    musicianList: { list: defaultMusicianList, display: [], page:0, end: 36 },
+    userInfo : {name : "", email: ""},
+    reqList: {
+      name : "",
+      enrollDate : "",
+      forUse : "",
+      genre : "",
+      atmo : "",
+      length : "",
+      finalDate : "",
+      pay : ""
+    },
+    beforeList :  {list : defaultBeforeList, display : [], page :0, end:12}
+    
   });
+
   useEffect(() => {
-    dispatch({ type: "INIT_MUSICIANS", payload: defaultMusicianList });
+    dispatch({ type: "INIT_DATA", payload: {defaultMusicianList : defaultMusicianList, defaultBeforeList : defaultBeforeList} });
   }, []);
+
+  
   return (
-    <FindContext.Provider
+    <UserContext.Provider
       value={{
-        musicianList,
+        userData,
         dispatch,
       }}
     >
       {children}
-    </FindContext.Provider>
+    </UserContext.Provider>
   );
 };
 
-export default FindStore;
-
+export default UserStore;

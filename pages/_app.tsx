@@ -41,15 +41,17 @@ export default class RootApp extends App {
           }</style>
         </Head>
         <SongStore>
-          <MainContainer>
-            <CurationStore>
+          <CurationStore>
+            <MainContainer>
+            
               <Header />
-            </CurationStore>
+            
 
             <Component {...pageProps} />
             <Footer />
             <AudioPlayer />
           </MainContainer>
+          </CurationStore>
         </SongStore>
         <Layout />
       </>

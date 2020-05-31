@@ -426,7 +426,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                           )
                         }
                         else{
-                          return  <CurationTag key={key} onClick={() => {releaseTag(list.key)}} style={{color : "white", background: "#6865FC", border : "1px solid rgb(4, 1, 4)"}}>{list.name}</CurationTag>
+                          return  <CurationTag key={key} onClick={() => {releaseTag(list.key)}} style={{color : "white", background: "#9997FD", border : "1px solid rgb(4, 1, 4)"}}>{list.name}</CurationTag>
                         }
                         
                       }

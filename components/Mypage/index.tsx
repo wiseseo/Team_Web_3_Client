@@ -1,9 +1,33 @@
 import * as React from "react";
 import styled from "styled-components";
 import ReqList from "./reqList";
-import PickList from "./pickList";
+import MusicianItem from "../MusicianFinder/MusicianList/MusicianItem";
 import BeforeList from "./beforeList";
+import {UserContext} from "../../stores/UserStore";
+import {SongContext} from "../../stores/SongStore";
+
 interface Props {}
+
+interface Song {
+    id: string;
+    title: string;
+    date: string;
+    isPlaying: boolean;
+    isLike: boolean;
+    cover_url: string;
+    song_url: string;
+}
+
+interface Musician {
+    id: string;
+    name: string;
+    introduction: string;
+    tags: string[];
+    likes: number;
+    profile_url: string;
+    features: string[];
+    song: Song;
+}
 
 const MyPageContainer = styled.div`
     background: #040104;
@@ -111,8 +135,44 @@ const AddButtonLayout = styled.div`
     text-align : center;
     width : 100%;
 `;
+
+const Next = styled.div`
+    background-color: #040104;
+    color: #B3B4BE;
+    height: 72px;
+    border: 1px solid #B3B4BE;
+    box-sizing: border-box;
+    border-radius: 8px;
+    display: flex;
+    justify-content : center;
+    align-items : center;
+    cursor : pointer;
+`;
+
 const Mypage = (props: Props) => {
 
+    const { userData, dispatch } = React.useContext(UserContext);
+    const song = React.useContext(SongContext);
+
+    const [pageNumber, setPageNumber] = React.useState<number>(1);
+
+    const toggleLike = (id: string) => {
+        dispatch({ type: "TOGGLE_LIKE", payload: id });
+    };
+
+    const selectSong = (id: string, status: boolean, musician: Musician) => {
+        dispatch({ type: "SELECT_SONG", payload: { id, status } });
+    
+        const selectedSong = {
+          ...musician.song,
+          name: musician.name,
+          isPlaying: status,
+        };
+        song.dispatch({ type: "CHANGE_SONG", payload: selectedSong });
+    };
+
+    console.log(userData.musicianList);
+    console.log(userData.beforeList);
     return(
         <>
         <MyPageContainer>
@@ -186,17 +246,34 @@ const Mypage = (props: Props) => {
                 </MyPageTitleBox>
 
                 <PickListBox>
-                    <PickList/>
-                    <PickList/>
-                    <PickList/>
-                    <PickList/>
+
+                    {userData.musicianList.display.map((musician)=>{
+                        return <MusicianItem
+                        key={musician.id}
+                        musician={musician}
+                        toggleLike={toggleLike}
+                        selectSong={selectSong}
+                        currentSong={song.song}
+                        />
+                    })}
+                    { userData.musicianList.display.length === userData.musicianList.list.length ? 
+                    <span></span>
+                    :
+                    pageNumber > 3 ? 
+                    
+                    <Next style={{cursor : "auto"}}>
+                        더보기 ({pageNumber}/4)
+                    </Next>
+                    : 
+                    <Next onClick={() => {
+                        setPageNumber(pageNumber+1)
+                        dispatch({ type: "NEXT_MUSICIANS" })
+                    }}>
+                        더보기 ({pageNumber}/4)
+                    </Next>
+                    }
                 </PickListBox>
 
-                <AddButtonLayout>
-                    <div style={{display : "table-cell", verticalAlign : "middle"}}>
-                        더보기 (1/4)
-                    </div> 
-                </AddButtonLayout>
             </MyPageUserInfo>
             
             <MyPageUserInfo style={{paddingTop : "12%", flexDirection : "column"}}>

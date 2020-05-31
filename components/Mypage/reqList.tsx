@@ -18,7 +18,7 @@ const ReqListContainer =  styled.div<Context>`
 `;
 
 const ReqListTitle = styled.div`
-    height : 32px;
+    height : 64px;
     box-shadow: 0px 16.6034px 33.2068px rgba(0, 0, 0, 0.25);
     padding : 5%;
     display : flex;
@@ -64,7 +64,7 @@ const ReqListContentSitua = styled.div`
     text-align:center;
     width : 100%;
     color : #6865FC;
-    margin-top : 5%;
+    margin-top : 9%;
 `;
 const ReqList = ({context}: Props) => {
 

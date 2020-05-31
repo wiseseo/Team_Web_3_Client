@@ -131,6 +131,9 @@ const RangePickerOver = styled(RangePicker)`
     .ant-picker-input > input {
         color : #B3B4BE;
     };
+    .ant-picker-input {
+        margin-top: 2px;
+    }
     .anticon {
         color : #B3B4BE;
     }
@@ -138,12 +141,13 @@ const RangePickerOver = styled(RangePicker)`
         background : #121212;
     }
     .ant-picker-range-separator {
-        margin-bottom : 3px;
-        padding-right : 10px;
+        margin-bottom : 2px;
+        padding-right : 18px;
         padding-left : 0;
     };
     .ant-picker-suffix{
-        margin-top : 2px;
+        margin-top : 3px;
+        margin-left: -5px;
     }
   }
 `;

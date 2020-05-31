@@ -1313,7 +1313,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
                       ) 
                     }
                     else{
-                      return  <CurationTag key={key} onClick={() => {releaseTag(list.key, 1)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
+                      return  <CurationTag key={key} onClick={() => {releaseTag(list.key, 1)}} style={{color : "white", background: "#9997FD", border: "1px solid #040104"}}>{list.name}</CurationTag>
                     }
                     
                   }
@@ -1365,7 +1365,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
                       ) 
                     }
                     else{
-                      return  <CurationTag key={key} onClick={() => {releaseTag(list.key, 2)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
+                      return  <CurationTag key={key} onClick={() => {releaseTag(list.key, 2)}} style={{color : "white", background: "#9997FD", border: "1px solid #040104"}}>{list.name}</CurationTag>
                     }
                   }
                   else if(list.chosenPossible == true){
@@ -1414,7 +1414,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
                     </TooltipOver>)
                   }
                   else{
-                    return  <CurationTag key={key} onClick={() => {releaseTag(list.key, 3)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
+                    return  <CurationTag key={key} onClick={() => {releaseTag(list.key, 3)}} style={{color : "white", background: "#9997FD", border: "1px solid #040104"}}>{list.name}</CurationTag>
                   }
                 }
                 else if(list.chosenPossible == true){
@@ -1465,7 +1465,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
                   )
                 }
                 else{
-                  return  <CurationTag key={key} onClick={() => {releaseTag(list.key, 4)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
+                  return  <CurationTag key={key} onClick={() => {releaseTag(list.key, 4)}} style={{color : "white", background: "#9997FD", border: "1px solid #040104"}}>{list.name}</CurationTag>
                 }
               }
               else if(list.chosenPossible == true){

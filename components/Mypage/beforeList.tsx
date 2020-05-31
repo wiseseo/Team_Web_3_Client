@@ -7,7 +7,7 @@ interface Props {
 const BeforeContainer = styled.div`
     background : #121212;
     border-radius : 8px;
-    height : 60px;
+    height : 88px;
     margin-bottom :16px;
     display : flex;
     flex-direction : row;
