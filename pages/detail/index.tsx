@@ -6,7 +6,7 @@ import MusicianProfileTab from "../../components/MusicianProfileTab";
 
 const Detail: React.FC = () => {
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", justifyContent: "center" }}>
       <MusicianProfile></MusicianProfile>
       <MusicianProfileTab></MusicianProfileTab>
     </div>

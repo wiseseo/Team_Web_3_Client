@@ -11,6 +11,7 @@ const Container = styled.div`
 `;
 const Title = styled.h3`
   color: #b3b4be;
+  font-weight: bold;
 `;
 const Asked = styled.p`
   color: #b3b4be;

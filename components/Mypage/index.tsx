@@ -3,8 +3,12 @@ import styled from "styled-components";
 import ReqList from "./reqList";
 import MusicianItem from "../MusicianFinder/MusicianList/MusicianItem";
 import BeforeList from "./beforeList";
+<<<<<<< HEAD
 import {UserContext} from "../../stores/UserStore";
 import {SongContext} from "../../stores/SongStore";
+=======
+import Link from "next/link";
+>>>>>>> 195376f29fe8e741d2ff9e68a42623229fae01c5
 
 interface Props {}
 
@@ -199,8 +203,9 @@ const Mypage = (props: Props) => {
                         <div style={{flex: 0.4}}></div>
 
                     </MyPageReqBox>
-
+                    <Link href="/musician/mypage">
                     <MyPageChangeMusician>뮤지션으로 전환</MyPageChangeMusician>
+                    </Link>
                 </MyPageUserInfoData>
                 
                 <MyPageUserInfoImg>

@@ -30,6 +30,7 @@ const Text = styled.div`
   font-size: 1.27rem;
   margin: 1.5rem;
   margin-bottom: 2.5rem;
+  text-align: center;
 `;
 const Descript = styled.div`
   color: #b3b4be;
@@ -44,10 +45,13 @@ const Banner = (props: Props): React.ReactElement => {
     <Container>
       <Background src="/banner.png" />
       <Position>
-        <Logo src="/static/tuna.png" alt="logo" />
-        <Text>당신의 뮤지션은 누구?</Text>
+        <Logo src="/static/L.png" alt="logo" width="218" height="89"/>
+        <Text>
+          음악, 듣기만 하셨나요?
+          <br /> 이제 뮤지션과 함께 만들어보세요.
+        </Text>
         <Descript>뮤지션과 함께 커스터마이징 음악을 만들어보세요</Descript>
-        <Curation className="banner"/>
+        <Curation className="banner" />
       </Position>
     </Container>
   );

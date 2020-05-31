@@ -8,23 +8,40 @@ import MusicTab from "./MusicTab";
 interface Props {}
 const Container = styled.div`
   padding-left: 1.5rem;
-  flex: 5;
   display: flex;
   flex-direction: column;
 `;
-const Content = styled.div`
-  height: 3000px;
-`;
 const MusicianProfileTab = (props: Props) => {
   const [tabIndex, setTabIndex] = React.useState<number>(0);
+  const [space, setSpace] = React.useState(16);
   const changeTab = (index: number): void => {
     setTabIndex(index);
+    setSpace(60);
   };
-  const TabPages = [<MusicTab />, <IntroductTab />, <PriceTab />];
+  const TabRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (window.location.hash) {
+      setSpace(60);
+    }
+    const scrollHandler = (event) => {
+      if (
+        event.srcElement.scrollingElement.scrollTop < TabRef.current.offsetTop
+      ) {
+        setSpace(16);
+      }
+    };
+    window.addEventListener("scroll", scrollHandler);
+    return () => {
+      window.removeEventListener("scroll", scrollHandler);
+    };
+  }, []);
   return (
-    <Container>
+    <Container ref={TabRef}>
       <TabHeader changeTab={changeTab} selected={tabIndex}></TabHeader>
-      {TabPages[tabIndex]}
+      <MusicTab space={space} />
+      <IntroductTab space={space} />
+      <PriceTab space={space} />
     </Container>
   );
 };

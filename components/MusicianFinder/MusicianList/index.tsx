@@ -37,6 +37,8 @@ const Next = styled.div`
     display: flex;
     justify-content : center;
     align-items : center;
+    font-weight:bold;
+    font-size : 1rem;
 `;
 
 const MusicianList = (props: Props) => { 

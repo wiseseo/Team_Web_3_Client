@@ -8,13 +8,11 @@ interface Props {
 }
 const ProgressWrapper = styled.div`
   display: flex;
-  flex: 1;
   align-items: center;
-  margin-right: auto;
   div {
     display: inline-block;
     color: #b3b4be;
-    width: 3em;
+    width: 4em;
     &:first-child {
       text-align: right;
     }
@@ -24,6 +22,7 @@ const ProgressWrapper = styled.div`
   }
   input[type="range"] {
     margin: 0 1rem;
+    min-width: 480px;
     -webkit-appearance: none;
     appearance: none;
     background-color: #b3b4be;

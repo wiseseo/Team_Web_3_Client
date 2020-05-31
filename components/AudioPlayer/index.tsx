@@ -7,7 +7,7 @@ import { SongContext } from "./../../stores/SongStore";
 
 const AudioContainer = styled.div`
   display: flex;
-  padding: 1.25rem;
+  padding: 1.25rem 5rem;
   align-items: center;
   justify-content: space-around;
   background: rgba(17, 15, 17, 0.8);
@@ -25,13 +25,14 @@ const Volume = styled.div`
   align-items: center;
   margin-left: 1rem;
   input[type="range"] {
-    margin: 0 1rem;
+    margin: 0 0.5rem;
     -webkit-appearance: none;
     appearance: none;
     background-color: #b3b4be;
     overflow: hidden;
     height: 8px;
     width: 80px;
+    border-radius: 2px;
 
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
@@ -41,6 +42,18 @@ const Volume = styled.div`
       box-shadow: -100vw 0 0 100vw #6865fc;
       background: linear-gradient(138.6deg, #6865fc 36.28%, #658dfc 100%);
     }
+  }
+`;
+const Controller = styled.div`
+  margin-right: auto;
+  margin-left: auto;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & > button {
+    background: rgba(43, 43, 43, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
   }
 `;
 const AudioPlayer: React.FC = (): React.ReactElement => {
@@ -91,17 +104,19 @@ const AudioPlayer: React.FC = (): React.ReactElement => {
   return (
     <AudioContainer>
       <Profile cover={song.cover_url} name={song.name} title={song.title} />
-      <PlayButton playAudio={playAudio} size={48} status={song.isPlaying} />
-      <ProgressBar
-        current={currentTime}
-        duration={duration}
-        changeCurrent={changeCurrent}
-      />
+      <Controller>
+        <PlayButton playAudio={playAudio} size={36} status={song.isPlaying} />
+        <ProgressBar
+          current={currentTime}
+          duration={duration}
+          changeCurrent={changeCurrent}
+        />
+      </Controller>
       <Like onClick={() => dispatch({ type: "TOGGLE_LIKE" })}>
-        <img src="/static/like.png" alt="like" />
+        <img src="/static/like.png" width={24} height={24} alt="like" />
       </Like>
       <Volume>
-        <img src="/static/volume.png" alt="volume" />
+        <img src="/static/volume.png" width={24} height={24} alt="volume" />
         <input
           type="range"
           max={1}

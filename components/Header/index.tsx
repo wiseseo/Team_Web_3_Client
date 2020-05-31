@@ -9,7 +9,7 @@ interface Props {}
 const HeaderContainer = styled.header`
   background: #040104;
   align-items: center;
-  padding: 2em 5em;
+  padding: 2em 0;
   width: 100%;
   min-width: 1000px;
   max-width: 1300px;
@@ -21,14 +21,15 @@ const Header = (props: Props): React.ReactElement => {
   return (
     <HeaderContainer>
       <img
-        src="/static/logo.png"
+        src="/static/tuna-logotype2.png"
         alt="logo"
+        width="127px"
+        height="40px"
         style={{ cursor: "pointer", marginRight: "auto" }}
         onClick={() => {
           location.href = "/";
         }}
       />
-      {/* <SearchBar /> */}
       <MatchButton />
       <LinkButton text="뮤지션 등록" type="enroll" />
       <LinkButton text="로그인/가입" type="sign" />

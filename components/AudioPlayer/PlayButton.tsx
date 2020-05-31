@@ -15,6 +15,7 @@ const Button = styled.button`
   background: transparent;
   display: flex;
   justify-content: center;
+  background-color: rgba(255, 255, 255, 0.3);
   align-items: center;
 `;
 
@@ -26,14 +27,14 @@ const Toggle = styled.input.attrs(({ checked }: { checked: boolean }) => ({
 }))`
   appearance: none;
   outline: none;
-  width: ${({ size }: { size: number }) => size / 2}px;
-  height: ${({ size }: { size: number }) => size / 2}px;
-  background-size: contain;
+  width: ${({ size }: { size: number }) => size}px;
+  height: ${({ size }: { size: number }) => size}px;
+  background-size: cover;
   background-position: center center;
-  background-image: url("/static/pause.png");
+  background-image: url("/static/play.png");
   background-repeat: no-repeat;
   &:checked {
-    background-image: url("/static/play.png");
+    background-image: url("/static/pause.png");
   }
 `;
 

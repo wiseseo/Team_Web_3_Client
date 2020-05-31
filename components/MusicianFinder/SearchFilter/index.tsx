@@ -22,6 +22,7 @@ const DropDown = styled.div`
     display: block;
     box-shadow: -2px 0px 10px rgba(88, 90, 107, 0.4);
   }
+  &:focus { outline:none; }
   
 `;
 const DropBtn = styled.button`
@@ -37,7 +38,8 @@ const DropBtn = styled.button`
 
     display : flex;
     align-items : center;
-    justify-content : space-around;
+    justify-content : space-between;
+    &:focus { outline:none; }
 `;
 
 const DropContents = styled.div`
@@ -83,7 +85,7 @@ const FilterTag = styled.span`
 `;
 
 const TagSection = styled.div`
-    margin-top : 24px;
+    margin-top : 16px;
 `;
 
 const SortingSection = styled.div`
@@ -91,20 +93,18 @@ const SortingSection = styled.div`
     flex-direction: row;
     justify-content : flex-end; 
     cursor : pointer;
-    padding-top : 80px;
+    padding-top : 20px;
     padding-bottom : 24px;
 `;
 
 const Sort= styled.div`
     color :  #${(props:{isSelected: boolean}) => props.isSelected ? '6865FC' : 'B3B4BE'};
     margin-left : 8px;
+    font-size : 1rem;
+    font-weight : bold;
 
 `;
 
-const TagDescrip = styled.span`
-    color: #6865FC;
-    margin-left : 24px;
-`;
 
 
 const SearchFilter= (props: Props) => { 
@@ -713,6 +713,7 @@ const SearchFilter= (props: Props) => {
                     tagList[i][j].chosenPossible = true;
                 }
             }
+            document.getElementById('pathIcon').style.transform = "scaleY(-1)"
         }
         console.log(`${dropdownName} : ${TagList}`);
     },[dropdownName]);
@@ -721,22 +722,31 @@ const SearchFilter= (props: Props) => {
     return (
         <FilterSection>
             <DropDownSection>
-                <DropDown>
+                <DropDown
+                    onMouseOver={()=>{
+                        document.getElementById('dropdown-content').style.display = "block";
+                        document.getElementById('pathIcon').style.transform = "scaleY(1)"
+                    }}
+                    onMouseOut={()=>{
+                        document.getElementById('dropdown-content').style.display = "none";
+                        if(!dropdownName) document.getElementById('pathIcon').style.transform = "scaleY(1)"
+                        else document.getElementById('pathIcon').style.transform = "scaleY(-1)"
+                    }}>
                     <DropBtn>
-                        <span>
+                        <span style={{paddingLeft : "11px"}}>
                             {filterType[dropdownName].type}
                         </span>
-                        <img src="/static/path.png" alt="path" />
+                        <img src="/static/path.png" alt="path" className="pathIcon" id="pathIcon" style={{transform : "scaleY(1)", paddingRight : "16px"}}/>
                     </DropBtn>
-                    <DropContents className="dropdown-content">
+                    <DropContents className="dropdown-content" id="dropdown-content">
                         {filterType.splice(1).map(({id,type})=>{
                             return <DropFilters key={id} onClick={()=>{
                                 setDropDownName(id);
+                                document.getElementById('dropdown-content').style.display = "none";
                             }}>{type}</DropFilters>
                         })}
                     </DropContents>
                 </DropDown>
-                {dropdownName == 0 ? <TagDescrip>태그를 선택해주세요</TagDescrip> : <span></span>}
             </DropDownSection>
             <TagSection>
                 {dropdownName != 0 ? 
@@ -762,7 +772,7 @@ const SearchFilter= (props: Props) => {
                 <Sort isSelected={sort} onClick={()=>setSort(true)}>
                     <span>인기순</span>
                 </Sort>
-                <Sort isSelected={!sort} onClick={()=>setSort(false)} >
+                <Sort isSelected={!sort} onClick={()=>setSort(false)} style={{marginLeft : "12px"}}>
                     <span>신규순</span>
                 </Sort>
             </SortingSection>
