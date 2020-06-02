@@ -11,7 +11,7 @@ const EnrollContainer = styled.div`
     background: #040104;
     font-family: SpoqaHanSans;
     font-style: normal;
-    padding: 0 5em;
+    padding: 0 40px;
     max-width : 1300px;
     min-width : 950px;
     margin : 0 auto;

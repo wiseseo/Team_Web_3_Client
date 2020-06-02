@@ -64,153 +64,28 @@ const EstimateContentMainSubTitleBack = styled.div`
     margin-top : 8px;
 `;
 
-const CheckBoxContainer = styled.div``;
-
-const CheckBoxLayout = styled.div`
-    width: 100%;
-    margin: 15px auto;
-    position: relative;
-    display: block;
+const CurationTagLayout = styled.div`
+  margin-top : 24px;
+  height : 198px;
 `;
 
-const CheckBoxLabel = styled.label`
-
-    min-height: 34px;
-    display: block;
-    padding-left: 40px;
-    margin-bottom: 0;
-    font-weight: normal;
-    cursor: pointer;
-    vertical-align: sub;
-    
-    &:before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        margin: 4px;
-        width: 22px;
-        height: 22px;
-        transition: transform 0.28s ease;
-        border-radius: 8px;
-        border: 2px solid #3E3E41;
-        background-color: #3E3E41;
-    };
-
-    &:after {
-        content: '';
-        display: block;
-        width: 10px;
-        height: 5px;
-        border-bottom: 2px solid #6865FC;
-        border-left: 2px solid #6865FC;
-        -webkit-transform: rotate(-45deg) scale(0);
-        transform: rotate(-45deg) scale(0);
-        transition: transform ease 0.25s;
-        will-change: transform;
-        position: absolute;
-        top: 12px;
-        left: 10px;
-    };
-`;
-
-
-const CheckBoxInput = styled.input`
-    width: auto;
-    opacity: 0.00000001;
-    position: absolute;
-    left: 0;
-    margin-left: -20px;
-
-    &:checked + ${CheckBoxLabel}:before {
-        color: #6865FC;
-    };
-
-    &:checked + ${CheckBoxLabel}:after {
-        -webkit-transform: rotate(-45deg) scale(1);
-        transform: rotate(-45deg) scale(1);
-    };
-`;
-
-
-const CheckBoxLabelSpan = styled.span`
-    position: absolute;
-    top: 50%;
-
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-
-    color : #B3B4BE;
-`;
-
-const CheckBoxEtcInput = styled.input`
-    margin-top : 15px;
-    float : left;
-    margin-left: 35px;
-    width : 328px;
-    color : #B3B4BE;
-    background: #3E3E41;
-    border-radius: 8px;
-    border : none;
-    height: 32px;
-    padding : 0 1.5%;
-    &&{
-        ::placeholder {
-        color : rgba(179, 180, 190, 0.5);
-        font-size : 0.75rem;
-        }
-    }
-    &:focus {
-        outline : none;
-    }
-`;
-
-
-const FormContainerRadioLayout = styled.div`
+const CurationTag = styled.span`
+  border-radius : 20px;
+  border : 1px solid #B3B4BE;
   color : #B3B4BE;
-  font-size : 0.875rem;
-  display: flex;
-  flex-direction : row;
-  position: relative;
-  padding: 0 6px;
-  margin: 20px 0 0;
-  width : 100%;
-  margin-bottom : 1%;
-`;
-
-const FormContainerRadioLabel = styled.label`
-  color: #666;
+  margin-right : 16px;
+  font-family: SpoqaHanSans;
+  font-style: normal;
   font-weight: normal;
+  font-size: 0.875rem;
+  line-height: 22px;
+  margin-top : 8px;
+  padding : 3px 15px;
+  display : inline-block;
+  margin-bottom : 8px;
   cursor : pointer;
-  &:before {
-    content: " ";
-    display: inline-block;
-    position: relative;
-    top: 5px;
-    margin: 0 5px 0 0;
-    width: 20px;
-    height: 20px;
-    border-radius: 11px;
-    border: 2px solid #3E3E41;
-    background-color: transparent;
-  }
 `;
 
-const FormContainerRadio = styled.input`
-  display : none;
-
-  &:checked + ${FormContainerRadioLabel}:after {
-    border-radius: 11px;
-    width: 14px;
-    height: 14px;
-    position: absolute;
-    top: 10px;
-    left: 11px;
-    content: " ";
-    display: block;
-    background: #6865FC;
-  }
-`;
 const EstimateContentMainButton = styled.div`
     width : 100%;
     height : 96px;
@@ -242,68 +117,111 @@ const AfterButton = styled.button`
 `;
 const index = ({nextButton, beforeButton, object}): React.ReactElement => {
 
-    const [checkBoxArr, setCheckBoxArr] = React.useState([])
-
-    const [checkBoxList, setCheckBoxList] = React.useState([
+    const [tagList, setTagList] = React.useState([
         {
-            label : "보컬(랩 포함)",
-            select : false
+            key : 1,
+            name : "보컬(랩 포함)",
+            chosen : false,
+            chosenPossible : true
         },
         {
-            label : "빠른 작업",
-            select : false
+            key : 2,
+            name : "빠른 작업",
+            chosen : false,
+            chosenPossible : true
         },
         {
-            label : "효과음",
-            select : false
+            key : 3,
+            name : "효과음",
+            chosen : false,
+            chosenPossible :true
         },
         {
-            label : "작사(가사 제작)",
-            select : false
+            key : 4,
+            name : "작사(가사 제작)",
+            chosen : false,
+            chosenPossible :true
         },
         {
-            label : "신종 작업",
-            select : false
+            key : 5,
+            name : "신종 작업",
+            chosen : false,
+            chosenPossible :true
         },
         {
-            label : "사업자 등록증",
-            select : false
+            key : 6,
+            name : "사업자 등록증",
+            chosen : false,
+            chosenPossible :true
         },
         {
-            label : "해당사항 없음",
-            select : false
+            key : 7,
+            name : "해당사항 없음",
+            chosen : false,
+            chosenPossible :true
         }
-    ]);
-
-    const checkBox = (e) => {
-        console.log(e.target.value);
-        
-        
-        if(checkBoxArr.includes(e.target.value)){
-            let newList = [...checkBoxList];
-
-            for(let i = 0 ; i < checkBoxList.length ; i++){
-                if(checkBoxList[i].label === e.target.value){
-                    newList[i].select = false;
-                }
-            }
-
-            setCheckBoxArr(checkBoxArr.filter((item) => item !== e.target.value))
+      ])
+      const [selectTag, setSelectTag] = React.useState<boolean>(false);
+      const [TagList, appendTagList] = React.useState([])
+      
+      const chosenTag = (key) => {
+    
+        if(key == 7){
+          let newTagList = [...tagList];
+          
+          for(let i = 0 ; i<newTagList.length ; i++){
+            newTagList[i].chosen = false;
+            newTagList[i].chosenPossible = false;
+          }
+    
+          newTagList[key-1].chosen = true;
+          newTagList[key-1].chosenPossible = true;
+          setTagList(newTagList);
+          setSelectTag(true);
+          appendTagList([newTagList[key-1].name]);
+    
         }
         else{
-            let newList = [...checkBoxList];
-
-            for(let i = 0 ; i < checkBoxList.length ; i++){
-                if(checkBoxList[i].label === e.target.value){
-                    newList[i].select = true;
-                }
-            }
-            setCheckBoxList(newList)
-            setCheckBoxArr([...checkBoxArr, e.target.value]);
+          let newTagList = [...tagList];
+          newTagList[key-1].chosen = true; 
+          setTagList(newTagList);
+          setSelectTag(true);
+    
+          appendTagList([...TagList, newTagList[key-1].name]);
+    
         }
-    }
+        
+    
+      }
+    
+      const releaseTag = (key) => {
+    
+        if(key == 7){
+          let newTagList = [...tagList];
+          
+          for(let i = 0 ; i<newTagList.length ; i++){
+            newTagList[i].chosen = false;
+            newTagList[i].chosenPossible = true;
+          }
+    
+          setTagList(newTagList);
+          setSelectTag(false);
+          appendTagList(TagList.filter(e => e !== newTagList[key-1].name));
+    
+        }
+        else{
+          let newTagList = [...tagList];
+          newTagList[key-1].chosen = false;
+          setTagList(newTagList);
+          
+          if(tagList.find(e => e.chosen == true) == undefined){
+            setSelectTag(false);
+          }
+      
+          appendTagList(TagList.filter(e => e !== newTagList[key-1].name));
+        }
+      }
 
-    // console.log(checkBoxList);
     return (
         <>
         <EstimateUserInfoData>
@@ -322,16 +240,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             <EstimateMainDesc>튜나 팁</EstimateMainDesc>
             <EstimateSubTitle>작업 특성이란?</EstimateSubTitle>
             <EstimateSubDesc>
-            {   
-                "작업에 있어 필요한 세부 사항입니다.\n해당사항이 없을 시 '해당없음'을 눌러주세요.".split("\n").map(function(item, idx) {
-                    return (
-                        <span key={idx}>
-                            {item}
-                            <br/>
-                        </span>
-                        )
-                })
-            }
+            작업에 있어 필요한 세부적 사항입니다. 해당사항이 없을 시 '해당없음'을 눌러주세요. '기타'란에 입력해주세요.
             </EstimateSubDesc>
             
         </EstimateUserInfoData>
@@ -347,32 +256,22 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 <EstimateContentMainSubTitle>다음 중 필요한 작업 특성을 선택해주세요.</EstimateContentMainSubTitle>
                 <EstimateContentMainSubTitleBack>원하는 옵션이 없을 시 해당사항 없음을 선택해주세요.</EstimateContentMainSubTitleBack>
                 
-                <CheckBoxContainer> 
-                    {checkBoxList.map((list, key) => {
-                        console.log(list, key);
-                        if(list.select === true){
+                <CurationTagLayout>
 
-                          return (   
-                              <CheckBoxLayout key={key}>
-                                  <CheckBoxInput onChange={(e) => {checkBox(e)}} type="checkbox" id={`checkbox${key}`} name="" value={list.label}/>
-                                  <CheckBoxLabel htmlFor={`checkbox${key}`}><CheckBoxLabelSpan style={{color : "#6865FC"}}>{list.label}</CheckBoxLabelSpan></CheckBoxLabel>
-                              </CheckBoxLayout>
-                          );
-
+                    {tagList.map((list, key) => {
+                        if(list.chosen == true){
+                        return  <CurationTag key={key} onClick={() => {releaseTag(list.key)}} style={{color : "white", background: "#6865FC", border : "1px solid rgb(4, 1, 4)"}}>{list.name}</CurationTag>
                         }
-
+                        else if(list.chosenPossible == true){
+                        return <CurationTag key={key} onClick={() => {chosenTag(list.key)}}>{list.name}</CurationTag>
+                        }
                         else{
-                            return (
-                            <CheckBoxLayout key={key}>
-                                <CheckBoxInput onChange={(e) => {checkBox(e)}} type="checkbox" id={`checkbox${key}`} name="" value={list.label}/>
-                                <CheckBoxLabel htmlFor={`checkbox${key}`}><CheckBoxLabelSpan>{list.label}</CheckBoxLabelSpan></CheckBoxLabel>
-                            </CheckBoxLayout>
-                            );
+                        return <CurationTag key={key} style={{color : "#3E3E41", cursor : "auto", border : "1px solid #3E3E41"}}>{list.name}</CurationTag>
                         }
-
+                        
                     })}
-                </CheckBoxContainer>
-
+                
+                </CurationTagLayout>
 
             </EstimateContentMainSub>
             

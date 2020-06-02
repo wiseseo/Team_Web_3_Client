@@ -190,6 +190,7 @@ const StepThree = ({ nextButton, beforeButton, object }) => {
 
   React.useEffect(() => {
     setStepThree(object);
+    window.scrollTo(0, 0);
   }, [object]);
 
   return (

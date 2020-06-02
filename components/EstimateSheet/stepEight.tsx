@@ -100,7 +100,7 @@ const FormContainerRadioLayout = styled.div`
   flex-direction : row;
   position: relative;
   padding: 0 6px;
-  margin: 20px 0 0;
+  margin: 10px 0 0;
   width : 100%;
   margin-bottom : 1%;
 `;
@@ -139,6 +139,23 @@ const FormContainerRadio = styled.input`
   }
 `;
 
+const FormContainerProfileUpload = styled.button`
+  background : #3E3E41;
+  color : #B3B4BE;
+  width : 88px;
+  height : 32px;
+  font-size : 0.75rem;
+  font-weight : bold;
+  border : none;
+  border-radius: 8px;
+  margin-bottom: 8px;
+`;
+
+const XButton = styled.span`
+    cursor : pointer;
+`;
+
+
 const BeforeButton = styled.button`
     background : #121212;
     border-radius : 8px;
@@ -162,10 +179,102 @@ const AfterButton = styled.button`
     border: none;
     font-size : 1rem;
 `;
+
 const index = ({nextButton, beforeButton, object}): React.ReactElement => {
 
+    const [radioBoxArr, setRadioBoxArr] = React.useState([]);
+    const [radioBoxList, setRadioBoxList] = React.useState([
+        {
+            label : "참고 자료 없음",
+            select : false
+        },
+        {
+            label : "참고 자료 있음",
+            select : false
+        },
+    ])
+    
+    const [fileArr, setFileArr] = React.useState([]);
+    const [fileHover, setFileHover] = React.useState<number>(0);
+    const [fileSize, setFileSize] = React.useState<boolean>(true);
 
-    // console.log(checkBoxList);
+    const checkBox = (e) => {
+        console.log(e.target.value);
+        
+        let newList = [...radioBoxList];
+
+        for(let i = 0 ; i < radioBoxList.length ; i++){
+            if(radioBoxList[i].label === e.target.value){
+                newList[i].select = true;
+            }
+            else{
+                newList[i].select = false;
+            }
+        }
+        setRadioBoxList(newList)
+        setRadioBoxArr([...radioBoxArr, e.target.value]);
+    }
+
+    const handleFileOnChange = (event) => {
+    
+        let file = event.target.files;
+        console.log(file);
+        let newFileArr = [];
+        let fileSize = 0;
+        if(file.length > 5){
+            for(let i = 0 ; i < 5 ; i++){
+                newFileArr.push([file[i], i])
+                fileSize += file[i].size;
+            }
+
+            if(fileSize > 10000000){
+                setFileSize(false);
+            }
+            else{
+                setFileSize(true);
+                setFileArr(newFileArr);
+            }
+            
+            
+        }
+        else{
+            
+            for(let i = 0 ; i < file.length ; i++){
+                newFileArr.push([file[i], i])
+                fileSize += file[i].size;
+            }
+
+            if(fileSize > 10000000){
+                setFileSize(false);
+            }
+            else{
+                setFileSize(true);
+                setFileArr(newFileArr);
+            }
+            
+            
+        }
+        
+      }
+
+    const fileInput = React.useRef<HTMLInputElement>(null);
+    const resetInput = () => {
+        fileInput.current.value = '';
+    };
+
+    React.useEffect(() => {
+        if(fileInput.current){
+            resetInput();
+        }
+    }, [fileArr]);
+
+    let FileStyle = {
+        display: "inline-block",
+        padding: "0 5px",
+        background: "rgba(143, 143, 143, 0.1)"
+    };
+    
+    
     return (
         <>
         <EstimateUserInfoData>
@@ -202,19 +311,129 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 <FormContainerTextarea
                     placeholder="최소 30자 이상 입력해주세요."
                 />
-                <FormContainerRadioLayout>
+                {radioBoxList.map((list, key) => {
 
-                    <FormContainerRadio type="radio" value={"없음"} name="use" id={"없음"}/> 
-                    <FormContainerRadioLabel htmlFor={"없음"}>참고자료 없음</FormContainerRadioLabel>
+                    if(list.select === true){
+                        return (
+                            <FormContainerRadioLayout key={key}>
 
-                </FormContainerRadioLayout>
+                                <FormContainerRadio onChange={(e) => {checkBox(e)}} type="radio" value={list.label} name="pay" id={list.label}/> 
+                                <FormContainerRadioLabel htmlFor={list.label} style={{color : "#6865FC"}}>{list.label}</FormContainerRadioLabel>
+                                
+                            </FormContainerRadioLayout>
+                            
+                        );
+                    
+                    }
+                    else{
+                        return (
+                            <FormContainerRadioLayout key={key}>
+
+                                <FormContainerRadio onChange={(e) => {checkBox(e)}} type="radio" value={list.label} name="pay" id={list.label}/> 
+                                <FormContainerRadioLabel htmlFor={list.label}>{list.label}</FormContainerRadioLabel>
+
+                            </FormContainerRadioLayout>
+                        );
+                    }
+
+                })}
                 
-                <FormContainerRadioLayout>
+                {radioBoxList[1].select === true ? 
+                
+                <div style={{marginLeft : "4%", marginTop : 4}}>
+                    {fileSize ? 
+                        <div style={{fontSize : "0.75rem", color : "#6865FC", marginBottom : 8}}>최대 5개까지 업로드 할 수 있습니다. (최대 10MB)</div>
+                    : 
+                        <div style={{fontSize : "0.75rem", color : "#C93237", marginBottom : 8}}>
+                            <img
+                                src={"/static/warningCircle.png"}
+                                alt="vector"
+                                style={{
+                                    width : 12,
+                                    height : 12,
+                                    marginRight : 5
+                                }}
+                            />
+                            최대 5개까지 업로드 할 수 있습니다. (최대 10MB)
+                        </div>
+                    }
+                    
+                    <FormContainerProfileUpload onClick={()=>{
+                        document.getElementById('getFile').click();
+                    }}>업로드
+                    </FormContainerProfileUpload>
+                    <input multiple style={{visibility : "hidden"}} type="file" id="getFile" ref={fileInput} onChange={e => {
+                    handleFileOnChange(e);
+                    
+                    }}/>
+                    
+                    {fileArr.length !== 0 ?
+                        fileArr.map((value, idx) => {
+                            return (
+                                <div key={idx} style={{marginBottom : 8}}>
+                                    
+                                    {fileHover === idx ? 
+                                         <div style={FileStyle}>
+                                            <img
+                                                src={"/static/fileLink.png"}
+                                                alt="fileLink"
+                                                style={{
+                                                    width : 12,
+                                                    height : 12,
+                                                    marginRight : 5
+                                                }}
+                                            />
+                                            <span onMouseOver={() => {setFileHover(idx)}} onMouseLeave={() => {setFileHover(idx)}} style={{width : 160, display : "inline-block"}}>
+                                            {value[0].name.length > 20 ? value[0].name.substr(0, 20) : value[0].name}
+                                            </span>
+                                            <XButton onClick={() => {
+                                                setFileArr(fileArr.filter(item => item[1] !== value[1]))
+                                                                
+                                                }}>
+                                                <img
+                                                    src={"/static/group.png"}
+                                                    alt="group"
+                                                    style={{
+                                                        width : 10,
+                                                        height : 10,
+                                                        marginLeft : 20
+                                                    }}
+                                                />
+                                            </XButton>
+                                         </div>
+     
+                                    :
+                                        <div style={{display : "inline-block"}}>
+                                            <img
+                                                src={"/static/fileLink.png"}
+                                                alt="fileLink"
+                                                style={{
+                                                    width : 12,
+                                                    height : 12,
+                                                    marginRight : 5
+                                                }}
+                                            />
+                                            <span onMouseOver={() => {setFileHover(idx)}} onMouseLeave={() => {setFileHover(idx)}} style={{width : 160, display : "inline-block"}}>
+                                            {value[0].name.length > 20 ? value[0].name.substr(0, 20) : value[0].name}
+                                            </span>
+                                            
+                                        </div>
 
-                    <FormContainerRadio type="radio" value={"참고"} name="use" id={"참고"}/> 
-                    <FormContainerRadioLabel htmlFor={"참고"}>참고자료 있음</FormContainerRadioLabel>
+                                    }
 
-                </FormContainerRadioLayout>
+                                   
+                                </div>
+                            )
+                        })
+                        
+                    :
+                    ""
+                    }
+
+                </div>
+                : 
+                ""
+                }
 
             </EstimateContentMainSub>
             
