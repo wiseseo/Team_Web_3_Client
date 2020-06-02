@@ -178,6 +178,10 @@ const FormContainerSnsName = styled.div`
   font-weight : bold;
 `;
 
+const XButton = styled.span`
+  float : right;
+  cursor : pointer;
+`;
 const FlowButtonLayout = styled.div`
   padding-top : 10%;
   clear: both;
@@ -297,8 +301,21 @@ const StepOne = ({ nextButton, object }) => {
   }
   
   // console.log(stepOneObj);
+
+  const fileInput = React.useRef<HTMLInputElement>(null);
+  const resetInput = () => {
+    fileInput.current.value = '';
+  };
+
+  const fileMainInput = React.useRef<HTMLInputElement>(null);
+  const resetMainInput = () => {
+    fileMainInput.current.value = '';
+  };
+
+
   React.useEffect(() => {
     setStepOne(object);
+    window.scrollTo(0, 0);
   }, [object])  
   React.useEffect(() => {
     // 0이 기본, 1 성공, 2 실패
@@ -365,9 +382,11 @@ const StepOne = ({ nextButton, object }) => {
         setcelPhoneFlag(0);
       }
     }
-
+    resetInput();
+    resetMainInput();
   }, [stepOneObj]);
   
+  // console.log('main : ', stepOneObj.portFolioMainMusic.size)
   return (
   <>
     <StepOneContainer>
@@ -613,7 +632,7 @@ const StepOne = ({ nextButton, object }) => {
 
       <FormContainer>
         <FormContainerTitle>휴대폰 번호<span style={{color : "#6865FC"}}>*</span></FormContainerTitle>
-
+        
         {celPhoneFlag === 0 ?
         <FormContainerInput defaultValue={stepOneObj.celPhone} placeholder="010-1234-5678" onChange={e => {
           setStepOne({...stepOneObj, celPhone : e.target.value})}
@@ -630,13 +649,34 @@ const StepOne = ({ nextButton, object }) => {
         )
         
         }
+       {celPhoneFlag === 2 ?
+       <>
+            <div style={{float: "right", width : "73%", height: 0}}>   
+                <img
+                    src={"/static/warning.png"}
+                    alt="warning"
+                    style={{
+                        width : 10,
+                        height : 10,
+                        marginRight : 5
+                    }}
+                />
+                <span style={{color : "#C93E37", fontSize: "0.625rem"}}>올바른 휴대폰 번호가 아닙니다.</span>
+            </div>
+
+            <FormContainerProfileContent style={{width : "73%", float : "right", marginBottom : "2%", marginTop : "4%"}}> 
+            거래가 성사되기 전에는 뮤지션의 연락처가 공개되지 않습니다. 원활한 소통을 위해 연락처를 기입해주세요.
+            </FormContainerProfileContent>
+        </>
+        :
+            <FormContainerProfileContent style={{width : "73%", float : "right", marginBottom : "2%", marginTop : "2%"}}> 
+              거래가 성사되기 전에는 뮤지션의 연락처가 공개되지 않습니다. 원활한 소통을 위해 연락처를 기입해주세요.
+            </FormContainerProfileContent>
+        }
+
+
+
         
-
-        <div><div style={{width : "30%"}}/></div>
-
-        <FormContainerProfileContent style={{width : "73%", float : "right", marginBottom : "2%", marginTop : "2%"}}> 
-          거래가 성사되기 전에는 뮤지션의 연락처가 공개되지 않습니다. 원활한 소통을 위해 연락처를 기입해주세요.
-        </FormContainerProfileContent>
       </FormContainer>
 
       <FormContainer>
@@ -780,7 +820,7 @@ const StepOne = ({ nextButton, object }) => {
             }}>업로드
             </FormContainerProfileUpload>
             
-            <input accept=".mp3,.mp4" style={{visibility : "hidden"}} type="file" id="getMusic"
+            <input accept=".mp3,.mp4" style={{visibility : "hidden"}} type="file" id="getMusic" ref={fileMainInput}
             onChange={e => {
               // console.log(e.target.files[0])
               setStepOne({...stepOneObj, portFolioMainMusic : e.target.files[0]})
@@ -788,15 +828,36 @@ const StepOne = ({ nextButton, object }) => {
             />
 
           </div>
-          {stepOneObj.portFolioMainMusic.name === "" ? 
+          
+          {stepOneObj.portFolioMainMusic.size === 0 ? 
           
           <MusicNameLayout  style={{marginBottom : "3%", width : "35%", float : "right"}}>
             파일명이 음악이름으로 등록됩니다.
           </MusicNameLayout>
           :
           
-          <MusicNameLayout  style={{marginBottom : "3%", width : "35%", float : "right"}}>
+          <MusicNameLayout style={{marginBottom : "3%", width : "35%", float : "right"}}>
             {stepOneObj.portFolioMainMusic.name}
+
+            <XButton onClick={() => {
+                setStepOne({...stepOneObj, portFolioMainMusic : 
+                  {
+                    lastModified: 0,
+                    name: '',
+                    size: 0,
+                    type: ''
+                  }})                  
+            }}>  
+            <img
+                src={"/static/group.png"}
+                alt="group"
+                style={{
+                    width : 12,
+                    height : 12,
+                    
+                }}
+            />
+            </XButton>
           </MusicNameLayout>
           }
           
@@ -817,12 +878,23 @@ const StepOne = ({ nextButton, object }) => {
             }}>업로드
             </FormContainerProfileUpload>
             
-            <input accept=".mp3,.mp4" multiple style={{visibility : "hidden"}} type="file" id="getSubMusic"
+            <input accept=".mp3,.mp4" multiple style={{visibility : "hidden"}} type="file" id="getSubMusic" ref={fileInput}
             onChange={e => {
+              
               let subMusicArr = []
-              for(let i = 0 ; i < e.target.files.length ; i++){
-                subMusicArr.push(e.target.files[i])
+              let file = e.target.files;
+              console.log('files : ', file);
+              if(file.length > 9){
+                for(let i = 0 ; i < 9; i++){
+                  subMusicArr.push([e.target.files[i], i])
+                }
               }
+              else{
+                for(let i = 0 ; i < e.target.files.length ; i++){
+                  subMusicArr.push([e.target.files[i], i])
+                }
+              }
+              
               setStepOne({...stepOneObj, portFolioSubMusic : subMusicArr})
             }}
             />
@@ -832,7 +904,7 @@ const StepOne = ({ nextButton, object }) => {
           
           {stepOneObj.portFolioSubMusic[0].size === 0? 
           <MusicNameLayout style={{marginBottom : "3%", width : "35%", float : "right"}}>
-          파일명이 음악이름으로 등록됩니다.
+            파일명이 음악이름으로 등록됩니다.
           </MusicNameLayout>
           :
           
@@ -842,7 +914,31 @@ const StepOne = ({ nextButton, object }) => {
               return (
                 
                   <MusicNameLayout key={idx} style={{marginBottom : "3%", width : "35%", float : "right"}}>
-                    {value.name}
+                    {value[0].name}
+                    <XButton onClick={() => {
+                      if(stepOneObj.portFolioSubMusic.length === 1){
+                        setStepOne({...stepOneObj, portFolioSubMusic : 
+                          [{
+                            lastModified: 0,
+                            name: '',
+                            size: 0,
+                            type: ''
+                          }]})
+                      }
+                      else{
+                        setStepOne({...stepOneObj, portFolioSubMusic : stepOneObj.portFolioSubMusic.filter(item => item[1] !== value[1])})
+                      }                    
+                    }}>
+                      <img
+                          src={"/static/group.png"}
+                          alt="group"
+                          style={{
+                              width : 12,
+                              height : 12,
+                              
+                          }}
+                      />
+                    </XButton>
                   </MusicNameLayout>
                 
               )
@@ -850,8 +946,21 @@ const StepOne = ({ nextButton, object }) => {
             else{
               return (
                 
-                  <MusicNameLayout key={idx} style={{marginBottom : "3%", width : "35%", float : "right", marginRight : "35%"}}>
-                    {value.name}
+                  <MusicNameLayout key={idx} style={{marginBottom : "3%", width : "35%", float : "right", marginRight : "38%"}}>
+                    {value[0].name}
+                    <XButton onClick={() => {
+                      setStepOne({...stepOneObj, portFolioSubMusic : stepOneObj.portFolioSubMusic.filter(item => item[1] !== value[1])})
+                    }}>
+                      <img
+                          src={"/static/group.png"}
+                          alt="group"
+                          style={{
+                              width : 12,
+                              height : 12,
+                              
+                          }}
+                      />
+                    </XButton>
                   </MusicNameLayout>
                 
               )

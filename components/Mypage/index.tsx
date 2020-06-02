@@ -3,12 +3,9 @@ import styled from "styled-components";
 import ReqList from "./reqList";
 import MusicianItem from "../MusicianFinder/MusicianList/MusicianItem";
 import BeforeList from "./beforeList";
-<<<<<<< HEAD
 import {UserContext} from "../../stores/UserStore";
 import {SongContext} from "../../stores/SongStore";
-=======
 import Link from "next/link";
->>>>>>> 195376f29fe8e741d2ff9e68a42623229fae01c5
 
 interface Props {}
 
@@ -37,7 +34,7 @@ const MyPageContainer = styled.div`
     background: #040104;
     font-family: SpoqaHanSans;
     font-style: normal;
-    padding: 0 5em;
+    padding: 0 40px;
     display: flex;
     flex-direction : column;
     min-width : 1050px;

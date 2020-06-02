@@ -1070,6 +1070,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
     }
   }
   React.useEffect(() => {
+    window.scrollTo(0, 0);
     setStepTwo(object);
 
     let tagFlag = true;

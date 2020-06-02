@@ -123,8 +123,29 @@ const AfterButton = styled.button`
 const index = ({nextButton, beforeButton, object}): React.ReactElement => {
   
     const phoneNumberRegExp = /^\d{3}-\d{3,4}-\d{4}$/;
+    const [celPhoneFlag, setcelPhoneFlag] = React.useState<number>(0);
+    const [celphone, setCelphone] = React.useState<string>("");
 
-    // console.log(checkBoxList);
+    React.useEffect(() => {
+        
+        if (celphone !== "") {
+            if(celphone.match(phoneNumberRegExp)){
+              setcelPhoneFlag(1)
+            }
+            else{
+              setcelPhoneFlag(2)
+            }
+        }
+        else {
+            if(celPhoneFlag === 1 || celPhoneFlag === 2){
+              setcelPhoneFlag(2);
+            }
+            else{
+              setcelPhoneFlag(0);
+            }
+        }
+    }, [celphone]);
+
     return (
         <>
         <EstimateUserInfoData>
@@ -158,14 +179,48 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
 
                 <EstimateContentMainSubTitle>연락 가능한 연락처를 입력해주세요.</EstimateContentMainSubTitle>
                 <EstimateContentMainSubTitleBack>의뢰 수락시 뮤지션이 연락할 수 있도록 연락처를 입력해주세요. 뮤지션이 의뢰를 수락하기 전까지 연락처는 공개되지 않습니다.</EstimateContentMainSubTitleBack>
-                
+
                 <InputLayout>
-                  <div style={{display : "table", height : "32px", marginRight : "16px", width : "68px"}}>
+                    <div style={{display : "table", height : "32px", marginRight : "16px", width : "68px"}}>
                     <EstimateSubTitle style={{fontSize : "0.875rem", border : "none", display: "table-cell", verticalAlign : "middle"}}>전화번호</EstimateSubTitle>
-                  </div>
-                  <Input />
+                    </div>
+                {celPhoneFlag === 0 ?
+                
+                    <Input defaultValue={celphone} placeholder="010-1234-5678" onChange={e => {
+                        setCelphone(e.target.value)
+                    }}/>
+                
+                :
+                (celPhoneFlag === 1 ? 
+                        <Input defaultValue={celphone} placeholder="010-1234-5678" onChange={e => {
+                            setCelphone(e.target.value)
+                        }}/>
+                : 
+                    <Input defaultValue={celphone} style={{border : "1px solid #C93E37"}} placeholder="010-1234-5678" onChange={e => {
+                        setCelphone(e.target.value)
+                    }}/>
+                )
+                
+                }
                 </InputLayout>
 
+                {celPhoneFlag === 2 ?
+                    <div style={{marginLeft: 83}}>   
+                        <img
+                            src={"/static/warning.png"}
+                            alt="warning"
+                            style={{
+                                width : 10,
+                                height : 10,
+                                marginRight : 5
+                            }}
+                        />
+                        <span style={{color : "#C93E37", fontSize: "0.625rem"}}>올바른 휴대폰 번호가 아닙니다.</span>
+                    </div>
+                :
+                ""
+                }
+                
                 <InputLayout>
                   <div style={{display : "table", height : "32px", marginRight : "16px", width : "68px"}}>
                     <EstimateSubTitle style={{fontSize : "0.875rem", border : "none", display: "table-cell", verticalAlign : "middle"}}>카카오 ID</EstimateSubTitle>

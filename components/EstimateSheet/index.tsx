@@ -19,7 +19,7 @@ const EstimateContainer = styled.div`
     background: #040104;
     font-family: SpoqaHanSans;
     font-style: normal;
-    padding: 0 5em;
+    padding: 0 40px;
     display: flex;
     flex-direction : column;
     min-width : 1050px;

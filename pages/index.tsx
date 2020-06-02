@@ -10,7 +10,7 @@ import MusicianStore from "./../stores/MusicianStore";
 
 const Index: React.FC = () => {
   return (
-    <div style={{ maxWidth: 1300, margin: "0 auto" }}>
+    <div style={{ maxWidth: 1300, margin: "0 auto", padding : "0 40px" }}>
       <Banner />
       <Category />
       <MusicianStore>
