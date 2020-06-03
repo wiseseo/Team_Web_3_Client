@@ -182,7 +182,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
 
                 <InputLayout>
                     <div style={{display : "table", height : "32px", marginRight : "16px", width : "68px"}}>
-                    <EstimateSubTitle style={{fontSize : "0.875rem", border : "none", display: "table-cell", verticalAlign : "middle"}}>전화번호</EstimateSubTitle>
+                    <EstimateSubTitle style={{fontSize : "0.875rem", border : "none", display: "table-cell", verticalAlign : "middle"}}>전화번호<span style={{color : "#6865FC"}}>*</span></EstimateSubTitle>
                     </div>
                 {celPhoneFlag === 0 ?
                 
