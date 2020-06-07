@@ -12,7 +12,9 @@ import StepEight from "./stepEight";
 import StepNine from "./stepNine";
 import StepTen from "./stepTen";
 import StepEleven from "./stepEleven";
+import StepTwelve from "./stepTwelve";
 
+import {EstimateSheetContext} from "../../stores/EstimateSheetStore";
 interface Props {}
 
 const EstimateContainer = styled.div`
@@ -46,42 +48,44 @@ const EstimateSheet = (props: Props) => {
 
     let stepLayout = <></>
     const [enrollStep, setStep] = React.useState<number>(1);
+    const estimateSheetData = React.useContext(EstimateSheetContext);
 
+    console.log(estimateSheetData.estimateStores);
 
     const nextButton = (step : number, object : object) => {
         
         if(step === 1){
-            
+            estimateSheetData.dispatch({type : "INSERT_STEPONE", payload : {stepOne : object}})   
         }
         else if(step === 2){
-            
+            estimateSheetData.dispatch({type : "INSERT_STEPTWO", payload : {stepTwo : object}})   
         }
         else if(step === 3){
-        
+            estimateSheetData.dispatch({type : "INSERT_STEPTHREE", payload : {stepThree : object}})   
         }
         else if(step === 4){
-        
+            estimateSheetData.dispatch({type : "INSERT_STEPFOUR", payload : {stepFour : object}})   
         }
         else if(step === 5){
-        
+            estimateSheetData.dispatch({type : "INSERT_STEPFIVE", payload : {stepFive : object}})   
         }
         else if(step === 6){
-        
+            estimateSheetData.dispatch({type : "INSERT_STEPSIX", payload : {stepSix : object}})   
         }
         else if(step === 7){
-        
+            estimateSheetData.dispatch({type : "INSERT_STEPSEVEN", payload : {stepSeven : object}})   
         }
         else if(step === 8){
-        
+            estimateSheetData.dispatch({type : "INSERT_STEPEIGHT", payload : {stepEight : object}})   
         }
         else if(step === 9){
-        
+            estimateSheetData.dispatch({type : "INSERT_STEPNINE", payload : {stepNine : object}})   
         }
         else if(step === 10){
-        
+            estimateSheetData.dispatch({type : "INSERT_STEPTEN", payload : {stepTen : object}})   
         }
         else if(step === 11){
-        
+            estimateSheetData.dispatch({type : "INSERT_ELEVEN", payload : {stepEleven : object}})   
         }
         
         setStep(enrollStep+1);
@@ -89,38 +93,35 @@ const EstimateSheet = (props: Props) => {
 
     const beforeButton = (step : number, object : object) => {
         
-        if(step === 1){
-            
-        }
-        else if(step === 2){
-            
+        if(step === 2){
+            estimateSheetData.dispatch({type : "INSERT_STEPTWO", payload : {stepTwo : object}})   
         }
         else if(step === 3){
-        
+            estimateSheetData.dispatch({type : "INSERT_STEPTHREE", payload : {stepThree : object}})   
         }
         else if(step === 4){
-        
+            estimateSheetData.dispatch({type : "INSERT_STEPFOUR", payload : {stepFour : object}})   
         }
         else if(step === 5){
-        
+            estimateSheetData.dispatch({type : "INSERT_STEPFIVE", payload : {stepFive : object}})   
         }
         else if(step === 6){
-        
+            estimateSheetData.dispatch({type : "INSERT_STEPSIX", payload : {stepSix : object}})   
         }
         else if(step === 7){
-        
+            estimateSheetData.dispatch({type : "INSERT_STEPSEVEN", payload : {stepSeven : object}})   
         }
         else if(step === 8){
-        
+            estimateSheetData.dispatch({type : "INSERT_STEPEIGHT", payload : {stepEight : object}})   
         }
         else if(step === 9){
-        
+            estimateSheetData.dispatch({type : "INSERT_STEPNINE", payload : {stepNine : object}})   
         }
         else if(step === 10){
-        
+            estimateSheetData.dispatch({type : "INSERT_STEPTEN", payload : {stepTen : object}})   
         }
         else if(step === 11){
-        
+            estimateSheetData.dispatch({type : "INSERT_ELEVEN", payload : {stepEleven : object}})   
         }
         setStep(enrollStep-1);
     }
@@ -157,6 +158,9 @@ const EstimateSheet = (props: Props) => {
     }
     else if(enrollStep === 11){
         stepLayout = <StepEleven nextButton ={nextButton} beforeButton = {beforeButton} object={""} />
+    }
+    else if(enrollStep === 12){
+        stepLayout = <StepTwelve nextButton ={nextButton} beforeButton = {beforeButton} object={""} />
     }
     return(
         <>

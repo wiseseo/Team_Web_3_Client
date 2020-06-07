@@ -58,20 +58,8 @@ const EstimateContentMainSubTitle = styled.div`
     clear : both;
     margin-top : 56px;
 `;
-const EstimateContentMainSubTitleBack = styled.div`
-    font-size : 0.75rem;
-    color : #B3B4BE;
-    margin-top : 8px;
-`;
 
 const CheckBoxContainer = styled.div``;
-
-const CheckBoxLayout = styled.div`
-    width: 100%;
-    margin: 15px auto;
-    position: relative;
-    display: block;
-`;
 
 const CheckBoxLabel = styled.label`
 
@@ -112,35 +100,6 @@ const CheckBoxLabel = styled.label`
         top: 12px;
         left: 10px;
     };
-`;
-
-
-const CheckBoxInput = styled.input`
-    width: auto;
-    opacity: 0.00000001;
-    position: absolute;
-    left: 0;
-    margin-left: -20px;
-
-    &:checked + ${CheckBoxLabel}:before {
-        color: #6865FC;
-    };
-
-    &:checked + ${CheckBoxLabel}:after {
-        -webkit-transform: rotate(-45deg) scale(1);
-        transform: rotate(-45deg) scale(1);
-    };
-`;
-
-
-const CheckBoxLabelSpan = styled.span`
-    position: absolute;
-    top: 50%;
-
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-
-    color : #B3B4BE;
 `;
 
 const CheckBoxEtcInput = styled.input`
@@ -240,7 +199,10 @@ const AfterButton = styled.button`
 `;
 const index = ({nextButton , object}): React.ReactElement => {
 
-    const [radioBoxArr, setRadioBoxArr] = React.useState([])
+    const [stepOne, setStepOne] = React.useState<any>({
+        usage : "",
+        copyright : ""
+    }) 
 
     const [radioBoxList, setRadioBoxList] = React.useState([
         {
@@ -265,7 +227,6 @@ const index = ({nextButton , object}): React.ReactElement => {
         }
     ]);
 
-    const [radioBoxSubArr, setRadioBoxSubArr] = React.useState([]);
     const [radioBoxSubList, setRadioBoxSubList] = React.useState([
         {
             label : "네",
@@ -291,7 +252,7 @@ const index = ({nextButton , object}): React.ReactElement => {
             }
         }
         setRadioBoxList(newList)
-        setRadioBoxArr([...radioBoxArr, e.target.value]);
+        setStepOne({...stepOne, usage : e.target.value});
     }
 
     const subCheckBox = (e) => {
@@ -306,9 +267,8 @@ const index = ({nextButton , object}): React.ReactElement => {
             }
         }
         setRadioBoxSubList(newList)
-        setRadioBoxSubArr([...radioBoxSubArr, e.target.value]);
+        setStepOne({...stepOne, copyright : e.target.value});
     }
-    // console.log(radioBoxList);
     return (
         <>
         <EstimateUserInfoData>
@@ -354,7 +314,7 @@ const index = ({nextButton , object}): React.ReactElement => {
                 
                 <CheckBoxContainer> 
                     {radioBoxList.map((list, key) => {
-                        console.log(list, key);
+                        
                         if(list.select === true){
 
                             if(list.label === "기타 (직접입력)"){
@@ -363,7 +323,7 @@ const index = ({nextButton , object}): React.ReactElement => {
 
                                         <FormContainerRadio onChange={(e) => {checkBox(e)}} type="radio" value={list.label} name="use" id={list.label}/> 
                                         <FormContainerRadioLabel htmlFor={list.label} style={{color : "#6865FC"}}>{list.label}</FormContainerRadioLabel>
-                                        <CheckBoxEtcInput />
+                                        <CheckBoxEtcInput onChange={(e) => {setStepOne({...stepOne, usage : e.target.value})}}/>
                                     </FormContainerRadioLayout>
                                 );
                             }
@@ -396,7 +356,7 @@ const index = ({nextButton , object}): React.ReactElement => {
             
                 <div style={{display : "flex", flexDirection: "row"}}>
                     {radioBoxSubList.map((list, key) => {
-                            console.log(list, key);
+                            
                             if(list.select === true){
                                 return (
                                     <FormContainerRadioLayout key={key}>
@@ -437,7 +397,7 @@ const index = ({nextButton , object}): React.ReactElement => {
                 // (stepOneObj.portFolioMainMusic.size !== 0)
                 1
                 ? 
-                <AfterButton onClick={()=>{nextButton(1, "")}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
+                <AfterButton onClick={()=>{nextButton(1, stepOne)}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
                 :
                 <AfterButton>다음으로</AfterButton>
                 }

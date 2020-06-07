@@ -76,7 +76,37 @@ const EstimateContentMainButton = styled.div`
 `;
 
 const RangePickerOver = styled(RangePicker)`
-
+    
+    background : #181818 !important;
+    padding : 6px 13px 6px !important;
+    border-radius : 8px !important;
+    &&{
+        .ant-picker-input > input {
+            color : #B3B4BE;
+        };
+        .ant-picker-input {
+            margin-top: 2px;
+        }
+        .anticon {
+            color : #B3B4BE;
+        }
+        .ant-picker-clear {
+            background : #121212;
+            right : 13px;
+        }
+        .ant-picker-range-separator {
+            margin-bottom : 2px;
+            padding-right : 18px;
+            padding-left : 0;
+        };
+        .ant-picker-suffix{
+            margin-top : 3px;
+            margin-left: -5px;
+        };
+        .ant-picker-cell {
+            color : #3E3E41;
+        }
+    }
 `;
 
 
@@ -125,7 +155,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             <EstimateMainDesc>튜나 팁</EstimateMainDesc>
             <EstimateSubTitle>작업의 마감기한을 선택해주세요.</EstimateSubTitle>
             <EstimateSubDesc>
-                뮤지션이 스케줄 조정을 할 수 있습니다.
+                뮤지션에게 충분한 작업시간을 주세요. 촉박한 기간 설정시 의뢰 수락 확률이 낮아집니다.
             </EstimateSubDesc>
             
         </EstimateUserInfoData>
@@ -139,11 +169,11 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             <EstimateContentMainSub>
 
                 <EstimateContentMainSubTitle>희망하는 작업기간을 선택해주세요.</EstimateContentMainSubTitle>
-                <EstimateContentMainSubTitleBack>뮤지션에게 충분한 작업기한을 주세요. 너무 촉박하면 수락 확률이 낮아집니다.</EstimateContentMainSubTitleBack>
+                <EstimateContentMainSubTitleBack>최종 작업 마감일을 설정하세요.</EstimateContentMainSubTitleBack>
                 
                 <RangePickerOver
                   style={{marginTop : 24}}
-                  defaultValue={[moment('2015/01/01', dateFormat), moment('2015/01/01', dateFormat)]}
+                  defaultValue={[moment((moment()), dateFormat), moment(moment(), dateFormat)]}
                   format={dateFormat}
                 />
             </EstimateContentMainSub>

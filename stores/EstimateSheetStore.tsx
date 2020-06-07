@@ -1,161 +1,167 @@
 import React, { useReducer } from "react";
-import reducer from "./MusicianEnrollReducer";
+import reducer from "./EstimateSheetReducer";
 
 interface stepOne {
-
-  nickNm : string;
-  introduction : string;
-  profileUrl : object;
-  profilePreview : any;
-  career : string;
-  celPhone : string;
-  portFolioLink : Array<string>;
-  addUrl : Array<{key : number, data : string, fixFlag : boolean}>;
-  addUrlIdx : number;
-  sns : Array<{key : number, id : string}>;
-  songEsntlUrl : object;
-  songEsntPreview : any;
-  portFolioMainMusic : object;
-  portFolioSubMusic : object;
+  usage : string,
+  copyright : string
 }
 
 interface stepTwo {
-    spclNoteKindNm : Array<string>,
-    themeKindNm : Array<string>,
-    genreKindNm : Array<string>,
-    atmoKindNm : Array<string>,
-    instruKindNm : Array<string>,
-    workStage01 : string,
-    workStage02 : string,
-    workStage03 : string,
-    qstnAns01 : string,
-    qstnAns02 : string,
-    qstnAns03 : string,
-    qstnAns04 : string
+  atmoKindNm : Array<string>,
+  atmoKindNmStr : string
 }
 
 interface stepThree {
-  styPrc01 : string,
-  styExpln01 : string,
-  styPrc02 : string,
-  styExpln02 : string,
-  styPrc03 : string,
-  styExpln03 : string,
-  payMethod : boolean
+  themeKindNm : Array<string>,
+  themeKindNmStr : string
+}
 
+interface stepFour {
+  genreKindNm : Array<string>,
+  genreKindNmStr : string
+}
+
+interface stepFive {
+  instruKindNm : Array<string>,
+  instruKindNmStr : string
+}
+
+interface stepSix {
+  spclNoteKindNm : Array<string>,
+  spclNoteKindNmStr : string
+}
+
+interface stepSeven {
+  minTime : string,
+  maxTime : string
+}
+
+interface stepEight {
+  intention : string,
+  files : Array<any>
+}
+
+interface stepNine {
+  number : string,
+  kakaoId : string
+}
+
+interface stepTen {
+  deadline : string
+}
+
+interface stepEleven { 
+  minfee : number,
+  maxfee : number
 }
 
 const defaultStepOne: stepOne = {
-  nickNm : '',
-  introduction: '',
-  profileUrl : {},
-  profilePreview : '',
-  career: '',
-  celPhone: '',
-  portFolioLink: [],
-  addUrl : [{
-    key : 0,
-    data : "",
-    fixFlag : false
-  }],
-  addUrlIdx : 1,
-  sns: [
-    {
-      key : 1,
-      id : ''
-    },
-    {
-      key : 2,
-      id : ''
-    },
-    {
-      key : 3,
-      id : ''
-    },
-    {
-      key : 4,
-      id : ''
-    }
-  ],
-  songEsntlUrl: {},
-  songEsntPreview : '',
-  portFolioMainMusic: {
-    lastModified: 0,
-    name: '',
-    size: 0,
-    type: ''
-  },
-  
-  portFolioSubMusic : [{
-    lastModified: 0,
-    name: '',
-    size: 0,
-    type: ''
-  }]
+  usage : "",
+  copyright : ""
 };
 
 const defaultStepTwo: stepTwo = {
-    spclNoteKindNm : [],
-    themeKindNm : [],
-    genreKindNm : [],
-    atmoKindNm : [],
-    instruKindNm : [],
-    workStage01 : "",
-    workStage02 : "",
-    workStage03 : "",
-    qstnAns01 : "",
-    qstnAns02 : "",
-    qstnAns03 : "",
-    qstnAns04 : ""
+  atmoKindNm : [],
+  antoKindNmStr : ""
 };
 
 const defaultStepThree: stepThree = {
-  styPrc01 : '',
-  styExpln01 : '',
-  styPrc02 : '',
-  styExpln02 : '',
-  styPrc03 : '',
-  styExpln03 : '',
-  payMethod : false
+  themeKindNm : [],
+  themeKindNmStr : ""
 };
 
-interface EnrollTags {
-  stepOne_Tag : stepOne,
-  stepTwo_Tag : stepTwo,
-  stepThree_Tag : stepThree
+const defaultStepFour: stepFour = {
+  genreKindNm : [],
+  genreKindNmStr : ""
+};
+
+const defaultStepFive: stepFive = {
+  instruKindNm : [],
+  instruKindNmStr : ""
+};
+
+const defaultStepSix: stepSix = {
+  spclNoteKindNm : [],
+  spclNoteKindNmStr : ""
+};
+
+const defaultStepSeven: stepSeven = {
+  minTime : "",
+  maxTime : ""
+};
+
+const defaultStepEight: stepEight = {
+  intention : "",
+  files : []
+};
+
+const defaultStepNine: stepNine = {
+  number : "",
+  kakaoId : ""
+};
+
+const defaultStepTen: stepTen = {
+  deadline : ""
+};
+
+const defaultStepEleven: stepEleven = {
+  minfee : 0,
+  maxfee : 0
+};
+
+interface EstimateStores {
+  stepOne : stepOne,
+  stepTwo : stepTwo,
+  stepThree : stepThree,
+  stepFour : stepFour,
+  stepFive : stepFive,
+  stepSix : stepSix,
+  stepSeven : stepSeven,
+  stepEight : stepEight,
+  stepNine : stepNine,
+  stepTen : stepTen,
+  stepEleven : stepEleven
 }
 
 
 type ActionType = {
-  type: "INSERT_STEPONE" | "INSERT_STEPTWO" | "INSERT_STEPTHREE";
+  type: "INSERT_STEPONE" | "INSERT_STEPTWO" | "INSERT_STEPTHREE" | "INSERT_STEPFOUR" | "INSERT_STEPFIVE" |
+        "INSERT_STEPSIX" | "INSERT_STEPSEVEN" | "INSERT_STEPEIGHT" | "INSERT_STEPNINE" | "INSERT_STEPTEN" | "INSERT_ELEVEN";
   payload?: any;
 };
 
-interface TagsInterface {
-  enrollTags : EnrollTags
+interface EstimateInterface {
+  estimateStores : EstimateStores
   dispatch?: React.Dispatch<ActionType>;
 }
 
-const defaultEnrollTags: EnrollTags = {
-  stepOne_Tag : defaultStepOne,
-  stepTwo_Tag : defaultStepTwo,
-  stepThree_Tag : defaultStepThree,
-  
+const defaultEstimateStroes : EstimateStores = {
+  stepOne : defaultStepOne,
+  stepTwo : defaultStepTwo,
+  stepThree : defaultStepThree,
+  stepFour : defaultStepFour,
+  stepFive : defaultStepFive,
+  stepSix : defaultStepSix,
+  stepSeven : defaultStepSeven,
+  stepEight : defaultStepEight,
+  stepNine : defaultStepNine,
+  stepTen : defaultStepTen,
+  stepEleven : defaultStepEleven
 }
 
 
-export const MusicianEnrollContext = React.createContext<TagsInterface>({
-  enrollTags: defaultEnrollTags,
+export const EstimateSheetContext = React.createContext<EstimateInterface>({
+  estimateStores: defaultEstimateStroes,
 });
 
-const MusicianEnrollStore = ({ children }: { children: React.ReactElement }) => {
-  const [enrollTags, dispatch] = useReducer(reducer, defaultEnrollTags);
+const EstimateSheetStore = ({ children }: { children: React.ReactElement }) => {
+  const [estimateStores, dispatch] = useReducer(reducer, defaultEstimateStroes);
 
   return (
-    <MusicianEnrollContext.Provider value={{ enrollTags, dispatch }}>
+    <EstimateSheetContext.Provider value={{ estimateStores, dispatch }}>
       {children}
-    </MusicianEnrollContext.Provider>
+    </EstimateSheetContext.Provider>
   );
 };
 
-export default MusicianEnrollStore;
+export default EstimateSheetStore;

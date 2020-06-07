@@ -163,6 +163,10 @@ const AfterButton = styled.button`
 `;
 const index = ({nextButton, beforeButton, object}): React.ReactElement => {
 
+  const [stepTwo, setStepTwo] = React.useState<any>({
+    atmoKindNm : [],
+    atmoKindNmStr : ""
+  }) 
   const [tagList, setTagList] = React.useState([
     {
       key : 1,
@@ -287,7 +291,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
   ])
 
   const [selectTag, setSelectTag] = React.useState<boolean>(false);
-  const [TagList, appendTagList] = React.useState([])
+  
   const chosenTag = (key) => {
 
     if(key == 20){
@@ -302,8 +306,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
       newTagList[key-1].chosenPossible = true;
       setTagList(newTagList);
       setSelectTag(true);
-      appendTagList([newTagList[key-1].name]);
-
+      setStepTwo({...stepTwo, atmoKindNm : [newTagList[key-1].name]});
     }
     else{
       let newTagList = [...tagList];
@@ -311,8 +314,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
       setTagList(newTagList);
       setSelectTag(true);
 
-      appendTagList([...TagList, newTagList[key-1].name]);
-
+      setStepTwo({...stepTwo, atmoKindNm : stepTwo.atmoKindNm.concat(newTagList[key-1].name)});
     }
   }
 
@@ -328,8 +330,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
 
       setTagList(newTagList);
       setSelectTag(false);
-      appendTagList(TagList.filter(e => e !== newTagList[key-1].name));
-
+      setStepTwo({...stepTwo, atmoKindNm : stepTwo.atmoKindNm.filter(e => e !== newTagList[key-1].name)});
     }
     else{
       let newTagList = [...tagList];
@@ -340,7 +341,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
         setSelectTag(false);
       }
   
-      appendTagList(TagList.filter(e => e !== newTagList[key-1].name));
+      setStepTwo({...stepTwo, atmoKindNm : stepTwo.atmoKindNm.filter(e => e !== newTagList[key-1].name)});
     }
   }
 
@@ -355,12 +356,8 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
 
       setTagList(newTagList);
       setSelectTag(false);
-      appendTagList([]);
-
+      setStepTwo({...stepTwo, atmoKindNm : []})
   }
-
-  console.log(TagList, TagList.length);
-  console.log(tagList);
     return (
         <>
         <EstimateUserInfoData>
@@ -408,7 +405,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 <CurationTagLayout>
 
                 {tagList.map((list, key) => {
-                    if(TagList.length === 0) {
+                    if(stepTwo.atmoKindNm.length === 0) {
                       return (
                         <TooltipOver placement="top" title="대표태그" key={key}>
                           <CurationTag key={key} onClick={() => {chosenTag(list.key)}}>{list.name}</CurationTag>
@@ -418,7 +415,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                     else{
                       if(list.chosen == true){
 
-                        if(TagList[0] === list.name){
+                        if(stepTwo.atmoKindNm[0] === list.name){
                           return (
                           <TooltipOver placement="top" title="대표태그" key={key}>
                             <CurationTag key={key} onClick={() => {releaseTag(list.key)}} style={{color : "white", background: "#6865FC", border : "1px solid rgb(4, 1, 4)"}}>{list.name}</CurationTag>
@@ -462,7 +459,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 </CurationTagLayout>
                   
                 <EstimateContentMainSubTitleBack style={{fontSize : "0.875rem"}}>기타 (직접입력)</EstimateContentMainSubTitleBack>
-                <Input />
+                <Input onChange={(e) => {setStepTwo({...stepTwo, atmoKindNmStr : e.target.value})}} />
             
             </EstimateContentMainSub>
             
@@ -479,7 +476,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 // (stepOneObj.portFolioMainMusic.size !== 0)
                 1
                 ? 
-                <AfterButton onClick={()=>{nextButton(2, "")}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
+                <AfterButton onClick={()=>{nextButton(2, stepTwo)}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
                 :
                 <AfterButton>다음으로</AfterButton>
                 }
