@@ -1,11 +1,12 @@
 import * as React from "react";
 import EstimateSheetComponent from "../../components/EstimateSheet";
-
+import EstimateSheetStore from "../../stores/EstimateSheetStore";
 const EstimateSheet: React.FC = () => {
   return (
     <>
-
-      <EstimateSheetComponent/>      
+      <EstimateSheetStore>
+        <EstimateSheetComponent/>      
+      </EstimateSheetStore>
     </>
   );
 };

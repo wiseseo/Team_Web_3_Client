@@ -1,69 +1,125 @@
 type ActionType = {
-    type: "INSERT_STEPONE" | "INSERT_STEPTWO" | "INSERT_STEPTHREE"
-    ;
+    type: "INSERT_STEPONE" | "INSERT_STEPTWO" | "INSERT_STEPTHREE" | "INSERT_STEPFOUR" | "INSERT_STEPFIVE" |
+            "INSERT_STEPSIX" | "INSERT_STEPSEVEN" | "INSERT_STEPEIGHT" | "INSERT_STEPNINE" | "INSERT_STEPTEN" | "INSERT_ELEVEN";
     payload?: any;
   };
 
+  interface EstimateStores {
+    stepOne : stepOne,
+    stepTwo : stepTwo,
+    stepThree : stepThree,
+    stepFour : stepFour,
+    stepFive : stepFive,
+    stepSix : stepSix,
+    stepSeven : stepSeven,
+    stepEight : stepEight,
+    stepNine : stepNine,
+    stepTen : stepTen,
+    stepEleven : stepEleven
+  }
 
-interface EnrollTags {
-    stepOne_Tag : stepOne,
-    stepTwo_Tag : stepTwo,
-    stepThree_Tag : stepThree
-}
-interface stepOne {
-    nickNm : string;
-    introduction : string;
-    profileUrl : object;
-    profilePreview : any;
-    career : string;
-    celPhone : string;
-    portFolioLink : Array<string>;
-    addUrl : Array<{key : number, data : string, fixFlag : boolean}>;
-    addUrlIdx : number;
-    sns : Array<{key : number, id : string}>;
-    songEsntlUrl : object;
-    songEsntPreview : any;
-    portFolioMainMusic : object;
-    portFolioSubMusic : object;
-    
-}
-
-interface stepTwo {
-    spclNoteKindNm : Array<string>,
-    themeKindNm : Array<string>,
-    genreKindNm : Array<string>,
+  interface stepOne {
+    usage : string,
+    copyright : string
+  }
+  
+  interface stepTwo {
     atmoKindNm : Array<string>,
+    atmoKindNmStr : string
+  }
+  
+  interface stepThree {
+    themeKindNm : Array<string>,
+    themeKindNmStr : string
+  }
+  
+  interface stepFour {
+    genreKindNm : Array<string>,
+    genreKindNmStr : string
+  }
+  
+  interface stepFive {
     instruKindNm : Array<string>,
-    workStage01 : string,
-    workStage02 : string,
-    workStage03 : string,
-    qstnAns01 : string,
-    qstnAns02 : string,
-    qstnAns03 : string,
-    qstnAns04 : string
-}
-interface stepThree {
-    styPrc01 : string,
-    styExpln01 : string,
-    styPrc02 : string,
-    styExpln02 : string,
-    styPrc03 : string,
-    styExpln03 : string,
-    payMethod : boolean
-}
-const reducer = (enrollTags : EnrollTags, { type, payload }: ActionType) => {
+    instruKindNmStr : string
+  }
+  
+  interface stepSix {
+    spclNoteKindNm : Array<string>,
+    spclNoteKindNmStr : string
+  }
+  
+  interface stepSeven {
+    minTime : string,
+    maxTime : string
+  }
+  
+  interface stepEight {
+    intention : string,
+    files : Array<any>
+  }
+  
+  interface stepNine {
+    number : string,
+    kakaoId : string
+  }
+  
+  interface stepTen {
+    deadline : string
+  }
+  
+  interface stepEleven { 
+    minfee : number,
+    maxfee : number
+  }
+
+const reducer = (estimateStores : EstimateStores, { type, payload }: ActionType) => {
     switch (type) {
         case "INSERT_STEPONE":
             console.log("INSERT_STEPONE", type, payload);
-            return {...enrollTags, stepOne_Tag : payload.stepOne_Tag };
+            return {...estimateStores, stepOne : payload.stepOne};
             
         case "INSERT_STEPTWO":
             console.log("INSERT_STEPTWO", type, payload);
-            return {...enrollTags, stepTwo_Tag : payload.stepTwo_Tag };
+            return {...estimateStores, stepTwo : payload.stepTwo};
         
-            case "INSERT_STEPTHREE":
+        case "INSERT_STEPTHREE":
             console.log("INSERT_STEPTHREE", type, payload);
-            return {...enrollTags, stepThree_Tag : payload.stepThree_Tag };
+            return {...estimateStores, stepThree : payload.stepThree};
+    
+        case "INSERT_STEPFOUR":
+            console.log("INSERT_STEPFOUR", type, payload);
+            return {...estimateStores, stepFour : payload.stepFour};
+          
+        case "INSERT_STEPFIVE":
+            console.log("INSERT_STEPFIVE", type, payload);
+            return {...estimateStores, stepFive : payload.stepFive};
+      
+        case "INSERT_STEPSIX":
+            console.log("INSERT_STEPSIX", type, payload);
+            return {...estimateStores, stepSix : payload.stepSix};
+    
+          
+        case "INSERT_STEPSEVEN":
+            console.log("INSERT_STEPSEVEN", type, payload);
+            return {...estimateStores, stepSeven : payload.stepSeven};
+            
+        case "INSERT_STEPEIGHT":
+            console.log("INSERT_STEPEIGHT", type, payload);
+            return {...estimateStores, stepEight : payload.stepEight};
+        
+        case "INSERT_STEPNINE":
+            console.log("INSERT_STEPNINE", type, payload);
+            return {...estimateStores, stepNine : payload.stepNine};
+    
+            
+        case "INSERT_STEPTEN":
+            console.log("INSERT_STEPTEN", type, payload);
+            return {...estimateStores, stepTen : payload.stepTen};
+            
+        case "INSERT_ELEVEN":
+            console.log("INSERT_ELEVEN", type, payload);
+            return {...estimateStores, stepEleven : payload.stepEleven};
+        
         default:
             return;
     }
