@@ -122,14 +122,18 @@ const AfterButton = styled.button`
 `;
 const index = ({nextButton, beforeButton, object}): React.ReactElement => {
   
+    const [stepNine, setStepNine] = React.useState<any>({
+        number : "",
+        kakaoId : ""
+    }) 
+
     const phoneNumberRegExp = /^\d{3}-\d{3,4}-\d{4}$/;
     const [celPhoneFlag, setcelPhoneFlag] = React.useState<number>(0);
-    const [celphone, setCelphone] = React.useState<string>("");
 
     React.useEffect(() => {
         
-        if (celphone !== "") {
-            if(celphone.match(phoneNumberRegExp)){
+        if (stepNine.number !== "") {
+            if(stepNine.number.match(phoneNumberRegExp)){
               setcelPhoneFlag(1)
             }
             else{
@@ -144,7 +148,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
               setcelPhoneFlag(0);
             }
         }
-    }, [celphone]);
+    }, [stepNine]);
 
     return (
         <>
@@ -186,18 +190,21 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                     </div>
                 {celPhoneFlag === 0 ?
                 
-                    <Input defaultValue={celphone} placeholder="010-1234-5678" onChange={e => {
-                        setCelphone(e.target.value)
+                    <Input defaultValue={stepNine.number} placeholder="010-1234-5678" onChange={e => {
+
+                        setStepNine({...stepNine, number : e.target.value})
                     }}/>
                 
                 :
                 (celPhoneFlag === 1 ? 
-                        <Input defaultValue={celphone} placeholder="010-1234-5678" onChange={e => {
-                            setCelphone(e.target.value)
+                        <Input defaultValue={stepNine.number} placeholder="010-1234-5678" onChange={e => {
+    
+                            setStepNine({...stepNine, number : e.target.value})
                         }}/>
                 : 
-                    <Input defaultValue={celphone} style={{border : "1px solid #C93E37"}} placeholder="010-1234-5678" onChange={e => {
-                        setCelphone(e.target.value)
+                    <Input defaultValue={stepNine.number} style={{border : "1px solid #C93E37"}} placeholder="010-1234-5678" onChange={e => {
+
+                        setStepNine({...stepNine, number : e.target.value})
                     }}/>
                 )
                 
@@ -225,13 +232,13 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                   <div style={{display : "table", height : "32px", marginRight : "16px", width : "68px"}}>
                     <EstimateSubTitle style={{fontSize : "0.875rem", border : "none", display: "table-cell", verticalAlign : "middle"}}>카카오 ID</EstimateSubTitle>
                   </div>
-                  <Input />
+                  <Input onChange={(e) => {setStepNine({...stepNine, kakaoId : e.target.value})}}/>
                 </InputLayout>
             </EstimateContentMainSub>
             
             <EstimateContentMainButton>
                 <div style={{display:"table-cell", height : "100%", verticalAlign:"middle"}}>
-                <BeforeButton onClick={()=>{beforeButton(9, "")}}>이전으로</BeforeButton>
+                <BeforeButton onClick={()=>{beforeButton(9, stepNine)}}>이전으로</BeforeButton>
                 {
                 // nickNmFlag === 1 &&
                 // introductionFlag === 1 &&
@@ -242,7 +249,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 // (stepOneObj.portFolioMainMusic.size !== 0)
                 1
                 ? 
-                <AfterButton onClick={()=>{nextButton(9, "")}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
+                <AfterButton onClick={()=>{nextButton(9, stepNine)}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
                 :
                 <AfterButton>다음으로</AfterButton>
                 }

@@ -27,8 +27,7 @@ interface stepFive {
 }
 
 interface stepSix {
-  spclNoteKindNm : Array<string>,
-  spclNoteKindNmStr : string
+  spclNoteKindNm : Array<string>
 }
 
 interface stepSeven {
@@ -47,7 +46,7 @@ interface stepNine {
 }
 
 interface stepTen {
-  deadline : string
+  deadline : Array<string>
 }
 
 interface stepEleven { 
@@ -62,7 +61,7 @@ const defaultStepOne: stepOne = {
 
 const defaultStepTwo: stepTwo = {
   atmoKindNm : [],
-  antoKindNmStr : ""
+  atmoKindNmStr : ""
 };
 
 const defaultStepThree: stepThree = {
@@ -81,8 +80,7 @@ const defaultStepFive: stepFive = {
 };
 
 const defaultStepSix: stepSix = {
-  spclNoteKindNm : [],
-  spclNoteKindNmStr : ""
+  spclNoteKindNm : []
 };
 
 const defaultStepSeven: stepSeven = {
@@ -101,7 +99,7 @@ const defaultStepNine: stepNine = {
 };
 
 const defaultStepTen: stepTen = {
-  deadline : ""
+  deadline : []
 };
 
 const defaultStepEleven: stepEleven = {

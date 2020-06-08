@@ -115,16 +115,17 @@ const AfterButton = styled.button`
 `;
 const index = ({nextButton, beforeButton, object}): React.ReactElement => {
   
-    const [inputValue, setInputValue] = React.useState<number>(0);
-    const [inputMaxValue, setInputMaxValue] = React.useState<number>(0);
-    // console.log(checkBoxList);
+    const [stepEleven, setStepEleven] = React.useState<any>({
+        minfee : 0,
+        maxfee : 0,
+    }) 
 
     const valueChange = (value) => {
-      setInputValue(value);
+      setStepEleven({...stepEleven, minfee : value});
     }
 
     const valueMaxChange = (value) => {
-      setInputMaxValue(value);
+      setStepEleven({...stepEleven, maxfee : value});
     }
     return (
         <>
@@ -172,7 +173,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                       max={10000000}
                       step={10000}
                       onChange={valueChange}
-                      value={typeof inputValue === 'number' ? inputValue : 0}
+                      value={typeof stepEleven.minfee === 'number' ? stepEleven.minfee : 0}
                     />
                   </Col>
                   <Col span={4.5}>
@@ -181,7 +182,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                       max={10000000}
                       step={10000}
                       style={{ margin: '0 16px', width : 120 }}
-                      value={inputValue}
+                      value={stepEleven.minfee}
                       onChange={valueChange}
                     />
                   </Col>
@@ -204,7 +205,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                       max={10000000}
                       step={10000}
                       onChange={valueMaxChange}
-                      value={typeof inputMaxValue === 'number' ? inputMaxValue : 0}
+                      value={typeof stepEleven.maxfee === 'number' ? stepEleven.maxfee : 0}
                     />
                   </Col>
                   <Col span={4.5}>
@@ -213,7 +214,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                       max={10000000}
                       step={10000}
                       style={{ margin: '0 16px', width : 120 }}
-                      value={inputMaxValue}
+                      value={stepEleven.maxfee}
                       onChange={valueMaxChange}
                     />
                   </Col>
@@ -227,7 +228,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             
             <EstimateContentMainButton>
                 <div style={{display:"table-cell", height : "100%", verticalAlign:"middle"}}>
-                <BeforeButton onClick={()=>{beforeButton(10, "")}}>이전으로</BeforeButton>
+                <BeforeButton onClick={()=>{beforeButton(11, stepEleven)}}>이전으로</BeforeButton>
                 {
                 // nickNmFlag === 1 &&
                 // introductionFlag === 1 &&
@@ -238,7 +239,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 // (stepOneObj.portFolioMainMusic.size !== 0)
                 1
                 ? 
-                <AfterButton onClick={()=>{nextButton(10, "")}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
+                <AfterButton onClick={()=>{nextButton(11, stepEleven)}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
                 :
                 <AfterButton>다음으로</AfterButton>
                 }

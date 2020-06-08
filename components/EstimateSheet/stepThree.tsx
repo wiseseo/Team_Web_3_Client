@@ -162,6 +162,10 @@ const AfterButton = styled.button`
 `;
 const index = ({nextButton, beforeButton, object}): React.ReactElement => {
 
+  const [stepThree, setStepThree] = React.useState<any>({
+    themeKindNm : [],
+    themeKindNmStr : ""
+  }) 
   const [tagList, setTagList] = React.useState([
     {
       key : 1,
@@ -256,7 +260,6 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
   ])
 
   const [selectTag, setSelectTag] = React.useState<boolean>(false);
-  const [TagList, appendTagList] = React.useState([])
   const chosenTag = (key) => {
 
     if(key == 15){
@@ -271,7 +274,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
       newTagList[key-1].chosenPossible = true;
       setTagList(newTagList);
       setSelectTag(true);
-      appendTagList([newTagList[key-1].name]);
+      setStepThree({...stepThree, themeKindNm : [newTagList[key-1].name]});
 
     }
     else{
@@ -280,7 +283,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
       setTagList(newTagList);
       setSelectTag(true);
 
-      appendTagList([...TagList, newTagList[key-1].name]);
+      setStepThree({...stepThree, themeKindNm : stepThree.themeKindNm.concat(newTagList[key-1].name)});
 
     }
   }
@@ -297,8 +300,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
 
       setTagList(newTagList);
       setSelectTag(false);
-      appendTagList(TagList.filter(e => e !== newTagList[key-1].name));
-
+      setStepThree({...stepThree, themeKindNm : stepThree.themeKindNm.filter(e => e !== newTagList[key-1].name)});
     }
     else{
       let newTagList = [...tagList];
@@ -308,8 +310,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
       if(tagList.find(e => e.chosen == true) == undefined){
         setSelectTag(false);
       }
-  
-      appendTagList(TagList.filter(e => e !== newTagList[key-1].name));
+      setStepThree({...stepThree, themeKindNm : stepThree.themeKindNm.filter(e => e !== newTagList[key-1].name)});
     }
   }
 
@@ -324,7 +325,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
 
       setTagList(newTagList);
       setSelectTag(false);
-      appendTagList([]);
+      setStepThree({...stepThree, themeKindNm : []})
 
   }
   
@@ -375,7 +376,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 <CurationTagLayout>
 
                 {tagList.map((list, key) => {
-                    if(TagList.length === 0) {
+                    if(stepThree.themeKindNm.length === 0) {
                       return (
                         <TooltipOver placement="top" title="대표태그" key={key}>
                           <CurationTag key={key} onClick={() => {chosenTag(list.key)}}>{list.name}</CurationTag>
@@ -385,7 +386,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                     else{
                       if(list.chosen == true){
 
-                        if(TagList[0] === list.name){
+                        if(stepThree.themeKindNm[0] === list.name){
                           return (
                           <TooltipOver placement="top" title="대표태그" key={key}>
                             <CurationTag key={key} onClick={() => {releaseTag(list.key)}} style={{color : "white", background: "#6865FC", border : "1px solid rgb(4, 1, 4)"}}>{list.name}</CurationTag>
@@ -429,13 +430,13 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 </CurationTagLayout>
                   
                 <EstimateContentMainSubTitleBack style={{fontSize : "0.875rem"}}>기타 (직접입력)</EstimateContentMainSubTitleBack>
-                <Input />
+                <Input onChange={(e) => {setStepThree({...stepThree, themeKindNmStr : e.target.value})}}/>
             
             </EstimateContentMainSub>
             
             <EstimateContentMainButton>
                 <div style={{display:"table-cell", height : "100%", verticalAlign:"middle"}}>
-                <BeforeButton onClick={()=>{beforeButton(3, "")}}>이전으로</BeforeButton>
+                <BeforeButton onClick={()=>{beforeButton(3, stepThree)}}>이전으로</BeforeButton>
                 {
                 // nickNmFlag === 1 &&
                 // introductionFlag === 1 &&
@@ -446,7 +447,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 // (stepOneObj.portFolioMainMusic.size !== 0)
                 1
                 ? 
-                <AfterButton onClick={()=>{nextButton(3, "")}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
+                <AfterButton onClick={()=>{nextButton(3, stepThree)}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
                 :
                 <AfterButton>다음으로</AfterButton>
                 }
