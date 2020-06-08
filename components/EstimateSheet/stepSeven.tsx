@@ -176,8 +176,14 @@ const AfterButton = styled.button`
 `;
 const index = ({nextButton, beforeButton, object}): React.ReactElement => {
 
+    const [stepSeven, setStepSeven] = React.useState<any>({
+        minTime : "00:00:00",
+        maxTime : "00:02:30",
+        select : false,
+    }) 
+
     const timeFormat = 'HH:mm:ss';
-    const [radioBoxArr, setRadioBoxArr] = React.useState([]);
+    const [radioBoxArr, setRadioBoxArr] = React.useState<string>("");
     const [radioBoxList, setRadioBoxList] = React.useState([
         {
             label : "협의 후 결정",
@@ -191,9 +197,13 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
 
     const checkBox = (e) => {
         console.log(e.target.value);
-        
         let newList = [...radioBoxList];
-
+        if(e.target.value === "협의 후 결정"){
+            setStepSeven({...stepSeven, select : false})
+        }
+        else{
+            setStepSeven({...stepSeven, select : true})
+        }
         for(let i = 0 ; i < radioBoxList.length ; i++){
             if(radioBoxList[i].label === e.target.value){
                 newList[i].select = true;
@@ -203,9 +213,11 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             }
         }
         setRadioBoxList(newList)
-        setRadioBoxArr([...radioBoxArr, e.target.value]);
+        setRadioBoxArr(e.target.value);
     }
-    // console.log(checkBoxList);
+
+    console.log(radioBoxArr);
+    console.log(stepSeven);
     return (
         <>
         <EstimateUserInfoData>
@@ -266,21 +278,55 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
 
                     })}
 
-                {radioBoxList[1].select === true ? 
-                <RangePickerOver 
-                picker="time"
-                defaultValue={[moment('00:00:00', timeFormat), moment('00:02:30', timeFormat)]}
-                format={timeFormat}
+                {radioBoxList[1].select === true ?
+                    stepSeven.minTime === "" ? 
+                    <RangePickerOver 
+                        picker="time"
+                        defaultValue={[moment('00:00:00', timeFormat), moment('00:02:30', timeFormat)]}
+                        format={timeFormat}
+                        onChange={(e, timeString) => {
+                            setStepSeven({minTime : timeString[0], maxTime : timeString[1]})
+                        }}
+                    />
+                    :
+                    <RangePickerOver 
+                        picker="time"
+                        defaultValue={[moment(stepSeven.minTime, timeFormat), moment(stepSeven.maxTime, timeFormat)]}
+                        format={timeFormat}
+                        onChange={(e, timeString) => {
+                            setStepSeven({minTime : timeString[0], maxTime : timeString[1]})
+                        }}
+                     />  
+
                 
-                />
                 : 
-                ""
+                stepSeven.minTime === "" ? 
+                    <RangePickerOver 
+                        picker="time"
+                        defaultValue={[moment('00:00:00', timeFormat), moment('00:02:30', timeFormat)]}
+                        format={timeFormat}
+                        onChange={(e, timeString) => {
+                            setStepSeven({minTime : timeString[0], maxTime : timeString[1]})
+                        }}
+                        style={{display : "none"}}
+                    />
+                    :
+                    <RangePickerOver 
+                        picker="time"
+                        defaultValue={[moment(stepSeven.minTime, timeFormat), moment(stepSeven.maxTime, timeFormat)]}
+                        format={timeFormat}
+                        onChange={(e, timeString) => {
+                            setStepSeven({minTime : timeString[0], maxTime : timeString[1]})
+                        }}
+                        style={{display : "none"}}
+                     />  
+
                 }
             </EstimateContentMainSub>
             
             <EstimateContentMainButton>
                 <div style={{display:"table-cell", height : "100%", verticalAlign:"middle"}}>
-                <BeforeButton onClick={()=>{beforeButton(7, "")}}>이전으로</BeforeButton>
+                <BeforeButton onClick={()=>{beforeButton(7, stepSeven)}}>이전으로</BeforeButton>
                 {
                 // nickNmFlag === 1 &&
                 // introductionFlag === 1 &&
@@ -291,7 +337,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 // (stepOneObj.portFolioMainMusic.size !== 0)
                 1
                 ? 
-                <AfterButton onClick={()=>{nextButton(7, "")}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
+                <AfterButton onClick={()=>{nextButton(7, stepSeven)}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
                 :
                 <AfterButton>다음으로</AfterButton>
                 }

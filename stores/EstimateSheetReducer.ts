@@ -45,7 +45,6 @@ type ActionType = {
   
   interface stepSix {
     spclNoteKindNm : Array<string>,
-    spclNoteKindNmStr : string
   }
   
   interface stepSeven {
@@ -64,7 +63,7 @@ type ActionType = {
   }
   
   interface stepTen {
-    deadline : string
+    deadline : Array<string>
   }
   
   interface stepEleven { 
@@ -101,11 +100,17 @@ const reducer = (estimateStores : EstimateStores, { type, payload }: ActionType)
           
         case "INSERT_STEPSEVEN":
             console.log("INSERT_STEPSEVEN", type, payload);
+            if(payload.stepSeven.select === false){
+              return {...estimateStores};
+            }
             return {...estimateStores, stepSeven : payload.stepSeven};
             
         case "INSERT_STEPEIGHT":
             console.log("INSERT_STEPEIGHT", type, payload);
-            return {...estimateStores, stepEight : payload.stepEight};
+            if(payload.stepEight.select === false){
+              return {...estimateStores, stepEight : {intention : payload.stepEight.intention, files : []}};
+            }
+            return {...estimateStores, stepEight : {intention : payload.stepEight.intention, files : payload.stepEight.files}};
         
         case "INSERT_STEPNINE":
             console.log("INSERT_STEPNINE", type, payload);

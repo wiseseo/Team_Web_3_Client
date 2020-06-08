@@ -182,6 +182,12 @@ const AfterButton = styled.button`
 
 const index = ({nextButton, beforeButton, object}): React.ReactElement => {
 
+    const [stepEight, setStepEight] = React.useState<any>({
+        intention : "",
+        select : false,
+        files : [],
+    }) 
+
     const [radioBoxArr, setRadioBoxArr] = React.useState([]);
     const [radioBoxList, setRadioBoxList] = React.useState([
         {
@@ -202,7 +208,12 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
         console.log(e.target.value);
         
         let newList = [...radioBoxList];
-
+        if(e.target.value === "참고 자료 없음"){
+            setStepEight({...stepEight, select : false})
+        }
+        else{
+            setStepEight({...stepEight, select : true})
+        }
         for(let i = 0 ; i < radioBoxList.length ; i++){
             if(radioBoxList[i].label === e.target.value){
                 newList[i].select = true;
@@ -248,6 +259,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 setFileSize(false);
             }
             else{
+                console.log("??", newFileArr)
                 setFileSize(true);
                 setFileArr(newFileArr);
             }
@@ -266,6 +278,12 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
         if(fileInput.current){
             resetInput();
         }
+
+        let stepFiles = [];
+        for(let i = 0 ; i < fileArr.length ; i++){
+            stepFiles.push(fileArr[i][0])
+        }
+        setStepEight({...stepEight, files : stepFiles})
     }, [fileArr]);
 
     let FileStyle = {
@@ -274,7 +292,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
         background: "rgba(143, 143, 143, 0.1)"
     };
     
-    
+    console.log(stepEight);
     return (
         <>
         <EstimateUserInfoData>
@@ -310,6 +328,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 <EstimateContentMainSubTitleBack>음원을 기획하게 된 사유와 상세한 기획 의도에 대해 적어주세요. (2000자)</EstimateContentMainSubTitleBack>
                 <FormContainerTextarea
                     placeholder="최소 30자 이상 입력해주세요."
+                    onChange={(e) => {setStepEight({...stepEight, intention : e.target.value})}}
                 />
                 {radioBoxList.map((list, key) => {
 
@@ -439,7 +458,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             
             <EstimateContentMainButton>
                 <div style={{display:"table-cell", height : "100%", verticalAlign:"middle"}}>
-                <BeforeButton onClick={()=>{beforeButton(8, "")}}>이전으로</BeforeButton>
+                <BeforeButton onClick={()=>{beforeButton(8, stepEight)}}>이전으로</BeforeButton>
                 {
                 // nickNmFlag === 1 &&
                 // introductionFlag === 1 &&
@@ -450,7 +469,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 // (stepOneObj.portFolioMainMusic.size !== 0)
                 1
                 ? 
-                <AfterButton onClick={()=>{nextButton(8, "")}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
+                <AfterButton onClick={()=>{nextButton(8, stepEight)}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
                 :
                 <AfterButton>다음으로</AfterButton>
                 }
