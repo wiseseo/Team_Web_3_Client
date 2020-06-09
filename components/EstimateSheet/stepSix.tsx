@@ -43,6 +43,8 @@ const EstimateContentMainTitle = styled.div`
     width : 100%;
     height : 56px;
     position : relative;
+    border-radius: 8px;
+    background: #181818;
 `;
 
 const EstimateContentMainSub = styled.div`
@@ -103,6 +105,7 @@ const BeforeButton = styled.button`
     font-size : 1rem;
     font-weight : bold;
     margin-right : 32px;
+    cursor : pointer;
 `;
 
 const AfterButton = styled.button`
@@ -164,7 +167,6 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             chosenPossible :true
         }
       ])
-      const [selectTag, setSelectTag] = React.useState<boolean>(false);
       
       const chosenTag = (key) => {
     
@@ -179,7 +181,6 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
           newTagList[key-1].chosen = true;
           newTagList[key-1].chosenPossible = true;
           setTagList(newTagList);
-          setSelectTag(true);
           setStepSix({...stepSix, spclNoteKindNm : [newTagList[key-1].name]});
     
         }
@@ -187,7 +188,6 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
           let newTagList = [...tagList];
           newTagList[key-1].chosen = true; 
           setTagList(newTagList);
-          setSelectTag(true);
     
           setStepSix({...stepSix, spclNoteKindNm : stepSix.spclNoteKindNm.concat(newTagList[key-1].name)});
     
@@ -207,7 +207,6 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
           }
     
           setTagList(newTagList);
-          setSelectTag(false);
           setStepSix({...stepSix, spclNoteKindNm : stepSix.spclNoteKindNm.filter(e => e !== newTagList[key-1].name)});
     
         }
@@ -217,13 +216,39 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
           setTagList(newTagList);
           
           if(tagList.find(e => e.chosen == true) == undefined){
-            setSelectTag(false);
           }
       
           setStepSix({...stepSix, spclNoteKindNm : stepSix.spclNoteKindNm.filter(e => e !== newTagList[key-1].name)});
         }
       }
 
+      React.useEffect(() => {
+        setStepSix(object);
+        window.scrollTo(0, 0);
+    
+        if(object.spclNoteKindNm.find(x => x === "해당사항 없음")){
+          for(let i = 0 ; i < tagList.length ; i++){
+            if(object.spclNoteKindNm.find(x => x === tagList[i].name)){
+              if(tagList[i].name === "해당사항 없음"){
+                tagList[i].chosen = true;
+              }
+            }
+            else{
+              tagList[i].chosen = false;
+              tagList[i].chosenPossible = false;
+            }
+          }
+        }
+        else{
+          for(let i = 0 ; i < tagList.length ; i++){
+            if(object.spclNoteKindNm.find(x => x === tagList[i].name)){
+              tagList[i].chosen = true;          
+            }
+          }
+        }
+        
+      }, [object]);
+    
     return (
         <>
         <EstimateUserInfoData>
@@ -281,14 +306,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 <div style={{display:"table-cell", height : "100%", verticalAlign:"middle"}}>
                 <BeforeButton onClick={()=>{beforeButton(6, stepSix)}}>이전으로</BeforeButton>
                 {
-                // nickNmFlag === 1 &&
-                // introductionFlag === 1 &&
-                // (stepOneObj.profileUrl !== {}) &&
-                // careerFlag === 1 &&
-                // celPhoneFlag === 1 &&
-                // (stepOneObj.songEsntlUrl !== {}) &&
-                // (stepOneObj.portFolioMainMusic.size !== 0)
-                1
+                    stepSix.spclNoteKindNm.length > 0
                 ? 
                 <AfterButton onClick={()=>{nextButton(6, stepSix)}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
                 :

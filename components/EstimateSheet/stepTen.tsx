@@ -47,8 +47,9 @@ const EstimateContentMainTitle = styled.div`
     width : 100%;
     height : 56px;
     position : relative;
+    border-radius: 8px;
+    background: #181818;
 `;
-
 const EstimateContentMainSub = styled.div`
     width : 90%;
     height : 425px;
@@ -121,6 +122,7 @@ const BeforeButton = styled.button`
     font-size : 1rem;
     font-weight : bold;
     margin-right : 32px;
+    cursor : pointer;
 `;
 
 const AfterButton = styled.button`
@@ -138,7 +140,17 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
     const [stepTen, setStepTen] = React.useState<any>({
         deadline : []
     }) 
-    console.log(stepTen);
+    // console.log(stepTen.deadline);
+
+    React.useEffect(() => {
+        
+        if(object.deadline.length > 0){
+            setStepTen(object);
+        }
+
+        window.scrollTo(0, 0);
+        
+    }, [object]);
     return (
         <>
         <EstimateUserInfoData>
@@ -173,7 +185,16 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 <EstimateContentMainSubTitle>희망하는 작업기간을 선택해주세요.</EstimateContentMainSubTitle>
                 <EstimateContentMainSubTitleBack>최종 작업 마감일을 설정하세요.</EstimateContentMainSubTitleBack>
                 
-                {stepTen.deadline.length === 0 ? 
+                {stepTen.deadline.length !== 0 ? 
+                    <RangePickerOver
+                        style={{marginTop : 24}}
+                        value={[moment(stepTen.deadline[1], dateFormat), moment(stepTen.deadline[0], dateFormat)]}
+                        format={dateFormat}
+                        onChange={(e, timeString) => {
+                            setStepTen({deadline : timeString})
+                        }} 
+                    />
+                : 
                     <RangePickerOver
                         style={{marginTop : 24}}
                         defaultValue={[moment((moment()), dateFormat), moment(moment(), dateFormat)]}
@@ -181,17 +202,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                         onChange={(e, timeString) => {
                         setStepTen({deadline : timeString})
                         }} 
-                  /> 
-                : 
-                    <RangePickerOver
-                        style={{marginTop : 24}}
-                        defaultValue={stepTen.deadline}
-                        format={dateFormat}
-                        onChange={(e, timeString) => {
-                        setStepTen({deadline : timeString})
-                        }} 
-                    />
-                
+                    /> 
                 }
             </EstimateContentMainSub>
             
@@ -199,14 +210,8 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 <div style={{display:"table-cell", height : "100%", verticalAlign:"middle"}}>
                 <BeforeButton onClick={()=>{beforeButton(10, stepTen)}}>이전으로</BeforeButton>
                 {
-                // nickNmFlag === 1 &&
-                // introductionFlag === 1 &&
-                // (stepOneObj.profileUrl !== {}) &&
-                // careerFlag === 1 &&
-                // celPhoneFlag === 1 &&
-                // (stepOneObj.songEsntlUrl !== {}) &&
-                // (stepOneObj.portFolioMainMusic.size !== 0)
-                1
+                
+                stepTen.deadline.length > 0
                 ? 
                 <AfterButton onClick={()=>{nextButton(10, stepTen)}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
                 :

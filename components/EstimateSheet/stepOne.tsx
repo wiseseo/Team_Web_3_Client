@@ -43,6 +43,8 @@ const EstimateContentMainTitle = styled.div`
     width : 100%;
     height : 56px;
     position : relative;
+    border-radius: 8px;
+    background: #181818;
 `;
 
 const EstimateContentMainSub = styled.div`
@@ -185,6 +187,7 @@ const BeforeButton = styled.button`
     font-size : 1rem;
     font-weight : bold;
     margin-right : 32px;
+    cursor : pointer;
 `;
 
 const AfterButton = styled.button`
@@ -269,6 +272,37 @@ const index = ({nextButton , object}): React.ReactElement => {
         setRadioBoxSubList(newList)
         setStepOne({...stepOne, copyright : e.target.value});
     }
+
+    React.useEffect(() => {
+        setStepOne(object);
+        window.scrollTo(0, 0);
+
+        let newList = [...radioBoxList];
+        let newSubList = [...radioBoxSubList];
+
+        for(let i = 0 ; i < radioBoxList.length ; i++){
+            if(radioBoxList[i].label === object.usage){
+                newList[i].select = true;
+            }
+            else{
+                newList[i].select = false;
+            }
+        }
+        for(let i = 0 ; i < radioBoxSubList.length ; i++){
+            if(radioBoxSubList[i].label === object.copyright){
+                newSubList[i].select = true;
+            }
+            else{
+                newSubList[i].select = false;
+            }
+        }
+        
+        setRadioBoxList(newList);
+        setRadioBoxSubList(newSubList);
+    }, [object])
+
+    // console.log(stepOne);
+    
     return (
         <>
         <EstimateUserInfoData>
@@ -318,10 +352,11 @@ const index = ({nextButton , object}): React.ReactElement => {
                         if(list.select === true){
 
                             if(list.label === "기타 (직접입력)"){
+                                
                                 return (
                                     <FormContainerRadioLayout style={{flexDirection : "column"}} key={key}>
 
-                                        <FormContainerRadio onChange={(e) => {checkBox(e)}} type="radio" value={list.label} name="use" id={list.label}/> 
+                                        <FormContainerRadio defaultChecked={true} onChange={(e) => {checkBox(e)}} type="radio" value={list.label} name="use" id={list.label}/> 
                                         <FormContainerRadioLabel htmlFor={list.label} style={{color : "#6865FC"}}>{list.label}</FormContainerRadioLabel>
                                         <CheckBoxEtcInput onChange={(e) => {setStepOne({...stepOne, usage : e.target.value})}}/>
                                     </FormContainerRadioLayout>
@@ -331,7 +366,7 @@ const index = ({nextButton , object}): React.ReactElement => {
                                 return (
                                     <FormContainerRadioLayout key={key}>
 
-                                        <FormContainerRadio onChange={(e) => {checkBox(e)}} type="radio" value={list.label} name="use" id={list.label}/> 
+                                        <FormContainerRadio defaultChecked={true} onChange={(e) => {checkBox(e)}} type="radio" value={list.label} name="use" id={list.label}/> 
                                         <FormContainerRadioLabel htmlFor={list.label} style={{color : "#6865FC"}}>{list.label}</FormContainerRadioLabel>
 
                                     </FormContainerRadioLayout>
@@ -361,7 +396,7 @@ const index = ({nextButton , object}): React.ReactElement => {
                                 return (
                                     <FormContainerRadioLayout key={key}>
 
-                                        <FormContainerRadio onChange={(e) => {subCheckBox(e)}} type="radio" value={list.label} name="pay" id={list.label}/> 
+                                        <FormContainerRadio defaultChecked={true} onChange={(e) => {subCheckBox(e)}} type="radio" value={list.label} name="pay" id={list.label}/> 
                                         <FormContainerRadioLabel htmlFor={list.label} style={{color : "#6865FC"}}>{list.label}</FormContainerRadioLabel>
 
                                     </FormContainerRadioLayout>
@@ -386,16 +421,10 @@ const index = ({nextButton , object}): React.ReactElement => {
             
             <EstimateContentMainButton>
                 <div style={{display:"table-cell", height : "100%", verticalAlign:"middle"}}>
-                <BeforeButton onClick={()=>{history.back()}}>이전으로</BeforeButton>
+                <BeforeButton onClick={()=>{history.back()}}>메인으로</BeforeButton>
                 {
-                // nickNmFlag === 1 &&
-                // introductionFlag === 1 &&
-                // (stepOneObj.profileUrl !== {}) &&
-                // careerFlag === 1 &&
-                // celPhoneFlag === 1 &&
-                // (stepOneObj.songEsntlUrl !== {}) &&
-                // (stepOneObj.portFolioMainMusic.size !== 0)
-                1
+                    (radioBoxList.findIndex(x => x.select === true) !== -1 || stepOne.usage.length > 0)&&
+                    radioBoxSubList.findIndex(x => x.select === true) !== -1 
                 ? 
                 <AfterButton onClick={()=>{nextButton(1, stepOne)}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
                 :

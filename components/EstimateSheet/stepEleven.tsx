@@ -44,6 +44,8 @@ const EstimateContentMainTitle = styled.div`
     width : 100%;
     height : 56px;
     position : relative;
+    border-radius: 8px;
+    background: #181818;
 `;
 
 const EstimateContentMainSub = styled.div`
@@ -101,6 +103,7 @@ const BeforeButton = styled.button`
     font-size : 1rem;
     font-weight : bold;
     margin-right : 32px;
+    cursor : pointer;
 `;
 
 const AfterButton = styled.button`
@@ -127,6 +130,14 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
     const valueMaxChange = (value) => {
       setStepEleven({...stepEleven, maxfee : value});
     }
+
+    React.useEffect(() => {
+        
+      window.scrollTo(0, 0);
+      setStepEleven(object);
+     
+  }, [object])
+
     return (
         <>
         <EstimateUserInfoData>
@@ -181,7 +192,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                       min={10000}
                       max={10000000}
                       step={10000}
-                      style={{ margin: '0 16px', width : 120 }}
+                      style={{ margin: '0 16px', width : 120, backgroundColor : "#3E3E41", border: "none" }}
                       value={stepEleven.minfee}
                       onChange={valueChange}
                     />
@@ -213,7 +224,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                       min={10000}
                       max={10000000}
                       step={10000}
-                      style={{ margin: '0 16px', width : 120 }}
+                      style={{ margin: '0 16px', width : 120, backgroundColor : "#3E3E41", border: "none" }}
                       value={stepEleven.maxfee}
                       onChange={valueMaxChange}
                     />
@@ -230,14 +241,9 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 <div style={{display:"table-cell", height : "100%", verticalAlign:"middle"}}>
                 <BeforeButton onClick={()=>{beforeButton(11, stepEleven)}}>이전으로</BeforeButton>
                 {
-                // nickNmFlag === 1 &&
-                // introductionFlag === 1 &&
-                // (stepOneObj.profileUrl !== {}) &&
-                // careerFlag === 1 &&
-                // celPhoneFlag === 1 &&
-                // (stepOneObj.songEsntlUrl !== {}) &&
-                // (stepOneObj.portFolioMainMusic.size !== 0)
-                1
+                stepEleven.minfee !== 0 &&
+                stepEleven.maxfee !== 0
+                
                 ? 
                 <AfterButton onClick={()=>{nextButton(11, stepEleven)}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
                 :

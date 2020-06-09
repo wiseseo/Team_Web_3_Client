@@ -47,6 +47,8 @@ const EstimateContentMainTitle = styled.div`
     width : 100%;
     height : 56px;
     position : relative;
+    border-radius: 8px;
+    background: #181818;
 `;
 
 const EstimateContentMainSub = styled.div`
@@ -162,6 +164,7 @@ const BeforeButton = styled.button`
     font-size : 1rem;
     font-weight : bold;
     margin-right : 32px;
+    cursor : pointer;
 `;
 
 const AfterButton = styled.button`
@@ -183,7 +186,6 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
     }) 
 
     const timeFormat = 'HH:mm:ss';
-    const [radioBoxArr, setRadioBoxArr] = React.useState<string>("");
     const [radioBoxList, setRadioBoxList] = React.useState([
         {
             label : "협의 후 결정",
@@ -213,10 +215,38 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             }
         }
         setRadioBoxList(newList)
-        setRadioBoxArr(e.target.value);
     }
 
-    console.log(radioBoxArr);
+    React.useEffect(() => {
+        
+        window.scrollTo(0, 0);
+        let newList = [...radioBoxList];
+
+        if(object.minTime !== "00:00:00"){
+            for(let i = 0 ; i < radioBoxList.length ; i++){
+                if(newList[i].label === "직접 시간 설정"){
+                    newList[i].select = true;
+                }
+            }
+        }
+        else{
+            for(let i = 0 ; i < radioBoxList.length ; i++){
+                if(newList[i].label === "협의 후 결정"){
+                    newList[i].select = true;
+                }
+            }
+        }
+        setRadioBoxList(newList);
+       
+    }, [object])
+
+    React.useEffect(() => {
+        if(radioBoxList[1].select === true){
+            setStepSeven(object);
+        }
+        
+    }, [radioBoxList]);
+
     console.log(stepSeven);
     return (
         <>
@@ -258,7 +288,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                                 return (
                                     <FormContainerRadioLayout key={key}>
 
-                                        <FormContainerRadio onChange={(e) => {checkBox(e)}} type="radio" value={list.label} name="pay" id={list.label}/> 
+                                        <FormContainerRadio defaultChecked={true} onChange={(e) => {checkBox(e)}} type="radio" value={list.label} name="pay" id={list.label}/> 
                                         <FormContainerRadioLabel htmlFor={list.label} style={{color : "#6865FC"}}>{list.label}</FormContainerRadioLabel>
 
                                     </FormContainerRadioLayout>
@@ -279,16 +309,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                     })}
 
                 {radioBoxList[1].select === true ?
-                    stepSeven.minTime === "" ? 
-                    <RangePickerOver 
-                        picker="time"
-                        defaultValue={[moment('00:00:00', timeFormat), moment('00:02:30', timeFormat)]}
-                        format={timeFormat}
-                        onChange={(e, timeString) => {
-                            setStepSeven({minTime : timeString[0], maxTime : timeString[1]})
-                        }}
-                    />
-                    :
+
                     <RangePickerOver 
                         picker="time"
                         defaultValue={[moment(stepSeven.minTime, timeFormat), moment(stepSeven.maxTime, timeFormat)]}
@@ -297,30 +318,8 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                             setStepSeven({minTime : timeString[0], maxTime : timeString[1]})
                         }}
                      />  
-
-                
                 : 
-                stepSeven.minTime === "" ? 
-                    <RangePickerOver 
-                        picker="time"
-                        defaultValue={[moment('00:00:00', timeFormat), moment('00:02:30', timeFormat)]}
-                        format={timeFormat}
-                        onChange={(e, timeString) => {
-                            setStepSeven({minTime : timeString[0], maxTime : timeString[1]})
-                        }}
-                        style={{display : "none"}}
-                    />
-                    :
-                    <RangePickerOver 
-                        picker="time"
-                        defaultValue={[moment(stepSeven.minTime, timeFormat), moment(stepSeven.maxTime, timeFormat)]}
-                        format={timeFormat}
-                        onChange={(e, timeString) => {
-                            setStepSeven({minTime : timeString[0], maxTime : timeString[1]})
-                        }}
-                        style={{display : "none"}}
-                     />  
-
+                <></>
                 }
             </EstimateContentMainSub>
             
