@@ -58,9 +58,22 @@ const LinkButton: React.FC<Props> = ({ text, type }) => {
 
   if (type == "enroll") {
     return (
-      <Link href="/musician/enroll">
-        <Button>{text}</Button>
-      </Link>
+      <>
+        <Button onClick={onOpenModal}>{text}</Button>
+        <ModalOver
+          visible={open}
+          onOk={onCloseModal}
+          onCancel={onCloseModal}
+          footer={null}
+          width={368}
+          style={{ top: 130, minWidth: 368 }}
+        >
+          <Login onCloseModal={onCloseModal} musicianFlag={true} />
+        </ModalOver>
+      </>
+      // <Link href="/musician/enroll">
+      //   <Button>{text}</Button>
+      // </Link>
     );
   } else {
     return (
@@ -74,7 +87,7 @@ const LinkButton: React.FC<Props> = ({ text, type }) => {
           width={368}
           style={{ top: 130, minWidth: 368 }}
         >
-          <Login onCloseModal={onCloseModal} />
+          <Login onCloseModal={onCloseModal} musicianFlag={false} />
         </ModalOver>
       </>
     );
