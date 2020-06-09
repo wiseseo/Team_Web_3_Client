@@ -32,7 +32,8 @@ interface stepSix {
 
 interface stepSeven {
   minTime : string,
-  maxTime : string
+  maxTime : string,
+  select : boolean
 }
 
 interface stepEight {
@@ -84,8 +85,9 @@ const defaultStepSix: stepSix = {
 };
 
 const defaultStepSeven: stepSeven = {
-  minTime : "",
-  maxTime : ""
+  minTime : "00:00:00",
+  maxTime : "00:02:30",
+  select : false
 };
 
 const defaultStepEight: stepEight = {

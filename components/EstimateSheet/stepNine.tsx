@@ -43,6 +43,8 @@ const EstimateContentMainTitle = styled.div`
     width : 100%;
     height : 56px;
     position : relative;
+    border-radius: 8px;
+    background: #181818;
 `;
 
 const EstimateContentMainSub = styled.div`
@@ -108,6 +110,7 @@ const BeforeButton = styled.button`
     font-size : 1rem;
     font-weight : bold;
     margin-right : 32px;
+    cursor : pointer;
 `;
 
 const AfterButton = styled.button`
@@ -149,6 +152,11 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             }
         }
     }, [stepNine]);
+
+    React.useEffect(() => {
+        setStepNine(object);
+        window.scrollTo(0, 0);
+      }, [object]);
 
     return (
         <>
@@ -232,7 +240,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                   <div style={{display : "table", height : "32px", marginRight : "16px", width : "68px"}}>
                     <EstimateSubTitle style={{fontSize : "0.875rem", border : "none", display: "table-cell", verticalAlign : "middle"}}>카카오 ID</EstimateSubTitle>
                   </div>
-                  <Input onChange={(e) => {setStepNine({...stepNine, kakaoId : e.target.value})}}/>
+                  <Input defaultValue={stepNine.kakaoId} onChange={(e) => {setStepNine({...stepNine, kakaoId : e.target.value})}}/>
                 </InputLayout>
             </EstimateContentMainSub>
             
@@ -240,14 +248,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 <div style={{display:"table-cell", height : "100%", verticalAlign:"middle"}}>
                 <BeforeButton onClick={()=>{beforeButton(9, stepNine)}}>이전으로</BeforeButton>
                 {
-                // nickNmFlag === 1 &&
-                // introductionFlag === 1 &&
-                // (stepOneObj.profileUrl !== {}) &&
-                // careerFlag === 1 &&
-                // celPhoneFlag === 1 &&
-                // (stepOneObj.songEsntlUrl !== {}) &&
-                // (stepOneObj.portFolioMainMusic.size !== 0)
-                1
+                celPhoneFlag === 1 
                 ? 
                 <AfterButton onClick={()=>{nextButton(9, stepNine)}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
                 :

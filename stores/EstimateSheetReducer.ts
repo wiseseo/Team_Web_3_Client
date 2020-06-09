@@ -49,7 +49,8 @@ type ActionType = {
   
   interface stepSeven {
     minTime : string,
-    maxTime : string
+    maxTime : string,
+    select : boolean
   }
   
   interface stepEight {
@@ -101,9 +102,9 @@ const reducer = (estimateStores : EstimateStores, { type, payload }: ActionType)
         case "INSERT_STEPSEVEN":
             console.log("INSERT_STEPSEVEN", type, payload);
             if(payload.stepSeven.select === false){
-              return {...estimateStores};
+              return {...estimateStores, stepSeven : {minTime : "00:00:00", maxTime : "00:02:30", select : false}};
             }
-            return {...estimateStores, stepSeven : payload.stepSeven};
+            return {...estimateStores, stepSeven : {minTime : payload.stepSeven.minTime, maxTime : payload.stepSeven.maxTime, select : true} };
             
         case "INSERT_STEPEIGHT":
             console.log("INSERT_STEPEIGHT", type, payload);

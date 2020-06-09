@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import Progress from "../ProgressBar/TenProgress/eleven";
+import Progress from "../ProgressBar/TenProgress/twelve";
 import {DatePicker} from "antd";
 const EstimateUserInfoData = styled.div`
     flex: 0.2;
@@ -44,6 +44,8 @@ const EstimateContentMainTitle = styled.div`
     width : 100%;
     height : 56px;
     position : relative;
+    border-radius: 8px;
+    background: #181818;
 `;
 
 const EstimateContentMainSub = styled.div`
@@ -83,6 +85,7 @@ const BeforeButton = styled.button`
     font-size : 1rem;
     font-weight : bold;
     margin-right : 32px;
+    cursor : pointer;
 `;
 
 const AfterButton = styled.button`
@@ -138,21 +141,10 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             
             <EstimateContentMainButton>
                 <div style={{display:"table-cell", height : "100%", verticalAlign:"middle"}}>
-                <BeforeButton onClick={()=>{beforeButton(10, "")}}>이전으로</BeforeButton>
-                {
-                // nickNmFlag === 1 &&
-                // introductionFlag === 1 &&
-                // (stepOneObj.profileUrl !== {}) &&
-                // careerFlag === 1 &&
-                // celPhoneFlag === 1 &&
-                // (stepOneObj.songEsntlUrl !== {}) &&
-                // (stepOneObj.portFolioMainMusic.size !== 0)
-                1
-                ? 
-                <AfterButton onClick={()=>{nextButton(10, "")}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
-                :
-                <AfterButton>다음으로</AfterButton>
-                }
+                <BeforeButton onClick={()=>{beforeButton(12, "")}}>이전으로</BeforeButton>
+                 
+                <AfterButton onClick={()=>{nextButton(12, "")}} style={{cursor : "pointer", background : "#6865FC"}}>뮤지션에게 보내기</AfterButton>
+                
                 </div>
             </EstimateContentMainButton>
 

@@ -43,6 +43,8 @@ const EstimateContentMainTitle = styled.div`
     width : 100%;
     height : 56px;
     position : relative;
+    border-radius: 8px;
+    background: #181818;
 `;
 
 const EstimateContentMainSub = styled.div`
@@ -167,6 +169,7 @@ const BeforeButton = styled.button`
     font-size : 1rem;
     font-weight : bold;
     margin-right : 32px;
+    cursor : pointer;
 `;
 
 const AfterButton = styled.button`
@@ -187,7 +190,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
         select : false,
         files : [],
     }) 
-
+    
     const [radioBoxArr, setRadioBoxArr] = React.useState([]);
     const [radioBoxList, setRadioBoxList] = React.useState([
         {
@@ -279,11 +282,11 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             resetInput();
         }
 
-        let stepFiles = [];
-        for(let i = 0 ; i < fileArr.length ; i++){
-            stepFiles.push(fileArr[i][0])
-        }
-        setStepEight({...stepEight, files : stepFiles})
+        // let stepFiles = [];
+        // for(let i = 0 ; i < fileArr.length ; i++){
+        //     stepFiles.push(fileArr[i][0])
+        // }
+        setStepEight({...stepEight, files : fileArr})
     }, [fileArr]);
 
     let FileStyle = {
@@ -292,7 +295,30 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
         background: "rgba(143, 143, 143, 0.1)"
     };
     
-    console.log(stepEight);
+    React.useEffect(() => {
+        
+        window.scrollTo(0, 0);
+        let newList = [...radioBoxList];
+
+        if(object.files.length === 0){
+            for(let i = 0 ; i < radioBoxList.length ; i++){
+                if(newList[i].label === "참고 자료 없음"){
+                    newList[i].select = true;
+                }
+            }
+        }
+        else{
+            for(let i = 0 ; i < radioBoxList.length ; i++){
+                if(newList[i].label === "참고 자료 있음"){
+                    newList[i].select = true;
+                }
+            }
+        }
+        setRadioBoxList(newList);
+        setStepEight(object);
+        setFileArr(object.files);
+    }, [object])
+    // console.log(stepEight);
     return (
         <>
         <EstimateUserInfoData>
@@ -327,6 +353,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 <EstimateContentMainSubTitle>음원 기획 의도를 알려주세요.</EstimateContentMainSubTitle>
                 <EstimateContentMainSubTitleBack>음원을 기획하게 된 사유와 상세한 기획 의도에 대해 적어주세요. (2000자)</EstimateContentMainSubTitleBack>
                 <FormContainerTextarea
+                    defaultValue={stepEight.intention}
                     placeholder="최소 30자 이상 입력해주세요."
                     onChange={(e) => {setStepEight({...stepEight, intention : e.target.value})}}
                 />
@@ -336,7 +363,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                         return (
                             <FormContainerRadioLayout key={key}>
 
-                                <FormContainerRadio onChange={(e) => {checkBox(e)}} type="radio" value={list.label} name="pay" id={list.label}/> 
+                                <FormContainerRadio defaultChecked={true} onChange={(e) => {checkBox(e)}} type="radio" value={list.label} name="pay" id={list.label}/> 
                                 <FormContainerRadioLabel htmlFor={list.label} style={{color : "#6865FC"}}>{list.label}</FormContainerRadioLabel>
                                 
                             </FormContainerRadioLayout>
@@ -460,14 +487,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 <div style={{display:"table-cell", height : "100%", verticalAlign:"middle"}}>
                 <BeforeButton onClick={()=>{beforeButton(8, stepEight)}}>이전으로</BeforeButton>
                 {
-                // nickNmFlag === 1 &&
-                // introductionFlag === 1 &&
-                // (stepOneObj.profileUrl !== {}) &&
-                // careerFlag === 1 &&
-                // celPhoneFlag === 1 &&
-                // (stepOneObj.songEsntlUrl !== {}) &&
-                // (stepOneObj.portFolioMainMusic.size !== 0)
-                1
+                stepEight.intention.length > 30
                 ? 
                 <AfterButton onClick={()=>{nextButton(8, stepEight)}} style={{cursor : "pointer", background : "#6865FC"}}>다음으로</AfterButton>
                 :

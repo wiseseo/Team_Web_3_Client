@@ -13,7 +13,7 @@ import StepNine from "./stepNine";
 import StepTen from "./stepTen";
 import StepEleven from "./stepEleven";
 import StepTwelve from "./stepTwelve";
-
+import EstimateResult from "./estimateResult";
 import {EstimateSheetContext} from "../../stores/EstimateSheetStore";
 interface Props {}
 
@@ -127,45 +127,52 @@ const EstimateSheet = (props: Props) => {
     }
 
     if(enrollStep === 1){
-        stepLayout = <StepOne nextButton ={nextButton} object={""} />
+        stepLayout = <StepOne nextButton ={nextButton} object={estimateSheetData.estimateStores.stepOne} />
     }
     else if(enrollStep === 2){
-        stepLayout = <StepTwo nextButton ={nextButton} beforeButton = {beforeButton} object={""} />
+        stepLayout = <StepTwo nextButton ={nextButton} beforeButton = {beforeButton} object={estimateSheetData.estimateStores.stepTwo} />
     }
     else if(enrollStep === 3){
-        stepLayout = <StepThree nextButton ={nextButton} beforeButton = {beforeButton} object={""} />
+        stepLayout = <StepThree nextButton ={nextButton} beforeButton = {beforeButton} object={estimateSheetData.estimateStores.stepThree} />
     }
     else if(enrollStep === 4){
-        stepLayout = <StepFour nextButton ={nextButton} beforeButton = {beforeButton} object={""} />
+        stepLayout = <StepFour nextButton ={nextButton} beforeButton = {beforeButton} object={estimateSheetData.estimateStores.stepFour} />
     }
     else if(enrollStep === 5){
-        stepLayout = <StepFive nextButton ={nextButton} beforeButton = {beforeButton} object={""} />
+        stepLayout = <StepFive nextButton ={nextButton} beforeButton = {beforeButton} object={estimateSheetData.estimateStores.stepFive} />
     }
     else if(enrollStep === 6){
-        stepLayout = <StepSix nextButton ={nextButton} beforeButton = {beforeButton} object={""} />
+        stepLayout = <StepSix nextButton ={nextButton} beforeButton = {beforeButton} object={estimateSheetData.estimateStores.stepSix} />
     }
     else if(enrollStep === 7){
-        stepLayout = <StepSeven nextButton ={nextButton} beforeButton = {beforeButton} object={""} />
+        stepLayout = <StepSeven nextButton ={nextButton} beforeButton = {beforeButton} object={estimateSheetData.estimateStores.stepSeven} />
     }
     else if(enrollStep === 8){
-        stepLayout = <StepEight nextButton ={nextButton} beforeButton = {beforeButton} object={""} />
+        stepLayout = <StepEight nextButton ={nextButton} beforeButton = {beforeButton} object={estimateSheetData.estimateStores.stepEight} />
     }
     else if(enrollStep === 9){
-        stepLayout = <StepNine nextButton ={nextButton} beforeButton = {beforeButton} object={""} />
+        stepLayout = <StepNine nextButton ={nextButton} beforeButton = {beforeButton} object={estimateSheetData.estimateStores.stepNine} />
     }
     else if(enrollStep === 10){
-        stepLayout = <StepTen nextButton ={nextButton} beforeButton = {beforeButton} object={""} />
+        stepLayout = <StepTen nextButton ={nextButton} beforeButton = {beforeButton} object={estimateSheetData.estimateStores.stepTen} />
     }
     else if(enrollStep === 11){
-        stepLayout = <StepEleven nextButton ={nextButton} beforeButton = {beforeButton} object={""} />
+        stepLayout = <StepEleven nextButton ={nextButton} beforeButton = {beforeButton} object={estimateSheetData.estimateStores.stepEleven} />
     }
     else if(enrollStep === 12){
-        stepLayout = <StepTwelve nextButton ={nextButton} beforeButton = {beforeButton} object={""} />
+        stepLayout = <StepTwelve nextButton ={nextButton} beforeButton = {beforeButton} object={estimateSheetData.estimateStores} />
+    }
+    else if(enrollStep === 13){
+        stepLayout = <EstimateResult object={estimateSheetData.estimateStores} />
     }
     return(
         <>
         <EstimateContainer>
+            {enrollStep === 13 ?
+            <EstimateTitle>보낸 의뢰서 확인</EstimateTitle>
+            :
             <EstimateTitle>의뢰서 작성하기</EstimateTitle>
+            }
             
             <EstimateUserInfo>
             
