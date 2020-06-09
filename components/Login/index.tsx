@@ -2,14 +2,22 @@ import * as React from "react";
 import Login from "../Modal/login";
 import Leave from "../Modal/leave";
 import Cancel from "../Modal/cancel";
-
-const index = ({onCloseModal}): React.ReactElement => {
+import LoginMusician from "../Modal/loginMusician";
+const index = ({onCloseModal, musicianFlag}): React.ReactElement => {
 
   return (
-    // <Cancel onCloseModal={onCloseModal}/>
+    <>
+    {musicianFlag ? 
+    
+    <LoginMusician/>
+    : 
     <Login/>
-
-    // <Leave onCloseModal={onCloseModal}/>
+    
+    }
+    
+    {/* <Cancel onCloseModal={onCloseModal}/> */}
+    {/* <Leave onCloseModal={onCloseModal}/> */}
+    </>
   );
 };
 

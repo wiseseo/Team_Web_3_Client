@@ -135,9 +135,9 @@ const Login = (): React.ReactElement => {
         />
         </LoginModalLogo>
 
-        <LoginModalTitle>핸드메이드 음악이 필요할 때, 튜나!</LoginModalTitle>
-        <LoginModalTitle style={{paddingTop : 0}}>뮤지션과의 특별한 만남을 이어줄게요.</LoginModalTitle>
-        <LoginModalDescription>1분내로 가입하고 당신을 위한 뮤지션을 찾아보세요.</LoginModalDescription>
+        <LoginModalTitle>당신의 음악이 브랜드가 되도록</LoginModalTitle>
+        <LoginModalTitle style={{paddingTop : 0}}>튜나가 함께할게요.</LoginModalTitle>
+        <LoginModalDescription>수수료없이 내가 만든 음악으로 수익을 가져가세요.</LoginModalDescription>
         
         <LoginModalButton>
 
