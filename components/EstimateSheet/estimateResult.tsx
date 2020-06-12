@@ -153,7 +153,7 @@ const AfterButton = styled.button`
 `;
 const index = ({object}): React.ReactElement => {
   
-
+    console.log(object);
     // console.log(checkBoxList);
     return (
         <>
