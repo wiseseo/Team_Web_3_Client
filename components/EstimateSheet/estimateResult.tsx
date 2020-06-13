@@ -78,7 +78,7 @@ const MyPageUserInfoData = styled.div`
 `;
 
 const MyPageUserInfoImg = styled.div`
-    flex: 0.2;
+    margin-right : 25px;
     margin-top : 2px;
     color : #E2E1E2;
     display : flex;
@@ -198,7 +198,7 @@ const index = ({object}): React.ReactElement => {
                 </MyPageUserInfo>
                
                 <QuestionLayout>
-                    <QuestionTitle>
+                     <QuestionTitle>
                         어떤 용도로 사용할 음악인가요?
                     </QuestionTitle>
                     <Answer>
@@ -226,23 +226,38 @@ const index = ({object}): React.ReactElement => {
                                 )
                             }
                             else{
-                                return (
-                                    <span key={key}>
-                                        {list},{" "}
-                                    </span>
-                                )
+                                if(object.stepTwo.atmoKindNm.length === key + 1 ){
+                                    return (
+                                        <span key={key}>
+                                            {list}
+                                        </span>
+                                    )
+                                }
+                                else{
+                                    return (
+                                        <span key={key}>
+                                            {list},{" "}
+                                        </span>
+                                    )
+                                }
+                                    
                             }
                             
                         })}
                         {object.stepTwo.atmoKindNmStr !== "" ? 
-                        <>기타 : {object.stepTwo.atmoKindNmStr}</>
+                        <>
+                        <span style={{display: "block", wordBreak : "break-all", width : 700}}>
+                            기타 : {object.stepTwo.atmoKindNmStr}
+                        </span>
+                        </>
                         :
                         ""
                         }
                         
                     </Answer>
                     
-                    <QuestionTitle>
+                    
+                    <QuestionTitle> 
                         어떤 테마의 음악을 원하시나요?
                     </QuestionTitle>
                     <Answer>
@@ -255,15 +270,30 @@ const index = ({object}): React.ReactElement => {
                                 )
                             }
                             else{
-                                return (
-                                    <span key={key}>
-                                        {list},{" "}
-                                    </span>
-                                )
+                                if(object.stepThree.themeKindNm.length === key + 1 ){
+                                    return (
+                                        <span key={key}>
+                                            {list}
+                                        </span>
+                                    )
+                                }
+                                else{
+                                    return (
+                                        <span key={key}>
+                                            {list},{" "}
+                                        </span>
+                                    )
+                                }
                             }
                         })}
                         {object.stepThree.themeKindNmStr !== "" ? 
-                        <>기타 : {object.stepThree.themeKindNmStr}</>
+                        <> 
+                        <span style={{display: "block", wordBreak : "break-all", width : 700}}>
+                            기타 :
+                            {object.stepThree.themeKindNmStr}
+                        </span>
+                        </>
+                        
                         :
                         ""
                         }
@@ -282,15 +312,30 @@ const index = ({object}): React.ReactElement => {
                                 )
                             }
                             else{
-                                return (
-                                    <span key={key}>
-                                        {list},{" "}
-                                    </span>
-                                )
+                                if(object.stepFour.genreKindNm.length === key + 1 ){
+                                    return (
+                                        <span key={key}>
+                                            {list}
+                                        </span>
+                                    )
+                                }
+                                else{
+                                    return (
+                                        <span key={key}>
+                                            {list},{" "}
+                                        </span>
+                                    )
+                                }
                             }
                         })}
                         {object.stepFour.genreKindNmStr !== "" ? 
-                        <>기타 : {object.stepFour.genreKindNmStr}</>
+                        <> 
+                       <span style={{display: "block", wordBreak : "break-all", width : 700}}>
+                            기타 :
+                            {object.stepFour.genreKindNmStr}
+                        </span>
+                        </>
+                        
                         :
                         ""
                         }
@@ -309,15 +354,30 @@ const index = ({object}): React.ReactElement => {
                                 )
                             }
                             else{
-                                return (
-                                    <span key={key}>
-                                        {list},{" "}
-                                    </span>
-                                )
+                                if(object.stepFive.instruKindNm.length === key + 1 ){
+                                    return (
+                                        <span key={key}>
+                                            {list}
+                                        </span>
+                                    )
+                                }
+                                else{
+                                    return (
+                                        <span key={key}>
+                                            {list},{" "}
+                                        </span>
+                                    )
+                                }
                             }
                         })}
                         {object.stepFive.instruKindNmStr !== "" ? 
-                        <>기타 : {object.stepFive.instruKindNmStr}</>
+                        <>
+                        <span style={{display: "block", wordBreak : "break-all", width : 700}}>
+                            기타 :
+                            {object.stepFive.instruKindNmStr}
+                        </span>
+                        </>
+                        
                         :
                         ""
                         }
@@ -346,8 +406,9 @@ const index = ({object}): React.ReactElement => {
                         음원 기획 의도를 알려주세요.
                     </QuestionTitle>
                     <Answer>
-                        {object.stepEight.intention}
-
+                        <span style={{display: "block", wordBreak : "break-all", width : 700}}>
+                            {object.stepEight.intention}
+                        </span>
                         <Files>
                         {object.stepEight.files.map((value, key) => {
                             return (
@@ -372,7 +433,12 @@ const index = ({object}): React.ReactElement => {
                         연락 가능한 연락처를 입력해주세요.
                     </QuestionTitle>
                     <Answer>
-                        {object.stepNine.number}, {object.stepNine.kakaoId} 
+                        {object.stepNine.number}
+                        
+                        <span style={{display: "block", wordBreak : "break-all", width : 700}}>
+                            {object.stepNine.kakaoId} 
+                        </span>
+                        
                     </Answer>
                     
                     <QuestionTitle>
