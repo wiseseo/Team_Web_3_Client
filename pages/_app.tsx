@@ -8,6 +8,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import AudioPlayer from "../components/AudioPlayer";
 import styled from "styled-components";
+import Cookies from 'js-cookie';
+import axios from "axios";
 class Layout extends React.Component {
   render() {
     const { children } = this.props;
@@ -25,6 +27,20 @@ const MainContainer = styled.div`
 export default class RootApp extends App {
   render() {
     const { Component, pageProps } = this.props;
+
+    // const accessToken = Cookies.get('accessToken');
+    const accessToken = "ya29.a0AfH6SMDUbBh0tQPcB6MBhsz8LWoPOL-nLY-0b3yOio1gO2OZPvwFtL7MKlOIi2zGKFJBL1a2WDVb__OHDL1A4LHzqcK9JMt0duEwldwyAkEDI0emNowSbB7OUNaBZDmR5zLH7n-cXai2xVFSfp5wkgcLAnusxwp73OsH";
+    // const accessToken = undefined
+    const isMusician = ""
+    console.log('token :',accessToken);
+    const header = { 'Content-Type' : 'application/json', 'Accept' : 'application/json' };
+    axios.post("http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/authToken", accessToken, {headers : header, withCredentials : true})
+    .then((musicians) =>{
+        console.log("musicians : ", musicians.data)
+    })
+    .catch((e) => {
+        console.log("musicians Catch : ", e);
+    })
     return (
       <>
         <Head>
@@ -42,11 +58,21 @@ export default class RootApp extends App {
           }
           * { font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }`}</style>
         </Head>
+
         <SongStore>
           <CurationStore>
             <MainContainer>
             
-              <Header />
+            {accessToken === undefined ? 
+                <Header isLogin={false} isMusician={""}/> 
+            : 
+                isMusician? 
+                    <Header isLogin={true} isMusician={true}/> 
+                : 
+                    <Header isLogin={true} isMusician={false}/> 
+                
+            }
+              
             
 
             <Component {...pageProps} />
@@ -56,6 +82,7 @@ export default class RootApp extends App {
           </CurationStore>
         </SongStore>
         <Layout />
+
       </>
     );
   }

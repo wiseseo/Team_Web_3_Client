@@ -154,7 +154,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
         }
 
         console.log("requestObj : ", requestObj)
-        // axios.post("http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/musicians", "", {withCredentials : true})
+        // axios.post("http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/contract", requestObj, {withCredentials : true})
         // .then((musicians) =>{
         //     console.log("musicians : ", musicians)
         // })
