@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import Progress from "../ProgressBar/TenProgress/twelve";
 import {DatePicker} from "antd";
+import axios from "axios";
 const EstimateUserInfoData = styled.div`
     flex: 0.2;
     color : #E2E1E2;
@@ -101,6 +102,66 @@ const AfterButton = styled.button`
 const index = ({nextButton, beforeButton, object}): React.ReactElement => {
   
 
+    const EstimateSend = () => {
+        console.log("object : ", object)
+        
+        let requestObj : object = 
+        {
+            contractRequestDto : {
+
+                usage : object.stepOne.usage,
+                copyright : object.stepOne.copyright,
+                minTime : object.stepSeven.minTime,
+                maxTime : object.stepSeven.maxTime,
+                playTimeChangable : object.stepSeven.select,
+                intention : object.stepEight.intention,
+                phoneNumber : object.stepNine.number,
+                kakaoId : object.stepNine.kakaoId,
+                startDate : object.stepTen.deadline[0],
+                dueDate : object.stepTen.deadline[1],
+                minFee : object.stepEleven.minfee,
+                maxFee : object.stepEleven.maxfee
+                
+                },
+                atmo : {
+                    tags : object.stepTwo.atmoKindNm,
+                    etcTag : object.stepTwo.atmoKindNmStr
+                
+                },
+                theme : {
+                    tags : object.stepThree.themeKindNm,
+                    etcTag : object.stepThree.themeKindNmStr
+                },
+                genre : {
+                    tags : object.stepFour.genreKindNm,
+                    etcTag : object.stepFour.genreKindNmStr
+                },
+                
+                instru : {
+                    tags : object.stepFive.instruKindNm,
+                    etcTag : object.stepFive.instruKindNmStr
+                },
+                spclNote : {
+                    tags : object.stepSix.spclNoteKindNm,
+                    etcTag : ""
+                },
+
+                documents : object.stepEight.files,
+                
+                userId : "",
+                musicianId : ""
+
+        }
+
+        console.log("requestObj : ", requestObj)
+        // axios.post("http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/musicians", "", {withCredentials : true})
+        // .then((musicians) =>{
+        //     console.log("musicians : ", musicians)
+        // })
+        // .catch((e) => {
+        //     console.log("musicians Catch : ", e);
+        // })  
+    }
     // console.log(checkBoxList);
     return (
         <>
@@ -143,7 +204,12 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 <div style={{display:"table-cell", height : "100%", verticalAlign:"middle"}}>
                 <BeforeButton onClick={()=>{beforeButton(12, "")}}>이전으로</BeforeButton>
                  
-                <AfterButton onClick={()=>{nextButton(12, "")}} style={{cursor : "pointer", background : "#6865FC"}}>뮤지션에게 보내기</AfterButton>
+                <AfterButton onClick={()=>{
+                    nextButton(12, "");
+                    EstimateSend();
+                }}
+                
+                style={{cursor : "pointer", background : "#6865FC"}}>뮤지션에게 보내기</AfterButton>
                 
                 </div>
             </EstimateContentMainButton>
