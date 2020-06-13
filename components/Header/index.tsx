@@ -3,6 +3,8 @@ import styled from "styled-components";
 import SearchBar from "./SearchBar";
 import MatchButton from "./MatchButton";
 import LinkButton from "./LinkButton";
+import { Menu, Dropdown } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 
 interface Props {}
 
@@ -17,7 +19,39 @@ const HeaderContainer = styled.header`
   display: flex;
 `;
 
-const Header = (props: Props): React.ReactElement => {
+const Button = styled.div`
+  color: #b3b4be;
+  font-size: 0.875rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0.4em 0;
+  margin-left: 2rem;
+  min-width: fit-content;
+`;
+
+const menu = (
+    <Menu>
+      <Menu.Item key="0">
+        <a href="http://localhost:3000/user/mypage">마이페이지</a>
+      </Menu.Item>
+
+      <Menu.Item key="1">로그아웃</Menu.Item>
+      {/* accesstoken Delete */}
+    </Menu>
+);
+
+const Musicianmenu = (
+  <Menu>
+    <Menu.Item key="0">
+      <a href="http://localhost:3000/musician/mypage">마이페이지</a>
+    </Menu.Item>
+
+    <Menu.Item key="1">로그아웃</Menu.Item>
+    {/* accesstoken Delete */}
+  </Menu>
+);
+const Header = ({isLogin, isMusician}): React.ReactElement => {
+    console.log("isLogin", isLogin, isMusician);
   return (
     <HeaderContainer>
       <img
@@ -30,9 +64,53 @@ const Header = (props: Props): React.ReactElement => {
           location.href = "/";
         }}
       />
+      
+      {isLogin === false ? 
+      <>
       <MatchButton />
+      
       <LinkButton text="뮤지션 등록" type="enroll" />
       <LinkButton text="로그인/가입" type="sign" />
+      </>
+      :
+    isMusician === "" ? 
+        <>
+            <MatchButton />
+            <LinkButton text="뮤지션 등록" type="enroll" /> 
+            <Dropdown overlay={menu} trigger={['click']} placement="bottomRight" overlayStyle={{width : 180}}>
+                <a className="ant-dropdown-link" style={{marginLeft : "2rem"}} onClick={e => e.preventDefault()}>
+                    <img
+                        src="/static/vector.png"
+                        alt="vector"
+                        width={32}
+                        height={32}
+                        style={{marginRight : 8}}
+                    />
+                    <DownOutlined style={{color : "#B3B4BE"}} />
+                </a>
+            </Dropdown> 
+        </>
+        
+    :
+        <>
+            <MatchButton />
+            <Button onClick={() =>{location.assign("/detail")}}>나의 프로필</Button>
+            <Dropdown overlay={Musicianmenu} trigger={['click']} placement="bottomRight" overlayStyle={{width : 180}}>
+                <a className="ant-dropdown-link" style={{marginLeft : "2rem"}} onClick={e => e.preventDefault()}>
+                    <img
+                        src="/static/vector.png"
+                        alt="vector"
+                        width={32}
+                        height={32}
+                        style={{marginRight : 8}}
+                    />
+                    <DownOutlined style={{color : "#B3B4BE"}} />
+                </a>
+            </Dropdown>
+        </>
+      
+      }
+      
     </HeaderContainer>
   );
 };

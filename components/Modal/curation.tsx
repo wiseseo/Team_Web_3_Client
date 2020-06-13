@@ -202,7 +202,7 @@ const Curation = ({ className }): React.ReactElement => {
   if (className === "header") {
     ButtonType = (
       <Button className={className} onClick={onOpenModal}>
-        나의 뮤지션 찾기
+        뮤지션 찾기
       </Button>
     );
   } else {

@@ -10,6 +10,7 @@ interface EnrollTags {
     stepTwo_Tag : stepTwo,
     stepThree_Tag : stepThree
 }
+
 interface stepOne {
     nickNm : string;
     introduction : string;
