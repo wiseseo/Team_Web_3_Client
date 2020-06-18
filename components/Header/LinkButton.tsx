@@ -6,6 +6,7 @@ import { Modal } from "antd";
 interface Props {
   text: string;
   type: string;
+  isLogin : boolean;
 }
 
 const ModalOver = styled(Modal)`
@@ -45,7 +46,7 @@ const Button = styled.div`
   min-width: fit-content;
 `;
 
-const LinkButton: React.FC<Props> = ({ text, type }) => {
+const LinkButton: React.FC<Props> = ({ text, type, isLogin }) => {
   const [open, setOpen] = React.useState<boolean>(false);
 
   const onOpenModal = () => {
@@ -57,24 +58,32 @@ const LinkButton: React.FC<Props> = ({ text, type }) => {
   };
 
   if (type == "enroll") {
-    return (
-      <>
-        <Button onClick={onOpenModal}>{text}</Button>
-        <ModalOver
-          visible={open}
-          onOk={onCloseModal}
-          onCancel={onCloseModal}
-          footer={null}
-          width={368}
-          style={{ top: 130, minWidth: 368 }}
-        >
-          <Login onCloseModal={onCloseModal} musicianFlag={true} />
-        </ModalOver>
-      </>
-      // <Link href="/musician/enroll">
-      //   <Button>{text}</Button>
-      // </Link>
-    );
+    if(isLogin){
+      return (
+        <Link href="/musician/enroll">
+          <Button>{text}</Button>
+        </Link>
+      )
+    }
+    else{
+      return (
+        <>
+          <Button onClick={onOpenModal}>{text}</Button>
+          <ModalOver
+            visible={open}
+            onOk={onCloseModal}
+            onCancel={onCloseModal}
+            footer={null}
+            width={368}
+            style={{ top: 130, minWidth: 368 }}
+          >
+            <Login onCloseModal={onCloseModal} musicianFlag={true} />
+          </ModalOver>
+        </>
+        
+      );
+    }
+    
   } else {
     return (
       <>

@@ -31,16 +31,20 @@ export default class RootApp extends App {
     // const accessToken = Cookies.get('accessToken');
     const accessToken = "ya29.a0AfH6SMDUbBh0tQPcB6MBhsz8LWoPOL-nLY-0b3yOio1gO2OZPvwFtL7MKlOIi2zGKFJBL1a2WDVb__OHDL1A4LHzqcK9JMt0duEwldwyAkEDI0emNowSbB7OUNaBZDmR5zLH7n-cXai2xVFSfp5wkgcLAnusxwp73OsH";
     // const accessToken = undefined
-    const isMusician = ""
+    let isMusician = ""
     console.log('token :',accessToken);
     const header = { 'Content-Type' : 'application/json', 'Accept' : 'application/json' };
-    axios.post("http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/authToken", accessToken, {headers : header, withCredentials : true})
-    .then((musicians) =>{
-        console.log("musicians : ", musicians.data)
-    })
-    .catch((e) => {
-        console.log("musicians Catch : ", e);
-    })
+    if(accessToken !== undefined){
+      axios.post("http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/authToken", {headers : header, withCredentials : true})
+      .then((musicians) =>{
+          console.log("musicians : ", musicians.data.isMusician)
+          isMusician = musicians.data.isMusician;
+      })
+      .catch((e) => {
+          console.log("musicians Catch : ", e);
+      })
+    }
+    
     return (
       <>
         <Head>
