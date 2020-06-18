@@ -18,7 +18,7 @@ const HeaderContainer = styled.header`
   margin: 0 auto;
   display: flex;
 `;
-
+// 각 URL에 따른 헤더 max, min Width 처리 필요
 const Button = styled.div`
   color: #b3b4be;
   font-size: 0.875rem;
@@ -69,14 +69,14 @@ const Header = ({isLogin, isMusician}): React.ReactElement => {
       <>
       <MatchButton />
       
-      <LinkButton text="뮤지션 등록" type="enroll" />
-      <LinkButton text="로그인/가입" type="sign" />
+      <LinkButton text="뮤지션 등록" type="enroll" isLogin={isLogin} />
+      <LinkButton text="로그인/가입" type="sign" isLogin={isLogin} />
       </>
       :
-    isMusician === "" ? 
+      isMusician === false ? 
         <>
             <MatchButton />
-            <LinkButton text="뮤지션 등록" type="enroll" /> 
+            <LinkButton text="뮤지션 등록" type="enroll" isLogin={isLogin} /> 
             <Dropdown overlay={menu} trigger={['click']} placement="bottomRight" overlayStyle={{width : 180}}>
                 <a className="ant-dropdown-link" style={{marginLeft : "2rem"}} onClick={e => e.preventDefault()}>
                     <img
