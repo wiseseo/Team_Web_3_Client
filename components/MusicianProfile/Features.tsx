@@ -10,6 +10,7 @@ const Container = styled.div`
   background: #121212;
   border-radius: 8px;
   width: 288px;
+  margin-top: 1rem;
 `;
 const List = styled.ul`
   display: flex;
