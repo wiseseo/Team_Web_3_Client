@@ -240,7 +240,8 @@ const MusicianItem = ({
         <Link href="/detail">
           <ProfileButton>뮤지션 보기</ProfileButton>
         </Link>
-        <Likes onClick={() => toggleLike(musician.id)}>
+        {/*<Likes onClick={() => toggleLike(musician.id)}>*/}
+        <Likes>
           <img
             src={`/static/like${isLiked ? "d" : ""}.png`}
             alt="like"
