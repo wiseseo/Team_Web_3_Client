@@ -1,5 +1,6 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import reducer from "./MusicianReducer";
+import axios from "axios";
 
 interface Song {
   id: string;
@@ -185,29 +186,76 @@ type ActionType = {
   payload?: any;
 };
 interface MusicianInterface {
-  musicianList: MusicianList;
-
-  dispatch?: React.Dispatch<ActionType>;
+  musicianList: {
+    byRank: MusicianList;
+    byNew: MusicianList;
+  };
+  dispatch?: {
+    byRank: React.Dispatch<ActionType>;
+    byNew: React.Dispatch<ActionType>;
+  };
 }
 export const MusicianContext = React.createContext<MusicianInterface>({
-  musicianList: { list: defaultMusicianList, display: [], page: 0, end: 0 },
+  musicianList: {
+    byRank: {
+      list: defaultMusicianList,
+      display: [],
+      page: 0,
+      end: 0,
+    },
+    byNew: {
+      list: defaultMusicianList,
+      display: [],
+      page: 0,
+      end: 0,
+    },
+  },
 });
+const useLoad = (callback: Function) => {
+  const [loading, setLoading] = useState(false);
 
+  const loadInitData = async (callback: Function) => {
+    setLoading(true);
+    const data = await axios.get(
+      "http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/main"
+    );
+    if (data) {
+      console.log(data);
+      const initData = await JSON.parse(data);
+      console.log(initData);
+      callback(initData);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadInitData(callback);
+  }, []);
+  return loading;
+};
 const MusicianStore = ({ children }: { children: React.ReactElement }) => {
-  const [musicianList, dispatch] = useReducer(reducer, {
+  const [musicianListByRank, dispatchByRank] = useReducer(reducer, {
     list: defaultMusicianList,
     display: [],
     page: 0,
     end: 7,
   });
+  const [musicianListByNew, dispatchByNew] = useReducer(reducer, {
+    list: defaultMusicianList,
+    display: [],
+    page: 0,
+    end: 7,
+  });
+  useLoad((initData) => {});
   useEffect(() => {
-    dispatch({ type: "INIT_MUSICIANS", payload: defaultMusicianList });
+    dispatchByRank({ type: "INIT_MUSICIANS", payload: defaultMusicianList });
+    dispatchByNew({ type: "INIT_MUSICIANS", payload: defaultMusicianList });
   }, []);
   return (
     <MusicianContext.Provider
       value={{
-        musicianList,
-        dispatch,
+        musicianList: { byRank: musicianListByRank, byNew: musicianListByNew },
+        dispatch: { byRank: dispatchByRank, byNew: dispatchByNew },
       }}
     >
       {children}
