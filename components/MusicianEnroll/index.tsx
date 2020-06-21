@@ -40,6 +40,7 @@ const MusicianEnroll = (props: Props) => {
     const nextButton = (step : number, object : object) => {
         
         if(step === 1){
+            console.log('stepOne : ',object);
             enrollData.dispatch({type : "INSERT_STEPONE", payload : {stepOne_Tag : object}})  
         }
         else if(step === 2){
@@ -51,7 +52,64 @@ const MusicianEnroll = (props: Props) => {
             console.log("finish Data Set", enrollData.enrollTags);
 
             const header = { 'Content-Type' : 'application/json', 'Accept' : 'application/json' };
-            axios.post("http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/musicians", enrollData.enrollTags, {headers : header, withCredentials : true})
+            let musicArray: any = new FormData();
+
+            musicArray.append('musicianProfileFile', enrollData.enrollTags.stepOne_Tag.profileUrl);
+            musicArray.append('portfolioFile', enrollData.enrollTags.stepOne_Tag.songEsntlUrl);
+            musicArray.append('mainSongFile', enrollData.enrollTags.stepOne_Tag.portFolioMainMusic);
+            for(let i = 0 ; i<enrollData.enrollTags.stepOne_Tag.portFolioSubMusic.length ;i++){
+                musicArray.append('subSongFile', enrollData.enrollTags.stepOne_Tag.portFolioSubMusic[i][0]);
+            }
+            
+            for(let key of musicArray.entries()) {
+                console.log(key);
+            }
+            
+            let enrollObj = {
+                atmosphereList: {
+                    tagNM: enrollData.enrollTags.stepTwo_Tag.atmoKindNm
+                  },
+                  career: enrollData.enrollTags.stepOne_Tag.career,
+                  cellPhone: enrollData.enrollTags.stepOne_Tag.celPhone,
+                  genreList: {
+                    tagNM: enrollData.enrollTags.stepTwo_Tag.genreKindNm
+                  },
+                  instrumentList: {
+                    tagNM: enrollData.enrollTags.stepTwo_Tag.instruKindNm
+                    
+                  },
+                  introduction: enrollData.enrollTags.stepOne_Tag.introduction,
+                  multipartFiles: [
+                    musicArray
+                  ],
+                  nickNm: enrollData.enrollTags.stepOne_Tag.nickNm,
+                  portFolioLink: "enrollData.enrollTags.stepOne_Tag.portFolioLink",
+                  qstnAns01: enrollData.enrollTags.stepTwo_Tag.qstnAns01,
+                  qstnAns02: enrollData.enrollTags.stepTwo_Tag.qstnAns02,
+                  qstnAns03: enrollData.enrollTags.stepTwo_Tag.qstnAns03,
+                  qstnAns04: enrollData.enrollTags.stepTwo_Tag.qstnAns04,
+                  snsNm: "enrollData.enrollTags.stepOne_Tag.sns",
+                  snsType: "0",
+                  specialList: {
+                    tagNM: enrollData.enrollTags.stepTwo_Tag.spclNoteKindNm
+                  },
+                  styExpln01: enrollData.enrollTags.stepThree_Tag.styExpln01,
+                  styExpln02: enrollData.enrollTags.stepThree_Tag.styExpln02,
+                  styExpln03: enrollData.enrollTags.stepThree_Tag.styExpln03,
+                  styPrc01: enrollData.enrollTags.stepThree_Tag.styPrc01,
+                  styPrc02: enrollData.enrollTags.stepThree_Tag.styPrc02,
+                  styPrc03: enrollData.enrollTags.stepThree_Tag.styPrc03,
+                  themeList: {
+                    tagNM: enrollData.enrollTags.stepTwo_Tag.themeKindNm
+                  },
+                  
+                  workStage01: enrollData.enrollTags.stepTwo_Tag.workStage01,
+                  workStage02: enrollData.enrollTags.stepTwo_Tag.workStage02,
+                  workStage03: enrollData.enrollTags.stepTwo_Tag.workStage03
+            }
+
+            console.log(enrollObj);
+            axios.post("http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/musicians", enrollObj, {headers : header, withCredentials : true})
             .then((musicians) =>{
                 console.log("musicians : ", musicians)
             })

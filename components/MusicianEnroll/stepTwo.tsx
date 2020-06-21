@@ -1256,10 +1256,10 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
     }
   }, [object]) 
   // console.log("0 : ", stepTwoObj.spclNoteKindNm, tagList);
-  console.log("1 : ", stepTwoObj.atmoKindNm, stepTwoObj.atmoKindNm.length,oneTagList);
-  // console.log("2 : ", stepTwoObj.genreKindNm, twoTagList);
-  // console.log("3 : ", stepTwoObj.atmoKindNm, threeTagList);
-  // console.log("4 : ", stepTwoObj.instruKindNm, fourTagList);
+  console.log("1 : ", stepTwoObj.atmoKindNm, oneTagList);
+  console.log("2 : ", stepTwoObj.genreKindNm, twoTagList);
+  console.log("3 : ", stepTwoObj.atmoKindNm, threeTagList);
+  console.log("4 : ", stepTwoObj.instruKindNm, fourTagList);
   console.log(stepTwoObj);
   return (
   <>

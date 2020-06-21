@@ -25,7 +25,7 @@ interface stepOne {
     songEsntlUrl : object;
     songEsntPreview : any;
     portFolioMainMusic : object;
-    portFolioSubMusic : object;
+    portFolioSubMusic : Array<object>;
     
 }
 

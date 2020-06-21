@@ -342,7 +342,7 @@ const StepThree = ({ nextButton, beforeButton, object }) => {
           (stepThreeObj.styExpln01 !== "" && stepThreeObj.styPrc01 !== "") ||
           (stepThreeObj.styExpln02 !== "" && stepThreeObj.styPrc02 !== "") ||
           (stepThreeObj.styExpln03 !== "" && stepThreeObj.styPrc03 !== "") ? (
-            <Link href="/detail">
+            // <Link href="/detail">
               <AfterButton
                 onClick={() => {
                   nextButton(3, stepThreeObj);
@@ -351,7 +351,7 @@ const StepThree = ({ nextButton, beforeButton, object }) => {
               >
                 저장하고 다음으로
               </AfterButton>
-            </Link>
+            // {/* </Link> */}
           ) : (
             <AfterButton>저장하고 다음으로</AfterButton>
           )}
