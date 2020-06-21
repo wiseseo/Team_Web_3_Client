@@ -41,7 +41,7 @@ const ModalOver = styled(Modal)`
 `;
 const BannerButton = styled.button`
   background: linear-gradient(157.06deg, #6865fc 36.28%, #658dfc 100%);
-  border-radius: 8px;
+  border-radius: 30px;
   border: none;
   color: #fdfdff;
   font-size: 1.25rem;

@@ -1,10 +1,10 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import reducer from "./MusicianReducer";
+import axios, { AxiosPromise, AxiosResponse } from "axios";
 
 interface Song {
   id: string;
   title: string;
-  date: string;
   isPlaying: boolean;
   isLike: boolean;
   cover_url: string;
@@ -20,6 +20,33 @@ interface Musician {
   profile_url: string;
   features: string[];
   song: Song;
+}
+interface MusicianMainResponseDto {
+  musicianId: number;
+  nickNm: string;
+  introduction: string;
+  profileUrl: string;
+}
+interface SongMainResponseDto {
+  songId: number;
+  title: string;
+  coverUrl: string;
+  songUrl: string;
+}
+interface SimpleMusicianResponseDto {
+  musicianMainResponseDto: MusicianMainResponseDto;
+  songMainResponseDto: SongMainResponseDto;
+  spclNoteTags: string[];
+  rptags: string[];
+}
+interface MusicianResponse {
+  simpleMusicianResponseDto: SimpleMusicianResponseDto;
+  bookmarkCount: number;
+  alreadyBookmark: boolean;
+}
+interface MusicianListResponse {
+  newMusician: MusicianResponse[];
+  bestMusician: MusicianResponse[];
 }
 const defaultMusicianList: Musician[] = [
   {
@@ -185,29 +212,118 @@ type ActionType = {
   payload?: any;
 };
 interface MusicianInterface {
-  musicianList: MusicianList;
-
-  dispatch?: React.Dispatch<ActionType>;
+  musicianList: {
+    byRank: MusicianList;
+    byNew: MusicianList;
+  };
+  dispatch?: {
+    byRank: React.Dispatch<ActionType>;
+    byNew: React.Dispatch<ActionType>;
+  };
 }
 export const MusicianContext = React.createContext<MusicianInterface>({
-  musicianList: { list: defaultMusicianList, display: [], page: 0, end: 0 },
+  musicianList: {
+    byRank: {
+      list: defaultMusicianList,
+      display: [],
+      page: 0,
+      end: 0,
+    },
+    byNew: {
+      list: defaultMusicianList,
+      display: [],
+      page: 0,
+      end: 0,
+    },
+  },
 });
+interface InitData {
+  byRank: Musician[];
+  byNew: Musician[];
+}
+const parseResponse = (responseData: MusicianListResponse): InitData => {
+  let byRank: Musician[] = [];
+  let byNew: Musician[] = [];
+  const mapper = ({
+    simpleMusicianResponseDto,
+    bookmarkCount,
+    alreadyBookmark,
+  }) => {
+    const {
+      musicianMainResponseDto,
+      songMainResponseDto,
+      spclNoteTags,
+      rptags,
+    } = simpleMusicianResponseDto;
+    return {
+      id: musicianMainResponseDto.musicianId,
+      name: musicianMainResponseDto.nickNm,
+      introduction: musicianMainResponseDto.introduction,
+      tags: rptags,
+      likes: bookmarkCount,
+      profile_url: musicianMainResponseDto.profileUrl,
+      features: spclNoteTags,
+      song: {
+        id: songMainResponseDto.songId,
+        title: songMainResponseDto.title,
+        isPlaying: false,
+        isLike: alreadyBookmark,
+        cover_url: songMainResponseDto.coverUrl,
+        song_url: songMainResponseDto.songUrl,
+      },
+    };
+  };
+  byRank = responseData.bestMusician.map(mapper);
+  byNew = responseData.newMusician.map(mapper);
+  return { byRank, byNew };
+};
+const useLoad = (callback: Function) => {
+  const [loading, setLoading] = useState(false);
 
+  const loadInitData = async (callback: Function) => {
+    setLoading(true);
+    const response: AxiosResponse = await axios.get(
+      "http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/main"
+    );
+    console.log(response);
+    if (response.data) {
+      const responseData: MusicianListResponse = response.data;
+      console.log(responseData);
+      const initData: InitData = parseResponse(responseData);
+      console.log(initData);
+      callback(initData);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadInitData(callback);
+  }, []);
+  return loading;
+};
 const MusicianStore = ({ children }: { children: React.ReactElement }) => {
-  const [musicianList, dispatch] = useReducer(reducer, {
+  const [musicianListByRank, dispatchByRank] = useReducer(reducer, {
     list: defaultMusicianList,
     display: [],
     page: 0,
     end: 7,
   });
-  useEffect(() => {
-    dispatch({ type: "INIT_MUSICIANS", payload: defaultMusicianList });
-  }, []);
+  const [musicianListByNew, dispatchByNew] = useReducer(reducer, {
+    list: defaultMusicianList,
+    display: [],
+    page: 0,
+    end: 7,
+  });
+  useLoad((initData: InitData) => {
+    dispatchByRank({ type: "INIT_MUSICIANS", payload: initData.byRank });
+    dispatchByNew({ type: "INIT_MUSICIANS", payload: initData.byNew });
+  });
+  useEffect(() => {}, []);
   return (
     <MusicianContext.Provider
       value={{
-        musicianList,
-        dispatch,
+        musicianList: { byRank: musicianListByRank, byNew: musicianListByNew },
+        dispatch: { byRank: dispatchByRank, byNew: dispatchByNew },
       }}
     >
       {children}

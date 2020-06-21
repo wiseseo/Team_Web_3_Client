@@ -7,11 +7,11 @@ import { SongContext } from "./../../stores/SongStore";
 
 interface Props {
   title: string;
+  type: string;
 }
 interface Song {
   id: string;
   title: string;
-  date: string;
   isPlaying: boolean;
   isLike: boolean;
   cover_url: string;
@@ -76,14 +76,14 @@ const MoreButton = styled.div`
   }
 `;
 
-const MusicianList = ({ title }: Props) => {
+const MusicianList = ({ title, type }: Props) => {
   const { musicianList, dispatch } = React.useContext(MusicianContext);
   const song = React.useContext(SongContext);
   const toggleLike = (id: string) => {
-    dispatch({ type: "TOGGLE_LIKE", payload: id });
+    dispatch[type]({ type: "TOGGLE_LIKE", payload: id });
   };
   const selectSong = (id: string, status: boolean, musician: Musician) => {
-    dispatch({ type: "SELECT_SONG", payload: { id, status } });
+    dispatch[type]({ type: "SELECT_SONG", payload: { id, status } });
 
     const selectedSong = {
       ...musician.song,
@@ -101,17 +101,17 @@ const MusicianList = ({ title }: Props) => {
         </Link>
       </Header>
       <Slider>
-        <Back onClick={() => dispatch({ type: "PREV_MUSICIANS" })}>
+        <Back onClick={() => dispatch[type]({ type: "PREV_MUSICIANS" })}>
           <img
             src={`/static/back-${
-              musicianList.page === 0 ? "dis" : "en"
+              musicianList[type].page === 0 ? "dis" : "en"
             }abled.png`}
             width={16}
             height={32}
             alt="next"
           />
         </Back>
-        {musicianList.display.map((musician) => (
+        {musicianList[type].display.map((musician) => (
           <MusicianCard
             key={musician.id}
             musician={musician}
@@ -120,10 +120,12 @@ const MusicianList = ({ title }: Props) => {
             currentSong={song.song}
           />
         ))}
-        <Next onClick={() => dispatch({ type: "NEXT_MUSICIANS" })}>
+        <Next onClick={() => dispatch[type]({ type: "NEXT_MUSICIANS" })}>
           <img
             src={`/static/next-${
-              musicianList.page < musicianList.end - 3 ? "en" : "dis"
+              musicianList[type].page < musicianList[type].end - 3
+                ? "en"
+                : "dis"
             }abled.png`}
             width={16}
             height={32}

@@ -50,7 +50,7 @@ const Type = styled.div`
   margin-bottom: 1rem;
 `;
 const Detail = styled.div`
-  line-height: 2rem;
+  line-height: 1.75rem;
   flex: 1;
   color: #b3b4be;
   margin-left: 3rem;
