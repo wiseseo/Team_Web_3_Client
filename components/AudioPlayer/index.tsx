@@ -77,6 +77,7 @@ const AudioPlayer: React.FC = (): React.ReactElement => {
   };
   const playAudio = () => {
     if (audioRef.current == null) return;
+    if (!audioRef.current.currentSrc) return;
     if (duration == 0) setDuration(audioRef.current.duration);
     if (song.isPlaying) {
       audioRef.current.pause();
@@ -118,27 +119,23 @@ const AudioPlayer: React.FC = (): React.ReactElement => {
         <img src="/static/like.png" width={24} height={24} alt="like" />
       </Like>
       <Volume>
-        {audioRef && audioRef.current && audioRef.current.volume > 0 ? (
-          <img
-            src="/static/volume.png"
-            width={24}
-            height={24}
-            alt="volume"
-            onClick={() => {
-              audioRef.current.volume = 0;
-            }}
-          />
-        ) : (
-          <img
-            src="/static/mute.png"
-            width={24}
-            height={24}
-            alt="volume"
-            onClick={() => {
-              audioRef.current.volume = 0.5;
-            }}
-          />
-        )}
+        <img
+          src={`/static/${
+            audioRef.current !== null
+              ? audioRef.current.volume > 0
+                ? "volume"
+                : "mute"
+              : "volume"
+          }.png`}
+          width={24}
+          height={24}
+          alt="volume"
+          onClick={() => {
+            if (audioRef.current === null) return;
+            audioRef.current.volume = audioRef.current.volume === 0 ? 0.5 : 0;
+          }}
+        />
+
         <input
           type="range"
           max={1}
