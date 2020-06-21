@@ -18,9 +18,11 @@ const Title = styled.h3`
   color: #6865fc;
   font-weight: bold;
   margin-top: 2rem;
+  margin-bottom: 2rem;
 `;
 const Introduct = styled.p`
   color: #b3b4be;
+  line-height: 2rem;
 `;
 const IntroductTab = (props: Props) => {
   const tabList = ["음악리스트", "뮤지션 소개", "가격 정보"];

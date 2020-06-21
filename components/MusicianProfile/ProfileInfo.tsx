@@ -52,7 +52,7 @@ const Button = styled.button`
   align-self: stretch;
   color: #e2e1e2;
   font-size: 1rem;
-  padding: 0.75rem;
+  padding: 0.5rem;
   font-weight: bold;
   border: none;
 `;

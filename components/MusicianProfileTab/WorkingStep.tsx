@@ -17,9 +17,11 @@ const Style = styled.div`
 const Title = styled.h3`
   font-size: 0.875rem;
   color: #b3b4be;
+  font-weight: bold;
 `;
 const Content = styled.p`
   color: #b3b4be;
+  line-height: 2rem;
 `;
 const WorkingStep = ({ steps }: Props) => {
   return (
