@@ -7,7 +7,7 @@ import MusicTab from "./MusicTab";
 
 interface Props {}
 const Container = styled.div`
-  padding-left: 1.5rem;
+  padding-left: 3rem;
   display: flex;
   flex-direction: column;
 `;
