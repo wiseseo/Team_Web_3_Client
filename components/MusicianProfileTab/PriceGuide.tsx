@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
+import PriceModal from "./../Modal/Price";
 
 interface Props {
   guides: { type: string; content: string; price: number }[];
@@ -19,6 +20,7 @@ const Card = styled.li`
   flex-direction: column;
   background: #181818;
   border-radius: 8px;
+  cursor: pointer;
 `;
 const Divide = styled.div`
   border-bottom: solid #3e3e41 0.74px;
@@ -46,10 +48,17 @@ const toWon = (price: number): string => {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " 원";
 };
 const PriceGuide = ({ guides }: Props) => {
+  const [selected, setSelect] = React.useState<number>(-1);
+  const initSelect = () => {
+    setSelect(-1);
+  };
   return (
     <Container>
-      {guides.map((guide) => (
-        <Card>
+      {selected !== -1 && (
+        <PriceModal guide={guides[selected]} initSelect={initSelect} />
+      )}
+      {guides.map((guide, index) => (
+        <Card onClick={() => setSelect(index)}>
           <Type>{guide.type}</Type>
           <Divide></Divide>
           <Content>{guide.content}</Content>

@@ -15,6 +15,7 @@ const Title = styled.h3`
 `;
 const Asked = styled.p`
   color: #b3b4be;
+  line-height: 2rem;
 `;
 const FAQ = styled.div``;
 const FAQList = ({ faqList }: Props) => {
