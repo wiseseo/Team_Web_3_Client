@@ -72,8 +72,8 @@ const StepMain = ({nextButton}): React.ReactElement => {
         
         <CurationContainer>
             <CurationModalGray/>
-            <CurationModalTitle>1</CurationModalTitle>
-            <CurationModalDescription>어서오세요. 당신에게 딱맞는~ 어쩌고 하는 큐레이션 설명글</CurationModalDescription>
+            <CurationModalTitle>나에게 맞는 뮤지션은 누구일까요?</CurationModalTitle>
+            <CurationModalDescription>나의 취향 뮤지션을 발견하고 나만의 곡을 의뢰해보세요.</CurationModalDescription>
 
             <CurationModalLogo>
             <img
