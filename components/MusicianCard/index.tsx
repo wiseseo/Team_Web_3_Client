@@ -224,12 +224,14 @@ const MusicianCard = ({
               width={24}
               height={24}
               onMouseOver={(event) =>
-                ((event.target as HTMLImageElement).src= `/static/like${
+                ((event.target as HTMLImageElement).src = `/static/like${
                   isLiked ? "d" : "-hover"
                 }.png`)
               }
               onMouseLeave={(event) =>
-                ((event.target as HTMLImageElement).src = `/static/like${isLiked ? "d" : ""}.png`)
+                ((event.target as HTMLImageElement).src = `/static/like${
+                  isLiked ? "d" : ""
+                }.png`)
               }
               onClick={(event) => setLike((prev) => !prev)}
             />

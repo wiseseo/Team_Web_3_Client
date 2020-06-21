@@ -21,7 +21,7 @@ const Title = styled.h3`
 `;
 const Content = styled.p`
   color: #b3b4be;
-  line-height: 2rem;
+  line-height: 1.75rem;
 `;
 const WorkingStep = ({ steps }: Props) => {
   return (

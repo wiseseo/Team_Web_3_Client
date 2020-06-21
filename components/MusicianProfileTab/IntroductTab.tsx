@@ -22,7 +22,7 @@ const Title = styled.h3`
 `;
 const Introduct = styled.p`
   color: #b3b4be;
-  line-height: 2rem;
+  line-height: 1.75rem;
 `;
 const IntroductTab = (props: Props) => {
   const tabList = ["음악리스트", "뮤지션 소개", "가격 정보"];

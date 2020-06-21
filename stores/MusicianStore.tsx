@@ -238,22 +238,12 @@ export const MusicianContext = React.createContext<MusicianInterface>({
   },
 });
 interface InitData {
-  byRank: MusicianList;
-  byNew: MusicianList;
+  byRank: Musician[];
+  byNew: Musician[];
 }
 const parseResponse = (responseData: MusicianListResponse): InitData => {
-  const byRank: MusicianList = {
-    list: [],
-    display: [],
-    page: 0,
-    end: 0,
-  };
-  const byNew: MusicianList = {
-    list: [],
-    display: [],
-    page: 0,
-    end: 0,
-  };
+  let byRank: Musician[] = [];
+  let byNew: Musician[] = [];
   const mapper = ({
     simpleMusicianResponseDto,
     bookmarkCount,
@@ -283,8 +273,8 @@ const parseResponse = (responseData: MusicianListResponse): InitData => {
       },
     };
   };
-  byRank.list = responseData.bestMusician.map(mapper);
-  byNew.list = responseData.newMusician.map(mapper);
+  byRank = responseData.bestMusician.map(mapper);
+  byNew = responseData.newMusician.map(mapper);
   return { byRank, byNew };
 };
 const useLoad = (callback: Function) => {
