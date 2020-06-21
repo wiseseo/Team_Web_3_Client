@@ -41,9 +41,11 @@ const MusicContainer = styled.div`
   height: 168px;
   background-color: rgba(18,18,18, 0.3);
   background-blend-mode: multiply;
-  background-image: url("${({ src }: { src: string }) => src}");
+  background-image: url("${({ src }: { src: string; status: boolean }) =>
+    src}");
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: ${({ status }: { src: string; status: boolean }) =>
+    status ? "center 45%" : "center center"};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -52,11 +54,12 @@ const MusicContainer = styled.div`
 
   &:hover {
     background-color: transparent;
-    background-position: 50% 45%;
+    background-position: center 45%;
     transition: 0.5s background;
   }
   &>button {
-    opacity: 0;
+    opacity: ${({ status }: { src: string; status: boolean }) =>
+      status ? "1" : "0"};
     transition: 0.5s opacity;
   }
   &:hover>button {
@@ -192,7 +195,10 @@ const MusicianCard = ({
   const [isLiked, setLike] = React.useState(false);
   return (
     <Card>
-      <MusicContainer src={musician.song.cover_url}>
+      <MusicContainer
+        src={musician.song.cover_url}
+        status={currentSong.id === musician.song.id}
+      >
         <Space height={32} />
         <PlayButton
           playAudio={() =>
