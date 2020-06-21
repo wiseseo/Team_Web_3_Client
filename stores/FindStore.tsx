@@ -172,7 +172,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "8",
       title: "tuna",
       date: "string",
       cover_url:
@@ -192,7 +192,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "9",
       title: "tuna",
       date: "string",
       cover_url:
@@ -212,7 +212,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "10",
       title: "tuna",
       date: "string",
       cover_url:
@@ -232,7 +232,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "11",
       title: "tuna",
       date: "string",
       cover_url:
@@ -252,7 +252,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "12",
       title: "tuna",
       date: "string",
       cover_url:
@@ -272,7 +272,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "13",
       title: "tuna",
       date: "string",
       cover_url:
@@ -292,7 +292,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "14",
       title: "tuna",
       date: "string",
       cover_url:
@@ -312,7 +312,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "15",
       title: "tuna",
       date: "string",
       cover_url:
@@ -332,7 +332,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "16",
       title: "tuna",
       date: "string",
       cover_url:
@@ -352,7 +352,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "17",
       title: "tuna",
       date: "string",
       cover_url:
@@ -372,7 +372,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "18",
       title: "tuna",
       date: "string",
       cover_url:
@@ -392,7 +392,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "19",
       title: "tuna",
       date: "string",
       cover_url:
@@ -412,7 +412,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "20",
       title: "tuna",
       date: "string",
       cover_url:
@@ -432,7 +432,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "21",
       title: "tuna",
       date: "string",
       cover_url:
@@ -452,7 +452,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "22",
       title: "tuna",
       date: "string",
       cover_url:
@@ -472,7 +472,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "23",
       title: "tuna",
       date: "string",
       cover_url:
@@ -492,7 +492,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "24",
       title: "tuna",
       date: "string",
       cover_url:
@@ -512,7 +512,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "25",
       title: "tuna",
       date: "string",
       cover_url:
@@ -532,7 +532,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "26",
       title: "tuna",
       date: "string",
       cover_url:
@@ -552,7 +552,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "27",
       title: "tuna",
       date: "string",
       cover_url:
@@ -572,7 +572,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "28",
       title: "tuna",
       date: "string",
       cover_url:
@@ -592,7 +592,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "29",
       title: "tuna",
       date: "string",
       cover_url:
@@ -612,7 +612,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "30",
       title: "tuna",
       date: "string",
       cover_url:
@@ -632,7 +632,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "31",
       title: "tuna",
       date: "string",
       cover_url:
@@ -652,7 +652,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "32",
       title: "tuna",
       date: "string",
       cover_url:
@@ -672,7 +672,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "33",
       title: "tuna",
       date: "string",
       cover_url:
@@ -692,7 +692,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "34",
       title: "tuna",
       date: "string",
       cover_url:
@@ -712,7 +712,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "35",
       title: "tuna",
       date: "string",
       cover_url:
@@ -732,7 +732,7 @@ const defaultMusicianList: Musician[] = [
     likes: 777,
     features: ["빠른작업", "3분이상", "효과음", "보컬 곡 작곡"],
     song: {
-      id: "7",
+      id: "36",
       title: "tuna",
       date: "string",
       cover_url:
@@ -742,7 +742,6 @@ const defaultMusicianList: Musician[] = [
       isLike: false,
     },
   },
-
 ];
 
 interface MusicianList {
@@ -768,13 +767,13 @@ interface MusicianInterface {
   dispatch?: React.Dispatch<ActionType>;
 }
 export const FindContext = React.createContext<MusicianInterface>({
-  musicianList: { list: defaultMusicianList, display: [], page:0, end: 0 },
+  musicianList: { list: defaultMusicianList, display: [], page: 0, end: 0 },
 });
 
 const FindStore = ({ children }: { children: React.ReactElement }) => {
   const [musicianList, dispatch] = useReducer(reducer, {
     list: defaultMusicianList,
-    display : [],
+    display: [],
     page: 0,
     end: 36,
   });
@@ -794,4 +793,3 @@ const FindStore = ({ children }: { children: React.ReactElement }) => {
 };
 
 export default FindStore;
-
