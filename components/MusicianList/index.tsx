@@ -12,7 +12,6 @@ interface Props {
 interface Song {
   id: string;
   title: string;
-  date: string;
   isPlaying: boolean;
   isLike: boolean;
   cover_url: string;
