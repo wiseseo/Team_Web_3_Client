@@ -40,7 +40,7 @@ const Next = styled.div`
   font-weight: bold;
   font-size: 1rem;
 
-  margin-top: 60px;
+  margin-top: 40px;
 `;
 
 const MusicianList = (props: Props) => {
