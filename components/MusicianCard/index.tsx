@@ -185,7 +185,7 @@ const MusicianCard = ({
   currentSong,
 }: Props) => {
   const getFeatureString = (features: string[]): string => {
-    let str = features.reduce((res, feature) => `${res}/${feature}`);
+    let str = features.reduce((res, feature) => `${res}/${feature}`, "");
     return str.length > 16 ? str.substring(0, 16) + "…" : str;
   };
   const [isLiked, setLike] = React.useState(false);
@@ -208,7 +208,13 @@ const MusicianCard = ({
         <ProfileContainer>
           <Link href="/detail">
             <Circle>
-              <Profile src={musician.profile_url} />
+              <Profile
+                src={
+                  musician.profile_url
+                    ? musician.profile_url
+                    : "/static/default-profile.png"
+                }
+              />
             </Circle>
           </Link>
           <Link href="/detail">
