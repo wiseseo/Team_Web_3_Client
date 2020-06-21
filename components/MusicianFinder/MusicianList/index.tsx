@@ -39,6 +39,8 @@ const Next = styled.div`
   align-items: center;
   font-weight: bold;
   font-size: 1rem;
+
+  margin-top: 60px;
 `;
 
 const MusicianList = (props: Props) => {
@@ -76,7 +78,9 @@ const MusicianList = (props: Props) => {
       {musicianList.display.length === musicianList.list.length ? (
         <span></span>
       ) : (
-        <Next onClick={() => dispatch({ type: "NEXT_MUSICIANS" })}>더보기</Next>
+        <Next onClick={() => dispatch({ type: "NEXT_MUSICIANS" })}>
+          더 보기
+        </Next>
       )}
     </>
   );

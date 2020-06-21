@@ -237,9 +237,9 @@ const MusicianItem = ({
         </RightContainer>
       </MusicianContainer>
       <LinkContainer>
-        <ProfileButton>
-          <Link href="/detail">뮤지션 보기</Link>
-        </ProfileButton>
+        <Link href="/detail">
+          <ProfileButton>뮤지션 보기</ProfileButton>
+        </Link>
         <Likes onClick={() => toggleLike(musician.id)}>
           <img
             src={`/static/like${isLiked ? "d" : ""}.png`}

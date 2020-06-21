@@ -10,7 +10,7 @@ const FilterSection = styled.div`
 
 const DropDownSection = styled.div`
   position: relative;
-
+  display: inline-block;
   &:hover .dropdown-content {
     display: block;
     box-shadow: -2px 0px 10px rgba(88, 90, 107, 0.4);
@@ -712,48 +712,51 @@ const SearchFilter = (props: Props) => {
 
   return (
     <FilterSection>
-      <DropDownSection
-        onMouseOver={() => {
-          document.getElementById("dropdown-content").style.display = "block";
-          document.getElementById("pathIcon").style.transform = "scaleY(1)";
-        }}
-        onMouseOut={() => {
-          document.getElementById("dropdown-content").style.display = "none";
-          if (!dropdownName)
+      <div>
+        <DropDownSection
+          onMouseOver={() => {
+            document.getElementById("dropdown-content").style.display = "block";
             document.getElementById("pathIcon").style.transform = "scaleY(1)";
-          else
-            document.getElementById("pathIcon").style.transform = "scaleY(-1)";
-        }}
-      >
-        <DropBtn>
-          <span style={{ paddingLeft: "11px" }}>
-            {filterType[dropdownName].type}
-          </span>
-          <img
-            src="/static/path.png"
-            alt="path"
-            className="pathIcon"
-            id="pathIcon"
-            style={{ transform: "scaleY(1)", paddingRight: "16px" }}
-          />
-        </DropBtn>
-        <DropContents className="dropdown-content" id="dropdown-content">
-          {filterType.splice(1).map(({ id, type }) => {
-            return (
-              <DropFilters
-                key={id}
-                onClick={() => {
-                  setDropDownName(id);
-                  document.getElementById("dropdown-content").style.display =
-                    "none";
-                }}
-              >
-                {type}
-              </DropFilters>
-            );
-          })}
-        </DropContents>
-      </DropDownSection>
+          }}
+          onMouseOut={() => {
+            document.getElementById("dropdown-content").style.display = "none";
+            if (!dropdownName)
+              document.getElementById("pathIcon").style.transform = "scaleY(1)";
+            else
+              document.getElementById("pathIcon").style.transform =
+                "scaleY(-1)";
+          }}
+        >
+          <DropBtn>
+            <span style={{ paddingLeft: "11px" }}>
+              {filterType[dropdownName].type}
+            </span>
+            <img
+              src="/static/path.png"
+              alt="path"
+              className="pathIcon"
+              id="pathIcon"
+              style={{ transform: "scaleY(1)", paddingRight: "16px" }}
+            />
+          </DropBtn>
+          <DropContents className="dropdown-content" id="dropdown-content">
+            {filterType.splice(1).map(({ id, type }) => {
+              return (
+                <DropFilters
+                  key={id}
+                  onClick={() => {
+                    setDropDownName(id);
+                    document.getElementById("dropdown-content").style.display =
+                      "none";
+                  }}
+                >
+                  {type}
+                </DropFilters>
+              );
+            })}
+          </DropContents>
+        </DropDownSection>
+      </div>
       <TagSection>
         {dropdownName != 0 ? (
           tagList[dropdownName - 1].map((list, key) => {
