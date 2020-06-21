@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import PlayButton from "../../AudioPlayer/PlayButton";
+import Link from "next/link";
 
 interface Song {
   id: string;
@@ -236,7 +237,9 @@ const MusicianItem = ({
         </RightContainer>
       </MusicianContainer>
       <LinkContainer>
-        <ProfileButton>뮤지션 보기</ProfileButton>
+        <ProfileButton>
+          <Link href="/detail">뮤지션 보기</Link>
+        </ProfileButton>
         <Likes onClick={() => toggleLike(musician.id)}>
           <img
             src={`/static/like${isLiked ? "d" : ""}.png`}
