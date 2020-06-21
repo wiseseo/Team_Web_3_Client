@@ -30,6 +30,7 @@ const ProgressWrapper = styled.div`
     height: 8px;
     flex: 1;
     border-radius: 2px;
+    outline: none;
 
     &::-webkit-slider-thumb {
       -webkit-appearance: none;

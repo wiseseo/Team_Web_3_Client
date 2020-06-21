@@ -285,12 +285,9 @@ const useLoad = (callback: Function) => {
     const response: AxiosResponse = await axios.get(
       "http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/main"
     );
-    console.log(response);
     if (response.data) {
       const responseData: MusicianListResponse = response.data;
-      console.log(responseData);
       const initData: InitData = parseResponse(responseData);
-      console.log(initData);
       callback(initData);
       setLoading(false);
     }

@@ -33,6 +33,7 @@ const Volume = styled.div`
     height: 8px;
     width: 80px;
     border-radius: 2px;
+    outline: none;
 
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
@@ -60,6 +61,7 @@ const AudioPlayer: React.FC = (): React.ReactElement => {
   const { song, dispatch } = React.useContext(SongContext);
   const [currentTime, setCurrentTime] = React.useState<number>(0);
   const [duration, setDuration] = React.useState<number>(0);
+  const [volume, setVolume] = React.useState<number>(0.5);
   const audioRef = React.useRef<HTMLAudioElement>(null);
 
   React.useEffect(() => {
@@ -116,7 +118,27 @@ const AudioPlayer: React.FC = (): React.ReactElement => {
         <img src="/static/like.png" width={24} height={24} alt="like" />
       </Like>
       <Volume>
-        <img src="/static/volume.png" width={24} height={24} alt="volume" />
+        {audioRef && audioRef.current && audioRef.current.volume > 0 ? (
+          <img
+            src="/static/volume.png"
+            width={24}
+            height={24}
+            alt="volume"
+            onClick={() => {
+              audioRef.current.volume = 0;
+            }}
+          />
+        ) : (
+          <img
+            src="/static/mute.png"
+            width={24}
+            height={24}
+            alt="volume"
+            onClick={() => {
+              audioRef.current.volume = 0.5;
+            }}
+          />
+        )}
         <input
           type="range"
           max={1}

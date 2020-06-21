@@ -171,7 +171,7 @@ const ShowButton = styled.button`
 const Tags = ({ tags }: { tags: string[] }) => {
   return (
     <TagList>
-      {tags.map((tag) => (
+      {tags.slice(0, 4).map((tag) => (
         <Tag key={tag.toString()}>{tag}</Tag>
       ))}
     </TagList>
@@ -185,7 +185,8 @@ const MusicianCard = ({
   currentSong,
 }: Props) => {
   const getFeatureString = (features: string[]): string => {
-    let str = features.reduce((res, feature) => `${res}/${feature}`, "");
+    if (features.length === 0) return "";
+    let str = features.reduce((res, feature) => `${res}/${feature}`);
     return str.length > 16 ? str.substring(0, 16) + "…" : str;
   };
   const [isLiked, setLike] = React.useState(false);
