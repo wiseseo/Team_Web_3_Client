@@ -35,7 +35,7 @@ const Card = styled.div`
   flex-direction: row;
   background: #121212;
   /*background-color: red;*/
-  border-radius: 8px;
+  border-radius: 8px 8px 8px 8px;
   height: 120px;
   margin-bottom: 1rem;
   min-width: 765px;
@@ -162,6 +162,8 @@ const LinkContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 `;
 
 const ProfileButton = styled.a`

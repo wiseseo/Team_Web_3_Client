@@ -267,10 +267,10 @@ const WithdrawalBtn = styled.button`
 
 const EditProfile = (props: Props) => {
   const [imgFile, setImgFile] = React.useState<any>(
-    "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg"
+    "/static/tunaprofile3_1.png"
   );
   const [preview, setPreview] = React.useState<any>(
-    "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg"
+    "/static/tunaprofile3_1.png"
   );
   const [isNNClicked, setNNClicked] = React.useState<boolean>(false);
   const [isPNClicked, setPNClicked] = React.useState<boolean>(false);
