@@ -286,9 +286,7 @@ const useLoad = (callback: Function) => {
       "http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/main"
     );
     if (response.data) {
-      const responseData: MusicianListResponse = await JSON.parse(
-        response.data
-      );
+      const responseData: MusicianListResponse = response.data;
       const initData: InitData = parseResponse(responseData);
       callback(initData);
       setLoading(false);
