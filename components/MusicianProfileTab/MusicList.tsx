@@ -4,7 +4,14 @@ import MusicianStyle from "./MusicianStyle";
 import WorkingStep from "./WorkingStep";
 
 interface Props {
-  musicList: { title: string; album: string; isPlaying: boolean }[];
+  songList: {
+    title: string;
+    coverUrl: string;
+    isPlaying?: boolean;
+    songUrl: string;
+    represent: number;
+    multipartFile: string;
+  }[];
 }
 const Container = styled.ul`
   color: #e2e1e2;
@@ -46,14 +53,14 @@ const TITLE = styled.div`
   background: none;
   border: 1px solid #6865fc;
 `;
-const MusicList = ({ musicList }: Props) => {
+const MusicList = ({ songList }: Props) => {
   return (
     <Container>
-      {musicList.map((music, index) => (
-        <Card>
-          <AlbumCover src={music.album}></AlbumCover>
+      {songList.map((song, index) => (
+        <Card key={index}>
+          <AlbumCover src={song.coverUrl}></AlbumCover>
           {index == 0 && <TITLE>TITLE</TITLE>}
-          <Title>{music.title}</Title>
+          <Title>{song.title}</Title>
         </Card>
       ))}
     </Container>

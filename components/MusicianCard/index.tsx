@@ -213,7 +213,7 @@ const MusicianCard = ({
       </MusicContainer>
       <MusicianInfo>
         <ProfileContainer>
-          <Link href="/detail">
+          <Link href="/detail/[id]" as={`/detail/${musician.id}`}>
             <Circle>
               <Profile
                 src={
@@ -224,7 +224,7 @@ const MusicianCard = ({
               />
             </Circle>
           </Link>
-          <Link href="/detail">
+          <Link href="/detail/[id]" as={`/detail/${musician.id}`}>
             <Info>
               <Name>{musician.name}</Name>
               <Introduction>{musician.introduction}</Introduction>
@@ -252,7 +252,7 @@ const MusicianCard = ({
           </Likes>
         </ProfileContainer>
         <Tags tags={musician.tags} />
-        <Link href="/detail">
+        <Link href="/detail/[id]" as={`/detail/${musician.id}`}>
           <MusicianLink>
             <Features>{getFeatureString(musician.features)}</Features>
             <ShowButton>뮤지션 보기</ShowButton>

@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
+import { MusicianDetailContext } from "./../../stores/MusicianDetailStore";
 
 interface Props {}
 const Container = styled.div`
@@ -60,18 +61,19 @@ const Like = styled.div`
   margin: 1rem;
 `;
 const ProfileInfo = (props: Props) => {
+  const { musician } = React.useContext(MusicianDetailContext);
   return (
     <Container>
       <Wrapper>
         <Space />
-        <ProfileImage source="https://mblogthumb-phinf.pstatic.net/MjAxODAxMjFfNyAg/MDAxNTE2NTEzNDMwNTIz.jhaceEmlCn_SPq5bEgzBVrDyi1gGeF4lRB-KWrRvrC8g.It70Wg4tXXRCpy6HlJdfP_XkTSY2CW3kZbBZE1EEYQ0g.JPEG.kimleeple/170822_%25EA%25B0%259C%25EA%25B8%25B0%25EC%259A%25B1_(1).jpg?type=o_webp" />
+        <ProfileImage source={musician.musicianList.profileUrl} />
 
         <Like>
           <img src="/static/liked.png" alt="like" width={24} height={24} />
         </Like>
       </Wrapper>
-      <Name>마약왕</Name>
-      <Introduction>일이삼사오육칠팔구십일이삼사오육치랄구십</Introduction>
+      <Name>{musician.musicianList.nickNm}</Name>
+      <Introduction>{musician.musicianList.introduction}</Introduction>
       <Button>의뢰하기</Button>
     </Container>
   );
