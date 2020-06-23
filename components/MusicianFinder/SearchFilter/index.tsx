@@ -630,13 +630,6 @@ const SearchFilter = (props: Props) => {
     { id: 4, type: "악기" },
   ];
 
-  /*let requestArray = {
-    atmoList: [],
-    themeList: [],
-    genreList: [],
-    instruList: [],
-  };*/
-
   const [requestArray, setRequestArray] = React.useState({
     atomoList: [],
     genreList: [],
@@ -709,7 +702,7 @@ const SearchFilter = (props: Props) => {
     }
   };
 
-  console.log("TagList : ", TagList);
+  //console.log("TagList : ", TagList);
 
   React.useEffect(() => {
     if (dropdownName != 0) {
@@ -723,19 +716,9 @@ const SearchFilter = (props: Props) => {
       document.getElementById("pathIcon").style.transform = "scaleY(-1)";
     }
     console.log(`${dropdownName} : ${TagList}`);
-    /*requestArray.atmoList = [];
-    requestArray.genreList = [];
-    requestArray.instruList = [];
-    requestArray.themeList = [];*/
-    console.log(requestArray);
   }, [dropdownName]);
 
   React.useEffect(() => {
-    console.log(requestArray);
-  }, [requestArray]);
-
-  React.useEffect(() => {
-    //console.log(requestArray);
     switch (dropdownName - 1) {
       case 0:
         setRequestArray({
@@ -770,6 +753,11 @@ const SearchFilter = (props: Props) => {
         });
         break;
     }
+
+    console.log(`${dropdownName} : ${TagList}`);
+  }, [TagList]);
+
+  React.useEffect(() => {
     //const [loading, setLoading] = React.useState(false);
 
     const loadInitData = async (requestArray) => {
@@ -785,7 +773,7 @@ const SearchFilter = (props: Props) => {
     };
 
     loadInitData(requestArray);
-  }, [TagList]);
+  }, [requestArray]);
 
   return (
     <FilterSection>
