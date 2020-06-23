@@ -16,7 +16,7 @@ interface stepOne {
   songEsntlUrl : object;
   songEsntPreview : any;
   portFolioMainMusic : object;
-  portFolioSubMusic : object;
+  portFolioSubMusic : Array<object>;
 }
 
 interface stepTwo {
@@ -85,13 +85,12 @@ const defaultStepOne: stepOne = {
     size: 0,
     type: ''
   },
-  
   portFolioSubMusic : [{
     lastModified: 0,
     name: '',
     size: 0,
     type: ''
-  }]
+  }],
 };
 
 const defaultStepTwo: stepTwo = {

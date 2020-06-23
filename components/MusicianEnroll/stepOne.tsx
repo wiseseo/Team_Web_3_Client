@@ -251,7 +251,6 @@ const StepOne = ({ nextButton, object }) => {
       size: 0,
       type: ''
     },
-    
     portFolioSubMusic : [{
       lastModified: 0,
       name: '',
@@ -280,22 +279,22 @@ const StepOne = ({ nextButton, object }) => {
   }  
   
   const handleFileOnChange = (event) => {
-    event.preventDefault();
+    
     let reader = new FileReader();
     let file = event.target.files[0];
+    
     reader.onloadend = () => {
-      setStepOne({...stepOneObj, profilePreview : reader.result})
-
+      setStepOne({...stepOneObj, profileUrl: file, profilePreview : reader.result})
     }
     reader.readAsDataURL(file);
   }
 
   const handlePortFileOnChange = (event) => {
-    event.preventDefault();
+    
     let reader = new FileReader();
     let file = event.target.files[0];
     reader.onloadend = () => {
-      setStepOne({...stepOneObj, songEsntPreview : reader.result})
+      setStepOne({...stepOneObj, songEsntlUrl : file, songEsntPreview : reader.result})
     }
     reader.readAsDataURL(file);
   }
@@ -386,7 +385,7 @@ const StepOne = ({ nextButton, object }) => {
     resetMainInput();
   }, [stepOneObj]);
   
-  // console.log('main : ', stepOneObj.portFolioMainMusic.size)
+  // console.log('main : ', stepOneObj)
   return (
   <>
     <StepOneContainer>
@@ -425,8 +424,8 @@ const StepOne = ({ nextButton, object }) => {
           {stepOneObj.profilePreview === '' ? 
           
           <img
-            src="/static/vector.png"
-            alt="vector"
+            src="/static/default-profile.png"
+            alt="default-profile"
             style={{
                 width : 45,
                 height : 45,
@@ -459,9 +458,8 @@ const StepOne = ({ nextButton, object }) => {
             }}>업로드
             </FormContainerProfileUpload>
             <input accept="image/*" style={{visibility : "hidden"}} type="file" id="getFile" onChange={e => {
-              // console.log(e.target.files[0], typeof e.target.files[0])
               handleFileOnChange(e);
-              setStepOne({...stepOneObj, profileUrl : e.target.files[0]})
+              
             }}/>
 
             <FormContainerProfileContent>250x250 픽셀에 최적화되어 있으며, 10Mb 이하의 JPG, GIF, PNG 파일을 지원합니다.</FormContainerProfileContent>
@@ -763,8 +761,8 @@ const StepOne = ({ nextButton, object }) => {
         {stepOneObj.songEsntPreview === '' ? 
           
           <img
-            src="/static/vector.png"
-            alt="vector"
+            src="/static/default-profile.png"
+            alt="default-profile"
             style={{
                 width : 45,
                 height : 45,
@@ -794,9 +792,7 @@ const StepOne = ({ nextButton, object }) => {
             </FormContainerProfileUpload>
             <input accept="image/*" style={{visibility : "hidden"}} type="file" id="getPortFile"
               onChange={e => {
-              // console.log(e.target.files[0], typeof e.target.files[0])
               handlePortFileOnChange(e);
-              setStepOne({...stepOneObj, songEsntlUrl : e.target.files[0]})
               }}
             />
 
@@ -846,7 +842,8 @@ const StepOne = ({ nextButton, object }) => {
                     name: '',
                     size: 0,
                     type: ''
-                  }})                  
+                  }
+                })                  
             }}>  
             <img
                 src={"/static/group.png"}
