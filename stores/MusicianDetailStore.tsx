@@ -133,6 +133,7 @@ const useLoad = (callback: Function, musicianId: string) => {
     );
     if (response.data) {
       const responseData: Musician = response.data;
+      console.log(responseData);
       callback(responseData);
       setLoading(false);
     }
@@ -150,7 +151,7 @@ const MusicianDetailStore = ({
   children: React.ReactElement;
   musicianId: string;
 }) => {
-  const [musician, setMusician] = useState<Musician>();
+  const [musician, setMusician] = useState<Musician>(defaultMusicianDetail);
   useLoad((responseData: Musician) => {
     setMusician(responseData);
   }, musicianId);

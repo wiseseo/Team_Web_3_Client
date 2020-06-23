@@ -95,7 +95,13 @@ const Features = (props: Props) => {
       <FeatureList features={getFetureList(musician)}></FeatureList>
       <Divide />
       <Title>작업 스타일</Title>
-      <StyleList styles={musician.musicianList.specialList}></StyleList>
+      <StyleList
+        styles={
+          musician.musicianList.specialList
+            ? musician.musicianList.specialList
+            : []
+        }
+      ></StyleList>
       <Divide />
       <Title>SNS ID</Title>
       <SNSLink key="facebook">
