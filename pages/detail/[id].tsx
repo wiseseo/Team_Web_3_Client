@@ -4,16 +4,23 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import MusicianProfile from "../../components/MusicianProfile";
 import MusicianProfileTab from "../../components/MusicianProfileTab";
+import MusicianDetailStore from "./../../stores/MusicianDetailStore";
 
+const Container = styled.div`
+  display: flex;
+  justifycontent: center;
+`;
 const Detail: React.FC = () => {
   const router = useRouter();
   const { id } = router.query;
   console.log(id);
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
-      <MusicianProfile></MusicianProfile>
-      <MusicianProfileTab></MusicianProfileTab>
-    </div>
+    <MusicianDetailStore id={id}>
+      <Container>
+        <MusicianProfile></MusicianProfile>
+        <MusicianProfileTab></MusicianProfileTab>
+      </Container>
+    </MusicianDetailStore>
   );
 };
 
