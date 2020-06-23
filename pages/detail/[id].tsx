@@ -13,9 +13,8 @@ const Container = styled.div`
 const Detail: React.FC = () => {
   const router = useRouter();
   const { id } = router.query;
-  console.log(id);
   return (
-    <MusicianDetailStore id={id}>
+    <MusicianDetailStore musicianId={typeof id === "string" ? id : id.join()}>
       <Container>
         <MusicianProfile></MusicianProfile>
         <MusicianProfileTab></MusicianProfileTab>

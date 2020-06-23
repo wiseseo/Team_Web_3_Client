@@ -120,15 +120,15 @@ export const MusicianDetailContext = React.createContext<MusicianInterface>({
   musician: defaultMusicianDetail,
 });
 
-const useLoad = (callback: Function, id: string) => {
+const useLoad = (callback: Function, musicianId: string) => {
   const [loading, setLoading] = useState(false);
 
-  const loadInitData = async (callback: Function, id: string) => {
+  const loadInitData = async (callback: Function, musicianId: string) => {
     setLoading(true);
     const response: AxiosResponse = await axios.get(
-      "http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/msuician/detail",
+      "http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/musician/detail",
       {
-        params: { musicianId: id },
+        params: { musicianId },
       }
     );
     if (response.data) {
@@ -139,21 +139,21 @@ const useLoad = (callback: Function, id: string) => {
   };
 
   useEffect(() => {
-    loadInitData(callback, id);
-  }, [id]);
+    loadInitData(callback, musicianId);
+  }, [musicianId]);
   return loading;
 };
 const MusicianDetailStore = ({
   children,
-  id,
+  musicianId,
 }: {
   children: React.ReactElement;
-  id: string;
+  musicianId: string;
 }) => {
   const [musician, setMusician] = useState<Musician>();
   useLoad((responseData: Musician) => {
     setMusician(responseData);
-  }, id);
+  }, musicianId);
   return (
     <MusicianDetailContext.Provider
       value={{

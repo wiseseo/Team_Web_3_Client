@@ -58,7 +58,7 @@ const PriceGuide = ({ guides }: Props) => {
         <PriceModal guide={guides[selected]} initSelect={initSelect} />
       )}
       {guides.map((guide, index) => (
-        <Card onClick={() => setSelect(index)}>
+        <Card key={index} onClick={() => setSelect(index)}>
           <Type>{guide.type}</Type>
           <Divide></Divide>
           <Content>{guide.content}</Content>

@@ -35,8 +35,8 @@ const FeatureList = styled.ul`
 const MusicianStyle = ({ styles }: Props) => {
   return (
     <Container>
-      {styles.map((style) => (
-        <Style>
+      {styles.map((style, index) => (
+        <Style key={index}>
           <Title>{style.title}</Title>
           <FeatureList>
             {style.features.map((feature) => (

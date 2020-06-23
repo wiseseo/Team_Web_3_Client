@@ -22,7 +22,7 @@ const FAQList = ({ faqList }: Props) => {
   return (
     <Container>
       {faqList.map((faq, index) => (
-        <FAQ>
+        <FAQ key={index}>
           <Title>
             {index + 1}. {faq.question}
           </Title>

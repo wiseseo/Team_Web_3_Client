@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
+import { MusicianDetailContext } from "./../../stores/MusicianDetailStore";
 
 interface Props {}
 const Container = styled.div`
@@ -50,8 +51,8 @@ const Style = styled.li`
 const FeatureList = ({ features }: { features: string[] }) => {
   return (
     <List>
-      {features.map((feature) => (
-        <Feature>{feature}</Feature>
+      {features.map((feature, index) => (
+        <Feature key={index}>{feature}</Feature>
       ))}
     </List>
   );
@@ -74,47 +75,40 @@ const LINK = styled.div`
   margin-left: 0.4rem;
 `;
 const Features = (props: Props) => {
-  const portfolioLink = ["https://grafolio.naver.com/works/1150932"];
+  const { musician } = React.useContext(MusicianDetailContext);
+  const getFetureList = (musician) => {
+    let {
+      atmosphereList,
+      themeList,
+      genreList,
+      instrumentList,
+    } = musician.musicianList;
+    atmosphereList = atmosphereList ? atmosphereList : [];
+    themeList = themeList ? themeList : [];
+    genreList = genreList ? genreList : [];
+    instrumentList = instrumentList ? instrumentList : [];
+    return [...atmosphereList, ...themeList, ...genreList, ...instrumentList];
+  };
   return (
     <Container>
       <Title>뮤지션 대표 특성</Title>
-      <FeatureList
-        features={[
-          "스포츠",
-          "기술",
-          "게임",
-          "시즌",
-          "스포츠",
-          "기술",
-          "게임",
-          "시즌",
-        ]}
-      ></FeatureList>
+      <FeatureList features={getFetureList(musician)}></FeatureList>
       <Divide />
       <Title>작업 스타일</Title>
-      <StyleList
-        styles={[
-          "빠른 작업",
-          "효과음",
-          "빠른 작업",
-          "빠른 작업",
-          "빠른 작업",
-          "사업자등록증",
-        ]}
-      ></StyleList>
+      <StyleList styles={musician.musicianList.specialList}></StyleList>
       <Divide />
       <Title>SNS ID</Title>
-      <SNSLink>
+      <SNSLink key="facebook">
         <img src="/static/sns_facebook.png" alt="facebook" />
-        <LINK>@dkjflajdflajkfd</LINK>
+        <LINK>@{musician.musicianList.snsNm}</LINK>
       </SNSLink>
-      <SNSLink>
+      <SNSLink key="instagram">
         <img src="/static/sns_instagram.png" alt="instagram" />
-        <LINK>@dkjflajdflajkfd</LINK>
+        <LINK>@{musician.musicianList.snsNm}</LINK>
       </SNSLink>
-      <SNSLink>
+      <SNSLink key="twitter">
         <img src="/static/sns_twitter.png" alt="twitter" />
-        <LINK>@dkjflajdflajkfd</LINK>
+        <LINK>@{musician.musicianList.snsNm}</LINK>
       </SNSLink>
       <Divide />
       <div
@@ -125,8 +119,8 @@ const Features = (props: Props) => {
         }}
       >
         <Title>포트폴리오 사이트</Title>
-        {portfolioLink.map((link) => (
-          <a href={link}>
+        {[musician.musicianList.portFolioLink].map((link) => (
+          <a href={link} key={link}>
             <img src="/static/link.png" alt="link" width={20} height={20} />
           </a>
         ))}
