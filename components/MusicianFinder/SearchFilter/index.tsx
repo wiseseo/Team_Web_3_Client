@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
+import axios, { AxiosPromise, AxiosResponse } from "axios";
 
 interface Props {}
 
@@ -628,6 +629,20 @@ const SearchFilter = (props: Props) => {
     { id: 3, type: "장르" },
     { id: 4, type: "악기" },
   ];
+
+  /*let requestArray = {
+    atmoList: [],
+    themeList: [],
+    genreList: [],
+    instruList: [],
+  };*/
+
+  const [requestArray, setRequestArray] = React.useState({
+    atomoList: [],
+    genreList: [],
+    instruList: [],
+    themeList: [],
+  });
   const [dropdownName, setDropDownName] = React.useState(0);
 
   const [sort, setSort] = React.useState<boolean>(true);
@@ -708,7 +723,69 @@ const SearchFilter = (props: Props) => {
       document.getElementById("pathIcon").style.transform = "scaleY(-1)";
     }
     console.log(`${dropdownName} : ${TagList}`);
+    /*requestArray.atmoList = [];
+    requestArray.genreList = [];
+    requestArray.instruList = [];
+    requestArray.themeList = [];*/
+    console.log(requestArray);
   }, [dropdownName]);
+
+  React.useEffect(() => {
+    console.log(requestArray);
+  }, [requestArray]);
+
+  React.useEffect(() => {
+    //console.log(requestArray);
+    switch (dropdownName - 1) {
+      case 0:
+        setRequestArray({
+          atomoList: [...TagList],
+          genreList: [""],
+          instruList: [""],
+          themeList: [""],
+        });
+        break;
+      case 1:
+        setRequestArray({
+          atomoList: [""],
+          genreList: [""],
+          instruList: [""],
+          themeList: [...TagList],
+        });
+        break;
+      case 2:
+        setRequestArray({
+          atomoList: [""],
+          genreList: [...TagList],
+          instruList: [""],
+          themeList: [""],
+        });
+        break;
+      case 3:
+        setRequestArray({
+          atomoList: [""],
+          genreList: [""],
+          instruList: [...TagList],
+          themeList: [""],
+        });
+        break;
+    }
+    //const [loading, setLoading] = React.useState(false);
+
+    const loadInitData = async (requestArray) => {
+      const response: AxiosResponse = await axios.get(
+        "http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/musicians/curation",
+        {
+          params: {
+            requestArray,
+          },
+        }
+      );
+      console.log(response);
+    };
+
+    loadInitData(requestArray);
+  }, [TagList]);
 
   return (
     <FilterSection>

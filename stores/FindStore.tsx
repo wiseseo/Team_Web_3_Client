@@ -21,6 +21,34 @@ interface Musician {
   features: string[];
   song: Song;
 }
+
+interface MusicianMainResponseDto {
+  musicianId: number;
+  nickNm: string;
+  introduction: string;
+  profileUrl: string;
+}
+interface SongMainResponseDto {
+  songId: number;
+  title: string;
+  coverUrl: string;
+  songUrl: string;
+}
+interface SimpleMusicianResponseDto {
+  musicianMainResponseDto: MusicianMainResponseDto;
+  songMainResponseDto: SongMainResponseDto;
+  spclNoteTags: string[];
+  rptags: string[];
+}
+interface MusicianResponse {
+  simpleMusicianResponseDto: SimpleMusicianResponseDto;
+  bookmarkCount: number;
+  alreadyBookmark: boolean;
+}
+interface MusicianListResponse {
+  newMusician: MusicianResponse[];
+  bestMusician: MusicianResponse[];
+}
 const defaultMusicianList: Musician[] = [
   {
     id: "1",
