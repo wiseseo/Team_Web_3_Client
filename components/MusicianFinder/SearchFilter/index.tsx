@@ -1,8 +1,15 @@
 import * as React from "react";
 import styled from "styled-components";
 import axios, { AxiosPromise, AxiosResponse } from "axios";
-
+import { FilterContext } from "./../../../stores/FilterStore";
 interface Props {}
+
+interface Filter {
+  atmoList: Array<string>;
+  genreList: Array<string>;
+  instruList: Array<string>;
+  themeList: Array<string>;
+}
 
 const FilterSection = styled.div`
   display: flex;
@@ -101,6 +108,7 @@ const Sort = styled.div`
 `;
 
 const SearchFilter = (props: Props) => {
+  const { filter, setFilter, musicianList } = React.useContext(FilterContext);
   const [tagList, setTagList] = React.useState([
     [
       {
@@ -630,12 +638,12 @@ const SearchFilter = (props: Props) => {
     { id: 4, type: "악기" },
   ];
 
-  const [requestArray, setRequestArray] = React.useState({
+  /*const [requestArray, setRequestArray] = React.useState({
     atomoList: [],
     genreList: [],
     instruList: [],
     themeList: [],
-  });
+  });*/
   const [dropdownName, setDropDownName] = React.useState(0);
 
   const [sort, setSort] = React.useState<boolean>(true);
@@ -721,23 +729,23 @@ const SearchFilter = (props: Props) => {
   React.useEffect(() => {
     switch (dropdownName - 1) {
       case 0:
-        setRequestArray({
+        setFilter({
           atomoList: [...TagList],
-          genreList: [""],
-          instruList: [""],
-          themeList: [""],
+          genreList: [],
+          instruList: [],
+          themeList: [],
         });
         break;
       case 1:
-        setRequestArray({
-          atomoList: [""],
-          genreList: [""],
-          instruList: [""],
+        setFilter({
+          atomoList: [],
+          genreList: [],
+          instruList: [],
           themeList: [...TagList],
         });
         break;
       case 2:
-        setRequestArray({
+        setFilter({
           atomoList: [""],
           genreList: [...TagList],
           instruList: [""],
@@ -745,7 +753,7 @@ const SearchFilter = (props: Props) => {
         });
         break;
       case 3:
-        setRequestArray({
+        setFilter({
           atomoList: [""],
           genreList: [""],
           instruList: [...TagList],
@@ -757,7 +765,7 @@ const SearchFilter = (props: Props) => {
     console.log(`${dropdownName} : ${TagList}`);
   }, [TagList]);
 
-  React.useEffect(() => {
+  /*React.useEffect(() => {
     //const [loading, setLoading] = React.useState(false);
 
     const loadInitData = async (requestArray) => {
@@ -773,7 +781,7 @@ const SearchFilter = (props: Props) => {
     };
 
     loadInitData(requestArray);
-  }, [requestArray]);
+  }, [requestArray]);*/
 
   return (
     <FilterSection>

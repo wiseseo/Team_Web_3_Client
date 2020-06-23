@@ -7,6 +7,7 @@ import CurationStore from "../stores/CurationStore";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import AudioPlayer from "../components/AudioPlayer";
+import FilterStore from "../stores/FilterStore";
 import styled from "styled-components";
 import Cookies from "js-cookie";
 import axios from "axios";
@@ -71,21 +72,23 @@ export default class RootApp extends App {
         </Head>
 
         <SongStore>
-          <CurationStore>
-            <MainContainer>
-              {accessToken === undefined ? (
-                <Header isLogin={false} isMusician={""} />
-              ) : isMusician ? (
-                <Header isLogin={true} isMusician={true} />
-              ) : (
-                <Header isLogin={true} isMusician={false} />
-              )}
+          <FilterStore>
+            <CurationStore>
+              <MainContainer>
+                {accessToken === undefined ? (
+                  <Header isLogin={false} isMusician={""} />
+                ) : isMusician ? (
+                  <Header isLogin={true} isMusician={true} />
+                ) : (
+                  <Header isLogin={true} isMusician={false} />
+                )}
 
-              <Component {...pageProps} />
-              <Footer />
-              <AudioPlayer />
-            </MainContainer>
-          </CurationStore>
+                <Component {...pageProps} />
+                <Footer />
+                <AudioPlayer />
+              </MainContainer>
+            </CurationStore>
+          </FilterStore>
         </SongStore>
         <Layout />
       </>
