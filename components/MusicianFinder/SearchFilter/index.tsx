@@ -707,7 +707,7 @@ const SearchFilter = (props: Props) => {
     switch (dropdownName - 1) {
       case 0:
         setFilter({
-          atomoList: [...TagList],
+          atmoList: TagList.length ? TagList : [""],
           genreList: [""],
           instruList: [""],
           themeList: [""],
@@ -715,25 +715,25 @@ const SearchFilter = (props: Props) => {
         break;
       case 1:
         setFilter({
-          atomoList: [""],
+          atmoList: [""],
           genreList: [""],
           instruList: [""],
-          themeList: [...TagList],
+          themeList: TagList.length ? TagList : [""],
         });
         break;
       case 2:
         setFilter({
-          atomoList: [""],
-          genreList: [...TagList],
+          atmoList: [""],
+          genreList: TagList.length ? TagList : [""],
           instruList: [""],
           themeList: [""],
         });
         break;
       case 3:
         setFilter({
-          atomoList: [""],
+          atmoList: [""],
           genreList: [""],
-          instruList: [...TagList],
+          instruList: TagList.length ? TagList : [""],
           themeList: [""],
         });
         break;
@@ -753,7 +753,7 @@ const SearchFilter = (props: Props) => {
       }
       document.getElementById("pathIcon").style.transform = "scaleY(-1)";
       setFilter({
-        atomoList: [""],
+        atmoList: [""],
         genreList: [""],
         instruList: [""],
         themeList: [""],
