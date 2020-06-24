@@ -127,6 +127,8 @@ const Likes = styled.div`
   font-size: 0.75rem;
   color: #3e3e41;
   cursor: pointer;
+  text-align: center;
+  margin-right: 0.5rem;
 `;
 
 const MusicianLink = styled.div`
