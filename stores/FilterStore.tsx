@@ -19,7 +19,7 @@ const defaultFilter: Filter = {
 interface FilterInterface {
   filter: Filter;
   setFilter?: Function;
-  musicianList: MuscianList;
+  musicianList: MusicianList;
 }
 export const FilterContext = React.createContext<FilterInterface>({
   filter: defaultFilter,
@@ -29,14 +29,11 @@ export const FilterContext = React.createContext<FilterInterface>({
 const useLoad = (callback: Function, filter: Filter) => {
   const [loading, setLoading] = useState(false);
   const loadInitData = async (callback: Function, filter: Filter) => {
-    console.log(filter);
-    console.log(JSON.stringify({ ...filter }));
     setLoading(true);
+    console.log(filter);
     const response: AxiosResponse = await axios.post(
       "http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/musicians/curation",
-      {
-        curationReqDto: JSON.stringify({ ...filter }),
-      },
+      JSON.stringify({ ...filter }),
       {
         headers: {
           "Content-type": "application/json",
@@ -52,6 +49,7 @@ const useLoad = (callback: Function, filter: Filter) => {
   };
 
   useEffect(() => {
+    console.log(filter);
     loadInitData(callback, filter);
   }, [filter]);
   return loading;
