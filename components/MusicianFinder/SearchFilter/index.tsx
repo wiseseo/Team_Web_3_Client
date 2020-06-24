@@ -752,12 +752,6 @@ const SearchFilter = (props: Props) => {
         }
       }
       document.getElementById("pathIcon").style.transform = "scaleY(-1)";
-      setFilter({
-        atmoList: [""],
-        genreList: [""],
-        instruList: [""],
-        themeList: [""],
-      });
     }
 
     console.log(`${dropdownName} : ${TagList}`);

@@ -49,7 +49,6 @@ const useLoad = (callback: Function, filter: Filter) => {
   };
 
   useEffect(() => {
-    console.log(filter);
     loadInitData(callback, filter);
   }, [filter]);
   return loading;
