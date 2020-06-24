@@ -731,16 +731,16 @@ const SearchFilter = (props: Props) => {
       case 0:
         setFilter({
           atomoList: [...TagList],
-          genreList: [],
-          instruList: [],
-          themeList: [],
+          genreList: [""],
+          instruList: [""],
+          themeList: [""],
         });
         break;
       case 1:
         setFilter({
-          atomoList: [],
-          genreList: [],
-          instruList: [],
+          atomoList: [""],
+          genreList: [""],
+          instruList: [""],
           themeList: [...TagList],
         });
         break;

@@ -10,10 +10,10 @@ interface Filter {
 }
 
 const defaultFilter: Filter = {
-  atmoList: [],
-  genreList: [],
-  instruList: [],
-  themeList: [],
+  atmoList: [""],
+  genreList: [""],
+  instruList: [""],
+  themeList: [""],
 };
 
 interface FilterInterface {
@@ -28,16 +28,23 @@ export const FilterContext = React.createContext<FilterInterface>({
 
 const useLoad = (callback: Function, filter: Filter) => {
   const [loading, setLoading] = useState(false);
-
   const loadInitData = async (callback: Function, filter: Filter) => {
+    console.log(filter);
+    console.log(JSON.stringify({ ...filter }));
     setLoading(true);
-    const response: AxiosResponse = await axios.get(
+    const response: AxiosResponse = await axios.post(
       "http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/musicians/curation",
       {
-        params: { ...filter },
+        curationReqDto: JSON.stringify({ ...filter }),
+      },
+      {
+        headers: {
+          "Content-type": "application/json",
+        },
       }
     );
     if (response.data) {
+      console.log(response.data);
       const responseData: MusicianList = response.data;
       callback(responseData);
       setLoading(false);
@@ -51,7 +58,7 @@ const useLoad = (callback: Function, filter: Filter) => {
 };
 
 const FilterStore = ({ children }: { children: React.ReactElement }) => {
-  const [filter, setFilter] = useState<Filter>();
+  const [filter, setFilter] = useState<Filter>(defaultFilter);
   const [musicianList, setMusicianList] = useState<MusicianList>();
   useLoad((responseData: MusicianList) => {
     setMusicianList(responseData);
