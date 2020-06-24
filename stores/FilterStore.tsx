@@ -26,12 +26,43 @@ export const FilterContext = React.createContext<FilterInterface>({
   musicianList: [],
 });
 
+const isCategory = (filter: Filter): string => {
+  let selectedIndex = Object.values(filter).findIndex(
+    (value) => value.length === 0
+  );
+  switch (selectedIndex) {
+    case 0:
+      return "분위기";
+    case 1:
+      return "장르";
+    case 2:
+      return "악기";
+    case 3:
+      return "테마";
+    case -1:
+    default:
+      return "";
+  }
+};
+
 const useLoad = (callback: Function, filter: Filter) => {
   const [loading, setLoading] = useState(false);
   const loadInitData = async (callback: Function, filter: Filter) => {
     setLoading(true);
     console.log(filter);
-    const response: AxiosResponse = await axios.post(
+    const selectedCategory = isCategory(filter);
+    let response: AxiosResponse;
+    if (selectedCategory) {
+      response = await axios.get(
+        "http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/categorys",
+        {
+          params: {
+            categoryNm: selectedCategory,
+          },
+        }
+      );
+    }
+    response = await axios.post(
       "http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/musicians/curation",
       JSON.stringify({ ...filter }),
       {
