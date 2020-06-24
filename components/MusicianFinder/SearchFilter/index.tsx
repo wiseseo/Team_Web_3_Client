@@ -1,6 +1,5 @@
 import * as React from "react";
 import styled from "styled-components";
-import axios, { AxiosPromise, AxiosResponse } from "axios";
 import { FilterContext } from "./../../../stores/FilterStore";
 interface Props {}
 
@@ -638,12 +637,6 @@ const SearchFilter = (props: Props) => {
     { id: 4, type: "악기" },
   ];
 
-  /*const [requestArray, setRequestArray] = React.useState({
-    atomoList: [],
-    genreList: [],
-    instruList: [],
-    themeList: [],
-  });*/
   const [dropdownName, setDropDownName] = React.useState(0);
 
   const [sort, setSort] = React.useState<boolean>(true);
@@ -710,22 +703,6 @@ const SearchFilter = (props: Props) => {
     }
   };
 
-  //console.log("TagList : ", TagList);
-
-  React.useEffect(() => {
-    if (dropdownName != 0) {
-      appendTagList([]);
-      for (let i = 0; i < tagList.length; i++) {
-        for (let j = 0; j < tagList[i].length; j++) {
-          tagList[i][j].chosen = false;
-          tagList[i][j].chosenPossible = true;
-        }
-      }
-      document.getElementById("pathIcon").style.transform = "scaleY(-1)";
-    }
-    console.log(`${dropdownName} : ${TagList}`);
-  }, [dropdownName]);
-
   React.useEffect(() => {
     switch (dropdownName - 1) {
       case 0:
@@ -765,23 +742,26 @@ const SearchFilter = (props: Props) => {
     console.log(`${dropdownName} : ${TagList}`);
   }, [TagList]);
 
-  /*React.useEffect(() => {
-    //const [loading, setLoading] = React.useState(false);
-
-    const loadInitData = async (requestArray) => {
-      const response: AxiosResponse = await axios.get(
-        "http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/musicians/curation",
-        {
-          params: {
-            requestArray,
-          },
+  React.useEffect(() => {
+    if (dropdownName != 0) {
+      appendTagList([]);
+      for (let i = 0; i < tagList.length; i++) {
+        for (let j = 0; j < tagList[i].length; j++) {
+          tagList[i][j].chosen = false;
+          tagList[i][j].chosenPossible = true;
         }
-      );
-      console.log(response);
-    };
+      }
+      document.getElementById("pathIcon").style.transform = "scaleY(-1)";
+      setFilter({
+        atomoList: [""],
+        genreList: [""],
+        instruList: [""],
+        themeList: [""],
+      });
+    }
 
-    loadInitData(requestArray);
-  }, [requestArray]);*/
+    console.log(`${dropdownName} : ${TagList}`);
+  }, [dropdownName]);
 
   return (
     <FilterSection>
