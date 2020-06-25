@@ -3,7 +3,7 @@ import axios, { AxiosResponse } from "axios";
 import reducer from "./FindReducer";
 
 interface Song {
-  id: string;
+  id: number;
   title: string;
   isPlaying: boolean;
   isLike: boolean;
@@ -12,7 +12,7 @@ interface Song {
 }
 
 interface Musician {
-  id: string;
+  id: number;
   name: string;
   introduction: string;
   tags: string[];
@@ -34,20 +34,13 @@ interface SongMainResponseDto {
   coverUrl: string;
   songUrl: string;
 }
-interface SimpleMusicianResponseDto {
+interface MusicianResponse {
   musicianMainResponseDto: MusicianMainResponseDto;
   songMainResponseDto: SongMainResponseDto;
   spclNoteTags: string[];
   rptags: string[];
 }
-interface MusicianResponse {
-  simpleMusicianResponseDto: SimpleMusicianResponseDto;
-  bookmarkCount: number;
-  alreadyBookmark: boolean;
-}
 interface MusicianListResponse {
-  //newMusician: MusicianResponse[];
-  //bestMusician: MusicianResponse[];
   musician: MusicianResponse[];
 }
 const defaultMusicianList: Musician[] = [
@@ -122,29 +115,24 @@ export const FilterContext = React.createContext<FilterInterface>({
 const parseResponse = (responseData: MusicianListResponse): MusicianList => {
   let list: Musician[] = [];
   const mapper = ({
-    simpleMusicianResponseDto,
-    bookmarkCount,
-    alreadyBookmark,
-  }) => {
-    const {
-      musicianMainResponseDto,
-      songMainResponseDto,
-      spclNoteTags,
-      rptags,
-    } = simpleMusicianResponseDto;
+    musicianMainResponseDto,
+    songMainResponseDto,
+    spclNoteTags,
+    rptags,
+  }: MusicianResponse): Musician => {
     return {
       id: musicianMainResponseDto.musicianId,
       name: musicianMainResponseDto.nickNm,
       introduction: musicianMainResponseDto.introduction,
       tags: rptags,
-      likes: bookmarkCount,
+      likes: 0,
       profile_url: musicianMainResponseDto.profileUrl,
       features: spclNoteTags,
       song: {
         id: songMainResponseDto.songId,
         title: songMainResponseDto.title,
         isPlaying: false,
-        isLike: alreadyBookmark,
+        isLike: false,
         cover_url: songMainResponseDto.coverUrl,
         song_url: songMainResponseDto.songUrl,
       },
@@ -217,19 +205,15 @@ const useLoad = (callback: Function, filter: Filter) => {
 const FilterStore = ({ children }: { children: React.ReactElement }) => {
   const [filter, setFilter] = useState<Filter>(defaultFilter);
   //const [musicianList, setMusicianList] = useState<MusicianList>();
-  const [musicianList, dispatch] = useReducer(reducer, {
+  const [musicianList, dispatch] = React.useReducer(reducer, {
     list: defaultMusicianList,
     display: [],
     page: 0,
     end: 36,
   });
 
-  useEffect(() => {
-    dispatch({ type: "INIT_MUSICIANS", payload: defaultMusicianList });
-  }, []);
-
   useLoad((responseData: MusicianList) => {
-    setMusicianList(responseData);
+    dispatch({ type: "INIT_MUSICIANS", payload: responseData.list });
   }, filter);
   return (
     <FilterContext.Provider
