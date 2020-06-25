@@ -1257,8 +1257,8 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
   }, [object]) 
   // console.log("0 : ", stepTwoObj.spclNoteKindNm, tagList);
   console.log("1 : ", stepTwoObj.atmoKindNm, oneTagList);
-  console.log("2 : ", stepTwoObj.genreKindNm, twoTagList);
-  console.log("3 : ", stepTwoObj.atmoKindNm, threeTagList);
+  console.log("2 : ", stepTwoObj.themeKindNm, twoTagList);
+  console.log("3 : ", stepTwoObj.genreKindNm, threeTagList);
   console.log("4 : ", stepTwoObj.instruKindNm, fourTagList);
   console.log(stepTwoObj);
   return (
@@ -1562,8 +1562,13 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
 
           <BeforeButton onClick={() => {beforeButton(2, stepTwoObj)}}>이전으로</BeforeButton>
           {
-          // (stepTwoObj.workStage01 !== "" || stepTwoObj.workStage02 !== "" || stepTwoObj.workStage03 !== "")
-          1
+          (stepTwoObj.workStage01 !== "" || stepTwoObj.workStage02 !== "" || stepTwoObj.workStage03 !== "") &&
+          stepTwoObj.spclNoteKindNm.length > 0 &&
+          stepTwoObj.atmoKindNm.length > 0 &&
+          stepTwoObj.themeKindNm.length > 0 &&
+          stepTwoObj.genreKindNm.length > 0 &&
+          stepTwoObj.instruKindNm.length > 0
+          
           ?
           <AfterButton onClick={() => {nextButton(2, stepTwoObj)}} style={{cursor : "pointer", background : "#6865FC"}}>저장하고 다음으로</AfterButton>
           :
