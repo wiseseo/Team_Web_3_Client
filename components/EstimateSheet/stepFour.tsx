@@ -450,7 +450,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             <EstimateSubTitle>장르란?</EstimateSubTitle>
             <EstimateSubDesc>
             {   
-                "음악 계통의 갈래를 말합니다.\n정확한 장르가 짐작되지 않을 경우 '선택안함'을 누르고 '기타'칸에 원하는 스타일을 입력해주세요.".split("\n").map(function(item, idx) {
+                "음악의 갈래를 말합니다. 각 장르가 가진 색을 고려해 선택하세요. 잘 모르겠다면 '선택안함'을 누르고 '기타' 칸에 원하는 느낌을 써주셔도 된답니다.".split("\n").map(function(item, idx) {
                     return (
                         <span key={idx}>
                             {item}
@@ -471,8 +471,8 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             
             <EstimateContentMainSub>
 
-                <EstimateContentMainSubTitle>어떤 장르의 음악을 원하시나요?</EstimateContentMainSubTitle>
-                <EstimateContentMainSubTitleBack>최소 1개 이상의 태그를 선택해주세요. 첫번째 선택한 태그가 <span style={{fontWeight : "bold"}}>대표 태그</span>로 지정됩니다.</EstimateContentMainSubTitleBack>
+                <EstimateContentMainSubTitle>곡의 장르를 알려주세요.</EstimateContentMainSubTitle>
+                <EstimateContentMainSubTitleBack>대표 태그는 가장 처음에 선택해야 해요. 1개 이상의 태그를 선택하면 다음으로 넘어갈 수 있어요.</EstimateContentMainSubTitleBack>
                 
                 
                 <CurationTagLayout>
@@ -533,7 +533,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 </CurationTagLayout>
                   
                 <EstimateContentMainSubTitleBack style={{fontSize : "0.875rem", marginTop : 32}}>기타 (직접입력)</EstimateContentMainSubTitleBack>
-                <Input defaultValue={stepFour.genreKindNmStr} onChange={(e) => {setStepFour({...stepFour, genreKindNmStr : e.target.value})}}/>
+                <Input defaultValue={stepFour.genreKindNmStr} placeholder="기타 코멘트가 있다면 적어주세요." onChange={(e) => {setStepFour({...stepFour, genreKindNmStr : e.target.value})}}/>
             
             </EstimateContentMainSub>
             

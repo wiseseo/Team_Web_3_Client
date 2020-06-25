@@ -179,9 +179,9 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 }}
             />
             <EstimateMainDesc>튜나 팁</EstimateMainDesc>
-            <EstimateSubTitle>의뢰서 작성 완료</EstimateSubTitle>
+            <EstimateSubTitle>뮤지션이 수락했는지 어떻게 아나요?</EstimateSubTitle>
             <EstimateSubDesc>
-              마이페이지에서 작성한 의뢰서 및 수락 유무를 확인할 수 있습니다. 의뢰 가능 개수가 제한되어있는 점을 주의해 신중하게 의뢰를 보내주세요.
+              마이페이지에 가면 뮤지션이 수락했는지 알 수 있어요. 이틀 내에 연락이 오지 않는다면 다른 뮤지션을 찾아 의뢰해보세요!
             </EstimateSubDesc>
             
         </EstimateUserInfoData>
@@ -195,7 +195,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             <EstimateContentMainSub>
 
                 
-                <EstimateContentMainSubTitle> 준비 완료! <br/>뮤지션에게 의뢰서를 보내 곡을 만들어보세요.</EstimateContentMainSubTitle>
+                <EstimateContentMainSubTitle> 준비 완료! <br/>뮤지션에게 의뢰서를 보내고 <br/>특별한 곡을 받아보세요!</EstimateContentMainSubTitle>
                 {/* <EstimateContentMainSubTitle> 뮤지션에게 의뢰서를 보내 곡을 만들어보세요.</EstimateContentMainSubTitle> */}
                 
             </EstimateContentMainSub>

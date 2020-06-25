@@ -335,9 +335,9 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 }}
             />
             <EstimateMainDesc>튜나 팁</EstimateMainDesc>
-            <EstimateSubTitle>기획 의도란?</EstimateSubTitle>
+            <EstimateSubTitle>상세 기획</EstimateSubTitle>
             <EstimateSubDesc>
-                어떤 음악을 제작하고 싶은지 원하는 음원에 대해 상세하게 적어주세요. 참고 자료와 링크, 이미지를 첨부해주셔도 좋습니다.
+            곡에 대한 상세한 계획이 있나요? 만들고 싶은 곡에 대해 묘사해주세요. 참고 자료와 링크, 이미지를 첨부해주셔도 좋습니다. 설명이 구체적일수록 완성곡의 퀄리티가 높아집니다.
             </EstimateSubDesc>
             
         </EstimateUserInfoData>
@@ -350,8 +350,8 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             
             <EstimateContentMainSub>
 
-                <EstimateContentMainSubTitle>음원 기획 의도를 알려주세요.</EstimateContentMainSubTitle>
-                <EstimateContentMainSubTitleBack>음원을 기획하게 된 사유와 상세한 기획 의도에 대해 적어주세요. (2000자)</EstimateContentMainSubTitleBack>
+                <EstimateContentMainSubTitle>곡에 대해 상세하게 알려주세요.</EstimateContentMainSubTitle>
+                <EstimateContentMainSubTitleBack>곡을 의뢰하게된 이유와 만들고 싶은 곡에 대해 상세하게 묘사해주세요.</EstimateContentMainSubTitleBack>
                 <FormContainerTextarea
                     defaultValue={stepEight.intention}
                     placeholder="최소 30자 이상 입력해주세요."

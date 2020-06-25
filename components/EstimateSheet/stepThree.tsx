@@ -369,7 +369,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             <EstimateSubTitle>테마란?</EstimateSubTitle>
             <EstimateSubDesc>
             {   
-                "음악의 주제를 말합니다.\n제작할 음악의 테마에 알맞는 태그를 선택하고, 원하시는 태그가 없을 시 '선택안함' 태그를 선택 후 기타 칸에 상세 테마를 적어주세요.".split("\n").map(function(item, idx) {
+                "곡의 배경 분야이자 주제를 말합니다.\n 곡이 쓰일 쓰임새를 고려하여 알맞은 태그를 선택하세요.".split("\n").map(function(item, idx) {
                     return (
                         <span key={idx}>
                             {item}
@@ -390,8 +390,8 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             
             <EstimateContentMainSub>
 
-                <EstimateContentMainSubTitle>어떤 테마의 음악을 원하시나요?</EstimateContentMainSubTitle>
-                <EstimateContentMainSubTitleBack>최소 1개 이상의 태그를 선택해주세요. 첫번째 선택한 태그가 <span style={{fontWeight : "bold"}}>대표 태그</span>로 지정됩니다.</EstimateContentMainSubTitleBack>
+                <EstimateContentMainSubTitle>곡의 테마가 있나요?</EstimateContentMainSubTitle>
+                <EstimateContentMainSubTitleBack>대표 태그는 가장 처음에 선택해야 해요. 1개 이상의 태그를 선택하면 다음으로 넘어갈 수 있어요.</EstimateContentMainSubTitleBack>
                 
                 
                 <CurationTagLayout>
@@ -451,7 +451,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 </CurationTagLayout>
                   
                 <EstimateContentMainSubTitleBack style={{fontSize : "0.875rem"}}>기타 (직접입력)</EstimateContentMainSubTitleBack>
-                <Input defaultValue={stepThree.themeKindNmStr} onChange={(e) => {setStepThree({...stepThree, themeKindNmStr : e.target.value})}}/>
+                <Input defaultValue={stepThree.themeKindNmStr} placeholder="기타 코멘트가 있다면 적어주세요." onChange={(e) => {setStepThree({...stepThree, themeKindNmStr : e.target.value})}}/>
             
             </EstimateContentMainSub>
             

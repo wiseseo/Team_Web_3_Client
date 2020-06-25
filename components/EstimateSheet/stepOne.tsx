@@ -319,10 +319,10 @@ const index = ({nextButton , object}): React.ReactElement => {
                 }}
             />
             <EstimateMainDesc>튜나 팁</EstimateMainDesc>
-            <EstimateSubTitle>사용 용도란?</EstimateSubTitle>
+            <EstimateSubTitle>저작권이요?</EstimateSubTitle>
             <EstimateSubDesc>
             {   
-                "음악의 사용 범위 및 용도를 말합니다.\n기본적으로 의뢰한 음원의 저작권은 뮤지션에게 귀속되며 저작권을 구매시 가격이 더 올라가게 됩니다.".split("\n").map(function(item, idx) {
+                "의뢰하는 모든 곡의 저작권은 기본적으로 뮤지션에게 있어요. 상업적 사용을 원한다면 저작권에 대해 뮤지션과 꼭 협의해주세요.".split("\n").map(function(item, idx) {
                     return (
                         <span key={idx}>
                             {item}
@@ -387,7 +387,7 @@ const index = ({nextButton , object}): React.ReactElement => {
                     })}
                 </CheckBoxContainer>
                 
-                <EstimateContentMainSubTitle style={{marginTop : "83px"}}>음악의 상업적 이용이 가능한 저작권이 필요한가요?</EstimateContentMainSubTitle>
+                <EstimateContentMainSubTitle style={{marginTop : "83px"}}>의뢰한 곡의 상업적 이용 가능한 저작권이 필요한가요?</EstimateContentMainSubTitle>
             
                 <div style={{display : "flex", flexDirection: "row"}}>
                     {radioBoxSubList.map((list, key) => {

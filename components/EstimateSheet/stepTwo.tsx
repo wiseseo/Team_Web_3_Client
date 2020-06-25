@@ -403,7 +403,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             <EstimateSubTitle>분위기란?</EstimateSubTitle>
             <EstimateSubDesc>
             {   
-                "음악에 사용될 분위기를 말합니다.\n원하는 음악의 전반적인 느낌을 말합니다. 공포스러운 음악, 감동적인 음악 등 단어 앞에 분위기를 붙여보면 이해가 쉽습니다.".split("\n").map(function(item, idx) {
+                "의뢰하는 곡의 전반적인 느낌을 말합니다. 공포스러운 곡, 감동적인 곡 등 단어 앞에 분위기 키워드를 붙여보세요.".split("\n").map(function(item, idx) {
                     return (
                         <span key={idx}>
                             {item}
@@ -424,8 +424,8 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             
             <EstimateContentMainSub>
 
-                <EstimateContentMainSubTitle>어떤 분위기의 음악을 원하시나요?</EstimateContentMainSubTitle>
-                <EstimateContentMainSubTitleBack>최소 1개 이상의 태그를 선택해주세요. 첫번째 선택한 태그가 <span style={{fontWeight : "bold"}}>대표 태그</span>로 지정됩니다.</EstimateContentMainSubTitleBack>
+                <EstimateContentMainSubTitle>곡의 분위기를 알려주세요.</EstimateContentMainSubTitle>
+                <EstimateContentMainSubTitleBack>대표 태그는 가장 처음에 선택해야 해요. 1개 이상의 태그를 선택하면 다음으로 넘어갈 수 있어요.</EstimateContentMainSubTitleBack>
                 
                 
                 <CurationTagLayout>
@@ -485,7 +485,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 </CurationTagLayout>
                   
                 <EstimateContentMainSubTitleBack style={{fontSize : "0.875rem"}}>기타 (직접입력)</EstimateContentMainSubTitleBack>
-                <Input defaultValue={stepTwo.atmoKindNmStr} onChange={(e) => {setStepTwo({...stepTwo, atmoKindNmStr : e.target.value})}} />
+                <Input defaultValue={stepTwo.atmoKindNmStr} placeholder="기타 코멘트가 있다면 적어주세요." onChange={(e) => {setStepTwo({...stepTwo, atmoKindNmStr : e.target.value})}} />
             
             </EstimateContentMainSub>
             

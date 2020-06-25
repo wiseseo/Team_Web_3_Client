@@ -264,9 +264,9 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 }}
             />
             <EstimateMainDesc>튜나 팁</EstimateMainDesc>
-            <EstimateSubTitle>음원 길이란?</EstimateSubTitle>
+            <EstimateSubTitle>곡의 길이는 어떻게 아나요?</EstimateSubTitle>
             <EstimateSubDesc>
-                제작될 음원의 대략적인 플레이 시간을 선택해주세요. 음원 길이에 비례해 플레이 시간이 늘어납니다.
+                의뢰하는 곡의 희망 재생 시간입니다. 필수는 아니니 뮤지션과 협의하여 정하셔도 됩니다.
             </EstimateSubDesc>
             
         </EstimateUserInfoData>
@@ -279,7 +279,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             
             <EstimateContentMainSub>
 
-                <EstimateContentMainSubTitle>음원 플레이 시간을 설정해주세요.</EstimateContentMainSubTitle>
+                <EstimateContentMainSubTitle>곡의 길이는 얼마나 되나요?</EstimateContentMainSubTitle>
                 <EstimateContentMainSubTitleBack>최소 최대 음원 시간을 입력해주세요.</EstimateContentMainSubTitleBack>
                 
                 {radioBoxList.map((list, key) => {
