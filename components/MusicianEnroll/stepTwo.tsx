@@ -110,7 +110,7 @@ const FormContainerInput = styled.input`
   border : none;
   line-height : 20px;
   width : 97%;
-  height : 32px;
+  height : 100px;
   &&{
     ::placeholder {
       color : rgba(179, 180, 190, 0.5);
@@ -1271,8 +1271,8 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
       <FormContainer>
         <FormContainerTitle>특이사항<span style={{color : "#6865FC"}}>*</span></FormContainerTitle>
         <FormContainerRight>
-          <FormContainerSubDesc style={{margin : "0"}}>다른 사람들과 차별화된 자신의 직업스타일 태그를 선택해주세요.</FormContainerSubDesc> 
-          <FormContainerDesc>가능한 특성태그를 모두 선택해주세요. 해당없음 선택 시 기존 선택이 해제되고, 기본 문구가 노출됩니다.</FormContainerDesc>
+          <FormContainerSubDesc style={{margin : "0"}}>거래시 가능한 서비스 옵션을 선택해주세요.</FormContainerSubDesc> 
+          <FormContainerDesc>해당없음 선택 시 기존 선택이 해제되고, 기본 문구가 노출됩니다.</FormContainerDesc>
           {tagList.map((list, key) => {
                 if(list.chosen == true){
                   return  <CurationTag key={key} onClick={() => {releaseTag(list.key, 0)}} style={{color : "white", background: "#6865FC", border: "1px solid #040104"}}>{list.name}</CurationTag>
@@ -1294,7 +1294,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
           <FormContainerMainDesc>각 주제별로 작업 가능한 스타일의 태그를 선택해주세요.</FormContainerMainDesc> 
           <FormContainerDesc>첫번째 선택한 태그가 대표 태그로 지정됩니다.</FormContainerDesc>
 
-          <FormContainerSubDesc>1. 작업 가능한 표현 분위기를 선택해주세요.</FormContainerSubDesc>
+          <FormContainerSubDesc>1. 작업시 선호하는 곡 분위기를 선택해주세요.</FormContainerSubDesc>
           {oneTagList.map((list, key) => {
                 if(stepTwoObj.atmoKindNm.length === 0){
                   return (
@@ -1347,7 +1347,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
           </RefreshLayout>
           
 
-          <FormContainerSubDesc>2. 작업 가능한 테마를 선택해주세요.</FormContainerSubDesc>
+          <FormContainerSubDesc>2. 작업 가능한 음원 테마를 선택해주세요.</FormContainerSubDesc>
           {twoTagList.map((list, key) => {
                 if(stepTwoObj.themeKindNm.length === 0){
                   return (
@@ -1397,7 +1397,7 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
             </div>
           </RefreshLayout>
 
-          <FormContainerSubDesc>3. 작업 가능한 장르를 선택해주세요.</FormContainerSubDesc>
+          <FormContainerSubDesc>3. 작업 가능한 음원 장르를 선택해주세요.</FormContainerSubDesc>
           {threeTagList.map((list, key) => {
               if(stepTwoObj.genreKindNm.length === 0){
                 return (
@@ -1503,20 +1503,20 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
         <FormContainerTitle>작업단계<span style={{color : "#6865FC"}}>*</span></FormContainerTitle>
         <FormContainerRight>
           <FormContainerMainDesc style={{margin : "0"}}>구체적인 작업 단계를 설명해주세요.</FormContainerMainDesc> 
-          <FormContainerDesc>최소 1step 이상 입력해주세요.</FormContainerDesc>
+          <FormContainerDesc>최소 1step 이상 칸을 채워 의뢰인에게 당신의 작업과정을 설명해주세요.</FormContainerDesc>
           
           <FormContainerSubDesc style={{borderBottom : "none"}}>step1</FormContainerSubDesc>
-          <FormContainerTextarea defaultValue={stepTwoObj.workStage01} placeholder="작업 단계에 대해 설명해주세요." onChange={e => {
+          <FormContainerTextarea defaultValue={stepTwoObj.workStage01} placeholder=" 의뢰인의 이해를 돕기 위한 첫 번째 작업 단계를 설명해주세요.&#13;&#10;ex) 의뢰인에게 받은 견적서를 확인한 후 기재된 연락처로 작업 절차에 대한 안내를 전송합니다. 상세 옵션 및 가격 협의 후 작업을 시작하게 됩니다." onChange={e => {
             setStepTwo({...stepTwoObj, workStage01 : e.target.value})
           }}/>
 
           <FormContainerSubDesc style={{borderBottom : "none"}}>step2</FormContainerSubDesc>
-          <FormContainerTextarea defaultValue={stepTwoObj.workStage02} placeholder="작업 단계에 대해 설명해주세요." onChange={e => {
+          <FormContainerTextarea defaultValue={stepTwoObj.workStage02} placeholder=" 의뢰인의 이해를 돕기 위한 두 번째 작업 단계를 설명해주세요.&#13;&#10;ex) 의뢰인에게 받은 견적서를 확인한 후 기재된 연락처로 작업 절차에 대한 안내를 전송합니다. 상세 옵션 및 가격 협의 후 작업을 시작하게 됩니다." onChange={e => {
             setStepTwo({...stepTwoObj, workStage02 : e.target.value})
           }}/>
 
           <FormContainerSubDesc style={{borderBottom : "none"}}>step3</FormContainerSubDesc>  
-          <FormContainerTextarea defaultValue={stepTwoObj.workStage03} placeholder="작업 단계에 대해 설명해주세요." onChange={e => {
+          <FormContainerTextarea defaultValue={stepTwoObj.workStage03} placeholder=" 의뢰인의 이해를 돕기 위한 세 번째 작업 단계를 설명해주세요." onChange={e => {
             setStepTwo({...stepTwoObj, workStage03 : e.target.value})
           }}/>
         
@@ -1528,22 +1528,30 @@ const StepTwo = ({ nextButton, beforeButton, object }) => {
         <FormContainerRight>
           
           <FormContainerSubDesc style={{borderBottom : "none"}}>1. 자신의 음악 스타일에 어떤 강점이 있나요?</FormContainerSubDesc> 
-          <FormContainerInput defaultValue={stepTwoObj.qstnAns01} onChange={e => {
+          <FormContainerTextarea style={{height : 80}} defaultValue={stepTwoObj.qstnAns01} 
+          placeholder=" ex) MIDI레슨과 MR제작, 음악제작 및 편집, BGM제작, 로고송 등 다양한 음악적 작업과 편집 경험을 가지고 있습니다.&#13;&#10; 입시, 공연 상업용M, 앨범제작, 축가, 기업 BGM과 로고송 등 장르를 불문하고 다양한 서비스를 제공할 수 있습니다."
+          onChange={e => {
             setStepTwo({...stepTwoObj, qstnAns01 : e.target.value})
           }}/>
           
           <FormContainerSubDesc style={{borderBottom : "none"}}>2. 수정 요청 또는 환불 규정이 어떻게 되나요?</FormContainerSubDesc> 
-          <FormContainerInput defaultValue={stepTwoObj.qstnAns02} onChange={e => {
+          <FormContainerTextarea style={{height : 80}} defaultValue={stepTwoObj.qstnAns02} 
+          placeholder=" ex) 작업이 시작되지 않았다면 100% 환불, 작업이 시작되면 70% 환불, 작업물에 대한 피드백이 오간 후로는 50% 환불해드립니다.&#13;&#10;피드백은 상시적으로 가능하나 의뢰가 완전히 끝난 후에는 별도의 수정은 불가능합니다."
+          onChange={e => {
             setStepTwo({...stepTwoObj, qstnAns02 : e.target.value})
           }}/>
           
           <FormContainerSubDesc style={{borderBottom : "none"}}>3. 제작한 음원 중 가장 대표적인 음원의 작업 기간은 얼마나 되나요?</FormContainerSubDesc> 
-          <FormContainerInput defaultValue={stepTwoObj.qstnAns03} onChange={e => {
+          <FormContainerTextarea style={{height : 80}} defaultValue={stepTwoObj.qstnAns03} 
+          placeholder=" ex) 그때 그때 편차가 다르지만 대표곡으로 선정한 'pray for launching'의 경우 한달의 시간이 소요되었습니다."
+          onChange={e => {
             setStepTwo({...stepTwoObj, qstnAns03 : e.target.value})
           }}/>
           
           <FormContainerSubDesc style={{borderBottom : "none"}}>4. 커스터마이징 작곡 서비스의 견적은 어떤 기준으로 산정했나요?</FormContainerSubDesc>  
-          <FormContainerInput defaultValue={stepTwoObj.qstnAns04} onChange={e => {
+          <FormContainerTextarea style={{height : 80}} defaultValue={stepTwoObj.qstnAns04} 
+          placeholder=" ex) 한 곡당 기준으로 가격을 산정합니다.&#13;&#10;한번에 여러 작업 요청시 할업 가능합니다."
+          onChange={e => {
             setStepTwo({...stepTwoObj, qstnAns04 : e.target.value})
           }}/>
 
