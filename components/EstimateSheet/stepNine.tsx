@@ -176,7 +176,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             <EstimateMainDesc>튜나 팁</EstimateMainDesc>
             <EstimateSubTitle>연락처를 왜 입력하나요?</EstimateSubTitle>
             <EstimateSubDesc>
-                튜나는 뮤지션과 의뢰인을 매칭해주는 매칭사이트로 연락 및 거래과정은 고객과 의뢰인에게 맡기고 있습니다. 의뢰서를 보고 뮤지션이 연락하기 위한 최소한의 정보로 고객의 연락처를 필요로하며, 의뢰인 역시 뮤지션이 수락할 시 뮤지션의 연락처를 확인할 수 있습니다.
+            뮤지션과 의뢰인을 이어주는 소개 사이트인 튜나는 아직 별도의 채팅이 마련되어 있지 않아요. 뮤지션을 소개받고 난 후 연락 및 거래를 위해 서로의 연락처가 필수랍니다. 연락처는 매칭된 뮤지션에게만 공개됩니다.
             </EstimateSubDesc>
             
         </EstimateUserInfoData>
@@ -190,7 +190,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             <EstimateContentMainSub>
 
                 <EstimateContentMainSubTitle>연락 가능한 연락처를 입력해주세요.</EstimateContentMainSubTitle>
-                <EstimateContentMainSubTitleBack>의뢰 수락시 뮤지션이 연락할 수 있도록 연락처를 입력해주세요. 뮤지션이 의뢰를 수락하기 전까지 연락처는 공개되지 않습니다.</EstimateContentMainSubTitleBack>
+                <EstimateContentMainSubTitleBack>의뢰를 수락한 뮤지션이 연락할 수 있도록 연락처를 입력해주세요. 뮤지션이 의뢰를 수락하기 전까지 연락처는 공개되지 않습니다.</EstimateContentMainSubTitleBack>
 
                 <InputLayout>
                     <div style={{display : "table", height : "32px", marginRight : "16px", width : "68px"}}>

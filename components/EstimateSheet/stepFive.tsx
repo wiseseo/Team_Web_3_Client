@@ -387,10 +387,10 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 }}
             />    
             <EstimateMainDesc>튜나 팁</EstimateMainDesc>
-            <EstimateSubTitle>악기란?</EstimateSubTitle>
+            <EstimateSubTitle>악기를 정해야하나요?</EstimateSubTitle>
             <EstimateSubDesc>
             {   
-                "음악에 사용될 악기를 말합니다.\n특별히 사용을 원하는 악기가 있다면 선택해주시고, 원하는 악기가 없을 시 '선택안함'태그를 선택하거나 원하는 악기를 '기타'란에 입력해주세요.".split("\n").map(function(item, idx) {
+                "음악에 넣고 싶은 악기가 있다면 선택해주세요. 원하는 악기가 없다면 '해당없음'태그를 잘 모르겠다면 '선택안함'을 누르고 '기타' 칸에 원하는 느낌을 써주셔도 된답니다.".split("\n").map(function(item, idx) {
                     return (
                         <span key={idx}>
                             {item}
@@ -411,8 +411,8 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             
             <EstimateContentMainSub>
 
-                <EstimateContentMainSubTitle>어떤 종류의 악기를 원하시나요?</EstimateContentMainSubTitle>
-                <EstimateContentMainSubTitleBack>최소 1개 이상의 태그를 선택해주세요. 첫번째 선택한 태그가 <span style={{fontWeight : "bold"}}>대표 태그</span>로 지정됩니다.</EstimateContentMainSubTitleBack>
+                <EstimateContentMainSubTitle>원하는 악기가 있나요?</EstimateContentMainSubTitle>
+                <EstimateContentMainSubTitleBack>대표 태그는 가장 처음에 선택해야 해요. 1개 이상의 태그를 선택하면 다음으로 넘어갈 수 있어요.</EstimateContentMainSubTitleBack>
                 
                 
                 <CurationTagLayout>
@@ -473,7 +473,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 </CurationTagLayout>
                   
                 <EstimateContentMainSubTitleBack style={{fontSize : "0.875rem"}}>기타 (직접입력)</EstimateContentMainSubTitleBack>
-                <Input defaultValue={stepFive.instruKindNmStr} onChange={(e) => {setStepFive({...stepFive, instruKindNmStr : e.target.value})}}/>
+                <Input defaultValue={stepFive.instruKindNmStr} placeholder="기타 코멘트가 있다면 적어주세요." onChange={(e) => {setStepFive({...stepFive, instruKindNmStr : e.target.value})}}/>
             
             </EstimateContentMainSub>
             

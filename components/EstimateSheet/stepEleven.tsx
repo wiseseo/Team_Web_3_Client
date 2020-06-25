@@ -156,7 +156,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             <EstimateMainDesc>튜나 팁</EstimateMainDesc>
             <EstimateSubTitle>가격은 어떻게 결정되나요?</EstimateSubTitle>
             <EstimateSubDesc>
-              튜나 내부 조사 결과 아마추어 뮤지션의 경우 일반적으로 1분 미만의 곡은 최소 3만원 이상, 3분 이상의 곡은 7만원 이상을 희망하고 있습니다.
+              튜나 내부 조사 결과 아마추어 뮤지션의 경우 일반적으로 1분 미만의 곡은 최소 3만원 이상, 3분 이상의 곡은 7만원 이상을 희망하고 있었어요.
             </EstimateSubDesc>
             
         </EstimateUserInfoData>
@@ -169,7 +169,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             
             <EstimateContentMainSub>
 
-                <EstimateContentMainSubTitle>희망하는 견적을 입력해주세요.</EstimateContentMainSubTitle>
+                <EstimateContentMainSubTitle>원하는 가격대를 설정해주세요.</EstimateContentMainSubTitle>
                 <EstimateContentMainSubTitleBack>좌측 Tip 문구를 읽어보시고 적절한 금액을 입력해주세요.</EstimateContentMainSubTitleBack>
                 
                 <Row style={{marginTop : 32}}>

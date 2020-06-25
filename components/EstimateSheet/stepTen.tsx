@@ -167,9 +167,9 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 }}
             />
             <EstimateMainDesc>튜나 팁</EstimateMainDesc>
-            <EstimateSubTitle>작업의 마감기한을 선택해주세요.</EstimateSubTitle>
-            <EstimateSubDesc>
-                뮤지션에게 충분한 작업시간을 주세요. 촉박한 기간 설정시 의뢰 수락 확률이 낮아집니다.
+            <EstimateSubTitle>마감일을 정할 때</EstimateSubTitle>
+            <EstimateSubDesc> 
+            뮤지션에게 적어도 일주일 이상의 충분한 작업시간을 주세요. 기간을 촉박하게 정하면 만족스러운 곡이 나오기 어렵답니다.
             </EstimateSubDesc>
             
         </EstimateUserInfoData>
@@ -182,7 +182,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             
             <EstimateContentMainSub>
 
-                <EstimateContentMainSubTitle>희망하는 작업기간을 선택해주세요.</EstimateContentMainSubTitle>
+                <EstimateContentMainSubTitle>언제까지 완성하면 좋을까요?</EstimateContentMainSubTitle>
                 <EstimateContentMainSubTitleBack>최종 작업 마감일을 설정하세요.</EstimateContentMainSubTitleBack>
                 
                 {stepTen.deadline.length !== 0 ? 

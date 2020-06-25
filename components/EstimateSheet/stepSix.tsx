@@ -265,9 +265,9 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 }}
             />
             <EstimateMainDesc>튜나 팁</EstimateMainDesc>
-            <EstimateSubTitle>작업 특성이란?</EstimateSubTitle>
+            <EstimateSubTitle>꼭 선택해야 하나요?</EstimateSubTitle>
             <EstimateSubDesc>
-            작업에 있어 필요한 세부적 사항입니다. 해당사항이 없을 시 '해당없음'을 눌러주세요. '기타'란에 입력해주세요.
+            의뢰에 추가하고 싶다면 선택해주세요. 필요가 없다면 '해당사항 없음'을 누르고 다음으로 가주세요.
             </EstimateSubDesc>
             
         </EstimateUserInfoData>
