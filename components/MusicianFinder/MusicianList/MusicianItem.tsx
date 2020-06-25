@@ -239,7 +239,7 @@ const MusicianItem = ({
         </RightContainer>
       </MusicianContainer>
       <LinkContainer>
-        <Link href={`/detail/${musician.id}`}>
+        <Link href="/detail/[id]" as={`/detail/${musician.id}`}>
           <ProfileButton>뮤지션 보기</ProfileButton>
         </Link>
         {/*<Likes onClick={() => toggleLike(musician.id)}>*/}
