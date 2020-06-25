@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import MusicianItem from "./MusicianItem";
-import { FindContext } from "../../../stores/FindStore";
+import { FilterContext } from "../../../stores/FilterStore";
 import { SongContext } from "../../../stores/SongStore";
 
 interface Props {}
@@ -44,7 +44,7 @@ const Next = styled.div`
 `;
 
 const MusicianList = (props: Props) => {
-  const { musicianList, dispatch } = React.useContext(FindContext);
+  const { musicianList, dispatch } = React.useContext(FilterContext);
   const song = React.useContext(SongContext);
 
   const toggleLike = (id: string) => {

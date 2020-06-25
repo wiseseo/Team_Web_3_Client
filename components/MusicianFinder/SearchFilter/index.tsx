@@ -1,8 +1,14 @@
 import * as React from "react";
 import styled from "styled-components";
-import axios, { AxiosPromise, AxiosResponse } from "axios";
-
+import { FilterContext } from "./../../../stores/FilterStore";
 interface Props {}
+
+interface Filter {
+  atmoList: Array<string>;
+  genreList: Array<string>;
+  instruList: Array<string>;
+  themeList: Array<string>;
+}
 
 const FilterSection = styled.div`
   display: flex;
@@ -101,6 +107,7 @@ const Sort = styled.div`
 `;
 
 const SearchFilter = (props: Props) => {
+  const { filter, setFilter, musicianList } = React.useContext(FilterContext);
   const [tagList, setTagList] = React.useState([
     [
       {
@@ -630,12 +637,6 @@ const SearchFilter = (props: Props) => {
     { id: 4, type: "악기" },
   ];
 
-  const [requestArray, setRequestArray] = React.useState({
-    atomoList: [],
-    genreList: [],
-    instruList: [],
-    themeList: [],
-  });
   const [dropdownName, setDropDownName] = React.useState(0);
 
   const [sort, setSort] = React.useState<boolean>(true);
@@ -702,7 +703,44 @@ const SearchFilter = (props: Props) => {
     }
   };
 
-  //console.log("TagList : ", TagList);
+  React.useEffect(() => {
+    switch (dropdownName - 1) {
+      case 0:
+        setFilter({
+          atmoList: TagList.length ? TagList : [""],
+          genreList: [""],
+          instruList: [""],
+          themeList: [""],
+        });
+        break;
+      case 1:
+        setFilter({
+          atmoList: [""],
+          genreList: [""],
+          instruList: [""],
+          themeList: TagList.length ? TagList : [""],
+        });
+        break;
+      case 2:
+        setFilter({
+          atmoList: [""],
+          genreList: TagList.length ? TagList : [""],
+          instruList: [""],
+          themeList: [""],
+        });
+        break;
+      case 3:
+        setFilter({
+          atmoList: [""],
+          genreList: [""],
+          instruList: TagList.length ? TagList : [""],
+          themeList: [""],
+        });
+        break;
+    }
+
+    console.log(`${dropdownName} : ${TagList}`);
+  }, [TagList]);
 
   React.useEffect(() => {
     if (dropdownName != 0) {
@@ -715,65 +753,9 @@ const SearchFilter = (props: Props) => {
       }
       document.getElementById("pathIcon").style.transform = "scaleY(-1)";
     }
+
     console.log(`${dropdownName} : ${TagList}`);
   }, [dropdownName]);
-
-  React.useEffect(() => {
-    switch (dropdownName - 1) {
-      case 0:
-        setRequestArray({
-          atomoList: [...TagList],
-          genreList: [""],
-          instruList: [""],
-          themeList: [""],
-        });
-        break;
-      case 1:
-        setRequestArray({
-          atomoList: [""],
-          genreList: [""],
-          instruList: [""],
-          themeList: [...TagList],
-        });
-        break;
-      case 2:
-        setRequestArray({
-          atomoList: [""],
-          genreList: [...TagList],
-          instruList: [""],
-          themeList: [""],
-        });
-        break;
-      case 3:
-        setRequestArray({
-          atomoList: [""],
-          genreList: [""],
-          instruList: [...TagList],
-          themeList: [""],
-        });
-        break;
-    }
-
-    console.log(`${dropdownName} : ${TagList}`);
-  }, [TagList]);
-
-  React.useEffect(() => {
-    //const [loading, setLoading] = React.useState(false);
-
-    const loadInitData = async (requestArray) => {
-      const response: AxiosResponse = await axios.get(
-        "http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/musicians/curation",
-        {
-          params: {
-            requestArray,
-          },
-        }
-      );
-      console.log(response);
-    };
-
-    loadInitData(requestArray);
-  }, [requestArray]);
 
   return (
     <FilterSection>
