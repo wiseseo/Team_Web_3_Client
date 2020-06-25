@@ -246,6 +246,7 @@ const StepThree = ({ nextButton, beforeButton, object }) => {
                 <FormContainerInput
                   defaultValue={stepThreeObj.styPrc01}
                   placeholder="희망가를 입력하세요."
+                  type="number" pattern="[0-9]*" step="1000"
                   onChange={(e) => {
                     setStepThree({ ...stepThreeObj, styPrc01: e.target.value });
                   }}
@@ -273,6 +274,7 @@ const StepThree = ({ nextButton, beforeButton, object }) => {
                 <FormContainerInput
                   defaultValue={stepThreeObj.styPrc02}
                   placeholder="희망가를 입력하세요."
+                  type="number" pattern="[0-9]*" step="1000"
                   onChange={(e) => {
                     setStepThree({ ...stepThreeObj, styPrc02: e.target.value });
                   }}
@@ -300,6 +302,7 @@ const StepThree = ({ nextButton, beforeButton, object }) => {
                 <FormContainerInput
                   defaultValue={stepThreeObj.styPrc03}
                   placeholder="희망가를 입력하세요."
+                  type="number" pattern="[0-9]*" step="1000"
                   onChange={(e) => {
                     setStepThree({ ...stepThreeObj, styPrc03: e.target.value });
                   }}

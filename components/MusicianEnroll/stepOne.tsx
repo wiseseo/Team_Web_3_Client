@@ -983,14 +983,14 @@ const StepOne = ({ nextButton, object }) => {
 
           <BeforeButton onClick={()=>{history.back()}}>이전으로</BeforeButton>
           {
-          // nickNmFlag === 1 &&
-          // introductionFlag === 1 &&
-          // (stepOneObj.profileUrl !== {}) &&
-          // careerFlag === 1 &&
-          // celPhoneFlag === 1 &&
-          // (stepOneObj.songEsntlUrl !== {}) &&
-          // (stepOneObj.portFolioMainMusic.size !== 0)
-          1
+          nickNmFlag === 1 &&
+          introductionFlag === 1 &&
+          (stepOneObj.profileUrl !== {}) &&
+          careerFlag === 1 &&
+          celPhoneFlag === 1 &&
+          (stepOneObj.songEsntlUrl !== {}) &&
+          (stepOneObj.portFolioMainMusic.size !== 0)
+          
           ? 
           <AfterButton onClick={()=>{nextButton(1, stepOneObj)}} style={{cursor : "pointer", background : "#6865FC"}}>저장하고 다음으로</AfterButton>
           :
