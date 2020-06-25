@@ -34,11 +34,16 @@ interface SongMainResponseDto {
   coverUrl: string;
   songUrl: string;
 }
-interface MusicianResponse {
+interface SimpleMusicianResponseDto {
   musicianMainResponseDto: MusicianMainResponseDto;
   songMainResponseDto: SongMainResponseDto;
   spclNoteTags: string[];
   rptags: string[];
+}
+interface MusicianResponse {
+  simpleMusicianResponseDto: SimpleMusicianResponseDto;
+  bookmarkCount: number;
+  alreadyBookmark: boolean;
 }
 interface MusicianListResponse {
   musician: MusicianResponse[];
@@ -111,24 +116,29 @@ export const FilterContext = React.createContext<FilterInterface>({
 const parseResponse = (responseData: MusicianListResponse): MusicianList => {
   let list: Musician[] = [];
   const mapper = ({
-    musicianMainResponseDto,
-    songMainResponseDto,
-    spclNoteTags,
-    rptags,
+    simpleMusicianResponseDto,
+    bookmarkCount,
+    alreadyBookmark,
   }: MusicianResponse): Musician => {
+    const {
+      musicianMainResponseDto,
+      songMainResponseDto,
+      spclNoteTags,
+      rptags,
+    } = simpleMusicianResponseDto;
     return {
       id: musicianMainResponseDto.musicianId,
       name: musicianMainResponseDto.nickNm,
       introduction: musicianMainResponseDto.introduction,
       tags: rptags,
-      likes: 0,
+      likes: bookmarkCount,
       profile_url: musicianMainResponseDto.profileUrl,
       features: spclNoteTags,
       song: {
         id: songMainResponseDto.songId,
         title: songMainResponseDto.title,
         isPlaying: false,
-        isLike: false,
+        isLike: alreadyBookmark,
         cover_url: songMainResponseDto.coverUrl,
         song_url: songMainResponseDto.songUrl,
       },
