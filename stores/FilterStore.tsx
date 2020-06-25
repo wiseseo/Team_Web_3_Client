@@ -45,7 +45,7 @@ interface MusicianListResponse {
 }
 const defaultMusicianList: Musician[] = [
   {
-    id: "0",
+    id: 0,
     name: "",
     introduction: "",
     profile_url: null,
@@ -53,7 +53,7 @@ const defaultMusicianList: Musician[] = [
     likes: 0,
     features: [],
     song: {
-      id: "0",
+      id: 0,
       title: "",
       cover_url: "/static/default-cover.png",
       song_url: null,
@@ -81,11 +81,6 @@ type ActionType = {
   payload?: any;
 };
 
-interface MusicianInterface {
-  musicianList: MusicianList;
-  dispatch?: React.Dispatch<ActionType>;
-}
-
 interface Filter {
   atmoList: Array<string>;
   genreList: Array<string>;
@@ -104,6 +99,7 @@ interface FilterInterface {
   filter: Filter;
   setFilter?: Function;
   musicianList: MusicianList;
+  dispatch?: React.Dispatch<ActionType>;
 }
 
 export const FilterContext = React.createContext<FilterInterface>({
@@ -204,7 +200,6 @@ const useLoad = (callback: Function, filter: Filter) => {
 
 const FilterStore = ({ children }: { children: React.ReactElement }) => {
   const [filter, setFilter] = useState<Filter>(defaultFilter);
-  //const [musicianList, setMusicianList] = useState<MusicianList>();
   const [musicianList, dispatch] = React.useReducer(reducer, {
     list: defaultMusicianList,
     display: [],
@@ -221,6 +216,7 @@ const FilterStore = ({ children }: { children: React.ReactElement }) => {
         filter,
         setFilter,
         musicianList,
+        dispatch,
       }}
     >
       {children}
