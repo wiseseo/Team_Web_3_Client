@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import { Modal } from "antd";
 import { CurationContext } from "./../../stores/CurationStore";
+import { FilterContext } from "./../../stores/FilterStore";
 
 import Main from "./Curation/main";
 import StepOne from "./Curation/step_one";
@@ -65,6 +66,7 @@ const Curation = ({ className }): React.ReactElement => {
   const [curationStep, setStep] = React.useState<number>(1);
 
   const tags = React.useContext(CurationContext);
+  const { setFilter } = React.useContext(FilterContext);
 
   let stepLayout = <></>;
   let ButtonType = <></>;
@@ -86,6 +88,12 @@ const Curation = ({ className }): React.ReactElement => {
       tags.dispatch({ type: "THREE_TAG", payload: { tag: tag } });
     } else if (step == 4) {
       tags.dispatch({ type: "FOUR_TAG", payload: { tag: tag } });
+      setFilter({
+        atmoList: [...tags.tags.stepOne_Tag],
+        genreList: [...tags.tags.stepThree_Tag],
+        instruList: [...tags.tags.stepFour_Tag],
+        themeList: [...tags.tags.stepTwo_Tag],
+      });
 
       setOpen(false);
     }

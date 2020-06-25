@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import { FilterContext } from "./../../stores/FilterStore";
 
 interface Props {}
 
@@ -43,21 +44,70 @@ const Card = styled.li`
 `;
 
 const Category = (props: Props) => {
+  const { setFilter } = React.useContext(FilterContext);
   return (
     <Container>
       <Title>카테고리</Title>
       <CardList>
         <Link href="/musician/find">
-          <Card source="/static/categori1.png">분위기</Card>
+          <Card
+            source="/static/categori1.png"
+            onClick={() => {
+              setFilter({
+                atmoList: [],
+                genreList: [""],
+                instruList: [""],
+                themeList: [""],
+              });
+            }}
+          >
+            분위기
+          </Card>
         </Link>
         <Link href="/musician/find">
-          <Card source="/static/categori2.png">테마</Card>
+          <Card
+            source="/static/categori2.png"
+            onClick={() => {
+              setFilter({
+                atmoList: [""],
+                genreList: [""],
+                instruList: [""],
+                themeList: [],
+              });
+            }}
+          >
+            테마
+          </Card>
         </Link>
         <Link href="/musician/find">
-          <Card source="/static/categori3.png">장르</Card>
+          <Card
+            source="/static/categori3.png"
+            onClick={() => {
+              setFilter({
+                atmoList: [""],
+                genreList: [],
+                instruList: [""],
+                themeList: [""],
+              });
+            }}
+          >
+            장르
+          </Card>
         </Link>
         <Link href="/musician/find">
-          <Card source="/static/categori4.png">악기</Card>
+          <Card
+            source="/static/categori4.png"
+            onClick={() => {
+              setFilter({
+                atmoList: [""],
+                genreList: [""],
+                instruList: [],
+                themeList: [""],
+              });
+            }}
+          >
+            악기
+          </Card>
         </Link>
       </CardList>
     </Container>
