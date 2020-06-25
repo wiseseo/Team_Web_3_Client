@@ -245,7 +245,7 @@ const StepThree = ({ nextButton, beforeButton, object }) => {
                 <FormContainerDesc>옵션 A</FormContainerDesc>
                 <FormContainerInput
                   defaultValue={stepThreeObj.styPrc01}
-                  placeholder="텍스트(숫자)"
+                  placeholder="희망가를 입력하세요."
                   onChange={(e) => {
                     setStepThree({ ...stepThreeObj, styPrc01: e.target.value });
                   }}
@@ -267,12 +267,12 @@ const StepThree = ({ nextButton, beforeButton, object }) => {
                       styExpln01: e.target.value,
                     });
                   }}
-                  placeholder="구체적 작업 기간, 피드백 방식, 수정가능 횟수 등"
+                  placeholder="구체적 작업 기간, 피드백 방식, 수정가능 횟수 등을 고려하여 상품을 구성해주세요."
                 />
                 <FormContainerDesc>옵션 B</FormContainerDesc>
                 <FormContainerInput
                   defaultValue={stepThreeObj.styPrc02}
-                  placeholder="텍스트(숫자)"
+                  placeholder="희망가를 입력하세요."
                   onChange={(e) => {
                     setStepThree({ ...stepThreeObj, styPrc02: e.target.value });
                   }}
@@ -294,12 +294,12 @@ const StepThree = ({ nextButton, beforeButton, object }) => {
                       styExpln02: e.target.value,
                     });
                   }}
-                  placeholder="구체적 작업 기간, 피드백 방식, 수정가능 횟수 등"
+                  placeholder="구체적 작업 기간, 피드백 방식, 수정가능 횟수 등을 고려하여 상품을 구성해주세요."
                 />
                 <FormContainerDesc>옵션 C</FormContainerDesc>
                 <FormContainerInput
                   defaultValue={stepThreeObj.styPrc03}
-                  placeholder="텍스트(숫자)"
+                  placeholder="희망가를 입력하세요."
                   onChange={(e) => {
                     setStepThree({ ...stepThreeObj, styPrc03: e.target.value });
                   }}
@@ -321,7 +321,7 @@ const StepThree = ({ nextButton, beforeButton, object }) => {
                       styExpln03: e.target.value,
                     });
                   }}
-                  placeholder="구체적 작업 기간, 피드백 방식, 수정가능 횟수 등"
+                  placeholder="구체적 작업 기간, 피드백 방식, 수정가능 횟수 등을 고려하여 상품을 구성해주세요."
                 />
               </>
             ) : (

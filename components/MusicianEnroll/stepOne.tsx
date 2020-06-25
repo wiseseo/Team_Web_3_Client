@@ -332,7 +332,7 @@ const StepOne = ({ nextButton, object }) => {
     }
 
     if (stepOneObj.introduction !== "") {
-      if(stepOneObj.introduction.length >= 50){
+      if(stepOneObj.introduction.length <= 50){
         setintroductionFlag(1)
       }
       else{
@@ -396,7 +396,7 @@ const StepOne = ({ nextButton, object }) => {
       <FormContainer>
         <FormContainerTitle>뮤지션 활동명<span style={{color : "#6865FC"}}>*</span></FormContainerTitle>
         {nickNmFlag === 0 ?
-        <FormContainerInput defaultValue={stepOneObj.nickNm} onChange={e => {
+        <FormContainerInput placeholder="뮤지션의 활동용 이름을 적어주세요." defaultValue={stepOneObj.nickNm} onChange={e => {
           // enrollData.dispatch
           setStepOne({...stepOneObj, nickNm : e.target.value});
         }
@@ -462,7 +462,7 @@ const StepOne = ({ nextButton, object }) => {
               
             }}/>
 
-            <FormContainerProfileContent>250x250 픽셀에 최적화되어 있으며, 10Mb 이하의 JPG, GIF, PNG 파일을 지원합니다.</FormContainerProfileContent>
+            <FormContainerProfileContent>최적크기 250 * 250, 최대용량 10Mb</FormContainerProfileContent>
           </div>
         </FormContainerProfile>
       </FormContainer>
@@ -471,17 +471,17 @@ const StepOne = ({ nextButton, object }) => {
         <FormContainerTitle>카피라이트<span style={{color : "#6865FC"}}>*</span></FormContainerTitle>
         
         <FormContainerInputTitle>
-          <div style={{fontSize : "0.875rem", float:"left"}}>뮤지션으로서의 자신을 한문장으로 표현해주세요</div>
+          <div style={{fontSize : "0.875rem", float:"left"}}>뮤지션인 당신을 한문장으로 표현해보세요.</div>
           {introductionFlag === 1 ?
-          <div style={{float : "right", fontSize:"0.625rem", color : "#6865FC"}}><span style={{color : "#6865FC"}}>✓ </span>최소 50자</div>
+          <div style={{float : "right", fontSize:"0.625rem", color : "#6865FC"}}><span style={{color : "#6865FC"}}>✓ </span>최대 50자</div>
           :
-          <div style={{float : "right", fontSize:"0.625rem", color : "#6865FC"}}>최소 50자 이상 작성해주세요.</div>
+          <div style={{float : "right", fontSize:"0.625rem", color : "#6865FC"}}>최대 50자까지 작성해주세요.</div>
           }
           
         </FormContainerInputTitle>
 
         {introductionFlag === 0 ?
-        <FormContainerInput defaultValue={stepOneObj.introduction} style={{marginBottom : "3%"}}onChange={e => {
+        <FormContainerInput placeholder="뮤지션과 함게 만들어가는 튜나!" defaultValue={stepOneObj.introduction} style={{marginBottom : "3%"}}onChange={e => {
           setStepOne({...stepOneObj, introduction : e.target.value})}
         }/>
         :
@@ -504,7 +504,7 @@ const StepOne = ({ nextButton, object }) => {
         <FormContainerTitle>경력<span style={{color : "#6865FC"}}>*</span></FormContainerTitle>
         
         <FormContainerInputTitle>
-          <div style={{fontSize : "0.875rem", float:"left"}}>발매한 음원, 의뢰 경력 등을 서술해주세요.</div>
+          <div style={{fontSize : "0.875rem", float:"left"}}>음악 활동 경력을 알려주세요. (ex. 의뢰 경험, 작곡 경력, 수상이력, 발매 음원 등)</div>
 
           {careerFlag === 1 ?
           <div style={{float : "right", fontSize:"0.625rem", color : "#6865FC"}}><span style={{color : "#6865FC"}}>✓ </span>최소 100자</div>
@@ -514,7 +514,15 @@ const StepOne = ({ nextButton, object }) => {
         </FormContainerInputTitle>
         
         {careerFlag === 0 ?
-        <FormContainerTextarea style={{marginBottom : "3%", height : 200}} defaultValue={stepOneObj.career} onChange={e => {
+        <FormContainerTextarea placeholder=" 예시)&#13;&#10;
+        현직 싱어송라이터&#13;&#10;&#13;&#10;
+        2020년 제 29회 하이원 서울가요대상 본상&#13;&#10;
+        2020년 제9회 가온차트 뮤직 어워즈 올해의 롱런 음원상&#13;&#10;
+        2020년 제34회 골든디스크 어워즈 디지털음원부문 본상&#13;&#10;
+        2019년 앨범 <코딩> 발매&#13;&#10;
+        2018년 드라마 <개발> OST 음원 수록&#13;&#10;
+        2015년 한국 대학교 실용음악과 졸업&#13;&#10;
+        " style={{marginBottom : "3%", height : 200}} defaultValue={stepOneObj.career} onChange={e => {
           setStepOne({...stepOneObj, career : e.target.value})}
         }/>
         :
@@ -596,7 +604,7 @@ const StepOne = ({ nextButton, object }) => {
                   <FormContainerInput defaultValue={value.data} disabled style={{marginBottom : "3%", width: "43%"}} key={idx}/> 
                   : 
                   // 입력 가능한 폼 onChange!!
-                  <FormContainerInput defaultValue={value.data} style={{marginBottom : "3%", width: "43%"}} key={idx} onChange={e => {
+                  <FormContainerInput placeholder="https://youtu.be/7yNP30R05_w" defaultValue={value.data} style={{marginBottom : "3%", width: "43%"}} key={idx} onChange={e => {
                     
                     let inputArr = [...stepOneObj.addUrl];
                     
@@ -623,7 +631,7 @@ const StepOne = ({ nextButton, object }) => {
         <div><div style={{width : "30%"}}/></div>
 
         <FormContainerProfileContent style={{width : "73%", float : "right", marginBottom : "2%"}}> 
-          유튜브, 사운드클라우드, 개인사이트 등 작업 음원을 올리는 포트폴리오 사이트 링크를 등록해주세요
+          이용하는 포트폴리오 사이트 링크를 등록하세요. (ex. 유튜브, 사운드클라우드, 개인사이트 등)
         </FormContainerProfileContent>
         
       </FormContainer>
@@ -659,16 +667,16 @@ const StepOne = ({ nextButton, object }) => {
                         marginRight : 5
                     }}
                 />
-                <span style={{color : "#C93E37", fontSize: "0.625rem"}}>올바른 휴대폰 번호가 아닙니다.</span>
+                <span style={{color : "#C93E37", fontSize: "0.625rem"}}>올바른 휴대폰 번호를 입력하세요. 하이픈(-)은 필수입니다.</span>
             </div>
 
             <FormContainerProfileContent style={{width : "73%", float : "right", marginBottom : "2%", marginTop : "4%"}}> 
-            거래가 성사되기 전에는 뮤지션의 연락처가 공개되지 않습니다. 원활한 소통을 위해 연락처를 기입해주세요.
+            하이픈(-)필수 입력. 연락처는 거래 확정 상대만 볼 수 있습니다.
             </FormContainerProfileContent>
         </>
         :
             <FormContainerProfileContent style={{width : "73%", float : "right", marginBottom : "2%", marginTop : "2%"}}> 
-              거래가 성사되기 전에는 뮤지션의 연락처가 공개되지 않습니다. 원활한 소통을 위해 연락처를 기입해주세요.
+              하이픈(-)필수 입력. 연락처는 거래 확정 상대만 볼 수 있습니다.
             </FormContainerProfileContent>
         }
 
@@ -682,7 +690,7 @@ const StepOne = ({ nextButton, object }) => {
         <div style={{position : "relative", top: "-3vh"}}>
           <FormContainerSnsLayout> 
 
-            <FormContainerInput defaultValue={stepOneObj.sns[0].id} placeholder="사용 계정을 입력하세요." style={{marginBottom : "3%", width : "49%", float : "right"}} onChange={e => {
+            <FormContainerInput defaultValue={stepOneObj.sns[0].id} placeholder="@TUNA" style={{marginBottom : "3%", width : "49%", float : "right"}} onChange={e => {
               let newArr = [...stepOneObj.sns];
               newArr[0].id = e.target.value
               setStepOne({...stepOneObj, sns : newArr})
@@ -697,7 +705,7 @@ const StepOne = ({ nextButton, object }) => {
           
           <FormContainerSnsLayout> 
 
-            <FormContainerInput defaultValue={stepOneObj.sns[1].id} placeholder="사용 계정을 입력하세요." style={{marginBottom : "3%", width : "49%", float : "right"}} onChange={e => {
+            <FormContainerInput defaultValue={stepOneObj.sns[1].id} placeholder="@TUNA" style={{marginBottom : "3%", width : "49%", float : "right"}} onChange={e => {
               let newArr = [...stepOneObj.sns];
               newArr[1].id = e.target.value
               setStepOne({...stepOneObj, sns : newArr})
@@ -712,7 +720,7 @@ const StepOne = ({ nextButton, object }) => {
           
           <FormContainerSnsLayout> 
 
-            <FormContainerInput defaultValue={stepOneObj.sns[2].id} placeholder="사용 계정을 입력하세요." style={{marginBottom : "3%", width : "49%", float : "right"}} onChange={e => {
+            <FormContainerInput defaultValue={stepOneObj.sns[2].id} placeholder="@TUNA" style={{marginBottom : "3%", width : "49%", float : "right"}} onChange={e => {
               let newArr = [...stepOneObj.sns];
               newArr[2].id = e.target.value
               setStepOne({...stepOneObj, sns : newArr})
@@ -727,7 +735,7 @@ const StepOne = ({ nextButton, object }) => {
           
           <FormContainerSnsLayout> 
 
-            <FormContainerInput defaultValue={stepOneObj.sns[3].id} placeholder="사용 계정을 입력하세요." style={{marginBottom : "3%", width : "49%", float : "right"}} onChange={e => {
+            <FormContainerInput defaultValue={stepOneObj.sns[3].id} placeholder="@TUNA" style={{marginBottom : "3%", width : "49%", float : "right"}} onChange={e => {
               let newArr = [...stepOneObj.sns];
               newArr[3].id = e.target.value
               setStepOne({...stepOneObj, sns : newArr})
@@ -742,7 +750,7 @@ const StepOne = ({ nextButton, object }) => {
 
 
           <FormContainerProfileContent style={{width : "73%", float : "right"}}> 
-            원활한 소통을 위해 고객이 확인 가능한 SNS 아이디를 남겨주세요.
+          SNS를 공개하면 의뢰가 들어올 확률이 높아집니다.
           </FormContainerProfileContent>
         </div>
       </FormContainer>
@@ -751,7 +759,7 @@ const StepOne = ({ nextButton, object }) => {
         <FormContainerTitle>포트폴리오 음원<span style={{color : "#6865FC"}}>*</span></FormContainerTitle>
 
         <FormContainerInputTitle>
-          <div style={{fontSize : "0.875rem", marginBottom : "3%"}}><span style={{color : "#6865FC"}}>*</span>대표곡의 앨범 커버 이미지를 업로드해주세요.</div>
+          <div style={{fontSize : "0.875rem", marginBottom : "3%"}}>대표곡의 이미지를 업로드해주세요.</div>
         </FormContainerInputTitle>
 
 
@@ -796,17 +804,17 @@ const StepOne = ({ nextButton, object }) => {
               }}
             />
 
-            <FormContainerProfileContent>250x250 픽셀에 최적화되어 있으며, 10Mb 이하의 JPG, GIF, PNG 파일을 지원합니다.</FormContainerProfileContent>
+            <FormContainerProfileContent>최적크기 250 * 250, 최대용량 10MB</FormContainerProfileContent>
           </div>
         </FormContainerProfile>
 
         <FormContainerInputTitle style={{marginTop : "3%"}}>
-          <div style={{fontSize : "0.875rem", marginBottom : "3%"}}>포트폴리오 음원을 등록해주세요. (mp3,mp4 형식)</div>
+          <div style={{fontSize : "0.875rem", marginBottom : "3%"}}>포트폴리오 음원을 등록해주세요.</div>
         </FormContainerInputTitle>
 
 
         <FormContainerInputDescription>
-          <div style={{marginBottom : "3%"}}><span style={{color : "#6865FC"}}>*</span>대표곡을 업로드 해주세요.</div>
+          <div style={{marginBottom : "3%"}}>대표곡을 업로드 하세요.</div>
         </FormContainerInputDescription>
 
         <div style={{lineHeight : "32px", clear : "both"}}> 
@@ -828,7 +836,7 @@ const StepOne = ({ nextButton, object }) => {
           {stepOneObj.portFolioMainMusic.size === 0 ? 
           
           <MusicNameLayout  style={{marginBottom : "3%", width : "35%", float : "right"}}>
-            파일명이 음악이름으로 등록됩니다.
+            mp3파일을 업로드하세요.
           </MusicNameLayout>
           :
           
@@ -864,7 +872,7 @@ const StepOne = ({ nextButton, object }) => {
 
 
         <FormContainerInputDescription>
-          <div style={{marginBottom : "3%"}}>대표음원 외의 포트폴리오 곡을 업로드 해주세요. (최대 9곡)</div>
+          <div style={{marginBottom : "3%"}}>포트폴리오 음원을 업로드 하세요.</div>
         </FormContainerInputDescription>
 
         <div style={{lineHeight : "32px", clear : "both"}}> 
@@ -901,7 +909,7 @@ const StepOne = ({ nextButton, object }) => {
           
           {stepOneObj.portFolioSubMusic[0].size === 0? 
           <MusicNameLayout style={{marginBottom : "3%", width : "35%", float : "right"}}>
-            파일명이 음악이름으로 등록됩니다.
+            최대 9곡까지 업로드 할 수 있습니다.
           </MusicNameLayout>
           :
           
@@ -967,8 +975,8 @@ const StepOne = ({ nextButton, object }) => {
           
         </div>
 
-        <FormContainerProfileContent style={{float : "right", width : "73%"}}>저작권에 주의해주세요. 반드시 자신이 작업한 작업물을 업로드해주세요.</FormContainerProfileContent>
-        <FormContainerProfileContent style={{float : "right", width : "73%"}}>공동작업물은 대표곡으로 업로드가 불가합니다.</FormContainerProfileContent>
+        <FormContainerProfileContent style={{float : "right", width : "73%"}}>모든 음원은 직접 작업한 작업물을 업로드하세요. 저작권 위반시 불이익이 주어집니다.</FormContainerProfileContent>
+        
       </FormContainer>
 
       <FlowButtonLayout>
