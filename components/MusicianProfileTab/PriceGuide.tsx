@@ -46,7 +46,7 @@ const Price = styled.div`
 `;
 const toWon = (price: number): string => {
   return price
-    ? price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " 원"
+    ? `${price}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " 원"
     : "0 원";
 };
 const PriceGuide = ({ guides }: Props) => {

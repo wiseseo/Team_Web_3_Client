@@ -71,7 +71,9 @@ const Price = styled.div`
   margin-bottom: 2.25rem;
 `;
 const toWon = (price: number): string => {
-  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " 원";
+  return price
+    ? `${price}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " 원"
+    : "0 원";
 };
 const PriceModal = (props: Props) => {
   const modalRef = React.useRef(null);
