@@ -47,7 +47,7 @@ const EstimateTitle = styled.div`
 const EstimateSheet = (props: Props) => {
 
     let stepLayout = <></>
-    const [enrollStep, setStep] = React.useState<number>(1);
+    const [enrollStep, setStep] = React.useState<number>(10);
     const estimateSheetData = React.useContext(EstimateSheetContext);
 
     console.log(estimateSheetData.estimateStores);

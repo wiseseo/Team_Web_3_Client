@@ -385,11 +385,11 @@ const StepFour = ({ nextButton, beforeButton, object }): React.ReactElement => {
                 }}
                 style={{ background: "#6865FC", cursor: "pointer" }}
               >
-                다음으로
+                나의 뮤지션 보기
               </NextButton>
             </Link>
           ) : (
-            <NextButton>다음으로</NextButton>
+            <NextButton>나의 뮤지션 보기</NextButton>
           )}
         </CurationModalButtonLayout>
       </CurationModalButton>

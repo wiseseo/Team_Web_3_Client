@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Progress from "../ProgressBar/TenProgress/twelve";
 import {DatePicker} from "antd";
 import axios from "axios";
+import { Modal } from "antd";
+import Estimate from "../Modal/estimate";
 const EstimateUserInfoData = styled.div`
     flex: 0.2;
     color : #E2E1E2;
@@ -99,8 +101,44 @@ const AfterButton = styled.button`
     border: none;
     font-size : 1rem;
 `;
+
+const ModalOver = styled(Modal)`
+  && {
+    .ant-modal-root {
+      font-size: 12rem;
+      .ant-modal-mask {
+        .ant-modal-wrap {
+          min-width: 1300px;
+        }
+      }
+    }
+    .ant-modal-close {
+      color: #93949c;
+    }
+    .ant-modal-content {
+      background-color: #181818;
+      fill: dimgray;
+      padding: 0;
+      height: 424px;
+      border-radius: 8px;
+    }
+    .ant-modal-body {
+      padding: 0;
+      height: 100%;
+    }
+  }
+`;
+
 const index = ({nextButton, beforeButton, object}): React.ReactElement => {
-  
+    const [open, setOpen] = React.useState<boolean>(false);
+
+    const onOpenModal = () => {
+        setOpen(true);
+    };
+    
+    const onCloseModal = () => {
+        setOpen(false);
+    };
 
     const EstimateSend = () => {
         console.log("object : ", object)
@@ -163,6 +201,8 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
         // })  
     }
     // console.log(checkBoxList);
+
+    console.log('stepTwelve!!!!!')
     return (
         <>
         <EstimateUserInfoData>
@@ -205,7 +245,8 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                 <BeforeButton onClick={()=>{beforeButton(12, "")}}>이전으로</BeforeButton>
                  
                 <AfterButton onClick={()=>{
-                    nextButton(12, "");
+                    onOpenModal();
+                    // nextButton(12, "");
                     EstimateSend();
                 }}
                 
@@ -215,6 +256,17 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
             </EstimateContentMainButton>
 
         </EstimateContentMain>
+
+        <ModalOver
+            visible={open}
+            onOk={onCloseModal}
+            onCancel={onCloseModal}
+            footer={null}
+            width={368}
+            style={{ top: 130, minWidth: 368 }}
+          >
+            <Estimate nextButton={nextButton}/>
+          </ModalOver>
 
         </>
     );

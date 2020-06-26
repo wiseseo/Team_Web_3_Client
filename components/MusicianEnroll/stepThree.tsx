@@ -352,11 +352,11 @@ const StepThree = ({ nextButton, beforeButton, object }) => {
                 }}
                 style={{ cursor: "pointer", background: "#6865FC" }}
               >
-                저장하고 다음으로
+                뮤지션으로 등록하기
               </AfterButton>
             // {/* </Link> */}
           ) : (
-            <AfterButton>저장하고 다음으로</AfterButton>
+            <AfterButton>뮤지션으로 등록하기</AfterButton>
           )}
         </FlowButtonLayout>
       </StepOneContainer>

@@ -175,8 +175,8 @@ const index = ({object}): React.ReactElement => {
                     <MyPageUserInfoImg>
                         <div style={{textAlign : "end"}}>
                             <img
-                                src="/static/vector.png"
-                                alt="vector"
+                                src="/static/girl.png"
+                                alt="girl"
                                 style={{
                                     width : 88,
                                     height : 88,
@@ -192,7 +192,7 @@ const index = ({object}): React.ReactElement => {
 
                         <MyPageTitle>김튜나</MyPageTitle>
                         <MyPageMainDesc style={{color : "#B3B4BE"}}>tuna@gmail.com</MyPageMainDesc>
-                        <MyPageTitle style={{fontWeight : "normal", marginTop : 5}}>일이삼사오육칠팔구십일이삼사오육칠팔구십</MyPageTitle>
+                        <MyPageTitle style={{fontWeight : "normal", marginTop : 5}}>음악 구함</MyPageTitle>
 
                     </MyPageUserInfoData>
                 </MyPageUserInfo>
