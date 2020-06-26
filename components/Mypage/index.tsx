@@ -123,29 +123,20 @@ const PickListBox = styled.div`
   margin-top: 3%;
 `;
 
-const AddButtonLayout = styled.div`
-  border: 1px solid #b3b4be;
-  border-radius: 8px;
-  height: 72px;
-  color: #e2e1e2;
-  cursor: pointer;
-  margin-top: 3%;
-  display: table;
-  text-align: center;
-  width: 100%;
-`;
-
 const Next = styled.div`
   background-color: #040104;
   color: #b3b4be;
-  height: 72px;
+  height: 56px;
   border: 1px solid #b3b4be;
   box-sizing: border-box;
   border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+
+  margin-top: 40px;
 `;
 
 const ReqContents = [
@@ -194,6 +185,7 @@ const Mypage = (props: Props) => {
   const song = React.useContext(SongContext);
 
   const [pageNumber, setPageNumber] = React.useState<number>(1);
+  const [pageBeNumber, setPageBeNumber] = React.useState<number>(1);
 
   const toggleLike = (id: string) => {
     dispatch({ type: "TOGGLE_LIKE", payload: id });
@@ -337,23 +329,21 @@ const Mypage = (props: Props) => {
             })}
           </PickListBox>
 
-          <AddButtonLayout>
-            {/*<div style={{ display: "table-cell", verticalAlign: "middle" }}>
-              더보기 (1/4)
-        </div>*/}
-
-            {userData.beforeList.display.length ===
-            userData.beforeList.list.length ? (
-              <span></span>
-            ) : (
-              <div
-                style={{ display: "table-cell", verticalAlign: "middle" }}
-                onClick={() => dispatch({ type: "NEXT_BEFORE" })}
-              >
-                더보기 (1/4)
-              </div>
-            )}
-          </AddButtonLayout>
+          {userData.beforeList.display.length ===
+          userData.beforeList.list.length ? (
+            <span></span>
+          ) : pageBeNumber > 3 ? (
+            <Next style={{ cursor: "auto" }}>더보기 ({pageBeNumber}/4)</Next>
+          ) : (
+            <Next
+              onClick={() => {
+                setPageBeNumber(pageBeNumber + 1);
+                dispatch({ type: "NEXT_BEFORE" });
+              }}
+            >
+              더보기 ({pageBeNumber}/4)
+            </Next>
+          )}
         </MyPageUserInfo>
       </MyPageContainer>
     </>
