@@ -12,7 +12,6 @@ type ActionType = {
 interface Song {
   id: string;
   title: string;
-  date: string;
   isPlaying: boolean;
   isLike: boolean;
   cover_url: string;
@@ -20,7 +19,7 @@ interface Song {
 }
 
 interface Musician {
-  id: string;
+  id: number;
   name: string;
   introduction: string;
   tags: string[];
@@ -40,17 +39,17 @@ const reducer = (musicianList: MusicianList, { type, payload }: ActionType) => {
     case "INIT_MUSICIANS":
       return {
         list: [...payload],
-        display: payload.slice(0, 10),
+        display: payload.slice(0, 8),
         page: 0,
         end: payload.length,
       };
     case "NEXT_MUSICIANS":
-      const nextPage = musicianList.page + 10;
+      const nextPage = musicianList.page + 8;
       if (nextPage > musicianList.end) return musicianList;
       else {
         let newDisplay = [
           ...musicianList.display,
-          ...musicianList.list.slice(nextPage, nextPage + 10),
+          ...musicianList.list.slice(nextPage, nextPage + 8),
         ];
         return {
           list: musicianList.list,
@@ -80,7 +79,7 @@ const reducer = (musicianList: MusicianList, { type, payload }: ActionType) => {
       return {
         ...musicianList,
         list: newList,
-        display: newList.slice(0, musicianList.page + 10),
+        display: newList.slice(0, musicianList.page + 8),
       };
     case "PLAY_SONG":
       return;

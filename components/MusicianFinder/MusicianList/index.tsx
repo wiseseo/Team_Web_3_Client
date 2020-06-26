@@ -9,7 +9,6 @@ interface Props {}
 interface Song {
   id: string;
   title: string;
-  date: string;
   isPlaying: boolean;
   isLike: boolean;
   cover_url: string;
@@ -17,7 +16,7 @@ interface Song {
 }
 
 interface Musician {
-  id: string;
+  id: number;
   name: string;
   introduction: string;
   tags: string[];
