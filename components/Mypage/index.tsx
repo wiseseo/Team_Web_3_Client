@@ -36,7 +36,7 @@ const MyPageContainer = styled.div`
   padding: 0 40px;
   display: flex;
   flex-direction: column;
-  min-width: 1050px;
+  min-width: 1120px;
   max-width: 1300px;
   margin: 0 auto;
 `;
@@ -145,17 +145,17 @@ const ReqContents = [
     profile: "/static/vector.png",
     reqdate: "2020년11월28일",
     context1: "선물",
-    context2: "을/를 위한",
+    context2: " 을/를 위한",
     context3: "뉴에이지",
-    context4: "장르의",
+    context4: " 장르의 ",
     context5: "사랑",
-    context6: "분위기인",
+    context6: " 분위기인",
     context7: "10초~미정",
-    context8: "분 길이의 곡을",
+    context8: " 분 길이의 곡을",
     context9: "2020년 12월 30일",
-    context10: "까지",
+    context10: " 까지",
     context11: "10만원 ~ 가격제시",
-    context12: "의 견적으로 의뢰하였습니다.",
+    context12: " 의 견적으로 의뢰하였습니다.",
     status: "wait",
   },
   {
@@ -164,17 +164,17 @@ const ReqContents = [
     profile: "/static/vector.png",
     reqdate: "2020년10월03일",
     context1: "작품",
-    context2: "을/를 위한",
+    context2: " 을/를 위한",
     context3: "어쿠스틱",
-    context4: "장르의",
+    context4: " 장르의 ",
     context5: "감동",
-    context6: "분위기인",
+    context6: " 분위기인",
     context7: "30초~미정",
-    context8: "분 길이의 곡을",
+    context8: " 분 길이의 곡을",
     context9: "2020년 12월 01일",
-    context10: "까지",
+    context10: " 까지",
     context11: "10만원 ~ 가격제시",
-    context12: "의 견적으로 의뢰하였습니다.",
+    context12: " 의 견적으로 의뢰하였습니다.",
     status: "connect",
   },
 ];
@@ -185,6 +185,7 @@ const Mypage = (props: Props) => {
 
   const [pageNumber, setPageNumber] = React.useState<number>(1);
   const [pageBeNumber, setPageBeNumber] = React.useState<number>(1);
+  const isMusician = false;
 
   const toggleLike = (id: string) => {
     dispatch({ type: "TOGGLE_LIKE", payload: id });
@@ -267,7 +268,7 @@ const Mypage = (props: Props) => {
 
           <ReqListBox>
             {ReqContents.map((element) => {
-              return <ReqList context={element} />;
+              return <ReqList context={element} isMusician={isMusician} />;
             })}
           </ReqListBox>
         </MyPageUserInfo>
