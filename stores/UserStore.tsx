@@ -482,7 +482,12 @@ export const UserContext = React.createContext<UserDataInterface>({
 
 const UserStore = ({ children }: { children: React.ReactElement }) => {
   const [userData, dispatch] = useReducer(reducer, {
-    musicianList: { list: defaultMusicianList, display: [], page: 0, end: 16 },
+    musicianList: {
+      list: defaultMusicianList,
+      display: [...defaultMusicianList.slice(0, 4)],
+      page: 0,
+      end: 16,
+    },
     userInfo: { name: "", email: "" },
     reqList: {
       name: "",
@@ -494,24 +499,32 @@ const UserStore = ({ children }: { children: React.ReactElement }) => {
       finalDate: "",
       pay: "",
     },
-    beforeList: { list: defaultBeforeList, display: [], page: 0, end: 8 },
-  });
+    beforeList: {
+      list: defaultBeforeList,
+      display: [...defaultBeforeList.slice(0, 4)],
+      page: 0,
+      end: 8,
+    },
+  }); /*
+      payload: {
+        musicianList: defaultMusicianList,
+        useInfo: {
 
-  useEffect(() => {
+        }
+        beforeList: { list: defaultBeforeList, display: [], page: 0, end: 8 },
+      },
+    });
+  }, []);*/
+
+  /*useEffect(() => {
     dispatch({
       type: "INIT_DATA",
       /*payload: {
         /*defaultMusicianList: defaultMusicianList,
         defaultBeforeList: defaultBeforeList,*/
-      /*musicianList: defaultMusicianList,
+  /*musicianList: defaultMusicianList,
         beforeList: defaultBeforeList,
       },*/
-      payload: {
-        musicianList: defaultMusicianList,
-        beforeList: defaultBeforeList,
-      },
-    });
-  }, []);
 
   return (
     <UserContext.Provider

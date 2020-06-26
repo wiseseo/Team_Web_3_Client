@@ -102,12 +102,13 @@ const reducer = (userData: UserData, { type, payload }: ActionType) => {
       beforeInit.page = 0;
       beforeInit.end = payload.beforeList.length;*/
       return {
+        ...userData,
         musicianList: musicianInit,
         beforeList: beforeInit,
       };
     case "NEXT_MUSICIANS":
       const nextPage = userData.musicianList.page + 4;
-      if (nextPage > userData.musicianList.end) return userData.musicianList;
+      if (nextPage > userData.musicianList.end) return userData;
       else {
         let newDisplay = [
           ...userData.musicianList.display,
@@ -119,13 +120,14 @@ const reducer = (userData: UserData, { type, payload }: ActionType) => {
         musicianNext.display = newDisplay;
         musicianNext.end = userData.musicianList.end;
         return {
+          ...userData,
           musicianList: musicianNext,
         };
       }
 
     case "NEXT_BEFORE":
       const nextBeforePage = userData.musicianList.page + 2;
-      if (nextPage > userData.beforeList.end) return userData.beforeList;
+      if (nextPage > userData.beforeList.end) return userData;
       else {
         let newDisplay = [
           ...userData.beforeList.display,
@@ -137,6 +139,7 @@ const reducer = (userData: UserData, { type, payload }: ActionType) => {
         BeforeNext.display = newDisplay;
         BeforeNext.end = userData.beforeList.end;
         return {
+          ...userData,
           beforeList: BeforeNext,
         };
       }
@@ -163,6 +166,7 @@ const reducer = (userData: UserData, { type, payload }: ActionType) => {
       musicianSelect.list = newList;
       musicianSelect.display = newList.slice(0, userData.musicianList.page + 4);
       return {
+        ...userData,
         musicianList: musicianSelect,
       };
     case "PLAY_SONG":
