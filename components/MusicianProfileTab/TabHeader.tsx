@@ -34,6 +34,7 @@ const TabHeader = ({ changeTab, selected }: Props) => {
     <Container>
       {tabList.map((tab, index) => (
         <Tab
+          key={index}
           href={`#${scrollList[index]}`}
           onClick={() => changeTab(index)}
           isSelected={selected == index}

@@ -13,8 +13,16 @@ const Container = styled.div`
 const Detail: React.FC = () => {
   const router = useRouter();
   const { id } = router.query;
+  let musicianId: string;
+  if (Array.isArray(id) && id.length > 0) {
+    musicianId = id[0];
+  } else if (id) {
+    musicianId = `${id}`;
+  } else {
+    musicianId = "1";
+  }
   return (
-    <MusicianDetailStore musicianId={typeof id === "string" ? id : id.join()}>
+    <MusicianDetailStore musicianId={musicianId}>
       <Container>
         <MusicianProfile></MusicianProfile>
         <MusicianProfileTab></MusicianProfileTab>

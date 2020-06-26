@@ -27,7 +27,7 @@ const WorkingStep = ({ steps }: Props) => {
   return (
     <Container>
       {steps.map((step, index) => (
-        <Style>
+        <Style key={index}>
           <Title>{index + 1}step</Title>
           <Content>{step}</Content>
         </Style>
