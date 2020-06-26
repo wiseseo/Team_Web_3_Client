@@ -45,7 +45,9 @@ const Price = styled.div`
   font-size: 0.75rem;
 `;
 const toWon = (price: number): string => {
-  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " 원";
+  return price
+    ? price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " 원"
+    : "0 원";
 };
 const PriceGuide = ({ guides }: Props) => {
   const [selected, setSelect] = React.useState<number>(-1);

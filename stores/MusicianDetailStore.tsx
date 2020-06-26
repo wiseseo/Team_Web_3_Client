@@ -126,10 +126,7 @@ const useLoad = (callback: Function, musicianId: string) => {
   const loadInitData = async (callback: Function, musicianId: string) => {
     setLoading(true);
     const response: AxiosResponse = await axios.get(
-      "http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/musician/detail",
-      {
-        params: { musicianId },
-      }
+      `http://ec2-13-209-105-111.ap-northeast-2.compute.amazonaws.com:8080/musician/detail/${musicianId}`
     );
     if (response.data) {
       const responseData: Musician = response.data;
