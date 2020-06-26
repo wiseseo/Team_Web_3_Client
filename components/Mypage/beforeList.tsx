@@ -70,6 +70,8 @@ const BeforeListDetailButton = styled.button`
   border: none;
   font-size: 1rem;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
 `;
 const beforeList = ({ element }: Props) => {
   return (
@@ -109,16 +111,24 @@ const beforeList = ({ element }: Props) => {
         <div style={{ flex: 0.1 }}></div>
 
         <BeforeListChar>
-          {element.status === "0" ? (
+          {element.status === "0" && (
             <div style={{ display: "table", height: "100%" }}>
               <div style={{ display: "table-cell", verticalAlign: "middle" }}>
                 수락한 의뢰
               </div>
             </div>
-          ) : (
+          )}
+          {element.status === "1" && (
             <div style={{ display: "table", height: "100%" }}>
               <div style={{ display: "table-cell", verticalAlign: "middle" }}>
                 거절한 의뢰
+              </div>
+            </div>
+          )}
+          {element.status === "2" && (
+            <div style={{ display: "table", height: "100%" }}>
+              <div style={{ display: "table-cell", verticalAlign: "middle" }}>
+                만료된 의뢰
               </div>
             </div>
           )}
@@ -132,7 +142,7 @@ const beforeList = ({ element }: Props) => {
 
         <BeforeListDetail>
           <div style={{ display: "table-cell", verticalAlign: "middle" }}>
-            <BeforeListDetailButton>뮤지션 보기</BeforeListDetailButton>
+            <BeforeListDetailButton>자세히 보기</BeforeListDetailButton>
           </div>
         </BeforeListDetail>
       </BeforeContainer>
