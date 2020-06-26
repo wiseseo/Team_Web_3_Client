@@ -501,7 +501,7 @@ const UserStore = ({ children }: { children: React.ReactElement }) => {
     },
     beforeList: {
       list: defaultBeforeList,
-      display: [...defaultBeforeList.slice(0, 4)],
+      display: [...defaultBeforeList.slice(0, 2)],
       page: 0,
       end: 8,
     },

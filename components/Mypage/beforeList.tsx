@@ -17,7 +17,7 @@ const BeforeContainer = styled.div`
 `;
 
 const BeforeListContent = styled.div`
-  flex: 0.35;
+  flex: 0.3;
 `;
 
 const BeforeListContentInfo = styled.div`
@@ -44,17 +44,16 @@ const BeforeListChar = styled.div`
   flex: 0.2;
   font-size: 1rem;
   color: #6865fc;
-  margin-right: 3%;
+
   font-weight: bold;
 `;
 
 const BeforeListInfo = styled.div`
-  flex: 0.5;
+  flex: 0.6;
   display: table;
   height: 100%;
   font-size: 0.825rem;
   color: #b3b4be;
-  margin-right: 3%;
 `;
 const BeforeListDetail = styled.div`
   flex: 0.1;
