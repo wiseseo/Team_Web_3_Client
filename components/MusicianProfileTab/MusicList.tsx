@@ -2,9 +2,13 @@ import * as React from "react";
 import styled from "styled-components";
 import MusicianStyle from "./MusicianStyle";
 import WorkingStep from "./WorkingStep";
+import { SongContext } from "./../../stores/SongStore";
+import { MusicianDetailContext } from "./../../stores/MusicianDetailStore";
+import PlayButton from "./../AudioPlayer/PlayButton";
 
 interface Props {
   songList: {
+    id: string;
     title: string;
     coverUrl: string;
     isPlaying?: boolean;
@@ -38,6 +42,9 @@ margin: 0.5rem;
 width: 3rem;
 height: 3rem;
 margin-left: 1rem;
+display: flex;
+justify-content: center;
+align-items: center;
 `;
 
 const Title = styled.div`
@@ -53,12 +60,38 @@ const TITLE = styled.div`
   background: none;
   border: 1px solid #6865fc;
 `;
+
 const MusicList = ({ songList }: Props) => {
+  const songContext = React.useContext(SongContext);
+  const { musician } = React.useContext(MusicianDetailContext);
+  const selectSong = (index: number, status: boolean) => {
+    const currentSong = musician.songList[index];
+    const selectedSong = {
+      id: `${currentSong.represent}`,
+      title: currentSong.title,
+      isLike: false,
+      cover_url: currentSong.coverUrl,
+      song_url: currentSong.songUrl,
+      name: musician.musicianList.userId.name,
+      isPlaying: status,
+    };
+    songContext.dispatch({ type: "CHANGE_SONG", payload: selectedSong });
+  };
   return (
     <Container>
       {songList.map((song, index) => (
         <Card key={index}>
-          <AlbumCover src={song.coverUrl}></AlbumCover>
+          <AlbumCover src={song.coverUrl}>
+            <PlayButton
+              playAudio={() => selectSong(index, !songContext.song.isPlaying)}
+              size={24}
+              status={
+                songContext.song.id === `${song.represent}`
+                  ? songContext.song.isPlaying
+                  : false
+              }
+            />
+          </AlbumCover>
           {index == 0 && <TITLE>TITLE</TITLE>}
           <Title>{song.title}</Title>
         </Card>
