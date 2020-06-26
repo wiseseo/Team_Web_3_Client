@@ -1,7 +1,8 @@
 import * as React from "react";
 import styled from "styled-components";
 import Fixed from "../ProgressBar/fixed";
-import Link from "next/link";
+import { Modal } from "antd";
+import MusicianEnrollCheck from "../Modal/musicianEnroll";
 interface Props {}
 
 const StepOneContainer = styled.div`
@@ -177,7 +178,36 @@ const AfterButton = styled.button`
   font-size: 1rem;
 `;
 
+const ModalOver = styled(Modal)`
+  && {
+    .ant-modal-root {
+      font-size: 12rem;
+      .ant-modal-mask {
+        .ant-modal-wrap {
+          min-width: 1300px;
+        }
+      }
+    }
+    .ant-modal-close {
+      color: #93949c;
+    }
+    .ant-modal-content {
+      background-color: #181818;
+      fill: dimgray;
+      padding: 0;
+      height: 424px;
+      border-radius: 8px;
+    }
+    .ant-modal-body {
+      padding: 0;
+      height: 100%;
+    }
+  }
+`;
+
+
 const StepThree = ({ nextButton, beforeButton, object }) => {
+  const [open, setOpen] = React.useState<boolean>(false);
   const [stepThreeObj, setStepThree] = React.useState({
     styPrc01: "",
     styExpln01: "",
@@ -187,6 +217,14 @@ const StepThree = ({ nextButton, beforeButton, object }) => {
     styExpln03: "",
     payMethod: false,
   });
+
+  const onOpenModal = () => {
+    setOpen(true);
+};
+
+const onCloseModal = () => {
+    setOpen(false);
+};
 
   React.useEffect(() => {
     setStepThree(object);
@@ -348,7 +386,8 @@ const StepThree = ({ nextButton, beforeButton, object }) => {
             // <Link href="/detail">
               <AfterButton
                 onClick={() => {
-                  nextButton(3, stepThreeObj);
+                  onOpenModal();
+                  // nextButton(3, stepThreeObj);
                 }}
                 style={{ cursor: "pointer", background: "#6865FC" }}
               >
@@ -360,6 +399,18 @@ const StepThree = ({ nextButton, beforeButton, object }) => {
           )}
         </FlowButtonLayout>
       </StepOneContainer>
+
+      <ModalOver
+            visible={open}
+            onOk={onCloseModal}
+            onCancel={onCloseModal}
+            footer={null}
+            width={368}
+            style={{ top: 130, minWidth: 368 }}
+          >
+        <MusicianEnrollCheck nextButton={nextButton}/>
+      </ModalOver>
+
     </>
   );
 };
