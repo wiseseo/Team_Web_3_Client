@@ -52,6 +52,15 @@ const PriceGuide = ({ guides }: Props) => {
   const initSelect = () => {
     setSelect(-1);
   };
+  const getShortContent = (content) => {
+    if (!content) return "";
+    let lineByLine = content
+      .split("\n")
+      .map((line) => (line.length > 15 ? line.slice(0, 14) + "..." : line));
+    return lineByLine.length > 6
+      ? lineByLine.slice(0, 6).join("\n")
+      : lineByLine.join("\n");
+  };
   return (
     <Container>
       {selected !== -1 && (
@@ -61,7 +70,7 @@ const PriceGuide = ({ guides }: Props) => {
         <Card key={index} onClick={() => setSelect(index)}>
           <Type>{guide.type}</Type>
           <Divide></Divide>
-          <Content>{guide.content}</Content>
+          <Content>{getShortContent(guide.content)}</Content>
           <Price>{toWon(guide.price)}</Price>
         </Card>
       ))}

@@ -126,7 +126,7 @@ const Features = (props: Props) => {
       >
         <Title>포트폴리오 사이트</Title>
         {[musician.musicianList.portFolioLink].map((link) => (
-          <a href={link} key={link}>
+          <a href={link} key={link} target="_blank">
             <img src="/static/link.png" alt="link" width={20} height={20} />
           </a>
         ))}
