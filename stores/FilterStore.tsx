@@ -3,7 +3,7 @@ import axios, { AxiosResponse } from "axios";
 import reducer from "./FindReducer";
 
 interface Song {
-  id: number;
+  id: string;
   title: string;
   isPlaying: boolean;
   isLike: boolean;
@@ -12,7 +12,7 @@ interface Song {
 }
 
 interface Musician {
-  id: number;
+  id: string;
   name: string;
   introduction: string;
   tags: string[];
@@ -50,7 +50,7 @@ interface MusicianListResponse {
 }
 const defaultMusicianList: Musician[] = [
   {
-    id: 0,
+    id: "0",
     name: "",
     introduction: "",
     profile_url: null,
@@ -58,7 +58,7 @@ const defaultMusicianList: Musician[] = [
     likes: 0,
     features: [],
     song: {
-      id: 0,
+      id: "0",
       title: "",
       cover_url: "/static/default-cover.png",
       song_url: null,
@@ -127,7 +127,7 @@ const parseResponse = (responseData: MusicianListResponse): MusicianList => {
       rptags,
     } = simpleMusicianResponseDto;
     return {
-      id: musicianMainResponseDto.musicianId,
+      id: `${musicianMainResponseDto.musicianId}`,
       name: musicianMainResponseDto.nickNm,
       introduction: musicianMainResponseDto.introduction,
       tags: rptags,
@@ -135,7 +135,7 @@ const parseResponse = (responseData: MusicianListResponse): MusicianList => {
       profile_url: musicianMainResponseDto.profileUrl,
       features: spclNoteTags,
       song: {
-        id: songMainResponseDto.songId,
+        id: `${songMainResponseDto.songId}`,
         title: songMainResponseDto.title,
         isPlaying: false,
         isLike: alreadyBookmark,
