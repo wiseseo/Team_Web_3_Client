@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
+import Link from "next/link";
 const EstimateUserInfoData = styled.div`
     flex: 0.1;
     color : #E2E1E2;
@@ -460,9 +461,10 @@ const index = ({object}): React.ReactElement => {
             <EstimateContentMainButton>
                 <div style={{display:"table-cell", height : "100%", verticalAlign:"middle"}}>
                 <BeforeButton onClick={()=>{window.location.assign("/")}}>메인으로</BeforeButton>
-                 
-                <AfterButton onClick={()=>{}} style={{cursor : "pointer", background : "#6865FC"}}>마이페이지로</AfterButton>
                 
+                <Link href="/user/mypage">
+                    <AfterButton onClick={()=>{}} style={{cursor : "pointer", background : "#6865FC"}}>마이페이지로</AfterButton>
+                </Link>
                 </div>
             </EstimateContentMainButton>
 
