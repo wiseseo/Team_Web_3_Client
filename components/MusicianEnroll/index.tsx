@@ -31,7 +31,7 @@ const EnrollTitle = styled.div`
 const MusicianEnroll = (props: Props) => {
     let stepLayout = <></>
 
-    const [enrollStep, setStep] = React.useState<number>(1);
+    const [enrollStep, setStep] = React.useState<number>(3);
     const [response, setResponse] = React.useState(null);
     const [error, setError] = React.useState(null);
 
