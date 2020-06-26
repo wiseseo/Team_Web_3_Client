@@ -8,7 +8,7 @@ import MusicianDetailStore from "./../../stores/MusicianDetailStore";
 
 const Container = styled.div`
   display: flex;
-  justifycontent: center;
+  justify-content: center;
 `;
 const Detail: React.FC = () => {
   const router = useRouter();
