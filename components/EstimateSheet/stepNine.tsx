@@ -230,7 +230,7 @@ const index = ({nextButton, beforeButton, object}): React.ReactElement => {
                                 marginRight : 5
                             }}
                         />
-                        <span style={{color : "#C93E37", fontSize: "0.625rem"}}>올바른 휴대폰 번호가 아닙니다.</span>
+                        <span style={{color : "#C93E37", fontSize: "0.625rem"}}>올바른 휴대폰 번호를 입력하세요. 하이픈(-)은 필수입니다.</span>
                     </div>
                 :
                 ""
