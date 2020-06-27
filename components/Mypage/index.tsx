@@ -142,8 +142,10 @@ const ReqContents = [
   {
     id: 1,
     name: "마약왕",
-    profile: "/static/vector.png",
     reqdate: "2020년11월28일",
+    //profile: "/static/vector.png",
+    profile:
+      "https://i.pinimg.com/originals/b4/75/00/b4750046d94fed05d00dd849aa5f0ab7.jpg",
     context1: "선물",
     context2: " 을/를 위한",
     context3: "뉴에이지",
@@ -161,7 +163,9 @@ const ReqContents = [
   {
     id: 2,
     name: "And we go",
-    profile: "/static/vector.png",
+    //profile: "/static/vector.png",
+    profile:
+      "https://freight.cargo.site/t/original/i/a22da87abfa5c1e719a8d2287c6b820a4438cb9e7bd8e19c03cc4c966fb25958/AWA-PACKSHOT.jpg",
     reqdate: "2020년10월03일",
     context1: "작품",
     context2: " 을/를 위한",
