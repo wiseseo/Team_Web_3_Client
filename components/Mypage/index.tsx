@@ -271,9 +271,16 @@ const Mypage = (props: Props) => {
           </MyPageTitleBox>
 
           <ReqListBox>
-            {ReqContents.map((element) => {
-              return <ReqList context={element} isMusician={isMusician} />;
+            {ReqContents.map((element, index) => {
+              return (
+                <ReqList
+                  key={index}
+                  context={element}
+                  isMusician={isMusician}
+                />
+              );
             })}
+            <ReqList key={5} context={null} isMusician={false} />
           </ReqListBox>
         </MyPageUserInfo>
 

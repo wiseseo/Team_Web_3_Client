@@ -13,7 +13,6 @@ type ActionType = {
 interface Song {
   id: string;
   title: string;
-  date: string;
   isPlaying: boolean;
   isLike: boolean;
   cover_url: string;
@@ -76,10 +75,7 @@ interface UserData {
   reqList: ReqList;
   beforeList: BeforeList;
 }
-const reducer = (
-  userData: UserData,
-  { type, payload }: ActionType
-): UserData => {
+const reducer = (userData: UserData, { type, payload }: ActionType) => {
   switch (type) {
     case "INIT_DATA":
       const musicianInit = userData.musicianList;

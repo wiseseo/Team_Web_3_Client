@@ -110,6 +110,9 @@ const ConnectBtn = styled.div`
 `;
 
 const ReqList = ({ context, isMusician }: Props) => {
+  if (context == null) {
+    return <ReqListContainer context={3}></ReqListContainer>;
+  }
   const [musicianAccept, setAccept] = React.useState(context.status);
   return (
     <ReqListContainer context={context.id}>
