@@ -242,8 +242,8 @@ const Mypage = (props: Props) => {
           <MyPageUserInfoImg>
             <div style={{ textAlign: "end" }}>
               <img
-                src="/static/vector.png"
-                alt="vector"
+                src="/static/girl.png"
+                alt="girl"
                 style={{
                   width: 150,
                   height: 150,
