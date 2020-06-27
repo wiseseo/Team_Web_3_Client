@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useReducer } from "react";
 import reducer from "./UserReducer";
 
 interface Song {
@@ -462,50 +462,37 @@ interface UserDataInterface {
   userData: UserData;
   dispatch?: React.Dispatch<ActionType>;
 }
-export const UserContext = React.createContext<UserDataInterface>({
-  userData: {
-    musicianList: { list: defaultMusicianList, display: [], page: 0, end: 0 },
-    userInfo: { name: "", email: "" },
-    reqList: {
-      name: "",
-      enrollDate: "",
-      forUse: "",
-      genre: "",
-      atmo: "",
-      length: "",
-      finalDate: "",
-      pay: "",
-    },
-    beforeList: { list: defaultBeforeList, display: [], page: 0, end: 0 },
+const defaultData: UserData = {
+  musicianList: {
+    list: defaultMusicianList,
+    display: [...defaultMusicianList.slice(0, 4)],
+    page: 0,
+    end: 16,
   },
+  userInfo: { name: "", email: "" },
+  reqList: {
+    name: "",
+    enrollDate: "",
+    forUse: "",
+    genre: "",
+    atmo: "",
+    length: "",
+    finalDate: "",
+    pay: "",
+  },
+  beforeList: {
+    list: defaultBeforeList,
+    display: [...defaultBeforeList.slice(0, 2)],
+    page: 0,
+    end: 8,
+  },
+};
+export const UserContext = React.createContext<UserDataInterface>({
+  userData: defaultData,
 });
 
 const UserStore = ({ children }: { children: React.ReactElement }) => {
-  const [userData, dispatch] = React.useReducer(reducer, {
-    musicianList: {
-      list: defaultMusicianList,
-      display: [...defaultMusicianList.slice(0, 4)],
-      page: 0,
-      end: 16,
-    },
-    userInfo: { name: "", email: "" },
-    reqList: {
-      name: "",
-      enrollDate: "",
-      forUse: "",
-      genre: "",
-      atmo: "",
-      length: "",
-      finalDate: "",
-      pay: "",
-    },
-    beforeList: {
-      list: defaultBeforeList,
-      display: [...defaultBeforeList.slice(0, 2)],
-      page: 0,
-      end: 8,
-    },
-  });
+  const [userData, dispatch] = useReducer(reducer, defaultData);
   /*
       payload: {
         musicianList: defaultMusicianList,
