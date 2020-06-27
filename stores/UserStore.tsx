@@ -137,7 +137,7 @@ const defaultMusicianList: Musician[] = [
       id: "4",
       title: "horse",
       cover_url:
-        "https://freight.cargo.site/t/original/i/a22da87abfa5c1e719a8d2287c6b820a4438cb9e7bd8e19c03cc4c966fb25958/AWA-PACKSHOT.jpg",
+        "https://colleenplays.files.wordpress.com/2017/07/a-flamemy-love-a-frequency-album-cover.jpg",
       song_url: "https://www.w3schools.com/html/horse.ogg",
       isPlaying: false,
       isLike: false,
@@ -155,8 +155,7 @@ const defaultMusicianList: Musician[] = [
     song: {
       id: "5",
       title: "tuna",
-      cover_url:
-        "https://post-phinf.pstatic.net/MjAxOTA4MDJfMTMg/MDAxNTY0NzE4NzAwOTA5.tn4HF1zjhfl6_aHxlR7asab1KXtzqAr9cdtE1N34esUg.5Mh8Nq1dlgLPhjjClwburE2_cSS3KlbKega_nY1Jc0Ig.JPEG/%EB%94%94%EB%85%B8%EB%A7%88%EB%93%9C%ED%95%99%EA%B5%90_%EC%95%84%ED%8A%B8%EB%94%94%EB%A0%89%ED%84%B0_NSH_%EC%95%A8%EB%B2%94_%EC%BB%A4%EB%B2%84_%EB%94%94%EC%9E%90%EC%9D%B8_1.jpg?type=w1200",
+      cover_url: "https://f4.bcbits.com/img/a2993211705_10.jpg",
       song_url: "http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga",
       isPlaying: false,
       isLike: false,
@@ -175,7 +174,7 @@ const defaultMusicianList: Musician[] = [
       id: "6",
       title: "tuna",
       cover_url:
-        "https://post-phinf.pstatic.net/MjAxOTA4MDJfMTMg/MDAxNTY0NzE4NzAwOTA5.tn4HF1zjhfl6_aHxlR7asab1KXtzqAr9cdtE1N34esUg.5Mh8Nq1dlgLPhjjClwburE2_cSS3KlbKega_nY1Jc0Ig.JPEG/%EB%94%94%EB%85%B8%EB%A7%88%EB%93%9C%ED%95%99%EA%B5%90_%EC%95%84%ED%8A%B8%EB%94%94%EB%A0%89%ED%84%B0_NSH_%EC%95%A8%EB%B2%94_%EC%BB%A4%EB%B2%84_%EB%94%94%EC%9E%90%EC%9D%B8_1.jpg?type=w1200",
+        "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/0994d841602157.57ac63336b606.jpg",
       song_url: "http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga",
       isPlaying: false,
       isLike: false,
@@ -194,7 +193,7 @@ const defaultMusicianList: Musician[] = [
       id: "7",
       title: "tuna",
       cover_url:
-        "https://post-phinf.pstatic.net/MjAxOTA4MDJfMTMg/MDAxNTY0NzE4NzAwOTA5.tn4HF1zjhfl6_aHxlR7asab1KXtzqAr9cdtE1N34esUg.5Mh8Nq1dlgLPhjjClwburE2_cSS3KlbKega_nY1Jc0Ig.JPEG/%EB%94%94%EB%85%B8%EB%A7%88%EB%93%9C%ED%95%99%EA%B5%90_%EC%95%84%ED%8A%B8%EB%94%94%EB%A0%89%ED%84%B0_NSH_%EC%95%A8%EB%B2%94_%EC%BB%A4%EB%B2%84_%EB%94%94%EC%9E%90%EC%9D%B8_1.jpg?type=w1200",
+        "https://www.canva.com/learn/wp-content/uploads/2015/03/Brown-Illustrated-Coffee-Acoustic-Album-Cover.jpg",
       song_url: "http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga",
       isPlaying: false,
       isLike: false,
@@ -232,7 +231,7 @@ const defaultMusicianList: Musician[] = [
       id: "9",
       title: "Death_Becomes_Fur",
       cover_url:
-        "https://post-phinf.pstatic.net/MjAxOTA4MDJfMTMg/MDAxNTY0NzE4NzAwOTA5.tn4HF1zjhfl6_aHxlR7asab1KXtzqAr9cdtE1N34esUg.5Mh8Nq1dlgLPhjjClwburE2_cSS3KlbKega_nY1Jc0Ig.JPEG/%EB%94%94%EB%85%B8%EB%A7%88%EB%93%9C%ED%95%99%EA%B5%90_%EC%95%84%ED%8A%B8%EB%94%94%EB%A0%89%ED%84%B0_NSH_%EC%95%A8%EB%B2%94_%EC%BB%A4%EB%B2%84_%EB%94%94%EC%9E%90%EC%9D%B8_1.jpg?type=w1200",
+        "https://akinaadderley.com/wp-content/uploads/2016/07/Album-Cover.jpg",
       song_url: "http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga",
       isPlaying: false,
       isLike: false,
@@ -251,7 +250,7 @@ const defaultMusicianList: Musician[] = [
       id: "10",
       title: "효과음",
       cover_url:
-        "https://post-phinf.pstatic.net/MjAxOTA4MDJfMTMg/MDAxNTY0NzE4NzAwOTA5.tn4HF1zjhfl6_aHxlR7asab1KXtzqAr9cdtE1N34esUg.5Mh8Nq1dlgLPhjjClwburE2_cSS3KlbKega_nY1Jc0Ig.JPEG/%EB%94%94%EB%85%B8%EB%A7%88%EB%93%9C%ED%95%99%EA%B5%90_%EC%95%84%ED%8A%B8%EB%94%94%EB%A0%89%ED%84%B0_NSH_%EC%95%A8%EB%B2%94_%EC%BB%A4%EB%B2%84_%EB%94%94%EC%9E%90%EC%9D%B8_1.jpg?type=w1200",
+        "https://media.indiedb.com/images/games/1/73/72345/SWH_Digital_Album_Cover.png",
       song_url: "https://s3.amazonaws.com/freecodecamp/simonSound1.mp3",
       isPlaying: false,
       isLike: false,
@@ -270,7 +269,7 @@ const defaultMusicianList: Musician[] = [
       id: "11",
       title: "다른음악",
       cover_url:
-        "https://post-phinf.pstatic.net/MjAxOTA4MDJfMTMg/MDAxNTY0NzE4NzAwOTA5.tn4HF1zjhfl6_aHxlR7asab1KXtzqAr9cdtE1N34esUg.5Mh8Nq1dlgLPhjjClwburE2_cSS3KlbKega_nY1Jc0Ig.JPEG/%EB%94%94%EB%85%B8%EB%A7%88%EB%93%9C%ED%95%99%EA%B5%90_%EC%95%84%ED%8A%B8%EB%94%94%EB%A0%89%ED%84%B0_NSH_%EC%95%A8%EB%B2%94_%EC%BB%A4%EB%B2%84_%EB%94%94%EC%9E%90%EC%9D%B8_1.jpg?type=w1200",
+        "https://mir-s3-cdn-cf.behance.net/project_modules/fs/c6b7cb69476919.5b830f3d47541.jpg",
       song_url: "https://html5tutorial.info/media/vincent.mp3",
       isPlaying: false,
       isLike: false,
@@ -289,7 +288,7 @@ const defaultMusicianList: Musician[] = [
       id: "12",
       title: "horse",
       cover_url:
-        "https://post-phinf.pstatic.net/MjAxOTA4MDJfMTMg/MDAxNTY0NzE4NzAwOTA5.tn4HF1zjhfl6_aHxlR7asab1KXtzqAr9cdtE1N34esUg.5Mh8Nq1dlgLPhjjClwburE2_cSS3KlbKega_nY1Jc0Ig.JPEG/%EB%94%94%EB%85%B8%EB%A7%88%EB%93%9C%ED%95%99%EA%B5%90_%EC%95%84%ED%8A%B8%EB%94%94%EB%A0%89%ED%84%B0_NSH_%EC%95%A8%EB%B2%94_%EC%BB%A4%EB%B2%84_%EB%94%94%EC%9E%90%EC%9D%B8_1.jpg?type=w1200",
+        "https://2fgtku2x783y1ywhc01gmd67-wpengine.netdna-ssl.com/wp-content/uploads/2015/10/cover_29441717102008.jpg",
       song_url: "https://www.w3schools.com/html/horse.ogg",
       isPlaying: false,
       isLike: false,
@@ -308,7 +307,7 @@ const defaultMusicianList: Musician[] = [
       id: "13",
       title: "tuna",
       cover_url:
-        "https://post-phinf.pstatic.net/MjAxOTA4MDJfMTMg/MDAxNTY0NzE4NzAwOTA5.tn4HF1zjhfl6_aHxlR7asab1KXtzqAr9cdtE1N34esUg.5Mh8Nq1dlgLPhjjClwburE2_cSS3KlbKega_nY1Jc0Ig.JPEG/%EB%94%94%EB%85%B8%EB%A7%88%EB%93%9C%ED%95%99%EA%B5%90_%EC%95%84%ED%8A%B8%EB%94%94%EB%A0%89%ED%84%B0_NSH_%EC%95%A8%EB%B2%94_%EC%BB%A4%EB%B2%84_%EB%94%94%EC%9E%90%EC%9D%B8_1.jpg?type=w1200",
+        "https://cdn.pixabay.com/photo/2019/11/30/17/52/girlfriend-4663787_1280.jpg",
       song_url: "http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga",
       isPlaying: false,
       isLike: false,
@@ -327,7 +326,7 @@ const defaultMusicianList: Musician[] = [
       id: "14",
       title: "tuna",
       cover_url:
-        "https://post-phinf.pstatic.net/MjAxOTA4MDJfMTMg/MDAxNTY0NzE4NzAwOTA5.tn4HF1zjhfl6_aHxlR7asab1KXtzqAr9cdtE1N34esUg.5Mh8Nq1dlgLPhjjClwburE2_cSS3KlbKega_nY1Jc0Ig.JPEG/%EB%94%94%EB%85%B8%EB%A7%88%EB%93%9C%ED%95%99%EA%B5%90_%EC%95%84%ED%8A%B8%EB%94%94%EB%A0%89%ED%84%B0_NSH_%EC%95%A8%EB%B2%94_%EC%BB%A4%EB%B2%84_%EB%94%94%EC%9E%90%EC%9D%B8_1.jpg?type=w1200",
+        "https://mir-s3-cdn-cf.behance.net/projects/404/88938398953891.5ef061e6cc404.jpg",
       song_url: "http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga",
       isPlaying: false,
       isLike: false,
@@ -346,7 +345,7 @@ const defaultMusicianList: Musician[] = [
       id: "15",
       title: "tuna",
       cover_url:
-        "https://post-phinf.pstatic.net/MjAxOTA4MDJfMTMg/MDAxNTY0NzE4NzAwOTA5.tn4HF1zjhfl6_aHxlR7asab1KXtzqAr9cdtE1N34esUg.5Mh8Nq1dlgLPhjjClwburE2_cSS3KlbKega_nY1Jc0Ig.JPEG/%EB%94%94%EB%85%B8%EB%A7%88%EB%93%9C%ED%95%99%EA%B5%90_%EC%95%84%ED%8A%B8%EB%94%94%EB%A0%89%ED%84%B0_NSH_%EC%95%A8%EB%B2%94_%EC%BB%A4%EB%B2%84_%EB%94%94%EC%9E%90%EC%9D%B8_1.jpg?type=w1200",
+        "https://artsy-media-uploads.s3.amazonaws.com/MN-CcNCDzF42xa3cfYk9yg%2Fhowmuchdoiloveyou.jpg",
       song_url: "http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga",
       isPlaying: false,
       isLike: false,
@@ -365,7 +364,7 @@ const defaultMusicianList: Musician[] = [
       id: "16",
       title: "tuna",
       cover_url:
-        "https://post-phinf.pstatic.net/MjAxOTA4MDJfMTMg/MDAxNTY0NzE4NzAwOTA5.tn4HF1zjhfl6_aHxlR7asab1KXtzqAr9cdtE1N34esUg.5Mh8Nq1dlgLPhjjClwburE2_cSS3KlbKega_nY1Jc0Ig.JPEG/%EB%94%94%EB%85%B8%EB%A7%88%EB%93%9C%ED%95%99%EA%B5%90_%EC%95%84%ED%8A%B8%EB%94%94%EB%A0%89%ED%84%B0_NSH_%EC%95%A8%EB%B2%94_%EC%BB%A4%EB%B2%84_%EB%94%94%EC%9E%90%EC%9D%B8_1.jpg?type=w1200",
+        "https://image.freepik.com/free-vector/summer-skull-line-graphic-illustration-vector-art-t-shirt-design_24519-643.jpg",
       song_url: "http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga",
       isPlaying: false,
       isLike: false,
@@ -377,7 +376,7 @@ const defaultBeforeList: Before[] = [
   {
     id: "1",
     profile_url:
-      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+      "https://images.unsplash.com/photo-1487309078313-fad80c3ec1e5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
     name: "dorai",
     enrollDate: "2018-12-28",
     status: "0",
@@ -386,7 +385,7 @@ const defaultBeforeList: Before[] = [
   {
     id: "2",
     profile_url:
-      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+      "https://images.unsplash.com/photo-1475823678248-624fc6f85785?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
     name: "타코",
     enrollDate: "2018-01-01",
     status: "1",
@@ -395,7 +394,7 @@ const defaultBeforeList: Before[] = [
   {
     id: "3",
     profile_url:
-      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+      "https://images.unsplash.com/photo-1542260151-26fd0558f5f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
     name: "dorai",
     enrollDate: "2018-12-28",
     status: "0",
@@ -404,7 +403,7 @@ const defaultBeforeList: Before[] = [
   {
     id: "4",
     profile_url:
-      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+      "https://images.unsplash.com/photo-1525896967401-bee10dc2276d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1094&q=80",
     name: "타코",
     enrollDate: "2018-01-01",
     status: "1",
@@ -413,7 +412,7 @@ const defaultBeforeList: Before[] = [
   {
     id: "5",
     profile_url:
-      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+      "https://images.unsplash.com/photo-1533975022683-50b01a696767?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=678&q=80",
     name: "dorai",
     enrollDate: "2018-12-28",
     status: "0",
@@ -422,7 +421,7 @@ const defaultBeforeList: Before[] = [
   {
     id: "6",
     profile_url:
-      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+      "https://images.unsplash.com/photo-1520635360276-79f3dbd809f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80",
     name: "타코",
     enrollDate: "2018-01-01",
     status: "1",
@@ -431,7 +430,7 @@ const defaultBeforeList: Before[] = [
   {
     id: "7",
     profile_url:
-      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+      "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80",
     name: "dorai",
     enrollDate: "2018-12-28",
     status: "0",
@@ -440,7 +439,7 @@ const defaultBeforeList: Before[] = [
   {
     id: "8",
     profile_url:
-      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+      "https://images.unsplash.com/photo-1519648023493-d82b5f8d7b8a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
     name: "타코",
     enrollDate: "2018-01-01",
     status: "1",

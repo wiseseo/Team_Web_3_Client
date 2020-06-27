@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import ReqList from "./reqList";
 import PickList from "./pickList";
+import Link from "next/link";
 import BeforeList from "./beforeList";
 interface Props {}
 
@@ -119,7 +120,8 @@ const ReqContents = [
   {
     id: 1,
     name: "김지윤",
-    profile: "/static/vector.png",
+    profile:
+      "https://images.unsplash.com/photo-1519648023493-d82b5f8d7b8a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
     reqdate: "2020년10월03일",
     context1: "작품",
     context2: " 을/를 위한",
@@ -138,7 +140,8 @@ const ReqContents = [
   {
     id: 2,
     name: "박진호",
-    profile: "/static/vector.png",
+    profile:
+      "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80",
     reqdate: "2020년11월28일",
     context1: "선물",
     context2: " 을/를 위한",
@@ -158,115 +161,114 @@ const ReqContents = [
 
 const defaultBeforeList = [
   {
-    id: 1,
+    id: "1",
     profile_url:
-      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+      "https://images.unsplash.com/photo-1487309078313-fad80c3ec1e5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
     name: "dorai",
     enrollDate: "2018-12-28",
     status: "0",
     features: "선물/뉴에이지/사랑/10초~미정/2018년12월30일/3만원 ~ 가격제시",
   },
   {
-    id: 2,
+    id: "2",
     profile_url:
-      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+      "https://images.unsplash.com/photo-1475823678248-624fc6f85785?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
     name: "타코",
     enrollDate: "2018-01-01",
     status: "1",
     features: "선물/뉴에이지/사랑/10초~미정/2018년12월30일/5만원 ~ 가격제시",
   },
   {
-    id: 3,
+    id: "3",
     profile_url:
-      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+      "https://images.unsplash.com/photo-1542260151-26fd0558f5f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
     name: "dorai",
     enrollDate: "2018-12-28",
     status: "2",
     features: "선물/뉴에이지/사랑/10초~미정/2018년12월30일/3만원 ~ 가격제시",
   },
   {
-    id: 4,
+    id: "4",
     profile_url:
-      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+      "https://images.unsplash.com/photo-1525896967401-bee10dc2276d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1094&q=80",
     name: "타코",
     enrollDate: "2018-01-01",
     status: "0",
     features: "선물/뉴에이지/사랑/10초~미정/2018년12월30일/5만원 ~ 가격제시",
   },
   {
-    id: 5,
+    id: "5",
     profile_url:
-      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+      "https://images.unsplash.com/photo-1533975022683-50b01a696767?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=678&q=80",
     name: "dorai",
     enrollDate: "2018-12-28",
     status: "1",
     features: "선물/뉴에이지/사랑/10초~미정/2018년12월30일/3만원 ~ 가격제시",
   },
   {
-    id: 6,
+    id: "6",
     profile_url:
-      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+      "https://images.unsplash.com/photo-1520635360276-79f3dbd809f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80",
     name: "타코",
     enrollDate: "2018-01-01",
     status: "2",
     features: "선물/뉴에이지/사랑/10초~미정/2018년12월30일/5만원 ~ 가격제시",
   },
   {
-    id: 7,
+    id: "7",
     profile_url:
-      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+      "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80",
     name: "dorai",
     enrollDate: "2018-12-28",
     status: "0",
     features: "선물/뉴에이지/사랑/10초~미정/2018년12월30일/3만원 ~ 가격제시",
   },
   {
-    id: 8,
+    id: "8",
     profile_url:
-      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+      "https://images.unsplash.com/photo-1519648023493-d82b5f8d7b8a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
     name: "타코",
     enrollDate: "2018-01-01",
     status: "1",
     features: "선물/뉴에이지/사랑/10초~미정/2018년12월30일/5만원 ~ 가격제시",
   },
   {
-    id: 9,
+    id: "9",
     profile_url:
-      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
-    name: "타코",
-    enrollDate: "2018-01-01",
+      "https://images.unsplash.com/photo-1533975022683-50b01a696767?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=678&q=80",
+    name: "dorai",
+    enrollDate: "2018-12-28",
     status: "2",
-    features: "선물/뉴에이지/사랑/10초~미정/2018년12월30일/5만원 ~ 가격제시",
-  },
-  {
-    id: 10,
-    profile_url:
-      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
-    name: "dorai",
-    enrollDate: "2018-12-28",
-    status: "0",
     features: "선물/뉴에이지/사랑/10초~미정/2018년12월30일/3만원 ~ 가격제시",
   },
   {
-    id: 11,
+    id: "10",
     profile_url:
-      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+      "https://images.unsplash.com/photo-1520635360276-79f3dbd809f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80",
     name: "타코",
     enrollDate: "2018-01-01",
-    status: "1",
+    status: "0",
     features: "선물/뉴에이지/사랑/10초~미정/2018년12월30일/5만원 ~ 가격제시",
   },
   {
-    id: 12,
+    id: "11",
     profile_url:
-      "https://i.pinimg.com/736x/b3/0f/a8/b30fa894137c0254d47922a20e35d32c.jpg",
+      "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80",
+    name: "dorai",
+    enrollDate: "2018-12-28",
+    status: "1",
+    features: "선물/뉴에이지/사랑/10초~미정/2018년12월30일/3만원 ~ 가격제시",
+  },
+  {
+    id: "12",
+    profile_url:
+      "https://images.unsplash.com/photo-1519648023493-d82b5f8d7b8a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
     name: "타코",
     enrollDate: "2018-01-01",
     status: "2",
     features: "선물/뉴에이지/사랑/10초~미정/2018년12월30일/5만원 ~ 가격제시",
   },
 ];
-
 const MusicianMyPage = (props: Props) => {
   const isMusician = true;
   const [pageBeNumber, setPageBeNumber] = React.useState<number>(1);
@@ -306,7 +308,9 @@ const MusicianMyPage = (props: Props) => {
               <div style={{ flex: 0.4 }}></div>
             </MyPageReqBox>
 
-            <MyPageChangeMusician>일반 회원으로 전환</MyPageChangeMusician>
+            <Link href="/user/mypage">
+              <MyPageChangeMusician>일반 회원으로 전환</MyPageChangeMusician>
+            </Link>
           </MyPageUserInfoData>
 
           <MyPageUserInfoImg>
