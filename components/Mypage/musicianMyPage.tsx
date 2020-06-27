@@ -312,8 +312,8 @@ const MusicianMyPage = (props: Props) => {
           <MyPageUserInfoImg>
             <div style={{ textAlign: "end" }}>
               <img
-                src="/static/vector.png"
-                alt="vector"
+                src="/static/musician.png"
+                alt="musician"
                 style={{
                   width: 150,
                   height: 150,

@@ -41,7 +41,6 @@ const CurationModalDescription = styled.div`
   align-items: center;
   text-align: center;   
   padding-top : 1%;
-  padding-bottom : 3%;
 `;
 
 const CurationModalButton = styled.div`
@@ -77,8 +76,10 @@ const StepMain = ({nextButton}): React.ReactElement => {
 
             <CurationModalLogo>
             <img
-            src="/static/vector.png"
+            src="/static/curation-img.png"
             alt="vector"
+            width="240px"
+            height="188px"
             style={{
                 
             }}

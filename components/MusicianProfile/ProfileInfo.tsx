@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import { MusicianDetailContext } from "./../../stores/MusicianDetailStore";
+import Link from "next/link";
 
 interface Props {}
 const Container = styled.div`
@@ -74,7 +75,9 @@ const ProfileInfo = (props: Props) => {
       </Wrapper>
       <Name>{musician.musicianList.nickNm}</Name>
       <Introduction>{musician.musicianList.introduction}</Introduction>
-      <Button>의뢰하기</Button>
+      <Link href="/document/estimateSheet">
+        <Button>의뢰하기</Button>
+      </Link>
     </Container>
   );
 };
