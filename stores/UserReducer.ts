@@ -76,7 +76,10 @@ interface UserData {
   reqList: ReqList;
   beforeList: BeforeList;
 }
-const reducer = (userData: UserData, { type, payload }: ActionType) => {
+const reducer = (
+  userData: UserData,
+  { type, payload }: ActionType
+): UserData => {
   switch (type) {
     case "INIT_DATA":
       const musicianInit = userData.musicianList;
@@ -124,6 +127,7 @@ const reducer = (userData: UserData, { type, payload }: ActionType) => {
           musicianList: musicianNext,
         };
       }
+      return userData;
 
     case "NEXT_BEFORE":
       const nextBeforePage = userData.musicianList.page + 2;
@@ -143,6 +147,7 @@ const reducer = (userData: UserData, { type, payload }: ActionType) => {
           beforeList: BeforeNext,
         };
       }
+      return userData;
     case "TOGGLE_LIKE":
       // 미정입니다.
       const index = userData.musicianList.list.findIndex(
@@ -155,6 +160,7 @@ const reducer = (userData: UserData, { type, payload }: ActionType) => {
           isLike: !userData.musicianList.list[index].song.isLike,
         },
       };
+      return userData;
     case "SELECT_SONG":
       const newList = userData.musicianList.list.map((musician) => {
         musician.song.isPlaying =
@@ -170,12 +176,12 @@ const reducer = (userData: UserData, { type, payload }: ActionType) => {
         musicianList: musicianSelect,
       };
     case "PLAY_SONG":
-      return;
+      return userData;
     case "STOP_SONG":
-      return;
+      return userData;
 
     default:
-      return;
+      return userData;
   }
 };
 

@@ -10,6 +10,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   padding-right: 1rem;
+  flex: 1;
 `;
 const Cover = styled.div`
     background-image: url("${({ source }: { source: string }) => source}");
@@ -22,6 +23,7 @@ const Cover = styled.div`
 const Info = styled.div`
   margin-left: 2rem;
   width: 4rem;
+  flex: 1;
 `;
 const Name = styled.div`
   color: #fdfdff;

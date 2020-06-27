@@ -45,11 +45,17 @@ const Volume = styled.div`
     }
   }
 `;
+const VolumeController = styled.div`
+  flex: 1;
+  margin-left: 1rem;
+  display: flex;
+  justify-content: center;
+`;
 const Controller = styled.div`
   margin-right: auto;
   margin-left: auto;
-  flex: 1;
   display: flex;
+  flex: 2;
   align-items: center;
   justify-content: center;
   & > button {
@@ -115,37 +121,38 @@ const AudioPlayer: React.FC = (): React.ReactElement => {
           changeCurrent={changeCurrent}
         />
       </Controller>
-      <Like onClick={() => dispatch({ type: "TOGGLE_LIKE" })}>
-        <img src="/static/like.png" width={24} height={24} alt="like" />
-      </Like>
-      <Volume>
-        <img
-          src={`/static/${
-            audioRef.current !== null
-              ? audioRef.current.volume > 0
-                ? "volume"
-                : "mute"
-              : "volume"
-          }.png`}
-          width={24}
-          height={24}
-          alt="volume"
-          onClick={() => {
-            if (audioRef.current === null) return;
-            audioRef.current.volume = audioRef.current.volume === 0 ? 0.5 : 0;
-          }}
-        />
+      <VolumeController>
+        <Like onClick={() => dispatch({ type: "TOGGLE_LIKE" })}>
+          <img src="/static/like.png" width={24} height={24} alt="like" />
+        </Like>
+        <Volume>
+          <img
+            src={`/static/${
+              audioRef.current !== null
+                ? audioRef.current.volume > 0
+                  ? "volume"
+                  : "mute"
+                : "volume"
+            }.png`}
+            width={24}
+            height={24}
+            alt="volume"
+            onClick={() => {
+              if (audioRef.current === null) return;
+              audioRef.current.volume = audioRef.current.volume === 0 ? 0.5 : 0;
+            }}
+          />
 
-        <input
-          type="range"
-          max={1}
-          min={0}
-          step={0.001}
-          value={audioRef.current ? audioRef.current.volume : 0.5}
-          onChange={volumeChange}
-        />
-      </Volume>
-
+          <input
+            type="range"
+            max={1}
+            min={0}
+            step={0.001}
+            value={audioRef.current ? audioRef.current.volume : 0.5}
+            onChange={volumeChange}
+          />
+        </Volume>
+      </VolumeController>
       <audio
         onLoadedMetadata={(event) => {
           setDuration(audioRef.current.duration);
