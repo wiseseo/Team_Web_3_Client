@@ -92,7 +92,7 @@ const Header = ({ isLogin, isMusician }): React.ReactElement => {
                 alt="vector"
                 width={32}
                 height={32}
-                style={{ marginRight: 8 }}
+                style={{ marginRight: 8, borderRadius: "50%" }}
               />
               <DownOutlined style={{ color: "#B3B4BE" }} />
             </a>
@@ -124,7 +124,7 @@ const Header = ({ isLogin, isMusician }): React.ReactElement => {
                 alt="vector"
                 width={32}
                 height={32}
-                style={{ marginRight: 8 }}
+                style={{ marginRight: 8, borderRadius: "50%" }}
               />
               <DownOutlined style={{ color: "#B3B4BE" }} />
             </a>
