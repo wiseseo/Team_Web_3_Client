@@ -8,7 +8,6 @@ import PlayButton from "./../AudioPlayer/PlayButton";
 
 interface Props {
   songList: {
-    id: string;
     title: string;
     coverUrl: string;
     isPlaying?: boolean;

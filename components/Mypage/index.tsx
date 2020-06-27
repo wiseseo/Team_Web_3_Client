@@ -10,7 +10,7 @@ import Link from "next/link";
 interface Props {}
 
 interface Song {
-  id: number;
+  id: string;
   title: string;
   isPlaying: boolean;
   isLike: boolean;
@@ -19,7 +19,7 @@ interface Song {
 }
 
 interface Musician {
-  id: number;
+  id: string;
   name: string;
   introduction: string;
   tags: string[];

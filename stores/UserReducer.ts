@@ -11,7 +11,7 @@ type ActionType = {
 };
 
 interface Song {
-  id: number;
+  id: string;
   title: string;
   date: string;
   isPlaying: boolean;
@@ -21,7 +21,7 @@ interface Song {
 }
 
 interface Musician {
-  id: number;
+  id: string;
   name: string;
   introduction: string;
   tags: string[];

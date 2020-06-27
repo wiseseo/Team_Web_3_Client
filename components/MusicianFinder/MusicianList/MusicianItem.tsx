@@ -233,7 +233,8 @@ const MusicianItem = ({
         </LeftContainer>
         <RightContainer>
           <SpecialNote>
-            {musician.features.reduce((res, feature) => `${res}/${feature}`)}
+            {musician.features.length &&
+              musician.features.reduce((res, feature) => `${res}/${feature}`)}
           </SpecialNote>
         </RightContainer>
       </MusicianContainer>
