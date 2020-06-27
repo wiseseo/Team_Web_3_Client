@@ -103,7 +103,7 @@ const Estimate = ({nextButton}): React.ReactElement => {
         <LoginModalButton>
 
           <LoginModalButtonLayout>
-            <Link href="/detail/58">
+            <Link href="/detail/57">
               <LeaveButton onClick={() => {nextButton(3, "")}}>내 뮤지션프로필 보기</LeaveButton>
             </Link>
           </LoginModalButtonLayout>
