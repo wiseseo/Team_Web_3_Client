@@ -5,6 +5,7 @@ import MatchButton from "./MatchButton";
 import LinkButton from "./LinkButton";
 import { Menu, Dropdown } from "antd";
 import { DownOutlined } from "@ant-design/icons";
+import Link from "next/link";
 
 interface Props {}
 
@@ -32,9 +33,8 @@ const Button = styled.div`
 const menu = (
   <Menu>
     <Menu.Item key="0">
-      <a href="http://localhost:3000/user/mypage">마이페이지</a>
+      <Link href="/user/mypage">마이페이지</Link>
     </Menu.Item>
-
     <Menu.Item key="1">로그아웃</Menu.Item>
     {/* accesstoken Delete */}
   </Menu>
@@ -43,7 +43,7 @@ const menu = (
 const Musicianmenu = (
   <Menu>
     <Menu.Item key="0">
-      <a href="http://localhost:3000/musician/mypage">마이페이지</a>
+      <Link href="/musician/mypage">마이페이지</Link>
     </Menu.Item>
 
     <Menu.Item key="1">로그아웃</Menu.Item>
@@ -88,7 +88,7 @@ const Header = ({ isLogin, isMusician }): React.ReactElement => {
               onClick={(e) => e.preventDefault()}
             >
               <img
-                src="/static/vector.png"
+                src="/static/girl.png"
                 alt="vector"
                 width={32}
                 height={32}
@@ -120,7 +120,7 @@ const Header = ({ isLogin, isMusician }): React.ReactElement => {
               onClick={(e) => e.preventDefault()}
             >
               <img
-                src="/static/vector.png"
+                src="/static/musician.png"
                 alt="vector"
                 width={32}
                 height={32}
