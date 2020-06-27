@@ -54,17 +54,15 @@ const Header = ({ isLogin, isMusician }): React.ReactElement => {
   console.log("isLogin", isLogin, isMusician);
   return (
     <HeaderContainer>
+      <Link href="/">
       <img
         src="/static/tuna-logotype2.png"
         alt="logo"
         width="127px"
         height="40px"
         style={{ cursor: "pointer", marginRight: "auto" }}
-        onClick={() => {
-          location.href = "/";
-        }}
       />
-
+      </Link>
       {isLogin === false ? (
         <>
           <MatchButton />
